@@ -30,7 +30,7 @@
 
 \arguments{
 
-  \item{fit}{\code{\link{nls}} or \code{\link{mle}} object.}
+  \item{fit}{\code{\link{nls}} or \code{\link[stats4]{mle}} object.}
 
   \item{x}{Numeric object with variable modelled.}
 

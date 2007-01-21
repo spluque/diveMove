@@ -276,7 +276,7 @@
     abline(v=bec, lty=2)
 }
 
-"plotBouts2.cdf" <- function(fit, x, draw.bec=TRUE, bec.lty=2, ...)
+"plotBouts2.cdf" <- function(fit, x, draw.bec=FALSE, bec.lty=2, ...)
 {
     ## Value: plot
     ## --------------------------------------------------------------------
