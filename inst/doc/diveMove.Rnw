@@ -1,0 +1,414 @@
+%\VignetteIndexEntry{Dive Analysis}
+%\VignetteDepends{diveMove}
+%\VignettePackage{diveMove}
+\documentclass[12pt, letterpaper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{pdfdraftcopy}
+\usepackage[margin=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{titletoc}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{pdfpages}
+\SweaveOpts{eps=FALSE, strip.white=all}
+\usepackage[colorlinks=true]{hyperref}
+
+\draftstring{DRAFT}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\textit{#1}}}
+\newcommand{\Rfunarg}[1]{{\textit{#1}}}
+\newcommand{\R}{{\normalfont\textsf{R }}{}}
+\pagestyle{fancy}
+\fancyhf{}
+% \fancyheadoffset[LO,RE{1em}
+% \fancyhead[LE,RO]{\nouppercase \rightmark}
+\fancyhead[LE,RO]{\bfseries \nouppercase \leftmark}
+\fancyfoot[C]{\thepage}
+\setkomafont{captionlabel}{\sffamily\bfseries}
+\renewcommand{\captionformat}{.\ }
+\bibpunct{(}{)}{,}{a}{}{,}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+% -------------------------------------------------------------------------
+
+\begin{document}
+
+\title{\bfseries{diveMove: dive analysis in R}}
+\author{Sebastián P. Luque\thanks{Contact: \texttt{spluque@gmail.com}.
+    Comments for improvement are very welcome!}}
+\date{}
+
+\maketitle
+
+<<R-opts, echo=FALSE, results=hide>>=
+options(width=60, digits=4)
+@
+
+\tableofcontents
+
+\section{Introduction}
+
+Dive analysis usually involves handling of large amounts of data, as new
+instruments allow for frequent sampling of variables over long periods of
+time.  The aim of this package is to make this process more efficient for
+summarizing and extracting information gathered by time-depth recorders
+(TDRs, hereafter).  The principal motivation for developing
+\Rpackage{diveMove} was to provide more flexibility during the various
+stages of analysis than that offered by popular commercial software.  This
+is achieved by making the results from intermediate calculations easily
+accessible, allowing the user to make his/her own summaries beyond the
+default choices the package provides.  The following sections of this
+vignette illustrate a typical work flow during analysis of TDR data, using
+the \Robject{dives} data available in \Rpackage{diveMove} as an example.
+
+
+\section{Starting up}
+\label{sec:starting}
+
+As with other packages in R, to use the package we load it with the
+funtion \Rfunction{library}:
+<<startup, results=hide>>=
+library(diveMove)
+@
+
+This makes the objects in the package available in the current \R session.
+A short overview of the most important functions can be seen by running
+the examples in the package's help page:
+<<eval=FALSE>>=
+example(diveMove)
+@
+
+\section{Reading Input Files}
+\label{sec:read-in}
+
+Input files must be simple, comma-delimited text files\footnote{The
+  extension does not matter, but conventionally these files have a .csv
+  extension}.  The order of columns is not significant, as the column
+numbers indicating the variables of interest can be supplied as arguments.
+Table~\ref{tab:file-str} shows the file structure that readTDR assumes by
+default, which is a standard structure of files from common TDR models.
+
+\begin{table}[bt]
+  \caption{Sample TDR file structure.}
+  \centering
+  \begin{tabular}{rrrrrr}\toprule
+    date       & time     & depth  & light  & temperature & speed    \\\midrule
+    16/02/2004 & 14:30:00 & 12     & 200    & 8.4         & 1.44     \\
+    16/02/2004 & 14:30:05 & 15     & 180    & 8.0         & 1.75     \\
+    16/02/2004 & 14:30:10 & 19     & 170    & 7.6         & 1.99     \\
+    \ldots     & \ldots   & \ldots & \ldots & \ldots      & \ldots   \\\bottomrule
+  \end{tabular}
+  \label{tab:file-str}
+\end{table}
+
+Depending on the TDR model, speed may be omitted.
+
+To read the file into \R{}, use the function \Rfunction{readTDR}:
+<<read-in, results=hide>>=
+sealX <- readTDR(system.file(file.path("data", "dives.csv"),
+                             package="diveMove"), speed=TRUE)
+@
+Read the help page for \Rfunction{readTDR} using \verb|?readTDR| following
+common \R{} help facilities.  Thus, data could have been subsampled at a
+larger interval than that in the original file, so that the time interval
+between readings is 10 s:
+<<subsamp, results=hide>>=
+sealX <- readTDR(system.file(file.path("data", "dives.csv"),
+                             package="diveMove"),
+                 speed=TRUE, subsamp = 10)
+@
+But since the original 5 s interval (which is the default value for
+\Rfunarg{subsamp}) is what will be used for the subsequent sections, it is
+recreated it here:
+<<>>=
+<<read-in>>
+@
+
+The format in which date and time should be interpreted can be controlled
+with the argument \Rfunarg{dtformat}.  If the data are already available
+in the \R{} session, e.g. as a \Robject{data frame}, then the function
+\Rfunction{createTDR} can be used to convert it to a form that facilitates
+further analyses.
+
+Both of these functions store the data in an object of class \Rclass{TDR}
+or \Rclass{TDRspeed}, which hold information on the source file and
+sampling interval, in addition to the variables described above.  Which of
+these objects is created is determined by the \Rfunarg{speed}.
+
+
+\section{Extracting Information from TDR and TDRspeed Objects}
+\label{sec:extract}
+
+For convenience, extractor methods are available to access the different
+slots from objects of these classes.  The standard \Rmethod{show} method
+will display the usual overview information on the object:
+<<show-method>>=
+sealX
+@
+
+Other extractor methods are named after the component they extract:
+\Rmethod{getTime}, \Rmethod{getDepth}, \Rmethod{getSpeed}, and
+\Rmethod{getDtime}, where the latter extracts the sampling interval.  The
+\Rmethod{plotTDR} method brings up a plot of the data covering the entire
+record, although a \Rpackage{tcltk} widget provides controls for zooming
+and panning to any particular time window.  Alernatively, the underlying
+function \Rfunction{plotTD} provides the same functionality, but takes
+separate \Rfunarg{time} and \Rfunarg{depth} arguments, rather than a
+\Rclass{TDR} object.
+
+At any time, TDR objects can be coerced to a simple data frame, which can
+later be exported or manipulated any other way:
+<<asdataframe>>=
+sealX.df <- as.data.frame(sealX)
+head(sealX.df)
+@
+
+
+\section[ZOC and Wet/Dry period detection]{Zero-Offset Depth Correction
+  and Summary of Wet/Dry Periods}
+\label{sec:zoc}
+
+One the first steps of dive analysis involves correcting depth for shifts
+in the pressure transducer, so that surface readings correspond to the
+value zero.  Although some complex algorithms exist for detecting where
+these shifts occur in the record, the shifts remain difficult to detect
+and dives are often missed, which a visual examination of the data would
+have exposed.  The trade off is that visually zero-adjusting depth is
+tedious, but the advantages of this approach far outweigh this cost, as
+much insight is gained by visually exploring the data.  Not to mention the
+fact that obvious problems in the records are more effectively dealt with
+in this manner.
+
+That personal rant aside, zero offset correction (ZOC) is done in
+\Rpackage{diveMove} using the function \Rfunction{zoc}.  However, a more
+efficient method of doing this is by using the \Rfunction{calibrateDepth}
+function, which takes a \Rclass{TDR} object (or inheriting from it) to
+perform three basic tasks.  The first is to ZOC the data, using the
+\Rpackage{tcltk} package to be able to do it interactively:
+<<zoc, eval=FALSE>>=
+dcalib <- calibrateDepth(sealX)
+@
+% The code we actually run is below, to be able to provide own value
+<<real-zoc, echo=FALSE, results=hide>>=
+dcalib <- calibrateDepth(sealX, offset=3)
+@
+
+This command brings up a plot with \Rpackage{tcltk} controls allowing to
+pan and zoom in or out of the data, as well as adjustment of the
+\Robject{depth} scale.  Thus, an appropriate time window with a unique
+surface depth value can be displayed.  It is important to make the display
+such that the \Robject{depth} scale is small enough to allow the
+resolution of the surface value with the mouse.  Clicking on the ZOC
+button waits for two clicks:
+\begin{compactenum}
+\item the coordinates of the first click define the starting time for the
+  window to be ZOC'ed, and the depth corresponding to the surface,
+\item the second click defines the end time for the window (only the x
+  coordinate has any meaning).
+\end{compactenum}
+This procedure can be repeated as many times as needed.  If there is any
+overlap between time windows, then the last one prevails.  However, if the
+offset is known a priori, there is no need to go through all this
+procedure, and the value can be provided as the argument \Rfunarg{offset}
+to \Rfunction{calibrateDepth}.
+
+Once depth has been ZOC'ed, \Rfunction{calibrateDepth} will identify dry
+and wet periods in the record.  Wet periods are those where a depth
+reading is available, dry periods are those without a depth reading.
+Records often have abherrant missing depth that should not be considered
+dry periods, as they are often of very short duration.  Likewise, there
+may be periods of wet activity that are too short to be compared with
+other wet periods.  This can be controlled by setting the arguments
+\Rfunarg{dry.thr} and \Rfunarg{wet.thr}.
+
+Finally, \Rfunction{calibrateDepth} identifies all dives in the record,
+according to a minimum depth criteria given as its \Rfunarg{divethres}
+argument.  The result (value) of this function is an object of class
+\Rclass{TDRcalibrate}, where all the information obtained during the tasks
+described above are stored.  Again, an appropriate \Rmethod{show} method
+is available to display a short overview of such objects:
+<<show-tdrcalibrate>>=
+dcalib
+@
+
+
+\section{Access to Elements from \Rclass{TDRcalibrate} Objects}
+\label{sec:wet-dry}
+
+Extractor methods are also available to access the information stored in
+\Rclass{TDRcalibrate} objects.  These include: \Rmethod{getTDR},
+\Rmethod{getGAct}, \Rmethod{getDAct}, \Rmethod{getDPhaseLab}, and
+\Rmethod{getSpeedCoefs}.  These are all generic functions\footnote{A few
+  of them with more than one method} that access the (depth) calibrated
+\Rclass{TDR} object, details from wet/dry periods, dives, dive phases, and
+speed calibration coefficients (see~Section~\ref{sec:speed}),
+respectively.  Below is a short explanation of these methods.
+
+\begin{itemize}
+\item [\Rmethod{getTDR}] This method simply takes the
+  \Rclass{TDRcalibrate} object as its single argument and extracts the
+  \Rclass{TDR} object\footnote{In fact, a \Rclass{TDRspeed} object in this
+    example}:
+<<tdr-extract>>=
+getTDR(dcalib)
+@
+
+\item [\Rmethod{getGAct}] There are two methods for this generic, allowing
+  access to a list with details about all wet/dry periods found.  One of
+  these extracts the entire \Rclass{list} (output omitted for brevity):
+<<grossact1, eval=FALSE>>=
+getGAct(dcalib)
+@
+The other provides access to particular elements of the \Rclass{list}, by
+their name.  For example, if we are interested in extracting only the
+vector that tells us to which period number every row in the record
+belongs to, we would issue the command:
+<<grossact2, eval=FALSE>>=
+getGAct(dcalib, "phase.id")
+@
+Other elements that can be extracted are named ``activity'', ``begin'',
+and ``end'', and can be extracted in a similar fashion.  These elements
+correspond to the activity performed for each reading (see
+\verb|?detPhase| for a description of the labels for each activity), the
+beginning and ending time for each period, respectively.
+
+\item [\Rmethod{getDAct}] This generic also has two methods; one to
+  extract an entire data frame with details about all dive and postdive
+  periods found (output omitted):
+<<diveact-1, eval=FALSE>>=
+getDAct(dcalib)
+@
+The other method provides access to the columns of this data frame, which
+are named ``dive.id'', ``dive.activity'', and ``postdive.id''.  Thus,
+providing any one of these strings to getDAct, as a second argument will
+extract the corresponding column.
+
+\item [\Rmethod{getDPhaseLab}] This generic function extracts a factor
+  identifying each row of the record to a particular dive phase (see
+  \verb|?detDive| for a description of the labels of the factor
+  identifying each dive phase).  Two methods are available; one to extract
+  the entire factor, and the other to select particular dive(s), by its
+  (their) number, respectively (output omitted):
+<<dphaselab1, eval=FALSE>>=
+getDPhaseLab(dcalib)
+getDPhaseLab(dcalib, 20)
+<<dphaselab2>>=
+dphases <- getDPhaseLab(dcalib, c(100:300))
+@
+The latter method is useful for visually inspecting the assignment of
+points to particular dive phases.  Before doing that though, this is a
+good time to introduce another generic function that allows the subsetting
+of the original \Rclass{TDR} object to a single a dive or group of dives'
+data:
+<<extractdive>>=
+subSealX <- extractDive(dcalib, diveNo=c(100:300))
+subSealX
+@
+
+As can be seen, the function takes a \Rclass{TDRcalibrate} object and a
+vector indicating the dive numbers to extract, and returns a \Rclass{TDR}
+object containing the subsetted data.  Once a subset of data has been
+selected, it is possible to plot them and pass the factor labelling dive
+phases as the argument \Rfunarg{phaseCol} to the \Rmethod{plotTDR}
+method\footnote{The function that the method uses is actually
+  \Rfunction{plotTD}, so all the possible arguments can be studied by
+  reading the help page for \Rfunction{plotTD}}:
+
+<<plot-phases, eval=FALSE>>=
+plotTDR(subSealX, phaseCol=dphases)
+@
+
+\end{itemize}
+
+
+\section{Speed Calibration}
+\label{sec:speed}
+
+Calibration of speed readings is done using the principles described in
+\citet{1929} and \citet{1291}.  The function \Rfunction{calibrateSpeed}
+performs this operation, and allows the selection of the particular subset
+of the data that should be used for the calibration:
+
+<<vcalibration, fig=true, include=FALSE, results=hide>>=
+vcalib <- calibrateSpeed(dcalib, z=1)
+<<>>=
+vcalib
+@
+\begin{figure}[hbtp]
+  \centering
+  \includegraphics[trim=0 0 10 0, width=0.5\textwidth]{diveMove-vcalibration}
+  \caption{Example speed calibration line from a TDR record.}
+  \label{fig:rqplots}
+\end{figure}
+
+Using \Rfunarg{plot=FALSE} it is possible to turn off the default side
+effect of producing a plot displaying the quantile regression fit
+(Figure~\ref{fig:rqplots}).
+
+Control is possible by the use of arguments \Rfunarg{bad}, which controls
+minimum rates of depth change and speeds through which the calibration
+line should be drawn.  To control for the resolution of the TDR,
+\Rfunarg{z} can be used to include only changes in depth greater than a
+given value for the construction of the calibration line.
+
+If the calibration coefficients from the implicit quantile regression are
+known a priori, then these can be supplied to the function via its
+\Rfunarg{coefs} argument.  In this case, no plots are created.
+
+
+\section{TDR dive and postdive statistics}
+\label{sec:tdr-stats}
+
+Once data have been calibrated and the record broken up at ``trip'' and
+``dive'' scales, obtaining dive statistics is a trivial call to function
+\Rfunction{diveStats}:
+
+<<dive-stats>>=
+dives <- diveStats(vcalib)
+head(dives, 3)
+@
+
+The function takes a single argument: an object of class
+\Rclass{TDRcalibrate}, and returns a data frame with one row per dive in
+the record, with a suite of basic dive statistics in each column.  Please
+consult \verb|?diveStats| for an explanation of each of the variables
+estimated, although the names of the output data frame should be self
+explanatory.  These variables are thus available for calculating any other
+derived values, by extracting them using the standard \R{} subscripting
+facilities.
+
+
+\section{Miscellaneous functions}
+\label{sec:misc}
+
+Other functions are included for handling location data, and these are
+\Rfunction{readLocs}, \Rfunction{austFilter}, and \Rfunction{distSpeed}.
+These are useful for reading, filtering, and summarizing travel
+information.  For extensive animal movement analyses, refer to package
+\Rpackage{trip}.
+
+
+\section{Acknowledgements}
+\label{sec:acknowledgements}
+
+Invaluable input and help during development of this package has been
+offered by John~P.Y. Arnould, and regular contributors to R-help.
+
+
+\bibliographystyle{apalike}
+\bibliography{/home/sluque/Documents/References/biblioSPL}
+
+
+\newpage{}
+\includepdf[fitpaper=true, pages=-]{diveMove-rd}
+
+
+\end{document}

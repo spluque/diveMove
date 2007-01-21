@@ -1,0 +1,16 @@
+## -*- R -*-
+citHeader("To cite the R package 'diveMove' in publications use:")
+
+citEntry(entry  = "Manual",
+         title  = "Dive Analysis in R",
+         author = personList(
+             person(first="Sebastian", middle="P.", last="Luque",
+                    email="spluque@gmail.com")),
+         year = 2006,
+         note = paste(
+             "Contributions from:",
+             "John P.Y. Arnould, Laurent Dubroca, and Andy Liaw"),
+         url = "http://cran.r-project.org/src/contrib/Descriptions/diveMove.html",
+         textVersion = paste(
+             "Luque, S.P. (2006) diveMove: Dive Analysis in R.",
+             "http://cran.r-project.org/src/contrib/Descriptions/diveMove.html"))

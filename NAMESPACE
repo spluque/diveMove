@@ -1,0 +1,33 @@
+importFrom(stats4, mle)
+importFrom(graphics, plot, image)
+import(methods)                         # Paranoid measure
+
+exportPattern("^[^\\.]")
+
+exportClasses("TDR",
+              "TDRspeed",
+              "TDRcalibrate")
+
+exportMethods("as.data.frame",
+              "as.TDRspeed",
+              "timeBudget",
+              "coerce",
+              "depth<-",
+              "speed<-",
+              "ccData<-",
+              "getCCData",
+              "getDepth",
+              "getDAct",
+              "getDPhaseLab",
+              "getDtime",
+              "getFileName",
+              "extractDive",
+              "getGAct",
+              "plotTDR",
+              "show",
+              "getTDR",
+              "getTime",
+              "getSpeedCoef",
+              "getSpeed",
+              "plotBouts",
+              "bec2")

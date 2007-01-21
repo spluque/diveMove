@@ -1,0 +1,120 @@
+Dive and movement analyses and plots			-*-outline-*-
+====================================
+
+Set of functions to analyse time-depth recorder and location data.
+
+Read ?diveMove for a quick overview of the major functionality.  A
+vignette is also available by doing vignette("diveMove").
+
+
+* News
+======
+
+** Changes/New Features
+
+Version 0.7-5:
+
+	* Full examples for movement functions.
+
+	* New methods for identification and analysis of bouts, according
+          to procedures in Sibly et al. (1990) and Langton et al. (1995).
+          A note with specifics is under revision in Animal Behaviour.
+
+Version 0.7-4:
+
+	* distSpeed() no longer uses 'id' argument.
+
+	* Complete examples for location filtering functions.
+
+	* createTDR() now provides useful default for 'concurrentData',
+          and test for missing 'dtime'.  Completed example accordingly.
+
+	* Improved show() method for 'TDRcalibrate' objects.
+
+	* plotTD(), and hence the plotTDR() methods now accept an ellipsis
+          argument to pass to par() for more flexibility drawing the
+          plot.  They also now accept a new argument 'cex.pts' to set the
+          relative size of points.
+
+Version 0.7-3:
+
+	* detPhase() and detDive() are now private functions (renamed with
+          a preceding dot), and should only be used through
+          calibrateDepth().
+
+	* Rearranged documentation, reflecting the higher importance of
+          calibrateDepth() and calibrateSpeed() functions.
+
+	* distSpeed() no longer uses 'speed' and 'subset' arguments, and
+          always returns a matrix.  All location filtering functions are
+          now adapted to this change.
+
+Version 0.7-2:
+
+	* More examples for important functions.
+
+Version 0.7-1:
+
+	* 'TDRcalibrate' method for plot() now plots correctly if no dives
+          were identified.
+	  New argument 'interact' to allow for static plots, without
+          'tcltk' interaction.
+
+	* plot method replaced by 'plotTDR', to avoid unusual introduction
+          of arguments in methods and simplify code.  This method is now
+          based on the new function plotTD(), which replaces plotDive().
+          This system now makes the relationships between functions much
+          more clear.
+
+	* Function getAct() renamed to rleActivity() to make it clearer
+          that it calculates statistics from running series of readings
+          with the same activity.
+
+Version 0.7-0:
+
+	* Arguments 'seaerr', 'landerr', and 'divethres' were renamed to
+          'wet.thr', 'dry.thr', and 'dive.thr'.  Likewise, slots
+          'land.threshold', 'sea.threshold', and 'dive.threshold' in class
+          TDRcalibrate were renamed to 'dry.thr', 'wet.thr', and
+          'dive.thr', respectively, for consistency/appropriateness.
+
+	* The argument 'contours' to rqPlot() should now be a list with 2
+          components.
+
+Version 0.6-9:
+
+	* New arguments for calibrateDepth(), offering improved control
+	  over detection of descent, bottom, and ascent phases.  We now
+	  use rates of vertical movement for detection, with a further
+	  argument for defining what determines a bottom wiggle.
+
+	* New arguments for plotDive() to decide whether to plot legend
+          and to set limits for depth plot.
+
+	* Documentation for formal classes and methods was split to make
+          them easier to read.
+
+	* attendance() has been renamed to timeBudget().
+
+
+* Overview
+==========
+
+Dive analysis usually involves handling of large amounts of data, as new
+instruments allow for frequent sampling of variables over long periods of
+time.  The aim of this package is to make this process more efficient for
+summarizing and extracting information gathered by time-depth recorders
+(TDRs, hereafter).  The principal motivation for developing diveMove was
+to provide more flexibility during the various stages of analysis than is
+available in popular commercial software.  This is achieved by making the
+results from intermediate calculations easily accessible, allowing the
+user to make his/her own summaries beyond the default choices the package
+provides.
+
+
+* NOTE
+======
+
+Comments from users, especially bug reports, are very welcome:
+
+Sebastian P. Luque <spluque@gmail.com>
