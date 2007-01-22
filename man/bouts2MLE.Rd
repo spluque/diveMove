@@ -26,8 +26,7 @@ bouts2.ll(x)
 bouts2.LL(x)
 bouts.mle(ll.fun, start, x, \ldots)
 bouts2.mleBEC(fit)
-plotBouts2.mle(fit, x, xlab="x", y.log.lab="Log Frequency",
-               y.dens.lab="Density", bec.lty=2)
+plotBouts2.mle(fit, x, xlab="x", ylab="Log Frequency", bec.lty=2)
 plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 }
 
@@ -48,8 +47,7 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
   \item{fit}{\code{\link[stats4]{mle}} object.}
 
-  \item{xlab, y.log.lab, y.dens.lab}{Titles for the x, upper y, and
-    lower y axes.}
+  \item{xlab, ylab}{Titles for the x and y axes.}
 
   \item{bec.lty}{Line type specification for drawing the BEC reference
     line.}
