@@ -26,7 +26,7 @@ bouts2.ll(x)
 bouts2.LL(x)
 bouts.mle(ll.fun, start, x, \ldots)
 bouts2.mleBEC(fit)
-plotBouts2.mle(fit, x, xlab="x", ylab="Log Frequency", bec.lty=2)
+plotBouts2.mle(fit, x, xlab="x", ylab="Log Frequency", bec.lty=2, \ldots)
 plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 }
 
@@ -43,7 +43,8 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
   \item{start, \ldots}{Arguments passed to \code{\link[stats4]{mle}}.
     For \code{plotBouts2.cdf}, arguments passed to
-    \code{\link{plot.ecdf}}.}
+    \code{\link{plot.ecdf}}. For \code{plotBouts2.mle}, arguments passed
+    to \code{\link{curve}}.}
 
   \item{fit}{\code{\link[stats4]{mle}} object.}
 
@@ -145,7 +146,6 @@ postdives.diff <- abs(diff(postdives))
 ## Remove isolated dives
 postdives.diff <- postdives.diff[postdives.diff < 2000]
 lnfreq <- boutfreqs(postdives.diff, bw=0.1, plot=FALSE)
-def.par <- par(no.readonly=TRUE) # for resetting later
 startval <- boutinit(lnfreq, 50)
 p <- startval$a1 / (startval$a1 + startval$a2)
 
@@ -163,11 +163,9 @@ bout.fit2 <- bouts.mle(bouts2.ll, x=postdives.diff, start=init.parms,
                        method="L-BFGS-B", lower=rep(1e-08, 3),
                        control=list(parscale=c(1, 0.1, 0.01)))
 plotBouts(bout.fit2, postdives.diff)
-par(def.par)
 
 ## Plot cumulative frequency distribution
 plotBouts2.cdf(bout.fit2, postdives.diff)
-par(def.par)
 
 ## Estimated BEC
 bec2(bout.fit2)
