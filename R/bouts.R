@@ -233,13 +233,14 @@
         (lambda1_hat - lambda2_hat)
 }
 
-"plotBouts2.mle" <- function(fit, x, xlab="x", y.log.lab="Log Frequency",
-                             y.dens.lab="Density", bec.lty=2)
+"plotBouts2.mle" <- function(fit, x, xlab="x", ylab="Log Frequency",
+                             bec.lty=2, ...)
 {
     ## Value: plot
     ## --------------------------------------------------------------------
     ## Arguments: fit=mle object with fitted 2-process model, x=numeric
-    ## vector with observed data.
+    ## vector with observed data; xlab=ylab=strings for titles;
+    ## bec.lty=line type for bec; ...=args to curve().
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
@@ -249,11 +250,10 @@
     lambda2_hat <- as.vector(coefs[3])
     bec <- bouts2.mleBEC(fit)
     range.x <- range(x, na.rm=TRUE)
-    layout(matrix(1:2, nrow=2), heights=c(0.7, 0.3))
-    par(xaxs="i", yaxs="i", las=1, mar=c(3, 4, 2, 2) + 0.1)
     curve(log(p_hat * lambda1_hat * exp(-lambda1_hat * x) +
               (1 - p_hat) * lambda2_hat * exp(-lambda2_hat * x)),
-          from=range.x[1], to=range.x[2], xlab="", ylab=y.log.lab)
+          from=range.x[1], to=range.x[2], xlab=xlab, ylab=ylab,
+          xaxs="i", yaxs="i", las=1, ...)
     rug(jitter(x), side=3, ticksize=0.015, quiet=TRUE)
     becy <- bouts2.mleFUN(bec, p=p_hat, lambda1=lambda1_hat,
                           lambda2=lambda2_hat)
@@ -270,13 +270,9 @@
                              .(1 - p_hat) %.% .(lambda2_hat) %.%
                              e^(- .(lambda2_hat) * x))),
            bty="n", cex=0.8, adj=c(0, 1))
-    par(mar=c(4, 4, 0, 2) + 0.1)
-    plot(density(x, bw="nrd", from=range.x[1], to=range.x[2], na.rm=TRUE),
-         main="", xlab=xlab, ylab=y.dens.lab)
-    abline(v=bec, lty=2)
 }
 
-"plotBouts2.cdf" <- function(fit, x, draw.bec=TRUE, bec.lty=2, ...)
+"plotBouts2.cdf" <- function(fit, x, draw.bec=FALSE, bec.lty=2, ...)
 {
     ## Value: plot
     ## --------------------------------------------------------------------

@@ -26,9 +26,8 @@ bouts2.ll(x)
 bouts2.LL(x)
 bouts.mle(ll.fun, start, x, \ldots)
 bouts2.mleBEC(fit)
-plotBouts2.mle(fit, x, xlab="x", y.log.lab="Log Frequency",
-               y.dens.lab="Density", bec.lty=2)
-plotBouts2.cdf(fit, x, draw.bec=TRUE, bec.lty=2, \ldots)
+plotBouts2.mle(fit, x, xlab="x", ylab="Log Frequency", bec.lty=2, \ldots)
+plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 }
 
 \arguments{
@@ -40,15 +39,16 @@ plotBouts2.cdf(fit, x, draw.bec=TRUE, bec.lty=2, \ldots)
 
   \item{ll.fun}{function returning the negative of the maximum
     likelihood function that should be maximized.  This should be a
-    valid \code{minuslogl} argument to \code{\link{mle}}.}
+    valid \code{minuslogl} argument to \code{\link[stats4]{mle}}.}
 
-  \item{start, \ldots}{Arguments passed to \code{\link{mle}}.  For
-    \code{plotBouts2.cdf}, arguments passed to \code{\link{plot.ecdf}}.}
+  \item{start, \ldots}{Arguments passed to \code{\link[stats4]{mle}}.
+    For \code{plotBouts2.cdf}, arguments passed to
+    \code{\link{plot.ecdf}}. For \code{plotBouts2.mle}, arguments passed
+    to \code{\link{curve}}.}
 
-  \item{fit}{\code{\link{mle}} object.}
+  \item{fit}{\code{\link[stats4]{mle}} object.}
 
-  \item{xlab, y.log.lab, y.dens.lab}{Titles for the x, upper y, and
-    lower y axes.}
+  \item{xlab, ylab}{Titles for the x and y axes.}
 
   \item{bec.lty}{Line type specification for drawing the BEC reference
     line.}
@@ -58,7 +58,7 @@ plotBouts2.cdf(fit, x, draw.bec=TRUE, bec.lty=2, \ldots)
 }
 
 \value{
-  An object of class \code{\link{mle}}.
+  An object of class \code{\link[stats4]{mle}}.
 }
 
 \details{ For now only a mixture of 2 Poisson processes is supported.
@@ -91,11 +91,12 @@ plotBouts2.cdf(fit, x, draw.bec=TRUE, bec.lty=2, \ldots)
 
   bouts.mle is the function performing the main job of maximizing the
   -log L2 functions, and is essentially a wrapper around
-  \code{\link{mle}}.  It only takes the -log L2 function, a list of
-  starting values, and the variable to be modelled, all of which are
-  passed to \code{\link{mle}} for optimization.  Additionally, any other
-  arguments are also passed to \code{\link{mle}}, hence great control is
-  provided for fitting any of the -log L2 functions.
+  \code{\link[stats4]{mle}}.  It only takes the -log L2 function, a list
+  of starting values, and the variable to be modelled, all of which are
+  passed to \code{\link[stats4]{mle}} for optimization.  Additionally,
+  any other arguments are also passed to \code{\link[stats4]{mle}},
+  hence great control is provided for fitting any of the -log L2
+  functions.
 
   In practice, step 3 does not pose major problems using the
   reparameterized -log L2 function, but it might be useful to use method
@@ -130,9 +131,9 @@ plotBouts2.cdf(fit, x, draw.bec=TRUE, bec.lty=2, \ldots)
 }
 
 
-\seealso{ \code{\link{mle}}, \code{\link{optim}}, \code{\link{logit}},
-  \code{\link{revLogit}} for transforming and fitting a reparameterized
-  model. }
+\seealso{ \code{\link[stats4]{mle}}, \code{\link{optim}},
+  \code{\link{logit}}, \code{\link{revLogit}} for transforming and
+  fitting a reparameterized model. }
 
 % -------------------------------------------------------------------------
 

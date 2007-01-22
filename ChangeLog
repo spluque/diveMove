@@ -1,3 +1,12 @@
+2007-01-21  author  <author@patagonia>
+
+	* bouts.R:
+	plotBouts2.mle(): Removed density plot, we use only curve fit.
+
+	plotBouts2.mle(): Changed default draw.bec=FALSE.
+
+	* track.R: Removed track.R, no longer needed.
+
 2007-01-21  Sebastian P. Luque <spluque@gmail.com>
 
 	Moved package trunk to CVS.
