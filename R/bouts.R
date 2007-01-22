@@ -277,7 +277,8 @@
     ## Value: plot
     ## --------------------------------------------------------------------
     ## Arguments: fit=mle object with fitted 2-process model, x=numeric
-    ## vector with observed data.
+    ## vector with observed data, draw.bec=logical; whether to draw the bec;
+    ## bec.lty=line type for the bec reference line.
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
