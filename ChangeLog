@@ -1,3 +1,11 @@
+2007-01-24  Sebastian P. Luque  <spluque@gmail.com>
+
+	* detDive.R:
+	.diveIndices(): Use pmax and pmin to avoid returning indices beyond the
+	limits of the input.
+
+	* AllMethod.R: Use drop=FALSE in extraction methods to keep structure.
+
 2007-01-21  Sebastian P. Luque  <spluque@gmail.com>
 
 	Moved package to CVS.

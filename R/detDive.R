@@ -184,7 +184,7 @@
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
     ok <- which(diveID %in% diveNo)
-    okl <- setdiff(ok - 1, ok)
-    okr <- setdiff(ok + 1, ok)
+    okl <- pmax(1, setdiff(ok - 1, ok))
+    okr <- pmin(length(diveID), setdiff(ok + 1, ok))
     sort(c(okl, ok, okr))               # add the surface points
 }
