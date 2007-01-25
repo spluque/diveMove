@@ -88,7 +88,7 @@ setMethod("plotTDR", signature(x="TDRcalibrate"),
               if (!missing(concurVars)) {
                   if (!is.character(concurVars))
                       stop("concurVars must be of class character")
-                  ccd <- getCCData(tdr, concurVars)[ok, ]
+                  ccd <- getCCData(tdr, concurVars)[ok, , drop=FALSE]
                   plotTDR(newtdr, concurVars=ccd, phaseCol=labs, ...)
               } else plotTDR(newtdr, phaseCol=labs, ...)
           })
@@ -275,12 +275,12 @@ setMethod("extractDive", signature(obj="TDR", diveNo="numeric",
               if (is(obj, "TDRspeed")) {
                   new("TDRspeed", time=getTime(obj)[okpts],
                       depth=getDepth(obj)[okpts],
-                      concurrentData=getCCData(obj)[okpts, ],
+                      concurrentData=getCCData(obj)[okpts, , drop=FALSE],
                       dtime=getDtime(obj), file=obj@file)
               } else {
                   new("TDR", time=getTime(obj)[okpts],
                       depth=getDepth(obj)[okpts],
-                      concurrentData=getCCData(obj)[okpts, ],
+                      concurrentData=getCCData(obj)[okpts, , drop=FALSE],
                       dtime=getDtime(obj), file=obj@file)
               }
           })
@@ -293,12 +293,12 @@ setMethod("extractDive",                # for TDRcalibrate
               if (is(ctdr, "TDRspeed")) {
                   new("TDRspeed", time=getTime(ctdr)[okpts],
                       depth=getDepth(ctdr)[okpts],
-                      concurrentData=getCCData(ctdr)[okpts, ],
+                      concurrentData=getCCData(ctdr)[okpts, , drop=FALSE],
                       dtime=getDtime(ctdr), file=ctdr@file)
               } else {
                   new("TDR", time=getTime(ctdr)[okpts],
                       depth=getDepth(ctdr)[okpts],
-                      concurrentData=getCCData(ctdr)[okpts, ],
+                      concurrentData=getCCData(ctdr)[okpts, , drop=FALSE],
                       dtime=getDtime(ctdr), file=ctdr@file)
               }
           })
