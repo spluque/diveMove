@@ -62,7 +62,7 @@ revLogit(logit)
 \value{
 
   \code{boutfreqs} returns a data frame with components \var{lnfreq}
-  containing the log frequencies and and \var{x}, containing the
+  containing the log frequencies and \var{x}, containing the
   corresponding mid points of the histogram.  Empty bins are excluded.
   A plot is produced as a side effect if argument plot is TRUE.  See the
   Details section.
@@ -71,10 +71,10 @@ revLogit(logit)
   lambda2, which are starting values derived from broken stick model.  A plot
   is produced as a side effect if argument plot is TRUE.
 
-  \emph{labelBouts} returns a numeric vector sequentially labelling each
+  \code{labelBouts} returns a numeric vector sequentially labelling each
   row or element of \var{x}, which associates it with a particular bout.
 
-  \item{logit and revLogit} return a numeric vector with the
+  \code{logit} and \code{revLogit} return a numeric vector with the
   (un)transformed arguments.
 
 }
