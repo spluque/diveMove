@@ -1,3 +1,7 @@
+2007-01-25  Sebastian P. Luque  <spluque@gmail.com>
+
+	* bouts.R: Renamed revLogit() to unLogit() for appropriateness.
+
 2007-01-24  Sebastian P. Luque  <spluque@gmail.com>
 
 	* detDive.R:

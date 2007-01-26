@@ -132,7 +132,7 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
 
 \seealso{ \code{\link[stats4]{mle}}, \code{\link{optim}},
-  \code{\link{logit}}, \code{\link{revLogit}} for transforming and
+  \code{\link{logit}}, \code{\link{unLogit}} for transforming and
   fitting a reparameterized model. }
 
 % -------------------------------------------------------------------------
@@ -157,7 +157,7 @@ bout.fit1 <- bouts.mle(bouts2.LL, start=init.parms, x=postdives.diff,
 coefs <- as.vector(coef(bout.fit1))
 
 ## Un-transform and fit the original parameterization
-init.parms <- list(p=revLogit(coefs[1]), lambda1=exp(coefs[2]),
+init.parms <- list(p=unLogit(coefs[1]), lambda1=exp(coefs[2]),
                    lambda2=exp(coefs[3]))
 bout.fit2 <- bouts.mle(bouts2.ll, x=postdives.diff, start=init.parms,
                        method="L-BFGS-B", lower=rep(1e-08, 3),

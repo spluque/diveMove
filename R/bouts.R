@@ -1,6 +1,6 @@
 "logit" <- function(p) log(p / (1 - p))
 
-"revLogit" <- function(logit) exp(logit) / (exp(logit) + 1)
+"unLogit" <- function(logit) exp(logit) / (exp(logit) + 1)
 
 "boutfreqs" <- function(x, bw, method=c("standard", "seq.diff"), plot=TRUE)
 {
@@ -188,7 +188,7 @@
 "bouts2.LL" <- function(x) # 2-process Poisson; transformed model
 {
     function(p, lambda1, lambda2) {
-        p <- revLogit(p)
+        p <- unLogit(p)
         lambda1 <- exp(lambda1)
         lambda2 <- exp(lambda2)
         -sum(log(p * lambda1 * exp(-lambda1 * x) +

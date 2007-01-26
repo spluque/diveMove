@@ -12,16 +12,16 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
-Version 0.7-6:
+*** Version 0.7-6:
 
 	* New methods for identification and analysis of bouts, according
           to procedures in Sibly et al. (1990) and Langton et al. (1995).
 
-Version 0.7-5:
+*** Version 0.7-5:
 
 	* Full examples for movement functions.
 
-Version 0.7-4:
+*** Version 0.7-4:
 
 	* distSpeed() no longer uses 'id' argument.
 
@@ -37,7 +37,7 @@ Version 0.7-4:
           plot.  They also now accept a new argument 'cex.pts' to set the
           relative size of points.
 
-Version 0.7-3:
+*** Version 0.7-3:
 
 	* detPhase() and detDive() are now private functions (renamed with
           a preceding dot), and should only be used through
@@ -50,11 +50,11 @@ Version 0.7-3:
           always returns a matrix.  All location filtering functions are
           now adapted to this change.
 
-Version 0.7-2:
+*** Version 0.7-2:
 
 	* More examples for important functions.
 
-Version 0.7-1:
+*** Version 0.7-1:
 
 	* 'TDRcalibrate' method for plot() now plots correctly if no dives
           were identified.
@@ -71,7 +71,7 @@ Version 0.7-1:
           that it calculates statistics from running series of readings
           with the same activity.
 
-Version 0.7-0:
+*** Version 0.7-0:
 
 	* Arguments 'seaerr', 'landerr', and 'divethres' were renamed to
           'wet.thr', 'dry.thr', and 'dive.thr'.  Likewise, slots
@@ -82,7 +82,7 @@ Version 0.7-0:
 	* The argument 'contours' to rqPlot() should now be a list with 2
           components.
 
-Version 0.6-9:
+*** Version 0.6-9:
 
 	* New arguments for calibrateDepth(), offering improved control
 	  over detection of descent, bottom, and ascent phases.  We now

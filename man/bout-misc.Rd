@@ -4,7 +4,7 @@
 \alias{boutinit}
 \alias{labelBouts}
 \alias{logit}
-\alias{revLogit}
+\alias{unLogit}
 
 % -------------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ boutfreqs(x, bw, method=c("standard", "seq.diff"), plot=TRUE)
 boutinit(lnfreq, x.break, plot=TRUE)
 labelBouts(x, bec, bec.method=c("standard", "seq.diff"))
 logit(p)
-revLogit(logit)
+unLogit(logit)
 }
 
 \arguments{
@@ -74,7 +74,7 @@ revLogit(logit)
   \code{labelBouts} returns a numeric vector sequentially labelling each
   row or element of \var{x}, which associates it with a particular bout.
 
-  \code{logit} and \code{revLogit} return a numeric vector with the
+  \code{unLogit} and \code{logit} return a numeric vector with the
   (un)transformed arguments.
 
 }
@@ -86,8 +86,8 @@ revLogit(logit)
 
   \code{boutfreqs} creates a histogram with the log transformed
   frequencies of \var{x} with a chosen bin width and upper limit.  Bins
-  following empty ones have their frequencies averaged over it and the
-  number of previous empty bins.
+  following empty ones have their frequencies averaged over the number
+  of previous empty bins plus one.
 
   \code{boutinit} fits a "broken stick" model to the log frequencies
   modelled as a function of \var{x} (well, the midpoints of the binned
@@ -97,7 +97,7 @@ revLogit(logit)
   with a sequential number, identifying which bout the reading belongs
   to.
 
-  \code{logit} and \code{revLogit} are useful for reparameterizing the
+  \code{logit} and \code{unLogit} are useful for reparameterizing the
   negative maximum likelihood function, if using Langton et al. (1995).
 
 }
