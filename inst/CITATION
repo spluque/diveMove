@@ -6,7 +6,7 @@ citEntry(entry  = "Manual",
          author = personList(
              person(first="Sebastian", middle="P.", last="Luque",
                     email="spluque@gmail.com")),
-         year = 2006,
+         year = 2007,
          note = paste(
              "Contributions from:",
              "John P.Y. Arnould, Laurent Dubroca, and Andy Liaw"),

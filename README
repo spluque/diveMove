@@ -12,10 +12,15 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
-*** Version 0.7-6:
+*** Version 0.7-7:
 
 	* New methods for identification and analysis of bouts, according
           to procedures in Sibly et al. (1990) and Langton et al. (1995).
+
+*** Version 0.7-6:
+
+    	* Fixes bug in plotTD() to work with stricter object class
+          management in R devel.
 
 *** Version 0.7-5:
 

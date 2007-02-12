@@ -400,7 +400,9 @@ information.  For extensive animal movement analyses, refer to package
 \label{sec:acknowledgements}
 
 Invaluable input and help during development of this package has been
-offered by John~P.Y. Arnould, and regular contributors to R-help.
+offered by my mentors John~P.Y. Arnould, Christophe Guinet, and Edward
+H. Miller.  I also thank the regular contributors to R-help for their help
+during development.
 
 
 \bibliographystyle{apalike}

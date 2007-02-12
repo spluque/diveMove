@@ -65,8 +65,8 @@
         plot(depth ~ time, type="n", xlim=xlim, ylim=ylim,
              xlab=xlab, ylab=ylab.depth, xaxt="n", yaxt="n")
         usr <- par("usr")
-        xleft <- pmax(nights$sunsets, usr[1])
-        xright <- pmin(nights$sunrises, usr[2])
+        xleft <- pmax(unclass(nights$sunsets), usr[1])
+        xright <- pmin(unclass(nights$sunrises), usr[2])
         rect(xleft, usr[3], xright, usr[4], col=night.col, border=NA)
         axis.POSIXct(side=1, time, at=xticks, format=xlab.format)
         axis(side=2)

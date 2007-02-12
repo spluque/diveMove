@@ -1,12 +1,17 @@
+2007-02-11  Sebastian P. Luque  <spluque@gmail.com>
+
+	* R/plotTD.R: Used unclass() on the first argument in pmax() and
+	pmin() calls, to standardize comparisons on a simple number.
+	Thanks to Brian Ripley.
+
 2007-01-25  Sebastian P. Luque  <spluque@gmail.com>
 
 	* bouts.R: Renamed revLogit() to unLogit() for appropriateness.
 
 2007-01-24  Sebastian P. Luque  <spluque@gmail.com>
 
-	* detDive.R:
-	.diveIndices(): Use pmax and pmin to avoid returning indices beyond the
-	limits of the input.
+	* detDive.R: .diveIndices(): Use pmax() and pmin() to avoid
+	returning indices beyond the limits of the input.
 
 	* AllMethod.R: Use drop=FALSE in extraction methods to keep structure.
 
