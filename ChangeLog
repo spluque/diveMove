@@ -1,45 +1,22 @@
-2007-01-21  author  <author@patagonia>
+2007-02-11  Sebastian P. Luque  <spluque@gmail.com>
 
-	* bouts.R:
-	plotBouts2.mle(): Removed density plot, we use only curve fit.
+	* R/plotTD.R: Used unclass() on the first argument in pmax() and
+	pmin() calls, to standardize comparisons on a simple number.
+	Thanks to Brian Ripley.
 
-	plotBouts2.mle(): Changed default draw.bec=FALSE.
+2007-01-24  Sebastian P. Luque  <spluque@gmail.com>
+
+	* detDive.R:
+	.diveIndices(): Use pmax and pmin to avoid returning indices beyond the
+	limits of the input.
+
+	* AllMethod.R: Use drop=FALSE in extraction methods to keep structure.
+
+2007-01-21  Sebastian P. Luque  <spluque@gmail.com>
+
+	Moved package to CVS.
 
 	* track.R: Removed track.R, no longer needed.
-
-2007-01-21  Sebastian P. Luque <spluque@gmail.com>
-
-	Moved package trunk to CVS.
-
-2007-01-15  Sebastian P. Luque  <spluque@gmail.com>
-
-	* bouts.R:
-	plotBouts2.cf(): New function for plotting cumulative frequency
-	distribution.
-
-2007-01-12  Sebastian P. Luque  <spluque@gmail.com>
-
-	* bouts.R: plotBouts.mle(): Show the value of 1-p in the legend.
-
-	* AllMethod.R:
-	Fixed bug in 'nls' method for plotBouts() which should use eval.parent()
-	to search for data.
-
-2007-01-11  Sebastian P. Luque  <spluque@gmail.com>
-
-	* bouts.R:
-	boutfreqs(): Fixed bug causing unavailable 'upper' object when
-	method="seq.diff".
-
-	bouts.mle(): Removed require stats4 call.
-
-	* zzz.R: require'd stats4.
-
-	* AllGenerics.R, AllMethod.R: New plotBouts() and bec2() methods.
-
-	* AllClass.R: Use nls class as S4.
-
-	* bouts.R: New file.
 
 2007-01-10  Sebastian P. Luque  <spluque@gmail.com>
 
