@@ -324,21 +324,6 @@ setMethod("timeBudget",            # a table of general attendance pattern
                          row.names=NULL)
           })
 
-###_ plotBouts
-setMethod("plotBouts", signature(fit="nls"),
-          function(fit, ...) {
-              if (length(coef(fit)) != 4)
-                  stop("fitted model must have exactly 4 coefficients")
-              plotBouts2.nls(fit=fit, lnfreq=eval.parent(fit$data), ...)
-          })
-setMethod("plotBouts", signature(fit="mle"),
-          function(fit, x, ...) {
-              if (length(coef(fit)) != 3)
-                  stop("fitted model must have exactly 3 coefficients")
-              plotBouts2.mle(fit=fit, x=x, ...)
-          })
-
-###_ Methods for bec2 are in bouts.R to avoid Collate issues in DESCRIPTION
 
 
 ###_* Emacs local variables.

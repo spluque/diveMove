@@ -78,14 +78,6 @@ if (!isGeneric("timeBudget")) {
                function(obj, ignoreZ) standardGeneric("timeBudget"))
 }
 
-###_ plotBouts and bec2
-if (!isGeneric("plotBouts")) {
-    setGeneric("plotBouts", function(fit, ...) standardGeneric("plotBouts"))
-}
-
-if (!isGeneric("bec2")) {
-    setGeneric("bec2", function(fit) standardGeneric("bec2"))
-}
 
 
 ###_* Emacs local variables.

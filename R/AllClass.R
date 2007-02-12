@@ -57,5 +57,3 @@ setClass("TDRcalibrate",
                  return("speed.calib.coefs must be a length-2 vector")
              }
          })
-
-setOldClass("nls")                      # For bout methods
