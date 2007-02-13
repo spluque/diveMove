@@ -1,3 +1,5 @@
+## $Id: AllGenerics.R,v 1.1.1.1.2.4 2007-02-16 20:31:06 sluque Exp $
+
 ###_ PlotTDR
 if (!isGeneric("plotTDR")) {
     setGeneric("plotTDR",
@@ -80,8 +82,7 @@ if (!isGeneric("timeBudget")) {
 
 
 
-###_* Emacs local variables.
+###_ Emacs local variables
 ## Local variables:
-## allout-widgets-mode-inhibit: t
-## allout-layout: (-1 : 0)
+## allout-layout: (+ : 0)
 ## End:

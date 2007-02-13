@@ -1,3 +1,5 @@
+## $Id: distSpeed.R,v 1.1.1.1.2.1 2007-02-13 21:51:53 sluque Exp $
+
 "distSpeed" <- function(pt1, pt2)
 {
     ## Value: A 3-column matrix with distance, time elapsed and speed

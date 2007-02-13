@@ -2,3 +2,4 @@
 * Provide functions to calculate activity time budgets.
 * Complete the vignette with more examples.
 * Fix double plotting in plotDive when in Windows platform.
+* Improve error handling in austFilter().

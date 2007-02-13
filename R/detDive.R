@@ -1,3 +1,5 @@
+## $Id: detDive.R,v 1.2.2.1 2007-02-13 21:51:53 sluque Exp $
+
 ".labDive" <- function(act, string, interval)
 {
     ## Value: Label dives along vector of same length as input.  Return a

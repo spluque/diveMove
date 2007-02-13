@@ -1,3 +1,5 @@
+## $Id: readLocs.R,v 1.1.1.1.2.1 2007-02-13 21:51:53 sluque Exp $
+
 "readLocs" <- function(file, loc.idCol, idCol, dateCol, timeCol=NULL,
                        dtformat="%m/%d/%Y %H:%M:%S", tz="GMT", classCol,
                        lonCol, latCol, alt.lonCol=NULL, alt.latCol=NULL, ...)

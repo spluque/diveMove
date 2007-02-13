@@ -1,3 +1,5 @@
+## $Id: readTDR.R,v 1.1.1.1.2.1 2007-02-13 21:51:53 sluque Exp $
+
 ".getInterval" <- function(time)
 {
     ## Value: numeric; the mode of intervals between time readings

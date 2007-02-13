@@ -1,3 +1,5 @@
+## $Id: zoc.R,v 1.1.1.1.2.1 2007-02-13 21:51:53 sluque Exp $
+
 "zoc" <- function(time, depth, offset)
 {
     ## Value: Vector with all depths with corrected values for time

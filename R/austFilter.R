@@ -1,3 +1,5 @@
+## $Id: austFilter.R,v 1.1.1.1.2.1 2007-02-13 21:51:53 sluque Exp $
+
 "grpSpeedFilter" <- function(x, speed.thr, window=5)
 {
     ## Value: Do stage one on matrix x (assuming it's a single unit),
