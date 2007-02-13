@@ -22,7 +22,7 @@
 \usage{
 \S4method{plotTDR}{TDR}(x, \ldots)
 \S4method{plotTDR}{TDRspeed}(x, concurVars, concurVarTitles, \ldots)
-\S4method{plotTDR}{TDRcalibrate}(x, diveNo=seq(unique(getDAct(x, "dive.id"))),
+\S4method{plotTDR}{TDRcalibrate}(x, diveNo=seq(max(getDAct(x, "dive.id"))),
         labels="phase.id", concurVars, surface=FALSE, \ldots)
 }
 
