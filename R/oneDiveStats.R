@@ -1,3 +1,5 @@
+## $Id: oneDiveStats.R,v 1.2 2007-02-13 17:22:53 sluque Exp $
+
 "oneDiveStats" <- function(x, interval, speed=FALSE)
 {
     ## Value: A matrix with time/depth stats for each dive segment

@@ -1,3 +1,5 @@
+## $Id: plotTD.R,v 1.4 2007-02-15 17:20:05 sluque Exp $
+
 ###_ Internal Function
 ".night" <- function(time, sunrise.time, sunset.time)
 {
@@ -196,8 +198,7 @@
 }
 
 
-###_* Emacs local variables.
+###_ * Emacs local variables
 ## Local variables:
-## allout-widgets-mode-inhibit: t
 ## allout-layout: (-1 : 0)
 ## End:

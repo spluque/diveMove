@@ -1,3 +1,5 @@
+## $Id: diveStats.R,v 1.2 2007-02-13 17:22:53 sluque Exp $
+
 "diveStats" <- function(x)
 {
     ## Value: A data frame with per-dive statistics

@@ -1,3 +1,5 @@
+## $Id: detPhase.R,v 1.2 2007-02-13 17:22:53 sluque Exp $
+
 ".rleActivity" <- function(time, act, interval)
 {
     ## Value: list with factor breaking activity phases, duration of each,

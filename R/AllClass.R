@@ -1,3 +1,5 @@
+## $Id: AllClass.R,v 1.3 2007-02-13 17:18:30 sluque Exp $
+
 setClass("TDR",
          representation=representation(file="character", dtime="numeric",
              time="POSIXct", depth="numeric", concurrentData="data.frame"),

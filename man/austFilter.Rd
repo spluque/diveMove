@@ -94,11 +94,11 @@ authors may be using it inconsistently.}
 
   \code{rmsDistFilter} and \code{austFilter} return a matrix with 2 or 3
   columns, respectively, of logical vectors with values TRUE for points
-  that passed each stage.  For the latter, lines that don't pass the
-  first stage do not pass the other stages.  The second and third
-  columns returned by \code{austFilter}, as well as those returned by
+  that passed each stage.  For the latter, lines that fail the first
+  stage fail the other stages too.  The second and third columns
+  returned by \code{austFilter}, as well as those returned by
   \code{rmsDistFilter} are independent of one another; i.e. lines that
-  don't pass stage 2 do not necessarily not pass stage 3.
+  fail stage 2 do not necessarily fail stage 3.
 
 }
 

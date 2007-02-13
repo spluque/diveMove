@@ -1,3 +1,5 @@
+## $Id: AllMethod.R,v 1.4 2007-02-15 17:20:05 sluque Exp $
+
 ###_ Show and PlotTDR
 
 ###_. TDR and TDRspeed
@@ -341,8 +343,7 @@ setMethod("plotBouts", signature(fit="mle"),
 ###_ Methods for bec2 are in bouts.R to avoid Collate issues in DESCRIPTION
 
 
-###_* Emacs local variables.
+###_ * Emacs local variables
 ## Local variables:
-## allout-widgets-mode-inhibit: t
 ## allout-layout: (-1 : 0)
 ## End:

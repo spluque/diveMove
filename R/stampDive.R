@@ -1,3 +1,5 @@
+## $Id: stampDive.R,v 1.2 2007-02-13 17:22:53 sluque Exp $
+
 "stampDive" <- function(x, ignoreZ=TRUE)
 {
     ## Value: A data frame; stamping each dive with trip number, trip

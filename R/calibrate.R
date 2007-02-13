@@ -1,3 +1,5 @@
+## $Id: calibrate.R,v 1.2 2007-02-13 17:22:53 sluque Exp $
+
 "calibrateDepth" <-  function(x, dry.thr=70, wet.thr=3610, dive.thr=4,
                               offset, descent.crit.q=0.1, ascent.crit.q=0.1,
                               wiggle.tol=0.80)
