@@ -1,3 +1,4 @@
+^.cvsignore$
 budget.*
 EXAMPLES.*
 ^TODO$
