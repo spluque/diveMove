@@ -12,6 +12,10 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.7-8:
+
+        * Better arrangement of widgets in plotTD() and its methods.
+
 *** Version 0.7-7:
 
     	* S4 Documentation bug fix.

@@ -1,4 +1,4 @@
-## $Id: plotTD.R,v 1.2.2.4 2007-02-16 21:09:24 sluque Exp $
+## $Id: plotTD.R,v 1.2.2.5 2007-02-17 04:13:29 sluque Exp $
 
 ###_ Internal Function
 ".night" <- function(time, sunrise.time, sunset.time)
@@ -156,20 +156,20 @@
         base.frame <- tkframe(base, borderwidth=3)
 
         x.frame <- tkframe(base.frame)
-        xr.frame <- tkframe(x.frame, relief="groove", borderwidth=5)
-        dep.frame <- tkframe(x.frame, relief="groove", borderwidth=5)
-        tkpack(xr.frame, dep.frame, side="left", anchor="s")
+        xr.frame <- tkframe(x.frame, relief="groove", borderwidth=2)
+        xmid.frame <- tkframe(x.frame, relief="groove", pady=5, borderwidth=2)
+        zoc.pts <- tkbutton(x.frame, text="Zero-Offset\nCorrect a Range",
+                            command=zocrange, padx=20, pady=7)
+        tkpack(xr.frame, xmid.frame, fill="x")
+        tkpack(zoc.pts, fill="y")
 
-        xmid.frame <- tkframe(base.frame, relief="groove", pady=5)
+        dep.frame <- tkframe(base.frame, relief="groove", borderwidth=2)
 
-        but.frame <- tkframe(base)
-        zoc.pts <- tkbutton(but.frame, text="Zero-Offset Correct a Range",
-                            command=zocrange)
-        q.but <- tkbutton(but.frame, text="      Quit       ",
+        tkpack(x.frame, dep.frame, side="left")
+
+        q.but <- tkbutton(base, text="Quit", padx=20,
                           command=function() tkdestroy(base))
-        tkpack(zoc.pts, q.but, side="left", padx=20)
-
-        tkpack(base.frame, x.frame, xmid.frame, but.frame)
+        tkpack(base.frame, q.but)
 
         ## Zoom
         diffx <- diff(as.numeric(time))
@@ -189,7 +189,7 @@
         tkpack(tklabel(dep.frame, text="Max. Depth (m)"))
         tkpack(tkscale(dep.frame, command=replot.maybe, from=0, to=ylim[1],
                        length=150, showvalue=TRUE, variable=yMax,
-                       orient="horiz"))
+                       orient="vertical"))
 
         replot()
         tkwait.window(base)
