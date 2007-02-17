@@ -1,3 +1,7 @@
+2007-02-16  Sebastian P. Luque  <spluque@gmail.com>
+
+	* R/plotTD.R: Better arrangement of tcltk widgets.
+
 2007-02-14  Sebastian P. Luque  <spluque@gmail.com>
 
 	* R/austFilter.R (rmsFilter): Provided more meaningful error
