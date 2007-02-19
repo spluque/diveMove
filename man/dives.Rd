@@ -12,7 +12,7 @@
 
 
 
-\description{This data set is meant to show the typical organization of
+\description{This data set is meant to show a typical organization of
   a TDR *.csv file, suitable as input for \code{\link{readTDR}}, or to
   construct a \code{\link{TDR}} object.  \code{divesTDR} and
   \code{divesTDRcalibrate} are example \code{\link{TDR}} and

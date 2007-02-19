@@ -1,4 +1,4 @@
-^.cvsignore$
+.cvsignore$
 budget.*
 EXAMPLES.*
 ^TODO$

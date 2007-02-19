@@ -1,3 +1,11 @@
+2007-07-01  Sebastian P. Luque  <spluque@gmail.com>
+
+	* DESCRIPTION: Updated to GPL 3.
+
+2007-03-20  Sebastian P. Luque  <spluque@gmail.com>
+
+	* man: Provided better 'Values' section and descriptions.
+
 2007-02-16  Sebastian P. Luque  <spluque@gmail.com>
 
 	* R/plotTD.R: Better arrangement of tcltk widgets.

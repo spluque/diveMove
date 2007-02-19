@@ -81,10 +81,10 @@ rmsDistFilter(x, speed.thr, window=5, dist.thr)
 
 \section{Warning}{This function applies McConnell et al.'s filter as
 described in Austin et al. (2003), but other authors may have used the
-filter differently. Austin et al. (2003) have apparently applied the
-filter in a vectorized manner. It is not clear from the original paper
+filter differently.  Austin et al. (2003) have apparently applied the
+filter in a vectorized manner.  It is not clear from the original paper
 whether the filter is applied iteratively or in a vectorized fashion, so
-authors may be using it inconsistently.}
+it seems to be used inconsistently.}
 
 
 \value{
@@ -94,11 +94,11 @@ authors may be using it inconsistently.}
 
   \code{rmsDistFilter} and \code{austFilter} return a matrix with 2 or 3
   columns, respectively, of logical vectors with values TRUE for points
-  that passed each stage.  For the latter, lines that fail the first
+  that passed each stage.  For the latter, positions that fail the first
   stage fail the other stages too.  The second and third columns
   returned by \code{austFilter}, as well as those returned by
-  \code{rmsDistFilter} are independent of one another; i.e. lines that
-  fail stage 2 do not necessarily fail stage 3.
+  \code{rmsDistFilter} are independent of one another; i.e. positions
+  that fail stage 2 do not necessarily fail stage 3.
 
 }
 

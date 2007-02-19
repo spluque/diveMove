@@ -14,4 +14,5 @@ ZipData: no
 Collate: AllClass.R AllGenerics.R AllMethod.R austFilter.R bouts.R calibrate.R
 	 detDive.R detPhase.R distSpeed.R diveStats.R oneDiveStats.R plotTD.R
 	 readLocs.R readTDR.R speedStats.R stampDive.R zoc.R zzz.R
-License: GPL (GNU Public License), Version 2 or later
+License: GPL (GNU General Public License),
+	 Version 3 (http://www.gnu.org/licenses/gpl.html) or later

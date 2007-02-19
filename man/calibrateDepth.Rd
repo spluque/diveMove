@@ -97,8 +97,8 @@ divesTDR
 
 ## Consider a 3 m offset, and a dive threshold of 3 m
 dcalib <- calibrateDepth(divesTDR, dive.thr=3, offset=3)
-\dontrun{
-plotTDR(dcalib, labels="dive.phase", surface=TRUE)
+if (dev.interactive(orNone=TRUE)) {
+    plotTDR(dcalib, labels="dive.phase", surface=TRUE)
 }
 
 }

@@ -58,7 +58,16 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 }
 
 \value{
-  An object of class \code{\link[stats4]{mle}}.
+
+  \code{bouts.mle} returns an object of class \code{\link[stats4]{mle}}.
+
+  \code{bouts2.mleBEC} and \code{bouts2.mleFUN} return a numeric vector.
+
+  \code{bouts2.LL} and \code{bouts2.ll} return a function.
+
+  \code{plotBouts2.mle} and \code{plotBouts2.cdf} return nothing, but
+  produce a plot as side effect.
+
 }
 
 \details{ For now only a mixture of 2 Poisson processes is supported.
@@ -124,6 +133,10 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
   Langton, S.; Collett, D. & Sibly, R.  Splitting behaviour into bouts;
   a maximum likelihood approach Behaviour, 1995, 132, 9-10.
+
+  Luque, S.P.; Guinet, C. A maximum likelihood approach for identifying
+  dive bouts improves accuracy, precision, and objectivity.  Behaviour,
+  2007, in press.
 
   Sibly, R.; Nott, H. & Fletcher, D.  Splitting behaviour into bouts
   Animal Behaviour, 1990, 39, 63-69.

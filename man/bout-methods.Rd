@@ -67,10 +67,17 @@
 \references{
 
   Langton, S.; Collett, D. & Sibly, R.  Splitting behaviour into bouts;
-  a maximum likelihood approach Behaviour, 1995, 132, 9-10.
+  a maximum likelihood approach. Behaviour, 1995, 132, 9-10.
+
+  Luque, S.P.; Guinet, C. A maximum likelihood approach for identifying
+  dive bouts improves accuracy, precision, and objectivity.  Behaviour,
+  2007, in press.
+
+  Mori, Y.; Yoda, K. & Sato, K. Defining dive bouts using a sequential
+  differences analysis.  Behaviour, 2001, 138, 1451-1466.
 
   Sibly, R.; Nott, H. & Fletcher, D. Splitting behaviour into bouts
-  Animal Behaviour, 1990, 39, 63-69
+  Animal Behaviour, 1990, 39, 63-69.
 
 }
 
