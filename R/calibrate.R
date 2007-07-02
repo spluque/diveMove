@@ -1,4 +1,4 @@
-## $Id: calibrate.R,v 1.2 2007-02-13 17:22:53 sluque Exp $
+## $Id: calibrate.R,v 1.3 2007-07-02 18:12:25 sluque Exp $
 
 "calibrateDepth" <-  function(x, dry.thr=70, wet.thr=3610, dive.thr=4,
                               offset, descent.crit.q=0.1, ascent.crit.q=0.1,
@@ -84,11 +84,11 @@
         rddepth <- rddepth[ok]
         curspeed <- curspeed[ok]
         bandw <- c(bw.nrd(rddepth), bw.nrd(curspeed))
-        z <- bkde2D(cbind(rddepth, curspeed), bandwidth=bandw)
+        z <- KernSmooth::bkde2D(cbind(rddepth, curspeed), bandwidth=bandw)
         bins <- contourLines(z$x1, z$x2, z$fhat, levels=contour.level)
         ctr.x <- unlist(sapply(bins, "[", "x"), use.names=FALSE)
         ctr.y <- unlist(sapply(bins, "[", "y"), use.names=FALSE)
-        rqFit <- rq(ctr.y ~ ctr.x, tau=tau)
+        rqFit <- quantreg::rq(ctr.y ~ ctr.x, tau=tau)
         coefs <- coef(rqFit)
         newspeed <- (getSpeed(tt) - coefs[1]) / coefs[2]
         speed(x@tdr) <- newspeed

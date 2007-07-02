@@ -1,4 +1,4 @@
-## $Id: plotTD.R,v 1.6 2007-02-17 04:27:37 sluque Exp $
+## $Id: plotTD.R,v 1.7 2007-07-02 18:12:26 sluque Exp $
 
 ###_ Internal Function
 ".night" <- function(time, sunrise.time, sunset.time)
@@ -118,81 +118,84 @@
         } else as.numeric(xlim)
         xlmid <- xm0 <- mean(xlim)     # two vars with date range midpoint
         xr0 <- diff(xlim)                     # range of xlim
-        xZoom <- tclVar(100)                  # initialize zoom factor
-        xlmid <- tclVar(xlmid)            # initialize date range midpoint
-        xZ <- as.numeric(tclvalue(xZoom)) # these 2 are to be dynamically changed
-        xM <- as.numeric(tclvalue(xlmid))
+        xZoom <- tcltk::tclVar(100)           # initialize zoom factor
+        xlmid <- tcltk::tclVar(xlmid)     # initialize date range midpoint
+        xZ <- as.numeric(tcltk::tclvalue(xZoom)) # these 2 are to be dynamically changed
+        xM <- as.numeric(tcltk::tclvalue(xlmid))
         ylim <- if (is.null(depth.lim)) {
             rev(range(depth, na.rm=TRUE)) * 1.1
         } else rev(depth.lim)
-        yMax <- tclVar(ylim[1])
-        yTop <- as.numeric(tclvalue(yMax))
+        yMax <- tcltk::tclVar(ylim[1])
+        yTop <- as.numeric(tcltk::tclvalue(yMax))
         replot <- function(...) {
-            xZ <<- as.numeric(tclvalue(xZoom))
-            xM <<- as.numeric(tclvalue(xlmid))
+            xZ <<- as.numeric(tcltk::tclvalue(xZoom))
+            xM <<- as.numeric(tcltk::tclvalue(xlmid))
             xr.half <- (xr0/2) * 100/xZ
             xlim <- xM + c(-xr.half, xr.half)
-            yTop <<- as.numeric(tclvalue(yMax))
+            yTop <<- as.numeric(tcltk::tclvalue(yMax))
             ylim <- c(yTop, ylim[2])
             plot.fun(xlim=xlim, ylim=ylim)
         }
         replot.maybe <- function(...) {
-            if(as.numeric(tclvalue(xZoom)) != xZ ||
-               as.numeric(tclvalue(xlmid)) != xM ||
-               as.numeric(tclvalue(yMax)) != yTop) replot()
+            if(as.numeric(tcltk::tclvalue(xZoom)) != xZ ||
+               as.numeric(tcltk::tclvalue(xlmid)) != xM ||
+               as.numeric(tcltk::tclvalue(yMax)) != yTop) replot()
         }
         coords <- list()
         zocrange <- function() {
             coords[[length(coords) + 1]] <<- locator(2)
-            tkgrab.release(base)
+            tcltk::tkgrab.release(base)
         }
 
-        base <- tktoplevel()
-        tkwm.title(base, "diveMove")
-        tkwm.deiconify(base)
-        tkgrab.set(base)
-        tkfocus(base)
+        base <- tcltk::tktoplevel()
+        tcltk::tkwm.title(base, "diveMove")
+        tcltk::tkwm.deiconify(base)
+        tcltk::tkgrab.set(base)
+        tcltk::tkfocus(base)
 
-        base.frame <- tkframe(base, borderwidth=3)
+        base.frame <- tcltk::tkframe(base, borderwidth=3)
 
-        x.frame <- tkframe(base.frame)
-        xr.frame <- tkframe(x.frame, relief="groove", borderwidth=2)
-        xmid.frame <- tkframe(x.frame, relief="groove", pady=5, borderwidth=2)
-        zoc.pts <- tkbutton(x.frame, text="Zero-Offset\nCorrect a Range",
-                            command=zocrange, padx=20, pady=7)
-        tkpack(xr.frame, xmid.frame, fill="x")
-        tkpack(zoc.pts, fill="y")
+        x.frame <- tcltk::tkframe(base.frame)
+        xr.frame <- tcltk::tkframe(x.frame, relief="groove", borderwidth=2)
+        xmid.frame <- tcltk::tkframe(x.frame, relief="groove",
+                                     pady=5, borderwidth=2)
+        zoc.pts <- tcltk::tkbutton(x.frame, text="Zero-Offset\nCorrect a Range",
+                                   command=zocrange, padx=20, pady=7)
+        tcltk::tkpack(xr.frame, xmid.frame, fill="x")
+        tcltk::tkpack(zoc.pts, fill="y")
 
-        dep.frame <- tkframe(base.frame, relief="groove", borderwidth=2)
+        dep.frame <- tcltk::tkframe(base.frame, relief="groove", borderwidth=2)
 
-        tkpack(x.frame, dep.frame, side="left")
+        tcltk::tkpack(x.frame, dep.frame, side="left")
 
-        q.but <- tkbutton(base, text="Quit", padx=20,
-                          command=function() tkdestroy(base))
-        tkpack(base.frame, q.but)
+        q.but <- tcltk::tkbutton(base, text="Quit", padx=20,
+                                 command=function() tcltk::tkdestroy(base))
+        tcltk::tkpack(base.frame, q.but)
 
         ## Zoom
         diffx <- diff(as.numeric(time))
         diffxOK <- min(diffx[diffx > 0]) * 40 # zoom up to 40 observations
         maxZoom <- (diffrx / diffxOK) * 100 # maximum zoom depends on time range
-        tkpack(tklabel(xr.frame, text="Date Zoom (%)"))
-        tkpack(tkscale(xr.frame, command=replot.maybe, from=100,
-                       to=maxZoom, showvalue=TRUE, variable=xZoom,
-                       length=200, orient="horiz"))
+        tcltk::tkpack(tcltk::tklabel(xr.frame, text="Date Zoom (%)"))
+        tcltk::tkpack(tcltk::tkscale(xr.frame, command=replot.maybe, from=100,
+                                     to=maxZoom, showvalue=TRUE, variable=xZoom,
+                                     length=200, orient="horiz"))
         ## Pan
-        tkpack(tklabel(xmid.frame, text="Pan through Date"))
-        tkpack(tkscale(xmid.frame, command=replot.maybe,
-                       from=xm0 - xr0, to=xm0 + xr0, showvalue=FALSE,
-                       variable=xlmid, resolution=xr0/2000, length=200,
-                       orient="horiz"))
+        tcltk::tkpack(tcltk::tklabel(xmid.frame, text="Pan through Date"))
+        tcltk::tkpack(tcltk::tkscale(xmid.frame, command=replot.maybe,
+                                     from=xm0 - xr0, to=xm0 + xr0,
+                                     showvalue=FALSE, variable=xlmid,
+                                     resolution=xr0/2000, length=200,
+                                     orient="horiz"))
         ## Maximum depth selection
-        tkpack(tklabel(dep.frame, text="Max. Depth (m)"))
-        tkpack(tkscale(dep.frame, command=replot.maybe, from=0, to=ylim[1],
-                       length=150, showvalue=TRUE, variable=yMax,
-                       orient="vertical"))
+        tcltk::tkpack(tcltk::tklabel(dep.frame, text="Max. Depth (m)"))
+        tcltk::tkpack(tcltk::tkscale(dep.frame, command=replot.maybe,
+                                     from=0, to=ylim[1], length=150,
+                                     showvalue=TRUE, variable=yMax,
+                                     orient="vertical"))
 
         replot()
-        tkwait.window(base)
+        tcltk::tkwait.window(base)
         invisible(coords)
     }
 }
