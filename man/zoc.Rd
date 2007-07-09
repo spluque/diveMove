@@ -1,4 +1,5 @@
 \name{zoc}
+\encoding{latin1}
 
 \alias{zoc}
 \alias{plotTD}
@@ -121,8 +122,8 @@ plotTD(getTime(divesTDR), depth.zoc, interact=FALSE)
 
 
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}, with many ideas
-  from CRAN package sfsmisc.}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com},
+  with many ideas from CRAN package sfsmisc.}
 
 
 \keyword{iplot}% at least one, from doc/KEYWORDS

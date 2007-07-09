@@ -1,4 +1,5 @@
 \name{timeBudget-methods}
+\encoding{latin1}
 \docType{methods}
 
 \alias{timeBudget}
@@ -54,6 +55,6 @@ timeBudget(divesTDRcalibrate, TRUE)
 
 }
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
 
 \keyword{methods}

@@ -1,4 +1,5 @@
 \name{detPhase-internal}
+\encoding{latin1}
 \alias{detPhase-internal}
 
 \alias{.detPhase}
@@ -71,7 +72,7 @@
 
 % -------------------------------------------------------------------------
 
-\author{Sebastián P. Luque \email{spluque@gmail.com} and Andy Liaw.}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com} and Andy Liaw.}
 
 
 \keyword{internal}% at least one, from doc/KEYWORDS

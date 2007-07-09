@@ -1,4 +1,5 @@
 \name{calibrateDepth}
+\encoding{latin1}
 \alias{calibrateDepth}
 
 % -------------------------------------------------------------------------
@@ -104,7 +105,7 @@ if (dev.interactive(orNone=TRUE)) {
 }
 
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{manip}% at least one, from doc/KEYWORDS

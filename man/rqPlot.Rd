@@ -1,4 +1,5 @@
 \name{rqPlot}
+\encoding{latin1}
 
 \alias{rqPlot}
 
@@ -63,7 +64,7 @@ rqPlot(rddepth, speed, z, contours, rqFit, main="qtRegression",
 
 % -------------------------------------------------------------------------
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{manip}% at least one, from doc/KEYWORDS

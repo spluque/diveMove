@@ -1,4 +1,5 @@
 \name{sealLocs}
+\encoding{latin1}
 \docType{data}
 
 \alias{sealLocs}

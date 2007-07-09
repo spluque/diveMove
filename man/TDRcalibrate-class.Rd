@@ -1,4 +1,5 @@
 \name{TDRcalibrate-class}
+\encoding{latin1}
 \docType{class}
 
 \alias{TDRcalibrate-class}
@@ -93,7 +94,7 @@
 
 % -------------------------------------------------------------------------
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
 
 
 \seealso{\code{\link{TDR}} for links to other classes in the package.

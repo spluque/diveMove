@@ -1,4 +1,5 @@
 \name{dives}
+\encoding{latin1}
 \docType{data}
 
 \alias{dives}
@@ -63,7 +64,7 @@
 \seealso{\code{\link{readTDR}}, \code{\link{diveStats}}.}
 
 
-\source{Sebastián P. Luque, Christophe Guinet, John P.Y. Arnould}
+\source{\enc{Sebastián}{Sebastian} P. Luque, Christophe Guinet, John P.Y. Arnould}
 
 % -------------------------------------------------------------------------
 

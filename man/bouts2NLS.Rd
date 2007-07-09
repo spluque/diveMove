@@ -1,4 +1,5 @@
 \name{bouts2NLS}
+\encoding{latin1}
 
 \alias{bouts2.nlsFUN}
 \alias{bouts2.nls}
@@ -102,7 +103,7 @@ bec2(bout.fit1)
 }
 
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
 
 \keyword{models}
 \keyword{manip}

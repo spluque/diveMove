@@ -1,4 +1,5 @@
 \name{labDive-internal}
+\encoding{latin1}
 \alias{labDive-internal}
 
 \alias{.cutDive}
@@ -68,6 +69,6 @@
 
 % -------------------------------------------------------------------------
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
 
 \keyword{internal}

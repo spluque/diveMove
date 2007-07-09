@@ -1,4 +1,5 @@
 \name{diveMove-package}
+\encoding{latin1}
 \docType{package}
 
 \alias{diveMove-package}
@@ -29,7 +30,7 @@
 
 % -------------------------------------------------------------------------
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
 
 
 \examples{

@@ -1,4 +1,5 @@
 \name{diveMove-internal}
+\encoding{latin1}
 
 \alias{.diveIndices}
 \alias{.getInterval}
@@ -103,7 +104,7 @@
 
 % -------------------------------------------------------------------------
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{internal}

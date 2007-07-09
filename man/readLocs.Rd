@@ -1,4 +1,5 @@
 \name{readLocs}
+\encoding{latin1}
 \alias{readLocs}
 
 % -------------------------------------------------------------------------
@@ -82,7 +83,7 @@ summary(locs)
 }
 
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{manip}

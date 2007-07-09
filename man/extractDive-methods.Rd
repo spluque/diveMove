@@ -1,4 +1,5 @@
 \name{extractDive-methods}
+\encoding{latin1}
 \docType{methods}
 \alias{extractDive-methods}
 
@@ -51,6 +52,6 @@ plotTDR(diveX, interact=FALSE)
 
 }
 
-\author{Sebastián P. Luque \email{spluque@gmail.com}}
+\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
 
 \keyword{methods}
