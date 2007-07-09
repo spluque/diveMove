@@ -1,8 +1,18 @@
+2007-07-07  Sebastian P. Luque  <spluque@gmail.com>
+
+	Version 0.8.0 released.
+
+	* DESCRIPTION: Changed 'SaveImage' field to 'LazyLoad' as per
+	deprecated 'SaveImage' in R-devel.
+
+2007-07-02  Sebastian P. Luque  <spluque@gmail.com>
+
+	* calibrate.R, plotTD.R:
+	Use the '::' operator to be explicit when referring to external packages.
+
 2007-07-01  Sebastian P. Luque  <spluque@gmail.com>
 
-	Released 0.7-9.
-
-	* DESCRIPTION: Updated to GPL 3.
+	* DESCRIPTION: Updated to GPL 3, and added a Suggests: tcltk.
 
 2007-03-20  Sebastian P. Luque  <spluque@gmail.com>
 

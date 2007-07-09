@@ -67,8 +67,8 @@ plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
 
 \references{
 
-  Sibly, R.; Nott, H. & Fletcher, D.  Splitting behaviour into bouts
-  Animal Behaviour, 1990, 39, 63-69.
+  Sibly, R.; Nott, H. and Fletcher, D. (1990) Splitting behaviour into
+  bouts Animal Behaviour \bold{39}, 63-69.
 
 }
 
@@ -102,7 +102,7 @@ bec2(bout.fit1)
 }
 
 
-\author{Sebastian P. Luque \email{spluque@gmail.com}}
+\author{Sebastián P. Luque \email{spluque@gmail.com}}
 
 \keyword{models}
 \keyword{manip}

@@ -74,18 +74,18 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
   Even in this relatively simple case, it is very important to provide
   good starting values for the parameters.
 
-  One useful strategy for this is to proceed in 4 steps.  First, fit a
-  broken stick model to the log frequencies of binned data (see
-  \code{\link{boutinit}}), to obtain estimates of 4 parameters
-  corresponding to a 2-process model (Sibly et al. 1990).  Second,
-  calculate parameter \var{p} from the 2 alpha parameters obtained from
-  the broken stick model, to get 3 tentative initial values for the
-  2-process model from Langton et al. (1995).  Third, obtain MLE
-  estimates for these 3 parameters, but using a reparameterized version
-  of the -log L2 function.  Lastly, obtain the final MLE estimates for
-  the 3 parameters by using the estimates from step 3, un-transformed
-  back to their original scales, maximizing the original
-  parameterization of the -log L2 function.
+  One useful strategy to get good starting parameter values is to
+  proceed in 4 steps.  First, fit a broken stick model to the log
+  frequencies of binned data (see \code{\link{boutinit}}), to obtain
+  estimates of 4 parameters corresponding to a 2-process model (Sibly et
+  al. 1990).  Second, calculate parameter \var{p} from the 2 alpha
+  parameters obtained from the broken stick model, to get 3 tentative
+  initial values for the 2-process model from Langton et al. (1995).
+  Third, obtain MLE estimates for these 3 parameters, but using a
+  reparameterized version of the -log L2 function.  Lastly, obtain the
+  final MLE estimates for the 3 parameters by using the estimates from
+  step 3, un-transformed back to their original scales, maximizing the
+  original parameterization of the -log L2 function.
 
   \code{\link{boutinit}} can be used to perform step 1.  Calculation of
   the mixing parameter \var{p} in step 2 is trivial from these
@@ -112,7 +112,7 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
   \dQuote{L-BFGS-B} with appropriate lower and upper bounds.  Step 4 can
   be a bit more problematic, because the parameters are usually on very
   different scales.  Therefore, it is almost always the rule to use
-  method \dQuote{L-BFGS-B}, again with bounding the parameter searc, as
+  method \dQuote{L-BFGS-B}, again with bounding the parameter search, as
   well as passing a \code{control} list with proper \code{parscale} for
   controlling the optimization.  See \code{Note} below for useful
   constraints which can be tried.
@@ -125,21 +125,22 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
   lower bounds for the \code{bouts.LL} reparameterization are
   \code{c(-2, -5, -10)}.  For \code{bouts2.ll}, useful lower bounds are
   \code{rep(1e-08, 3)}.  A useful parscale argument for the latter is
-  \code{c(1, 0.1, 0.01)}.
+  \code{c(1, 0.1, 0.01)}.  However, I have only tested this for cases of
+  diving behaviour in pinnipeds, and may with other cases.
 
 }
 
 \references{
 
-  Langton, S.; Collett, D. & Sibly, R.  Splitting behaviour into bouts;
-  a maximum likelihood approach Behaviour, 1995, 132, 9-10.
+  Langton, S.; Collett, D. and Sibly, R. (1995) Splitting behaviour into
+  bouts; a maximum likelihood approach.  Behaviour \bold{132}, 9-10.
 
-  Luque, S.P.; Guinet, C. A maximum likelihood approach for identifying
-  dive bouts improves accuracy, precision, and objectivity.  Behaviour,
-  2007, in press.
+  Luque, S.P. and Guinet, C. (2007) A maximum likelihood approach for
+  identifying dive bouts improves accuracy, precision, and objectivity.
+  Behaviour, in press.
 
-  Sibly, R.; Nott, H. & Fletcher, D.  Splitting behaviour into bouts
-  Animal Behaviour, 1990, 39, 63-69.
+  Sibly, R.; Nott, H. and Fletcher, D. (1990) Splitting behaviour into
+  bouts.  Animal Behaviour \bold{39}, 63-69.
 
 }
 
@@ -186,7 +187,7 @@ bec2(bout.fit2)
 }
 
 
-\author{Sebastian P. Luque \email{spluque@gmail.com}}
+\author{Sebastián P. Luque \email{spluque@gmail.com}}
 
 \keyword{models}
 \keyword{manip}

@@ -78,7 +78,7 @@ createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
 
 % -------------------------------------------------------------------------
 
-\author{Sebastian P. Luque \email{spluque@gmail.com}}
+\author{Sebastián P. Luque \email{spluque@gmail.com}}
 
 
 \examples{

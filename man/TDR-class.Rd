@@ -63,7 +63,7 @@
 
 % -------------------------------------------------------------------------
 
-\author{Sebastian P. Luque \email{spluque@gmail.com}}
+\author{Sebastián P. Luque \email{spluque@gmail.com}}
 
 
 \seealso{\code{\link{readTDR}}, \code{\link{TDRcalibrate}}.}

@@ -71,7 +71,7 @@
 
 % -------------------------------------------------------------------------
 
-\author{Sebastian P. Luque \email{spluque@gmail.com} and Andy Liaw.}
+\author{Sebastián P. Luque \email{spluque@gmail.com} and Andy Liaw.}
 
 
 \keyword{internal}% at least one, from doc/KEYWORDS

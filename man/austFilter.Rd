@@ -172,7 +172,7 @@ with(ringy[austin[, 3], ], segments(lon[-n3], lat[-n3], lon[-1], lat[-1],
 }
 
 
-\author{Sebastian P. Luque \email{spluque@gmail.com} and Andy Liaw.}
+\author{Sebastián P. Luque \email{spluque@gmail.com} and Andy Liaw.}
 
 
 \keyword{manip}% at least one, from doc/KEYWORDS

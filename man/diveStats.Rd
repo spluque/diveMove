@@ -125,7 +125,7 @@ summary(tdrX.tab)
 
 
 
-\author{Sebastian P. Luque \email{spluque@gmail.com}}
+\author{Sebastián P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{arith}% at least one, from doc/KEYWORDS

@@ -63,7 +63,7 @@
 \seealso{\code{\link{readTDR}}, \code{\link{diveStats}}.}
 
 
-\source{Sebastian P. Luque, Christophe Guinet, John P.Y. Arnould}
+\source{Sebastián P. Luque, Christophe Guinet, John P.Y. Arnould}
 
 % -------------------------------------------------------------------------
 

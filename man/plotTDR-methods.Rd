@@ -96,6 +96,6 @@ plotTDR(divesTDRcalibrate, labels="dive.phase", interact=FALSE)
 
 }
 
-\author{Sebastian P. Luque \email{spluque@gmail.com}}
+\author{Sebastián P. Luque \email{spluque@gmail.com}}
 
 \keyword{methods}

@@ -121,7 +121,7 @@ plotTD(getTime(divesTDR), depth.zoc, interact=FALSE)
 
 
 
-\author{Sebastian P. Luque \email{spluque@gmail.com}, with many ideas
+\author{Sebastián P. Luque \email{spluque@gmail.com}, with many ideas
   from CRAN package sfsmisc.}
 
 
