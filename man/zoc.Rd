@@ -1,5 +1,4 @@
 \name{zoc}
-\encoding{latin1}
 
 \alias{zoc}
 \alias{plotTD}
@@ -122,7 +121,7 @@ plotTD(getTime(divesTDR), depth.zoc, interact=FALSE)
 
 
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com},
+\author{Sebastian P. Luque \email{spluque@gmail.com},
   with many ideas from CRAN package sfsmisc.}
 
 

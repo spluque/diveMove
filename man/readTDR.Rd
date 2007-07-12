@@ -1,5 +1,4 @@
 \name{readTDR}
-\encoding{latin1}
 
 \alias{readTDR}
 \alias{createTDR}
@@ -79,7 +78,7 @@ createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
 
 % -------------------------------------------------------------------------
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 
 \examples{

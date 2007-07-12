@@ -1,5 +1,4 @@
 \name{detDive-internal}
-\encoding{latin1}
 \alias{detDive-internal}
 
 \alias{.detDive}
@@ -49,7 +48,7 @@
 
 % -------------------------------------------------------------------------
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 
 \seealso{\code{\link{.detPhase}}, \code{\link{zoc}}}

@@ -1,5 +1,4 @@
 \name{austFilter}
-\encoding{latin1}
 
 \alias{grpSpeedFilter}
 \alias{rmsDistFilter}
@@ -173,7 +172,7 @@ with(ringy[austin[, 3], ], segments(lon[-n3], lat[-n3], lon[-1], lat[-1],
 }
 
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com} and Andy Liaw.}
+\author{Sebastian P. Luque \email{spluque@gmail.com} and Andy Liaw.}
 
 
 \keyword{manip}% at least one, from doc/KEYWORDS

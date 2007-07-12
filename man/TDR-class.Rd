@@ -1,5 +1,4 @@
 \name{TDR-class}
-\encoding{latin1}
 \docType{class}
 
 \alias{TDR-class}
@@ -64,7 +63,7 @@
 
 % -------------------------------------------------------------------------
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 
 \seealso{\code{\link{readTDR}}, \code{\link{TDRcalibrate}}.}

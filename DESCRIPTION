@@ -1,12 +1,12 @@
 Package: diveMove
 Type: Package
 Title: Dive analysis and calibration
-Version: 0.8.1
+Version: 0.8.2
 Depends: R (>= 2.4.0), methods, stats4
 Suggests: KernSmooth, quantreg, tcltk
 Imports: stats4
-Author: Sebastián P. Luque <spluque@gmail.com>
-Maintainer: Sebastián P. Luque <spluque@gmail.com>
+Author: Sebastian P. Luque <spluque@gmail.com>
+Maintainer: Sebastian P. Luque <spluque@gmail.com>
 Description: Functions to filter and summarize time-depth recorder (TDR)
              data, and miscellaneous functions for handling location data.
 LazyLoad: yes
@@ -14,6 +14,5 @@ ZipData: no
 Collate: AllClass.R AllGenerics.R AllMethod.R austFilter.R bouts.R calibrate.R
 	 detDive.R detPhase.R distSpeed.R diveStats.R oneDiveStats.R plotTD.R
 	 readLocs.R readTDR.R speedStats.R stampDive.R zoc.R zzz.R
-Encoding: latin1
 License: GPL (GNU General Public License),
 	 Version 3 (http://www.gnu.org/licenses/gpl.html) or later

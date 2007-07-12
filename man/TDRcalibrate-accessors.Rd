@@ -1,5 +1,4 @@
 \name{TDRcalibrate-accessors}
-\encoding{latin1}
 \docType{methods}
 \alias{TDRcalibrate-methods}
 \alias{TDRcalibrate-accessors}
@@ -140,6 +139,6 @@ getDPhaseLab(divesTDRcalibrate, 19)
 
 }
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 \keyword{methods}

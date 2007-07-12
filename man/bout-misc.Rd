@@ -1,5 +1,4 @@
 \name{bout-misc}
-\encoding{latin1}
 
 \alias{boutfreqs}
 \alias{boutinit}
@@ -138,7 +137,7 @@ boutinit(lnfreq, 50)
 }
 
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 \keyword{misc}
 \keyword{manip}

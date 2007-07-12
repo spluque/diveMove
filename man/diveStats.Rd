@@ -1,5 +1,4 @@
 \name{diveStats}
-\encoding{latin1}
 
 \alias{diveStats}
 \alias{oneDiveStats}
@@ -126,7 +125,7 @@ summary(tdrX.tab)
 
 
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{arith}% at least one, from doc/KEYWORDS

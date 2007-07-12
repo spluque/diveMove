@@ -1,5 +1,4 @@
 \name{bout-methods}
-\encoding{latin1}
 \docType{methods}
 \alias{bout-methods}
 
@@ -84,6 +83,6 @@
 
 % -------------------------------------------------------------------------
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 \keyword{methods}

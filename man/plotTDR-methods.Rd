@@ -1,5 +1,4 @@
 \name{plotTDR-methods}
-\encoding{latin1}
 \docType{methods}
 \alias{plotTDR-methods}
 
@@ -97,6 +96,6 @@ plotTDR(divesTDRcalibrate, labels="dive.phase", interact=FALSE)
 
 }
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 \keyword{methods}

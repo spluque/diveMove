@@ -1,5 +1,4 @@
 \name{TDR-accessors}
-\encoding{latin1}
 \docType{methods}
 \alias{TDR-methods}
 \alias{TDR-accessors}
@@ -134,6 +133,6 @@ newspeed <- getSpeed(divesTDR) + 2
 speed(divesTDR) <- newspeed
 }
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 \keyword{methods}

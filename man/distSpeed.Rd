@@ -1,5 +1,4 @@
 \name{distSpeed}
-\encoding{latin1}
 
 \alias{distSpeed}
 
@@ -37,7 +36,7 @@ distSpeed(pt1, pt2)
 
 % -------------------------------------------------------------------------
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 
 \examples{

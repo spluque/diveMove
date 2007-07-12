@@ -1,5 +1,4 @@
 \name{calibrateSpeed}
-\encoding{latin1}
 \alias{calibrateSpeed}
 
 % -------------------------------------------------------------------------
@@ -84,7 +83,7 @@ vcalib
 }
 
 
-\author{\enc{Sebastián}{Sebastian} P. Luque \email{spluque@gmail.com}}
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{manip}% at least one, from doc/KEYWORDS
