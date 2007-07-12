@@ -1,8 +1,18 @@
+2007-07-12  Sebastian P. Luque  <spluque@gmail.com>
+
+	Version 0.8.2 released.
+
+	* DESCRIPTION, man/*: Removed "Encoding:" field from Description
+	and "\encoding{latin1}" from *.Rd files, since it is more trouble
+	than any benefit.
+
 2007-07-09  Sebastian P. Luque  <spluque@gmail.com>
+
+	Version 0.8.1 released.
 
 	* DESCRIPTION: Use "Encoding: latin1" field.
 
-	* man/: Use "\encoding{latin1}" line.
+	* man/*: Use "\encoding{latin1}" line.
 
 2007-07-07  Sebastian P. Luque  <spluque@gmail.com>
 
