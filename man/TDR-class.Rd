@@ -53,8 +53,6 @@
 
   }
 
-}
-
 
 \details{Since the data to store in objects of these clases usually come
   from a file, the easiest way to construct such objects is with the

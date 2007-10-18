@@ -58,21 +58,22 @@ rmsDistFilter(x, speed.thr, window=5, dist.thr)
   sequentially using \code{austFilter}.
 
   The first stage of the filter is an iterative process which tests
-  every point, except the first and last two, for travel velocity
-  relative to the preceeding/following two points. If all these four
-  speeds are greater than the specified threshold, the point is marked
-  as failing the first stage. In this case, the next point is tested,
+  every point, except the first and last (\var{w}/2) - 1 (where \var{w}
+  is the window size) points, for travel velocity relative to the
+  preceeding/following (\var{w}/2) - 1 points. If all \var{w} - 1 speeds
+  are greater than the specified threshold, the point is marked as
+  failing the first stage. In this case, the next point is tested,
   removing the failing point from the set of test points.
 
   The second stage runs McConnell et al. (1992) algorithm, which tests
   all the points that passed the first stage, in the same manner as
-  above. The root mean square of all four speeds is calculated, and if
-  it is greater than the specified threshold, the point is marked as
-  failing the second stage.
+  above. The root mean square of all \var{w} - 1 speeds is calculated,
+  and if it is greater than the specified threshold, the point is marked
+  as failing the second stage.
 
   The third stage is run simultaneously with the second stage, but if
-  the mean distance of all four pairs of points is greater than the
-  specified threshold, then the point is marked as failing the third
+  the mean distance of all \var{w} - 1 pairs of points is greater than
+  the specified threshold, then the point is marked as failing the third
   stage.
 
   The speed and distance threshold should be obtained separately (see
