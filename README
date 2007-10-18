@@ -12,6 +12,11 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.8.3:
+
+	* Better explanation of location filtering procedures in man
+          pages.
+
 *** Version 0.8.0:
 
 	* New methods for identification and analysis of bouts of
