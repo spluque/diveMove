@@ -1,3 +1,10 @@
+2007-11-08  Sebastian P. Luque  <spluque@gmail.com>
+
+	Version 0.8.4 released.
+
+	* R/austFilter.R: Added checks for cases where the number of rows
+	  equals exactly the test window size.
+
 2007-10-18  Sebastian P. Luque  <spluque@gmail.com>
 
 	Version 0.8.3 released.

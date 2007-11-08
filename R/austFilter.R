@@ -1,4 +1,4 @@
-## $Id: austFilter.R,v 1.3 2007-02-15 17:20:05 sluque Exp $
+## $Id: austFilter.R,v 1.4 2007-11-08 16:54:39 sluque Exp $
 
 "grpSpeedFilter" <- function(x, speed.thr, window=5)
 {
@@ -37,7 +37,7 @@
 
 "rmsDistFilter" <- function(x, speed.thr, window=5, dist.thr)
 {
-    ## Value: Apply McConnell et al's filter and Austin et al's last
+    ## Value: Run McConnell et al's filter and Austin et al's last
     ## stage, return 2-col matrix of logicals; whether each observation
     ## failed each test.  These 2 filters are independent of each other.
     ## --------------------------------------------------------------------
@@ -57,13 +57,20 @@
     dist.fun <- function(k) {           # k=subscripts
         xmid <- k[1]                    # 1st is the middle
         xmid.rep <- rep(xmid, length(k) - 1)
-        others <- k[-1]                 # stats to all other positions
+        others <- k[-1]                 # 1st against all other positions
         tr <- distSpeed(x[xmid.rep, ], x[others, ])
         tr[, c(1, 3)]
     }
     travel <- apply(testmtx, 1, dist.fun)
-    dists <- travel[seq(length(ref)), ]
-    speeds <- travel[seq(length(ref) + 1, nrow(travel)), ]
+    if (dim(travel)[1] > 2) {
+        dist.refs <- seq(length(ref))
+        speed.refs <- seq(length(ref) + 1, nrow(travel))
+    } else {
+        dist.refs <- 1
+        speed.refs <- 2
+    }
+    dists <- as.matrix(travel[dist.refs, ])
+    speeds <- as.matrix(travel[speed.refs, ])
 
     ## root mean square value (Mcconnell et al filter)
     rms <- apply(speeds, 2, function(k) { # do this for every test group

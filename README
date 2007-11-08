@@ -14,6 +14,12 @@ vignette is also available by doing vignette("diveMove").
 
 *** Version 0.8.3:
 
+	* Fixed bug in rmsDistfilter to intercept an error due to the
+	  number of rows being exactly equal to the test window size.
+          The dimensions of internal objects are now handled properly.
+
+*** Version 0.8.3:
+
 	* Better explanation of location filtering procedures in man
           pages.
 
