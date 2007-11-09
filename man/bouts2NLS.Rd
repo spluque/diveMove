@@ -62,7 +62,15 @@ plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
 }
 
 \details{
+  \code{bouts2.nlsFUN} is the function object defining the nonlinear
+  least-squares relationship in the model.  It is not meant to be used
+  directly, but is used internally by \code{bouts2.nls}.
 
+  \code{bouts2.nls} fits the nonlinear least-squares model itself.
+
+  \code{bouts2.nlsBEC} calculates the BEC from a list object, as the one
+  that is returned by \code{\link{nls}}, representing a fit of the
+  model.  \code{plotBouts2.nls} plots such an object.
 }
 
 \references{

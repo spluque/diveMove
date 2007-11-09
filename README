@@ -12,11 +12,15 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
-*** Version 0.8.3:
+*** Version 0.8.5:
 
-	* Fixed bug in rmsDistfilter to intercept an error due to the
-	  number of rows being exactly equal to the test window size.
-          The dimensions of internal objects are now handled properly.
+	* Improved validity check for input in distFilter().
+
+*** Version 0.8.4:
+
+	* Fixed bug in rmsDistfilter() to intercept an error due to the
+	  number of rows being exactly equal to the test window size.  The
+	  dimensions of internal objects are now handled properly.
 
 *** Version 0.8.3:
 
@@ -57,8 +61,8 @@ vignette is also available by doing vignette("diveMove").
 	* Improved show() method for 'TDRcalibrate' objects.
 
 	* plotTD(), and hence the plotTDR() methods now accept an ellipsis
-          argument to pass to par() for more flexibility drawing the
-          plot.  They also now accept a new argument 'cex.pts' to set the
+          argument to pass to par() for more flexibility drawing the plot.
+          They also now accept a new argument 'cex.pts' to set the
           relative size of points.
 
 *** Version 0.7-3:
@@ -81,9 +85,8 @@ vignette is also available by doing vignette("diveMove").
 *** Version 0.7-1:
 
 	* 'TDRcalibrate' method for plot() now plots correctly if no dives
-          were identified.
-	  New argument 'interact' to allow for static plots, without
-          'tcltk' interaction.
+          were identified.  New argument 'interact' to allow for static
+          plots, without 'tcltk' interaction.
 
 	* plot method replaced by 'plotTDR', to avoid unusual introduction
           of arguments in methods and simplify code.  This method is now

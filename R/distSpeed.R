@@ -1,4 +1,4 @@
-## $Id: distSpeed.R,v 1.2 2007-02-13 17:22:53 sluque Exp $
+## $Id: distSpeed.R,v 1.3 2007-11-09 15:19:15 sluque Exp $
 
 "distSpeed" <- function(pt1, pt2)
 {
@@ -16,6 +16,8 @@
         stop("pt1 and pt2 must have the same number of rows")
     } else if (ncol(pt1) != 3 || ncol(pt2) != 3) {
         stop("pt1 and pt2 must both have 3 columns")
+    } else if (nrow(pt1) < 1 || ncol(pt2) < 1) {
+        stop("pt1 and pt2 must each have at least 1 row")
     }
     pt1[, 1] <- as.numeric(pt1[, 1])
     pt2[, 1] <- as.numeric(pt2[, 1])
