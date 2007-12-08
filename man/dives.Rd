@@ -1,3 +1,4 @@
+% $Id: dives.Rd,v 1.6 2007-12-08 21:50:54 sluque Exp $
 \name{dives}
 \docType{data}
 

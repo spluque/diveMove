@@ -1,3 +1,4 @@
+% $Id: plotTDR-methods.Rd,v 1.6 2007-12-08 21:50:54 sluque Exp $
 \name{plotTDR-methods}
 \docType{methods}
 \alias{plotTDR-methods}

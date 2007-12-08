@@ -1,3 +1,4 @@
+% $Id: bouts2NLS.Rd,v 1.6 2007-12-08 21:50:54 sluque Exp $
 \name{bouts2NLS}
 
 \alias{bouts2.nlsFUN}

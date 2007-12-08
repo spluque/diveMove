@@ -1,3 +1,4 @@
+% $Id: bout-misc.Rd,v 1.11 2007-12-08 21:50:54 sluque Exp $
 \name{bout-misc}
 
 \alias{boutfreqs}

@@ -1,3 +1,4 @@
+% $Id: diveStats.Rd,v 1.5 2007-12-08 21:50:54 sluque Exp $
 \name{diveStats}
 
 \alias{diveStats}
@@ -25,7 +26,9 @@ stampDive(x, ignoreZ=TRUE)
 
   \item{x}{A \code{\link{TDRcalibrate-class}} object for
     \code{diveStats} and \code{stampDive}, and a data frame containing a
-    single dive's data for \code{oneDiveStats}.}
+    single dive's data (a factor identifying the dive phases, a POSIXct
+    object with the time for each reading, a numeric depth vector, and a
+    numeric speed vector) for \code{oneDiveStats}.}
 
   \item{interval}{Sampling interval for interpreting \code{x}.}
 

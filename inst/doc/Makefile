@@ -1,3 +1,5 @@
+## $Id: Makefile,v 1.2 2007-12-08 21:50:54 sluque Exp $
+
 ##_+ Makefile for LaTeX files ---------------------------------------------
 # We don't need to do anything with the Sweave files, as R CMD build
 # weaves them before calling make

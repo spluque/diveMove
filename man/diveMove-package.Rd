@@ -1,3 +1,4 @@
+% $Id: diveMove-package.Rd,v 1.7 2007-12-08 21:50:54 sluque Exp $
 \name{diveMove-package}
 \docType{package}
 

@@ -1,3 +1,4 @@
+% $Id: labDive-internal.Rd,v 1.5 2007-12-08 21:50:54 sluque Exp $
 \name{labDive-internal}
 \alias{labDive-internal}
 

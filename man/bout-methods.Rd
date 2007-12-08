@@ -1,3 +1,4 @@
+% $Id: bout-methods.Rd,v 1.7 2007-12-08 21:50:54 sluque Exp $
 \name{bout-methods}
 \docType{methods}
 \alias{bout-methods}

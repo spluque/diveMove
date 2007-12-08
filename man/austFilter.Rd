@@ -1,3 +1,4 @@
+% $Id: austFilter.Rd,v 1.8 2007-12-08 21:50:54 sluque Exp $
 \name{austFilter}
 
 \alias{grpSpeedFilter}
