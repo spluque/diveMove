@@ -1,8 +1,8 @@
 2008-01-05  Sebastian P. Luque  <spluque@gmail.com>
 
 	* R/austFilter.R: Fixed bug in grpSpeedFilter() whereby caused the
-	  test to fail if any speed > threshold, rather than if ALL speeds >
-	  threshold.  Thanks to Bryan Wright (<bryan.e.wright@state.or.us>).
+	test to fail if any speed > threshold, rather than if ALL speeds >
+	threshold.  Thanks to Bryan Wright (<bryan.e.wright@state.or.us>).
 
 2007-11-09  Sebastian P. Luque  <spluque@gmail.com>
 
@@ -15,7 +15,7 @@
 	Version 0.8.4 released.
 
 	* R/austFilter.R: Added checks for cases where the number of rows
-	  equals exactly the test window size.
+	equals exactly the test window size.
 
 2007-10-18  Sebastian P. Luque  <spluque@gmail.com>
 
