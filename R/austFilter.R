@@ -1,4 +1,4 @@
-## $Id: austFilter.R,v 1.4 2007-11-08 16:54:39 sluque Exp $
+## $Id: austFilter.R,v 1.5 2008-01-06 00:20:51 sluque Exp $
 
 "grpSpeedFilter" <- function(x, speed.thr, window=5)
 {
@@ -18,14 +18,14 @@
         ref <- c(-seq(tpos), seq(tpos)) # subscripts of pts to test against
         mid.rep <- rep(mid, length(ref))
         speeds <- distSpeed(k[mid.rep, ], k[mid + ref, ])[, 3]
-        all(speeds <= speed.thr, na.rm=TRUE) # FALSE if some speeds are > thr
+        all(speeds > speed.thr, na.rm=TRUE) # TRUE if all speeds > thr
     }
     pass <- !logical(nrow(x))         # all pass at start up
     ## define all test rows and subscript for forward movement of window
     testrows <- seq(1 + tpos, nrow(x) - tpos); i <- 1
     for (j in testrows) {
         test <- testfun(x[c(i:(i + tpos - 1), j:(j + tpos)), ])
-        if(!test) {
+        if (test) {
             pass[j] <- FALSE
         } else {
             i <- i + 1

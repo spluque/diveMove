@@ -12,6 +12,11 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.8.6:
+
+        * Fixed bug in grpSpeedFilter() whereby the test to fail if any
+          speed > threshold, rather than if ALL speeds > threshold.
+
 *** Version 0.8.5:
 
 	* Improved validity check for input in distFilter().
