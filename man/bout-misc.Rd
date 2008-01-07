@@ -110,7 +110,7 @@ unLogit(logit)
 
   Luque, S.P. and Guinet, C. (2007) A maximum likelihood approach for
   identifying dive bouts improves accuracy, precision, and objectivity.
-  Behaviour, in press.
+  Behaviour, \bold{144}, 1315-1332.
 
   Mori, Y.; Yoda, K. and Sato, K. (2001) Defining dive bouts using a
   sequential differences analysis.  Behaviour, 2001 \bold{138},

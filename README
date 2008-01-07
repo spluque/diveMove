@@ -12,6 +12,10 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.8.7:
+
+        * Fixed citations in *.Rd files and CITATION.
+
 *** Version 0.8.6:
 
         * Fixed bug in grpSpeedFilter() whereby the test to fail if any

@@ -1,6 +1,8 @@
 2008-01-05  Sebastian P. Luque  <spluque@gmail.com>
 
-	* R/austFilter.R: Fixed bug in grpSpeedFilter() whereby caused the
+	Version 0.8.6 released.
+
+	* R/austFilter.R: Fixed bug in grpSpeedFilter() which caused the
 	test to fail if any speed > threshold, rather than if ALL speeds >
 	threshold.  Thanks to Bryan Wright (<bryan.e.wright@state.or.us>).
 

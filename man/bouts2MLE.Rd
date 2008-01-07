@@ -138,7 +138,7 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
   Luque, S.P. and Guinet, C. (2007) A maximum likelihood approach for
   identifying dive bouts improves accuracy, precision, and objectivity.
-  Behaviour, in press.
+  Behaviour, \bold{144}, 1315-1332.
 
   Sibly, R.; Nott, H. and Fletcher, D. (1990) Splitting behaviour into
   bouts.  Animal Behaviour \bold{39}, 63-69.
