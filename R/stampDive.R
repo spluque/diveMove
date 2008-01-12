@@ -1,4 +1,4 @@
-## $Id: stampDive.R,v 1.2 2007-02-13 17:22:53 sluque Exp $
+## $Id$
 
 "stampDive" <- function(x, ignoreZ=TRUE)
 {

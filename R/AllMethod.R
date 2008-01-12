@@ -1,4 +1,4 @@
-## $Id: AllMethod.R,v 1.5 2007-02-16 21:10:52 sluque Exp $
+## $Id$
 
 ###_ Show and PlotTDR
 

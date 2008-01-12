@@ -1,4 +1,4 @@
-% $Id: readLocs.Rd,v 1.5 2007-12-08 21:50:54 sluque Exp $
+% $Id$
 \name{readLocs}
 \alias{readLocs}
 

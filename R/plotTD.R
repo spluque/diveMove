@@ -1,4 +1,4 @@
-## $Id: plotTD.R,v 1.7 2007-07-02 18:12:26 sluque Exp $
+## $Id$
 
 ###_ Internal Function
 ".night" <- function(time, sunrise.time, sunset.time)

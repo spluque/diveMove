@@ -1,4 +1,4 @@
-## $Id: distSpeed.R,v 1.3 2007-11-09 15:19:15 sluque Exp $
+## $Id$
 
 "distSpeed" <- function(pt1, pt2)
 {

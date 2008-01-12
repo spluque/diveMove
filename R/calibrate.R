@@ -1,4 +1,4 @@
-## $Id: calibrate.R,v 1.3 2007-07-02 18:12:25 sluque Exp $
+## $Id$
 
 "calibrateDepth" <-  function(x, dry.thr=70, wet.thr=3610, dive.thr=4,
                               offset, descent.crit.q=0.1, ascent.crit.q=0.1,

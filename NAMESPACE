@@ -1,4 +1,4 @@
-## $Id: NAMESPACE,v 1.2 2007-12-08 21:38:00 sluque Exp $
+## $Id$
 importFrom(stats4, mle)
 importFrom(graphics, plot, image)
 import(methods)                         # Paranoid measure

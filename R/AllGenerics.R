@@ -1,4 +1,4 @@
-## $Id: AllGenerics.R,v 1.4 2007-02-16 21:10:52 sluque Exp $
+## $Id$
 
 ###_ PlotTDR
 if (!isGeneric("plotTDR")) {

@@ -1,4 +1,4 @@
-## $Id: austFilter.R,v 1.5 2008-01-06 00:20:51 sluque Exp $
+## $Id$
 
 "grpSpeedFilter" <- function(x, speed.thr, window=5)
 {

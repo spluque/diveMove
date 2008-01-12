@@ -1,4 +1,4 @@
-## $Id: bouts.R,v 1.7 2007-02-13 17:22:53 sluque Exp $
+## $Id$
 
 "logit" <- function(p) log(p / (1 - p))
 
