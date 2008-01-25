@@ -3,7 +3,7 @@
 "grpSpeedFilter" <- function(x, speed.thr, window=5)
 {
     ## Value: Do stage one on matrix x (assuming it's a single unit),
-    ## return a logical; whether each observation in x failed the test
+    ## return a logical; whether each observation in x passed the test
     ## --------------------------------------------------------------------
     ## Arguments: x=matrix with cols: POSIXct, lon, lat; speed.thr=speed
     ## threshold (m/s), window=size of window to test
@@ -39,7 +39,7 @@
 {
     ## Value: Run McConnell et al's filter and Austin et al's last
     ## stage, return 2-col matrix of logicals; whether each observation
-    ## failed each test.  These 2 filters are independent of each other.
+    ## passed each test.
     ## --------------------------------------------------------------------
     ## Arguments: x=matrix with cols: POSIXct, lon, lat; speed.thr=speed
     ## threshold (m/s), window=size of window to test; dist.thr=distance
@@ -54,14 +54,14 @@
     ref <- c(-seq(tpos), seq(tpos))     # reference points for test
     ## Matrix of test subscripts
     testmtx <- cbind(testrows, sapply(ref, "+", testrows))
-    dist.fun <- function(k) {           # k=subscripts
-        xmid <- k[1]                    # 1st is the middle
+    travel.fun <- function(k) {           # k=subscripts
+        xmid <- k[1]                      # 1st is the middle
         xmid.rep <- rep(xmid, length(k) - 1)
         others <- k[-1]                 # 1st against all other positions
         tr <- distSpeed(x[xmid.rep, ], x[others, ])
         tr[, c(1, 3)]
     }
-    travel <- apply(testmtx, 1, dist.fun)
+    travel <- apply(testmtx, 1, travel.fun)
     if (dim(travel)[1] > 2) {
         dist.refs <- seq(length(ref))
         speed.refs <- seq(length(ref) + 1, nrow(travel))
