@@ -1,3 +1,20 @@
+2008-01-27  Sebastian P. Luque <spluque@gmail.com>
+
+	Version 0.8.8 released.
+
+	* R/austFilter.R, README, man/austFilter.Rd:
+	  The root-mean-square filter in rmsDistFilter() now works as
+	  described in Freitas et al. (2008), rather than as in the
+	  original McConnell et al. (1992). The latter may not have been
+	  the actual implementation, although other studies may have
+	  followed it (e.g. Austin et al. 2003).
+
+2008-01-25  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/austFilter.R, TODO:
+	  Renaming of internal function dist.fun() to travel.fun(), since
+	  it returns both distance and speed statistics.
+
 2008-01-11  Sebastian P. Luque <spluque@gmail.com>
 
 	Version 0.8.7 released.
