@@ -48,12 +48,10 @@
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
     if (!window %% 2) stop ("window size must be an odd number")
-    if (nrow(x) < window) stop ("there are fewer rows than window size")
+    wdw.errmess <- "there are fewer rows than window size"
+    if (nrow(x) < window) stop (wdw.errmess)
     tpos <- window %/% 2                      # test subscript - 1
-    testrows <- seq(1 + tpos, nrow(x) - tpos) # rel subscripts of pts to test
-    ref <- c(-seq(tpos), seq(tpos))     # reference points for test
-    ## Matrix of test subscripts
-    testmtx <- cbind(testrows, sapply(ref, "+", testrows))
+    ref <- c(-seq(tpos), seq(tpos))           # reference points for test
     travel.fun <- function(k) {           # k=subscripts
         xmid <- k[1]                      # 1st is the middle
         xmid.rep <- rep(xmid, length(k) - 1)
@@ -61,27 +59,61 @@
         tr <- distSpeed(x[xmid.rep, ], x[others, ])
         tr[, c(1, 3)]
     }
-    travel <- apply(testmtx, 1, travel.fun)
-    if (dim(travel)[1] > 2) {
-        dist.refs <- seq(length(ref))
-        speed.refs <- seq(length(ref) + 1, nrow(travel))
-    } else {
-        dist.refs <- 1
-        speed.refs <- 2
+    testrows <- seq(tpos + 1, nrow(x) - tpos) # subscripts of locs to test
+    rmsSwitch <- distPass <- !logical(length(testrows)) # to begin looping
+
+    while (any(rmsSwitch)) {           # stop when switch is all FALSE
+        switchidx <- which(rmsSwitch)
+        if (length(switchidx) < window) stop (wdw.errmess)
+        testrows.new <- testrows[rmsSwitch]
+        idx <- seq_along(testrows.new)  # index the above
+        testidx.mtx <- testidx <- c(idx, sapply(ref, "+", idx))
+        testidx.inner <- testidx >= 1 & testidx <= length(idx)
+        testidx.mtx[testidx.inner] <- testrows.new[testidx[testidx.inner]]
+        testidx.low <- testidx < 1
+        testidx.mtx[testidx.low] <- testrows[1] - (1 - testidx[testidx.low])
+        testidx.high <- testidx > length(idx)
+        testidx.mtx[testidx.high] <- testrows[length(testrows)] +
+            (testidx[testidx.high] - length(idx))
+        testidx.mtx <- matrix(testidx.mtx, nrow=length(idx))
+        travel <- apply(testidx.mtx, 1, travel.fun)
+        if (dim(travel)[1] > 2) {
+            dist.refs <- seq(length(ref))
+            speed.refs <- seq(length(ref) + 1, nrow(travel))
+        } else {
+            dist.refs <- 1
+            speed.refs <- 2
+        }
+        dists <- as.matrix(travel[dist.refs, ])
+        speeds <- as.matrix(travel[speed.refs, ])
+        ## root mean square value
+        rms <- apply(speeds, 2, function(k) { # do this for every test group
+            sqrt(sum(k ^ 2, na.rm=TRUE) / length(k))
+        })
+        ## prelim passing locs in current set
+        rmsPass <- rms <= speed.thr
+        ## find series of adj prelim failing locs in current set
+        rmsPass.rle <- rle(rmsPass)
+        bad <- which(!rmsPass.rle$values & rmsPass.rle$lengths > 1)
+        if (length(bad) < 1) break  # stop looping if no adjc failing locs
+        beg <- rev(length(rmsPass) + 1 - cumsum(rev(rmsPass.rle$lengths)))
+        end <- cumsum(rmsPass.rle$lengths)
+        for (j in bad) {
+            bads <- seq(beg[j], end[j])
+            Vi <- rms[bads]
+            maxVi.idx <- which(Vi == max(Vi))
+            peaks <- bads[maxVi.idx]
+            ok <- bads[!bads %in% peaks]
+            rmsPass[ok] <- TRUE
+        }
+        rmsSwitch[switchidx[!rmsPass]] <- FALSE # set failing locs in orig set
+        ## Distance filter
+        distt <- apply(dists, 2, function(k) sum(k, na.rm=TRUE) / length(k))
+        distFail <- distt > dist.thr
+        distPass[switchidx[distFail]] <- FALSE
     }
-    dists <- as.matrix(travel[dist.refs, ])
-    speeds <- as.matrix(travel[speed.refs, ])
 
-    ## root mean square value (Mcconnell et al filter)
-    rms <- apply(speeds, 2, function(k) { # do this for every test group
-        sqrt(sum(k ^ 2, na.rm=TRUE) / length(k))
-    })
-    rmsPass <- rms <= speed.thr
-
-    ## Distance filter
-    distt <- apply(dists, 2, function(k) sum(k, na.rm=TRUE) / length(k))
-    distPass <- distt <= dist.thr
-
+    rmsPass <- rmsSwitch
     ## Top and bottom ends pass as these can't be tested
     untested <- matrix(!logical(tpos * 2), ncol=2)
     rbind(untested, cbind(rmsPass, distPass), untested)

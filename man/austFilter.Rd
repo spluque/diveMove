@@ -56,7 +56,7 @@ rmsDistFilter(x, speed.thr, window=5, dist.thr)
   \code{rmsDistFilter} can be used to perform only the first stage or
   the second and third stages of the algorithm on their own,
   respectively.  Alternatively, the three filters can be run
-  sequentially using \code{austFilter}.
+  in a single call using \code{austFilter}.
 
   The first stage of the filter is an iterative process which tests
   every point, except the first and last (\var{w}/2) - 1 (where \var{w}
@@ -70,7 +70,7 @@ rmsDistFilter(x, speed.thr, window=5, dist.thr)
   all the points that passed the first stage, in the same manner as
   above. The root mean square of all \var{w} - 1 speeds is calculated,
   and if it is greater than the specified threshold, the point is marked
-  as failing the second stage.
+  as failing the second stage (see Warning section below).
 
   The third stage is run simultaneously with the second stage, but if
   the mean distance of all \var{w} - 1 pairs of points is greater than
@@ -82,11 +82,15 @@ rmsDistFilter(x, speed.thr, window=5, dist.thr)
 
 
 \section{Warning}{This function applies McConnell et al.'s filter as
-described in Austin et al. (2003), but other authors may have used the
-filter differently.  Austin et al. (2003) have apparently applied the
-filter in a vectorized manner.  It is not clear from the original paper
-whether the filter is applied iteratively or in a vectorized fashion, so
-it seems to be used inconsistently.}
+described in Freitas et al. (2008).  According to the original
+description of the algorithm in McConnell et al. (1992), the filter
+makes a single pass through all locations.  Austin et al. (2003) and
+other authors may have used the filter this way.  However, as Freitas et
+al. (2008) noted, this causes locations adjacent to those flagged as
+failing to fail also, thereby rejecting too many locations.  In
+diveMove, the algorithm was modified to reject only the \dQuote{peaks}
+in each series of consecutive locations having root mean square speed
+higher than threshold.}
 
 
 \value{
@@ -114,7 +118,12 @@ it seems to be used inconsistently.}
 
   Austin D, McMillan JI, Bowen D. 2003. A three-stage algorithm for
   filtering erroneous Argos satellite locations. \emph{Marine Mammal
-  Science} 19: 371-383.}
+    Science} 19: 371-383.
+
+  Freitas C, Lydersen, C, Fedak MA, Kovacs KM. 2008. A simple new
+  algorithm to filter marine mammal ARGOS locations. Marine Mammal
+  Science DOI: 10.1111/j.1748-7692.2007.00180.x
+}
 
 % -------------------------------------------------------------------------
 
@@ -153,7 +162,7 @@ with(ringy[rms[, 2], ], segments(lon[-n3], lat[-n3], lon[-1], lat[-1],
                                  col="green"))
 
 
-## All three tests in sequence (Austin et al. procedure)
+## All three tests (Austin et al. procedure)
 austin <- with(ringy, austFilter(time, lon, lat, speed.thr=1.1,
                                  dist.thr=300))
 layout(matrix(1:4, ncol=2, byrow=TRUE))

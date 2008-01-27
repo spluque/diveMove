@@ -12,6 +12,14 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.8.8:
+
+        * The root-mean-square filter in rmsDistFilter() now works as
+          described in Freitas et al. (2008), rather than as in the
+          original McConnell et al. (1992).  The latter may not have been
+          the actual implementation, although other studies may have
+          followed it (e.g. Austin et al. 2003).
+
 *** Version 0.8.7:
 
         * Fixed citations in *.Rd files and CITATION.
