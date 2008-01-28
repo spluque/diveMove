@@ -64,7 +64,7 @@
 
     while (any(rmsSwitch)) {           # stop when switch is all FALSE
         switchidx <- which(rmsSwitch)
-        if (length(switchidx) < window) stop (wdw.errmess)
+        if ((length(switchidx) + (tpos * 2)) < window) stop (wdw.errmess)
         testrows.new <- testrows[rmsSwitch]
         idx <- seq_along(testrows.new)  # index the above
         testidx.mtx <- testidx <- c(idx, sapply(ref, "+", idx))

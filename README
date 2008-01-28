@@ -12,6 +12,13 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.8.9:
+
+        * Fixed bug in rmsDistFilter() causing the filter to fail with
+          very small data sets with message warning that window size is
+          larger than available data, because locations at ends were not
+          being counted.
+
 *** Version 0.8.8:
 
         * The root-mean-square filter in rmsDistFilter() now works as
