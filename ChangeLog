@@ -1,3 +1,13 @@
+2008-01-28  Sebastian P. Luque <spluque@gmail.com>
+
+	Version 0.8.9 released.
+
+	* DESCRIPTION, R/austFilter.R, README:
+	  Fixed bug in rmsDistFilter() causing the filter to fail with very
+	  small data sets with message warning that window size is larger
+	  than available data, because locations at ends were not being
+	  counted.
+
 2008-01-27  Sebastian P. Luque <spluque@gmail.com>
 
 	Version 0.8.8 released.
