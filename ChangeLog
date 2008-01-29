@@ -1,5 +1,7 @@
 2008-01-29  Sebastian P. Luque <spluque@gmail.com>
 
+	Version 0.9.0 released.
+
 	* .Rbuildignore:
 	  Exclude psvn.el files from build.
 
