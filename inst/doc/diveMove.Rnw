@@ -1,3 +1,4 @@
+% $Id$
 %\VignetteIndexEntry{Dive Analysis}
 %\VignetteDepends{diveMove}
 %\VignettePackage{diveMove}
