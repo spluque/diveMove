@@ -28,8 +28,6 @@
     } else id <- inLocs[, idCol]
     dtpasted <- paste(inLocs[, dateCol], inLocs[, timeCol])
     datetime <- as.POSIXct(strptime(dtpasted, format=dtformat), tz=tz)
-    ## Set up data frame with loc id, animal id, time, year, doy, period,
-    ## pttid, class, newclass, lat, lon, latalt, lonalt
     locs <- data.frame(loc.id=loc.id, id=id, time=datetime,
                        lon=inLocs[, lonCol], lat=inLocs[, latCol],
                        class=inLocs[, classCol])

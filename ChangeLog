@@ -1,3 +1,8 @@
+2008-03-30  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/readLocs.R, man/dives.Rd, man/sealLocs.Rd:
+	  Included simple example to show structure.
+
 2008-01-29  Sebastian P. Luque <spluque@gmail.com>
 
 	Version 0.9.0 released.

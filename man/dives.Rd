@@ -9,7 +9,7 @@
 
 % -------------------------------------------------------------------------
 
-\title{Sample TDR data from a fur seal}
+\title{Sample of TDR data from a fur seal}
 
 
 
@@ -67,5 +67,13 @@
 \source{Sebastian P. Luque, Christophe Guinet, John P.Y. Arnould}
 
 % -------------------------------------------------------------------------
+
+\examples{
+dives <- read.csv(system.file(file.path("data", "dives.csv"),
+                              package="diveMove"))
+str(dives)
+
+}
+
 
 \keyword{datasets}

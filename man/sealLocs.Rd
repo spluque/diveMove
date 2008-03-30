@@ -36,4 +36,12 @@
 
 % -------------------------------------------------------------------------
 
+\examples{
+sealLocs <- read.csv(system.file(file.path("data", "sealLocs.csv"),
+                                 package="diveMove"))
+str(sealLocs)
+
+}
+
+
 \keyword{datasets}
