@@ -1,6 +1,5 @@
 ## $Id$
 
-## This one simply uses the mean speed to calculate the angles and tdist
 ".speedStats" <- function(x, vdist)
 {
     ## Value: A 3-column matrix with total distance, mean speed, and angle
