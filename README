@@ -14,6 +14,11 @@ vignette is also available by doing vignette("diveMove").
 
 *** Version 0.9.0:
 
+        * Use the 'grid' manager rather than 'pack', and rearrange widgets
+	  for a better fit in plotTD().
+
+*** Version 0.9.0:
+
         * Minor package-building improvements.
 
 *** Version 0.8.9:

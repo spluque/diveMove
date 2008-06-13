@@ -155,46 +155,51 @@
 
         base.frame <- tcltk::tkframe(base, borderwidth=3)
 
-        x.frame <- tcltk::tkframe(base.frame)
-        xr.frame <- tcltk::tkframe(x.frame, relief="groove", borderwidth=2)
-        xmid.frame <- tcltk::tkframe(x.frame, relief="groove",
-                                     pady=5, borderwidth=2)
-        zoc.pts <- tcltk::tkbutton(x.frame, text="Zero-Offset\nCorrect a Range",
-                                   command=zocrange, padx=20, pady=7)
-        tcltk::tkpack(xr.frame, xmid.frame, fill="x")
-        tcltk::tkpack(zoc.pts, fill="y")
-
         dep.frame <- tcltk::tkframe(base.frame, relief="groove", borderwidth=2)
 
-        tcltk::tkpack(x.frame, dep.frame, side="left")
-
-        q.but <- tcltk::tkbutton(base, text="Quit", padx=20,
+        x.frame <- tcltk::tkframe(base.frame)
+        xr.frame <- tcltk::tkframe(x.frame, relief="groove", borderwidth=2)
+        xmid.frame <- tcltk::tkframe(x.frame, relief="groove", borderwidth=2)
+        zoc.pts <- tcltk::tkbutton(base.frame, text="Zero-Offset\nCorrect a Range",
+                                   command=zocrange)
+        q.but <- tcltk::tkbutton(base.frame, text="Quit",
                                  command=function() tcltk::tkdestroy(base))
-        tcltk::tkpack(base.frame, q.but)
 
         ## Zoom
         diffx <- diff(as.numeric(time))
         diffxOK <- min(diffx[diffx > 0]) * 40 # zoom up to 40 observations
         maxZoom <- (diffrx / diffxOK) * 100 # maximum zoom depends on time range
-        tcltk::tkpack(tcltk::tklabel(xr.frame, text="Date Zoom (%)"))
-        tcltk::tkpack(tcltk::tkscale(xr.frame, command=replot.maybe, from=100,
-                                     to=maxZoom, showvalue=TRUE, variable=xZoom,
-                                     length=200, orient="horiz"))
+        tzoom.l <- tcltk::tklabel(xr.frame, text="Date Zoom (%)")
+        tzoom.s <- tcltk::tkscale(xr.frame, command=replot.maybe, from=100,
+                                  to=maxZoom, showvalue=TRUE, variable=xZoom,
+                                  length=200, orient="horiz")
         ## Pan
-        tcltk::tkpack(tcltk::tklabel(xmid.frame, text="Pan through Date"))
-        tcltk::tkpack(tcltk::tkscale(xmid.frame, command=replot.maybe,
-                                     from=xm0 - xr0, to=xm0 + xr0,
-                                     showvalue=FALSE, variable=xlmid,
-                                     resolution=xr0/2000, length=200,
-                                     orient="horiz"))
+        tpan.l <- tcltk::tklabel(xmid.frame, text="Pan through Date")
+        tpan.s <- tcltk::tkscale(xmid.frame, command=replot.maybe,
+                                 from=xm0 - xr0, to=xm0 + xr0,
+                                 showvalue=FALSE, variable=xlmid,
+                                 resolution=xr0/2000, length=200,
+                                 orient="horiz")
         ## Maximum depth selection
-        tcltk::tkpack(tcltk::tklabel(dep.frame, text="Max. Depth (m)"))
-        tcltk::tkpack(tcltk::tkscale(dep.frame, command=replot.maybe,
-                                     from=0, to=ylim[1], length=150,
-                                     showvalue=TRUE, variable=yMax,
-                                     orient="vertical"))
+        maxdep.l <- tcltk::tklabel(dep.frame, text="Max. Depth (m)")
+        maxdep.s <- tcltk::tkscale(dep.frame, command=replot.maybe,
+                                   from=0, to=ylim[1], length=150,
+                                   showvalue=TRUE, variable=yMax,
+                                   orient="vertical")
 
-        replot()
+        ## Grid all the widgets together
+        tcltk::tkgrid(base.frame)
+        tcltk::tkgrid(dep.frame, rowspan=3, column=0)
+        tcltk::tkgrid(maxdep.l); tcltk::tkgrid(maxdep.s, sticky="ns")
+        tcltk::tkgrid(x.frame, row=0, column=1, columnspan=2, sticky="n")
+        tcltk::tkgrid(xr.frame)
+        tcltk::tkgrid(tzoom.l, sticky="ew"); tcltk::tkgrid(tzoom.s, sticky="ew")
+        tcltk::tkgrid(xmid.frame)
+        tcltk::tkgrid(tpan.l, sticky="ew"); tcltk::tkgrid(tpan.s, sticky="ew")
+        tcltk::tkgrid(zoc.pts, row=2, column=1, sticky="ns")
+        tcltk::tkgrid(q.but, row=2, column=2)
+
+        ## replot()
         tcltk::tkwait.window(base)
         invisible(coords)
     }

@@ -1,4 +1,3 @@
-* Test commits through SVN http protocol, from different machines.
-* Provide functions to calculate activity time budgets.
-* Complete the vignette with more examples.
-* Improve error handling in austFilter(); better messageing.
+* Complete the vignette les.
+* Find a way to embed R graphics in tcltk widgets for plotTD().
+
