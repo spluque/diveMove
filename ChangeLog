@@ -1,5 +1,7 @@
 2008-06-13  Sebastian P. Luque <spluque@gmail.com>
 
+	Version 0.9.1 released.
+
 	* R/plotTD.R:
 	  Use the 'grid' manager rather than 'pack', and rearrange widgets
 	  for a better fit.
