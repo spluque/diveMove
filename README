@@ -12,6 +12,10 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.9.3:
+
+        * Fixed bug that avoided vignette to be built.
+
 *** Version 0.9.2:
 
         * New vignette now builds up on R News article.
