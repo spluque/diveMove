@@ -11,11 +11,10 @@
 \usepackage{relsize}
 \usepackage{boxedminipage}
 \usepackage{booktabs}
-% \usepackage{fancyhdr}
 \usepackage{natbib}
-\usepackage{pdfpages}
 \usepackage[labelsep=period,labelfont=bf,font=small]{caption}
 \usepackage[colorlinks=true]{hyperref}
+\usepackage{pdfpages}
 \usepackage{Sweave}
 \RecustomVerbatimEnvironment
 {Sinput}{Verbatim}{fontsize=\relsize{-1}}
@@ -31,13 +30,6 @@
 \newcommand{\Rfunarg}[1]{{\textit{#1}}}
 \newcommand{\R}{{\normalfont\textsf{R }}{}}
 \setcitestyle{aysep={},notesep={; }}
-% \pagestyle{fancy}
-% \fancyhf{}
-% % \fancyheadoffset[LO,RE{1em}
-% % \fancyhead[LE,RO]{\nouppercase \rightmark}
-% \fancyhead[LE,RO]{\bfseries \nouppercase \leftmark}
-% \fancyfoot[C]{\thepage}
-% \setkomafont{captionlabel}{\sffamily\bfseries}
 
 
 \setlength{\parindent}{0em}
