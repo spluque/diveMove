@@ -2,4 +2,4 @@
 ^\+\+psvn.*
 EXAMPLES.*
 ^TODO$
-inst/doc/(.+\.Rnw)|(Makefile)|(.+\.png)
+inst/doc/(.+\.png)
