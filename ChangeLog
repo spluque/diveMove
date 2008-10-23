@@ -1,3 +1,16 @@
+2008-10-23  Sebastian P. Luque <spluque@gmail.com>
+
+	Version 0.9.2 released.
+
+	* .Rbuildignore, DESCRIPTION, inst/doc, inst/doc/Makefile,
+	  inst/doc/diveMove.Rnw:
+	  New Makefile and vignette. This meant also new patterns in
+	  .Rbuildignore.
+
+	* R/diveStats.R:
+	  Specified row.names=NULL to avoid warning about duplicated
+	  row.names.
+
 2008-06-13  Sebastian P. Luque <spluque@gmail.com>
 
 	Version 0.9.1 released.

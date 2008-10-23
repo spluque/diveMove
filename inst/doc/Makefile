@@ -3,9 +3,10 @@
 ##_+ Prepare the vignettes ------------------------------------------------
 # We don't need to do anything with the Sweave files, as R CMD build
 # weaves them before calling make
-LATEX = pdflatex
-BIBTEX = bibtex
-TEXTRASH = *.*ps $*.dvi $*.bbl $*.aux $*.blg *.log $*.toc $*.out auto/
+LATEX=pdflatex
+BIBTEX=bibtex
+TEXTRASH=*.*ps $*.dvi $*.bbl $*.aux $*.blg *.log $*.toc $*.out $*.tex auto/
+RMOTHERTRASH=find . -name '*.png' -a ! -name 'tcltk.png' -delete
 
 all : diveMove.pdf
 
@@ -17,3 +18,4 @@ all : diveMove.pdf
 	$(LATEX) $*
 	$(LATEX) $*
 	rm -rf $(TEXTRASH) diveMove-*
+	$(RMOTHERTRASH)

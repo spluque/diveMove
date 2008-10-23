@@ -1,6 +1,5 @@
 .cvsignore$
 ^\+\+psvn.*
-budget.*
 EXAMPLES.*
 ^TODO$
-speed[Cc]alib.*
+inst/doc/(.+\.Rnw)|(Makefile)|(.+\.png)
