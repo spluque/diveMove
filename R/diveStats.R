@@ -44,7 +44,7 @@
         ptd <- matrix(c(pdtimes, getSpeed(zvtdr)[okpd]), ncol=2)
         pdv <- do.call(rbind, by(ptd, pdids, diveMove:::.speedStats))
         res <- data.frame(perdive, postdive.dur, postdive.tdist=pdv[, 1],
-                          postdive.mean.speed=pdv[, 2])
+                          postdive.mean.speed=pdv[, 2], row.names=NULL)
         for (i in 1:3) res[, i] <- structure(res[, i],
                                              class=c("POSIXt", "POSIXct"),
                                              tzone=dtimestz)
