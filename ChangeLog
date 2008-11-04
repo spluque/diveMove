@@ -1,3 +1,19 @@
+2008-11-04  Sebastian P. Luque <spluque@gmail.com>
+
+	* DESCRIPTION, R/AllGenerics.R, R/AllMethod.R, R/plotTD.R, README,
+	  TODO, inst/doc/diveMove.Rnw, man/TDR-accessors.Rd,
+	  man/TDR-class.Rd, man/TDRcalibrate-accessors.Rd,
+	  man/TDRcalibrate-class.Rd, man/austFilter.Rd,
+	  man/bout-methods.Rd, man/bout-misc.Rd, man/bouts2MLE.Rd,
+	  man/bouts2NLS.Rd, man/calibrateDepth.Rd, man/calibrateSpeed.Rd,
+	  man/detDive-internal.Rd, man/detPhase-internal.Rd,
+	  man/distSpeed.Rd, man/diveMove-internal.Rd,
+	  man/diveMove-package.Rd, man/diveStats.Rd, man/dives.Rd,
+	  man/extractDive-methods.Rd, man/labDive-internal.Rd,
+	  man/plotTDR-methods.Rd, man/readTDR.Rd,
+	  man/timeBudget-methods.Rd, man/zoc.Rd, tests/class-tests.R:
+	  Improved help pages and vignette.
+
 2008-10-23  Sebastian P. Luque <spluque@gmail.com>
 
 	Version 0.9.3 released.

@@ -7,10 +7,10 @@
 \title{Calibrate Depth and Generate a "TDRcalibrate" object}
 
 
-
-\description{Detect periods of major activities in a TDR record,
-  calibrate depth readings, and generate a "TDRcalibrate" object
-  essential for subsequent summaries of diving behaviour.}
+\description{Detect periods of major activities in a \acronym{TDR}
+  record, calibrate depth readings, and generate a
+  \code{\link{TDRcalibrate}} object essential for subsequent summaries
+  of diving behaviour.}
 
 
 \usage{
@@ -21,9 +21,9 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4, offset,
 
 \arguments{
 
-  \item{x}{An object of class \code{TDR} for
+  \item{x}{An object of class \code{\link{TDR}} for
     \code{\link{calibrateDepth}} or an object of class
-    \code{TDRcalibrate} for \code{\link{calibrateSpeed}}.}
+    \code{\link{TDRcalibrate}} for \code{\link{calibrateSpeed}}.}
 
   \item{dry.thr}{Dry error threshold in seconds.  Dry phases shorter
     than this threshold will be considered as wet.}
@@ -56,21 +56,21 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4, offset,
   performs zero-offset correction of depth, wet/dry phase detection, and
   detection of dives, as well as proper labelling of the latter.
 
-  The procedure starts by first creating a factor with value \sQuote{L}
-  (dry) for rows with NAs for \code{depth} and value \sQuote{W} (wet)
+  The procedure starts by first creating a factor with value \dQuote{L}
+  (dry) for rows with NAs for \code{depth} and value \dQuote{W} (wet)
   otherwise. It subsequently calculates the duration of each of these
-  phases of activity.  If the duration of an dry phase (\sQuote{L}) is
+  phases of activity.  If the duration of an dry phase (\dQuote{L}) is
   less than \code{dry.thr}, then the values in the factor for that phase
-  are changed to \sQuote{W} (wet).  The duration of phases is then
+  are changed to \dQuote{W} (wet).  The duration of phases is then
   recalculated, and if the duration of a phase of wet activity is less
   than \code{wet.thr}, then the corresponding value for the factor is
-  changed to \sQuote{Z} (trivial wet).  The durations of all phases are
+  changed to \dQuote{Z} (trivial wet).  The durations of all phases are
   recalculated a third time to provide final phase durations.
 
   The next step is to detect dives whenever the zero-offset corrected
   depth in an underwater phase is below the supplied dive threshold.  A
   new factor with finer levels of activity is thus generated, including
-  \sQuote{U} (underwater), and \sQuote{D} (diving) in addition to the
+  \dQuote{U} (underwater), and \dQuote{D} (diving) in addition to the
   ones described above.
 
   Once dives have been detected and assigned to a period of wet

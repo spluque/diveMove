@@ -9,8 +9,8 @@
 \title{Detect dives from depth readings}
 
 
-
-\description{Identify dives in TDR records based on a dive threshold.}
+\description{Identify dives in \acronym{TDR} records based on a dive
+  threshold.}
 
 
 \usage{
@@ -37,8 +37,8 @@
 
   \item{dive.id}{Numeric vector numbering each dive in the record.}
 
-  \item{dive.activity}{Factor with levels \sQuote{L}, \sQuote{W},
-    \sQuote{U}, \sQuote{D}, and \sQuote{Z}, see \code{\link{.detPhase}}.
+  \item{dive.activity}{Factor with levels \dQuote{L}, \dQuote{W},
+    \dQuote{U}, \dQuote{D}, and \dQuote{Z}, see \code{\link{.detPhase}}.
     All levels may be represented.}
 
   \item{postdive.id}{Numeric vector numbering each postdive interval
@@ -47,12 +47,11 @@
 }
 
 
+\seealso{\code{\link{.detPhase}}, \code{\link{zoc}}}
+
 % -------------------------------------------------------------------------
 
 \author{Sebastian P. Luque \email{spluque@gmail.com}}
-
-
-\seealso{\code{\link{.detPhase}}, \code{\link{zoc}}}
 
 
 \keyword{internal}% at least one, from doc/KEYWORDS

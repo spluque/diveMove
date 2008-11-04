@@ -11,13 +11,12 @@
 \title{Time depth recorder analysis}
 
 
-
 \description{This package is a collection of functions for visualizing,
   and analyzing depth and speed data from time-depth recorders
-  \dfn{TDR}s.  These can be used to zero-offset correct depth, calibrate
-  speed, and divide the record into different phases, or time budget.
-  Functions are provided for calculating summary dive statistics for the
-  whole record, or at smaller scales within dives.}
+  \acronym{TDR}s.  These can be used to zero-offset correct depth,
+  calibrate speed, and divide the record into different phases, or time
+  budget.  Functions are provided for calculating summary dive
+  statistics for the whole record, or at smaller scales within dives.}
 
 
 \seealso{A vignette with a guide to this package is available by doing
@@ -29,9 +28,6 @@
   \code{\link[diveMove:diveMove-package]{stampDive}}.}
 
 % -------------------------------------------------------------------------
-
-\author{Sebastian P. Luque \email{spluque@gmail.com}}
-
 
 \examples{
 ## read in data and create a TDR object
@@ -68,6 +64,9 @@ stamps <- stampDive(vcalib)
 sumtab <- data.frame(stamps, dives)
 head(sumtab)
 }
+
+
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{ package }

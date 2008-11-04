@@ -1,8 +1,8 @@
 ## $Id$
 
-###_ Show and PlotTDR
+###_ + Show and PlotTDR
 
-###_. TDR and TDRspeed
+###_  . TDR and TDRspeed
 setMethod("show", signature=signature(object="TDR"),
           definition=function(object) {
               trange <- range(object@time)
@@ -44,7 +44,7 @@ setMethod("plotTDR", signature(x="TDRspeed"),
                      concurVarTitles=concurVarTitles, ...)
           })
 
-###_. TDRcalibrate
+###_  . TDRcalibrate
 setMethod("show", signature=signature(object="TDRcalibrate"),
           definition=function(object) {
               dry <- object@gross.activity$activity == "L"
@@ -96,9 +96,9 @@ setMethod("plotTDR", signature(x="TDRcalibrate"),
           })
 
 
-###_ Accessors
+###_ + Accessors
 
-###_. TDR and TDRspeed
+###_  . TDR and TDRspeed
 setMethod("getFileName", signature(x="TDR"), function(x) x@file)
 
 setMethod("getTime", signature(x="TDR"), function(x) x@time)
@@ -149,7 +149,7 @@ setMethod("getCCData", signature(x="TDR", y="character"), function(x, y) {
     as.data.frame(ccd[, ok])
 })
 
-###_. TDRcalibrate
+###_  . TDRcalibrate
 setMethod("getTDR", signature(x="TDRcalibrate"), function(x) x@tdr)
 
 ## access the entire list
@@ -182,7 +182,7 @@ setMethod("getSpeedCoef", signature(x="TDRcalibrate"),
           function(x) x@speed.calib.coefs)
 
 
-###_ Coercions and Replacements
+###_ + Coercions and Replacements
 setAs("TDR", "data.frame", function(from) {
     file.src <- from@file
     dtime <- from@dtime
@@ -236,7 +236,7 @@ setReplaceMethod("ccData", signature(x="TDR", value="data.frame"),
                      x
                  })
 
-###_ Subsetting
+###_ + Subsetting
 setMethod("[", signature("TDR"), function(x, i, j, ..., drop) {
     if (!missing(j) || !missing(...) || !missing(drop))
         stop("subsetting TDR objects can only be done on a single index")
@@ -245,7 +245,7 @@ setMethod("[", signature("TDR"), function(x, i, j, ..., drop) {
 })
 
 
-###_ Generators and Summaries
+###_ + Generators and Summaries
 "createTDR" <- function(time, depth, concurrentData=data.frame(),
                         speed=FALSE, dtime, file)
 {
@@ -326,7 +326,7 @@ setMethod("timeBudget",            # a table of general attendance pattern
                          row.names=NULL)
           })
 
-###_ plotBouts
+###_ + plotBouts
 setMethod("plotBouts", signature(fit="nls"),
           function(fit, ...) {
               if (length(coef(fit)) != 4)
@@ -340,10 +340,10 @@ setMethod("plotBouts", signature(fit="mle"),
               plotBouts2.mle(fit=fit, x=x, ...)
           })
 
-###_ Methods for bec2 are in bouts.R to avoid Collate issues in DESCRIPTION
+###_ + Methods for bec2 are in bouts.R to avoid Collate issues in DESCRIPTION
 
 
-###_ Emacs local variables
+###_ + Emacs local variables
 ## Local variables:
 ## allout-layout: (+ : 0)
 ## End:

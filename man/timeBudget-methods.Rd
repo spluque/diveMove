@@ -6,6 +6,7 @@
 \alias{timeBudget,TDRcalibrate,logical-method}
 
 % -------------------------------------------------------------------------
+
 \title{Describe the Time Budget of Major Activities from "TDRcalibrate"
   object.}
 
@@ -14,18 +15,21 @@
   Summarize the major activities recognized into a time budget.
 }
 
+
 \usage{
 \S4method{timeBudget}{TDRcalibrate,logical}(obj, ignoreZ)
 
 }
 
+
 \arguments{
-  \item{obj}{\code{"\linkS4class{TDRcalibrate}"} object.}
+  \item{obj}{\code{\link{TDRcalibrate}} object.}
 
   \item{ignoreZ}{Logical indicating whether to ignore trivial aquatic
     periods.}
 
 }
+
 
 \value{
   A data frame with components:
@@ -39,9 +43,11 @@
     and end of each period.}
 }
 
+
 \details{
   Ignored trivial aquatic periods are collapsed into the enclosing dry period.
 }
+
 
 \seealso{\code{\link{calibrateDepth}}}
 
@@ -55,6 +61,8 @@ timeBudget(divesTDRcalibrate, TRUE)
 
 }
 
+
 \author{Sebastian P. Luque \email{spluque@gmail.com}}
+
 
 \keyword{methods}

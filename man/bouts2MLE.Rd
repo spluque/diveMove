@@ -14,12 +14,9 @@
 \title{Maximum Likelihood Model of mixture of 2 Poisson Processes}
 
 
-\description{
+\description{ Functions to model a mixture of 2 random Poisson processes
+  to identify bouts of behaviour.  This follows Langton et al. (1995). }
 
-  Functions to model a mixture of 2 random Poisson processes to identify
-  bouts of behaviour.  This follows Langton et al. (1995).
-
-}
 
 \usage{
 bouts2.mleFUN(x, p, lambda1, lambda2)
@@ -30,6 +27,7 @@ bouts2.mleBEC(fit)
 plotBouts2.mle(fit, x, xlab="x", ylab="Log Frequency", bec.lty=2, \ldots)
 plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 }
+
 
 \arguments{
 
@@ -58,6 +56,7 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
 }
 
+
 \value{
 
   \code{bouts.mle} returns an object of class \code{\link[stats4]{mle}}.
@@ -70,6 +69,7 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
   produce a plot as side effect.
 
 }
+
 
 \details{ For now only a mixture of 2 Poisson processes is supported.
   Even in this relatively simple case, it is very important to provide
@@ -113,12 +113,13 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
   \dQuote{L-BFGS-B} with appropriate lower and upper bounds.  Step 4 can
   be a bit more problematic, because the parameters are usually on very
   different scales.  Therefore, it is almost always the rule to use
-  method \dQuote{L-BFGS-B}, again with bounding the parameter search, as
-  well as passing a \code{control} list with proper \code{parscale} for
+  method \dQuote{L-BFGS-B}, again bounding the parameter search, as well
+  as passing a \code{control} list with proper \code{parscale} for
   controlling the optimization.  See \code{Note} below for useful
   constraints which can be tried.
 
 }
+
 
 \note{
 
@@ -127,9 +128,11 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
   \code{c(-2, -5, -10)}.  For \code{bouts2.ll}, useful lower bounds are
   \code{rep(1e-08, 3)}.  A useful parscale argument for the latter is
   \code{c(1, 0.1, 0.01)}.  However, I have only tested this for cases of
-  diving behaviour in pinnipeds, and may with other cases.
+  diving behaviour in pinnipeds, so these suggested values may not be
+  useful in other cases.
 
 }
+
 
 \references{
 
@@ -189,6 +192,7 @@ bec2(bout.fit2)
 
 
 \author{Sebastian P. Luque \email{spluque@gmail.com}}
+
 
 \keyword{models}
 \keyword{manip}

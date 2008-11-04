@@ -14,7 +14,6 @@
 \title{Internal diveMove Functions}
 
 
-
 \description{Functions used for very particular tasks within larger
   functions in diveMove}
 

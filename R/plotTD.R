@@ -1,6 +1,6 @@
 ## $Id$
 
-###_ Internal Function
+###_ + Internal Function
 ".night" <- function(time, sunrise.time, sunset.time)
 {
     ## Value: A list with sunset and sunrise times for dates in 'time'
@@ -20,7 +20,7 @@
     list(sunrises=morn.all, sunsets=night.all)
 }
 
-###_ Main Function
+###_ + Main Function
 "plotTD" <- function(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
                      xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
                      concurVarTitles=deparse(substitute(concurVars)),
@@ -206,7 +206,7 @@
 }
 
 
-###_ Emacs local variables
+###_ + Emacs local variables
 ## Local variables:
 ## allout-layout: (+ : 0)
 ## End:

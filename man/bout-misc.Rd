@@ -13,11 +13,10 @@
   of bouts of behaviour}
 
 
-\description{
-  Application of methods described by Sibly et al. (1990) and Mori et
-  al. (2001) for the identification of bouts of behaviour, based on
-  sequential differences of a variable.
-}
+\description{ Application of methods described by Sibly et al. (1990)
+  and Mori et al. (2001) for the identification of bouts of behaviour,
+  based on sequential differences of a variable. }
+
 
 \usage{
 boutfreqs(x, bw, method=c("standard", "seq.diff"), plot=TRUE)
@@ -26,6 +25,7 @@ labelBouts(x, bec, bec.method=c("standard", "seq.diff"))
 logit(p)
 unLogit(logit)
 }
+
 
 \arguments{
 
@@ -139,6 +139,7 @@ boutinit(lnfreq, 50)
 
 
 \author{Sebastian P. Luque \email{spluque@gmail.com}}
+
 
 \keyword{misc}
 \keyword{manip}

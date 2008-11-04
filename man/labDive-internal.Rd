@@ -15,18 +15,20 @@
   These functions provide information for particular dives,
 }
 
+
 \usage{
 .cutDive(x, descent.crit.q, ascent.crit.q, wiggle.tol)
 .labDive(act, string, interval)
 .labDivePhase(x, diveID, descent.crit.q, ascent.crit.q, wiggle.tol)
 }
 
+
 \arguments{
 
-  \item{x}{For \code{.labDivePhase}, a class \sQuote{TDR} object.  For
-    \code{.cutDive}, a 3-col matrix with subscript in original TDR
-    object, non NA depths, and numeric vector representing POSIXct
-    times.}
+  \item{x}{For \code{.labDivePhase}, a class \code{\link{TDR}} object.
+    For \code{.cutDive}, a 3-col matrix with subscript in original TDR
+    object, non NA depths, and numeric vector representing
+    \code{\link{POSIXct}} times.}
 
   \item{descent.crit.q, ascent.crit.q, wiggle.tol}{Passed from
     \code{calibrateDepth}.}

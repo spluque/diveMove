@@ -1,12 +1,12 @@
 ## $Id$
 
-###_ PlotTDR
+###_ + PlotTDR
 if (!isGeneric("plotTDR")) {
     setGeneric("plotTDR",
                function(x, ...) standardGeneric("plotTDR"))
 }
 
-###_ Accessors
+###_ + Accessors
 if (!isGeneric("getFileName")) {        # File name accessor
     setGeneric("getFileName", function(x) standardGeneric("getFileName"))
 }
@@ -52,7 +52,7 @@ if (!isGeneric("getSpeedCoef")) {       # speed calibration coefs accessor
     setGeneric("getSpeedCoef", function(x) standardGeneric("getSpeedCoef"))
 }
 
-###_ Coercions and Replacements
+###_ + Coercions and Replacements
 if (!isGeneric("as.TDRspeed")) {        # coerce to TDRspeed
     setGeneric("as.TDRspeed", function(x) standardGeneric("as.TDRspeed"))
 }
@@ -69,7 +69,7 @@ if (!isGeneric("ccData<-")) {           # concurrent data replacement
     setGeneric("ccData<-", function(x, value) standardGeneric("ccData<-"))
 }
 
-###_ Generators and Summaries
+###_ + Generators and Summaries
 if (!isGeneric("extractDive")) {        # extract a dive
     setGeneric("extractDive",
                function(obj, diveNo, id) standardGeneric("extractDive"))
@@ -80,7 +80,7 @@ if (!isGeneric("timeBudget")) {
                function(obj, ignoreZ) standardGeneric("timeBudget"))
 }
 
-###_ plotBouts and bec2
+###_ + plotBouts and bec2
 if (!isGeneric("plotBouts")) {
     setGeneric("plotBouts", function(fit, ...) standardGeneric("plotBouts"))
 }
@@ -90,7 +90,7 @@ if (!isGeneric("bec2")) {
 }
 
 
-###_ Emacs local variables
+###_ + Emacs local variables
 ## Local variables:
 ## allout-layout: (+ : 0)
 ## End:

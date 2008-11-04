@@ -7,9 +7,8 @@
 \title{Calibrate and build a "TDRcalibrate" object}
 
 
-
-\description{These functions create a "TDRcalibrate" object which is
-  necessary to obtain dive summary statistics.}
+\description{These functions create a \code{\link{TDRcalibrate}} object
+  which is necessary to obtain dive summary statistics.}
 
 
 \usage{
@@ -21,9 +20,9 @@ calibrateSpeed(x, tau=0.1, contour.level=0.1, z=0, bad=c(0, 0),
 
 \arguments{
 
-  \item{x}{An object of class \code{TDR} for
+  \item{x}{An object of class \code{\link{TDR}} for
     \code{\link{calibrateDepth}} or an object of class
-    \code{TDRcalibrate} for \code{\link{calibrateSpeed}}.}
+    \code{\link{TDRcalibrate}} for \code{\link{calibrateSpeed}}.}
 
   \item{tau}{Quantile on which to regress speed on rate of depth change;
     passed to \code{\link[quantreg]{rq}}.}

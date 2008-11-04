@@ -10,7 +10,6 @@
 \title{Filter satellite locations}
 
 
-
 \description{Apply a three stage algorithm to eliminate erroneous
   locations, based on the procedure outlined in Austin et al. (2003).}
 

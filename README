@@ -12,6 +12,15 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.9.4:
+
+        * More helpful help pages, particularly in readTDR(), to indicate
+          that problems in input text files are better dealt with outside
+          GNU R.
+
+	* Vignette now includes introduction to the bout detection
+          functions.
+
 *** Version 0.9.3:
 
         * Fixed bug that avoided vignette to be built.

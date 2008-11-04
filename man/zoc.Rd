@@ -6,11 +6,11 @@
 
 % -------------------------------------------------------------------------
 
-\title{Interactive zero-offset correction of TDR data}
+\title{Interactive zero-offset correction of "TDR" data}
 
 
-\description{Correct zero-offset in TDR records, with the aid of a
-  graphical user interface (GUI), allowing for dynamic selection of
+\description{Correct zero-offset in \acronym{TDR} records, with the aid
+  of a graphical user interface (GUI), allowing for dynamic selection of
   offset and multiple time windows to perform the adjustment.}
 
 
@@ -34,7 +34,7 @@ plotTD(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
   \item{depth}{Numeric vector with depth in m.}
 
   \item{offset}{Known amount of meters to subtract for zero-offset
-    correcting depth throughout the entire TDR record.}
+    correcting depth throughout the entire \acronym{TDR} record.}
 
   \item{concurVars}{Matrix with additional variables in each column to
     plot concurrently with depth.}
@@ -79,7 +79,7 @@ plotTD(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
 
 
 \details{These functions are used primarily to correct, visually, drifts
-  in the pressure transducer of TDR records. \code{zoc} calls
+  in the pressure transducer of \acronym{TDR} records. \code{zoc} calls
   \code{plotDive}, which plots depth and, optionally, speed vs. time
   with the possibility zooming in and out on time, changing maximum
   depths displayed, and panning through time. The option to zero-offset
@@ -119,7 +119,6 @@ depth.zoc <- zoc(getTime(divesTDR), getDepth(divesTDR), offset=3)
 plotTD(getTime(divesTDR), depth.zoc, interact=FALSE)
 
 }
-
 
 
 \author{Sebastian P. Luque \email{spluque@gmail.com},

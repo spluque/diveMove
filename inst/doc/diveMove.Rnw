@@ -748,6 +748,15 @@ parameters calculated by \Rfunction{diveStats()}, whenever a
 \end{itemize}
 
 
+\section{Bout Detection}
+\label{sec:bouts}
+
+Diving behaviour often occurs in bouts for several species, so
+\Rpackage{diveMove} implements procedures for defining bout ending criteria
+\citep{7116,7397}.  Please see \texttt{?bouts2.mle} and
+\texttt{?bouts2.nls} for examples.
+
+
 \section{Summary}
 
 The \Rpackage{diveMove} package provides tools for analyzing diving
@@ -756,13 +765,14 @@ typically large amounts of data collected by \texttt{TDR}s.  The package's
 main strengths are its ability to:
 
 \begin{enumerate}
-\item identify wet vs. dry periods,
+\item identify wet vs.~dry periods,
 \item calibrate depth readings,
 \item identify individual dives and their phases,
 \item summarize time budgets,
-\item calibrate speed sensor readings, and
+\item calibrate speed sensor readings,
 \item provide basic summaries for each dive identified in \texttt{TDR}
-  records.
+  records, and
+\item provide tools for identification of dive bout end criteria.
 \end{enumerate}
 
 Formal \texttt{S4} classes are supplied to efficiently store \texttt{TDR}

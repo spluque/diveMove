@@ -13,17 +13,17 @@
 
 
 
-\description{This data set is meant to show a typical organization of
-  a TDR *.csv file, suitable as input for \code{\link{readTDR}}, or to
-  construct a \code{\link{TDR}} object.  \code{divesTDR} and
+\description{This data set is meant to show a typical organization of a
+  \acronym{TDR} *.csv file, suitable as input for \code{\link{readTDR}},
+  or to construct a \code{\link{TDR}} object.  \code{divesTDR} and
   \code{divesTDRcalibrate} are example \code{\link{TDR}} and
   \code{\link{TDRcalibrate}} objects.}
 
 
 \format{
 
-  A comma separated value (csv) file with 69560 TDR readings with the
-  following columns:
+  A comma separated value (csv) file with 69560 \acronym{TDR} readings
+  with the following columns:
 
   \item{date}{Date}
 
@@ -37,15 +37,15 @@
 
   \item{speed}{Speed in m/s}
 
-  The data are also provided as a TDR object (*.RData format) for
-  convenience.
-}
+  The data are also provided as a \code{\link{TDR}} object (*.RData
+  format) for convenience.  }
 
 
 \details{
 
-  The data are a subset of an entire TDR record, so they are not meant
-  to make valid inferences from this particular individual/deployment.
+  The data are a subset of an entire \acronym{TDR} record, so they are
+  not meant to make valid inferences from this particular
+  individual/deployment.
 
   \code{divesTDR} is a \code{\link{TDR}} object representation of the
   data in \code{dives}.

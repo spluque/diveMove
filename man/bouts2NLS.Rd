@@ -17,12 +17,14 @@
   follows Sibly et al. (1990) method.
 }
 
+
 \usage{
 bouts2.nlsFUN(x, a1, lambda1, a2, lambda2)
 bouts2.nls(lnfreq, start, maxiter)
 bouts2.nlsBEC(fit)
 plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
 }
+
 
 \arguments{
 
@@ -46,6 +48,7 @@ plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
 
 }
 
+
 \value{
 
   \code{bouts2.nlsFUN} returns a numeric vector evaluating the mixture of 2
@@ -62,6 +65,7 @@ plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
 
 }
 
+
 \details{
   \code{bouts2.nlsFUN} is the function object defining the nonlinear
   least-squares relationship in the model.  It is not meant to be used
@@ -74,12 +78,14 @@ plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
   model.  \code{plotBouts2.nls} plots such an object.
 }
 
+
 \references{
 
   Sibly, R.; Nott, H. and Fletcher, D. (1990) Splitting behaviour into
   bouts Animal Behaviour \bold{39}, 63-69.
 
 }
+
 
 \seealso{
   \code{\link{bouts.mle}} for a better approach.
@@ -112,6 +118,7 @@ bec2(bout.fit1)
 
 
 \author{Sebastian P. Luque \email{spluque@gmail.com}}
+
 
 \keyword{models}
 \keyword{manip}

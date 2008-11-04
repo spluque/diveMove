@@ -6,14 +6,14 @@
 
 % -------------------------------------------------------------------------
 
-\title{Read comma-delimited file with TDR data}
+\title{Read comma-delimited file with "TDR" data}
 
 
 
 \description{Read a comma delimited (*.csv) file containing time-depth
-  recorder (TDR) data from various TDR models.  Return a \code{TDR} or
-  \code{TDRspeed} object. \code{createTDR} creates an object of one of
-  these classes from other objects.}
+  recorder (\dfn{TDR}) data from various \acronym{TDR} models.  Return a
+  \code{TDR} or \code{TDRspeed} object. \code{createTDR} creates an
+  object of one of these classes from other objects.}
 
 
 \usage{
@@ -71,16 +71,25 @@ createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
   respectively, for further analyses.
 
   If \var{speed} is TRUE and concurrentCols contains a column named
-  speed or velocity, then an object of class TDRspeed is created, where
-  speed is considered the column matching this name.}
+  speed or velocity, then an object of class \code{\link{TDRspeed}} is
+  created, where speed is considered to be the column matching this
+  name.}
 
 
-\value{An object of class \sQuote{TDR} or \sQuote{TDRspeed}.}
+\note{Although \code{\link{TDR}} and \code{\link{TDRspeed}} classes
+  check that time stamps are in increasing order, the integrity of the
+  input must be thoroughly verified for common errors present in text
+  output from \acronym{TDR} devices such as duplicate records, missing
+  time stamps and non-numeric characters in numeric fields.  These
+  errors are much more efficiently dealt with outside of \acronym{GNU}
+  \R using tools like \code{GNU awk} or \code{GNU sed}, so
+  \code{\link{diveMove}} does not currently attempt to fix these
+  errors.}
+
+
+\value{An object of class \code{\link{TDR}} or \code{\link{TDRspeed}}.}
 
 % -------------------------------------------------------------------------
-
-\author{Sebastian P. Luque \email{spluque@gmail.com}}
-
 
 \examples{
 readTDR(system.file(file.path("data", "dives.csv"),
@@ -96,6 +105,9 @@ createTDR(tdr.time, tdrX$depth, concurrentData=data.frame(speed=tdrX$speed),
           file="dives.csv", speed=TRUE)
 
 }
+
+
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{manip}% at least one, from doc/KEYWORDS

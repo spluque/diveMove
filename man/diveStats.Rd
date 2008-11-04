@@ -11,7 +11,7 @@
 
 
 
-\description{Calculate dive statistics in TDR records.}
+\description{Calculate dive statistics in \acronym{TDR} records.}
 
 
 \usage{
@@ -42,9 +42,9 @@ stampDive(x, ignoreZ=TRUE)
 
 
 \details{\code{diveStats} calculates various dive statistics based on
-  time and depth for an entire TDR record.  \code{oneDiveStats} obtains
-  these statistics from a single dive, and \code{stampDive} stamps each
-  dive with associated trip information.}
+  time and depth for an entire \acronym{TDR} record.
+  \code{oneDiveStats} obtains these statistics from a single dive, and
+  \code{stampDive} stamps each dive with associated trip information.}
 
 
 \value{A \code{\link{data.frame}} with one row per dive detected
@@ -127,7 +127,6 @@ tdrX.tab <- data.frame(stamps, tdrX)
 summary(tdrX.tab)
 
 }
-
 
 
 \author{Sebastian P. Luque \email{spluque@gmail.com}}

@@ -8,7 +8,6 @@
 \title{Calculate distance and speed between locations}
 
 
-
 \description{Calculate distance, time difference, and speed between
   pairs of points defined by latitude and longitude, given the time at
   which all points were measured.}
@@ -36,9 +35,6 @@ distSpeed(pt1, pt2)
   and speed (m/s).}
 
 % -------------------------------------------------------------------------
-
-\author{Sebastian P. Luque \email{spluque@gmail.com}}
-
 
 \examples{
 
@@ -69,6 +65,8 @@ distSpeed(locs[c(1, 5, 10), 3:5], locs[c(25, 30, 35), 3:5])
 
 }
 
+
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{math}% at least one, from doc/KEYWORDS

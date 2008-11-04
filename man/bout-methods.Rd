@@ -12,13 +12,12 @@
 \alias{bec2,mle-method}
 
 % -------------------------------------------------------------------------
+
 \title{Methods for Plotting and Extracting the Bout Ending Criterion}
 
 
-\description{
-  Plot results from fitted mixture of 2-process Poisson models, and
-  calculate the bout ending criterion.
-}
+\description{ Plot results from fitted mixture of 2-process Poisson
+  models, and calculate the bout ending criterion.  }
 
 
 \usage{
@@ -85,5 +84,6 @@
 % -------------------------------------------------------------------------
 
 \author{Sebastian P. Luque \email{spluque@gmail.com}}
+
 
 \keyword{methods}

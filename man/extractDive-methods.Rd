@@ -8,6 +8,7 @@
 \alias{extractDive,TDRcalibrate,numeric,missing-method}
 
 % -------------------------------------------------------------------------
+
 \title{Extract Dives from "TDR" or "TDRcalibrate" Objects}
 
 
@@ -23,8 +24,10 @@
 
 \arguments{
 
-  \item{obj}{\code{"\linkS4class{TDR}"} object.}
+  \item{obj}{\code{\link{TDR}} object.}
+
   \item{diveNo}{Numeric vector or scalar with dive numbers to extract.}
+
   \item{id}{Numeric vector of dive numbers from where \code{diveNo}
     should be chosen.}
 
@@ -32,7 +35,7 @@
 
 
 \value{
-  An object of class \code{TDR} or \code{TDRspeed}.
+  An object of class \code{\link{TDR}} or \code{\link{TDRspeed}}.
 }
 
 % -------------------------------------------------------------------------
@@ -52,6 +55,8 @@ plotTDR(diveX, interact=FALSE)
 
 }
 
+
 \author{Sebastian P. Luque \email{spluque@gmail.com}}
+
 
 \keyword{methods}

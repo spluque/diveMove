@@ -10,7 +10,6 @@
 \title{Class "TDRcalibrate" for dive analysis}
 
 
-
 \description{This class holds information produced at various stages of
   dive analysis.  Methods are provided for extracting data from each
   slot.}
@@ -27,7 +26,7 @@
 \section{Slots}{
   \describe{
 
-    \item{\code{tdr}:}{Object of class \dQuote{TDR}.
+    \item{\code{tdr}:}{Object of class \code{\link{TDR}}.
 
       This slot contains the time, zero-offset corrected depth, and
       possibly a data frame.  If the object is also of class "TDRspeed",
@@ -35,7 +34,8 @@
       speed.  See \code{\link{readTDR}} and the accessor function
       \code{\link{getTDR}} for this slot.}
 
-    \item{\code{gross.activity}:}{Object of class \dQuote{list}.
+    \item{\code{gross.activity}:}{Object of class
+    \sQuote{list}.
 
       This slot holds a list of the form returned by
       \code{\link{.detPhase}}, composed of 4 elements.  It contains a
@@ -45,10 +45,10 @@
       elements are as long as there are rows in \code{tdr}.  This list
       also contains two more vectors, named \code{begin} and \code{end}:
       one with the beginning time of each phase, and another with the
-      ending time; both represented as \code{POSIXct} objects.  See
-      \code{\link{.detPhase}}.}
+      ending time; both represented as \code{\link{POSIXct}} objects.
+      See \code{\link{.detPhase}}.}
 
-    \item{\code{dive.activity}:}{Object of class \dQuote{data.frame}.
+    \item{\code{dive.activity}:}{Object of class \sQuote{data.frame}.
 
       This slot contains a data.frame of the form returned by
       \code{\link{.detDive}}, with as many rows as those in \code{tdr},
@@ -62,25 +62,25 @@
       labelled 0).  See \code{\link{.detDive}}, and
       \code{\link{getDAct}} to access all or any one of these vectors.}
 
-    \item{\code{dive.phases}:}{Object of class \dQuote{factor}. must be
+    \item{\code{dive.phases}:}{Object of class \sQuote{factor}. must be
       the same as value returned by \code{\link{.labDivePhase}}.
 
       This slot is a factor that labels each row in the record as
       belonging to a particular phase of a dive.  It has the same form
       as objects returned by \code{\link{.labDivePhase}}.}
 
-    \item{\code{dry.thr}:}{Object of class \dQuote{numeric} the temporal
+    \item{\code{dry.thr}:}{Object of class \sQuote{numeric} the temporal
       criteria used for detecting dry periods that should be considered
       as wet.}
 
-    \item{\code{wet.thr}:}{Object of class \dQuote{numeric} the temporal
+    \item{\code{wet.thr}:}{Object of class \sQuote{numeric} the temporal
       criteria used for detecting periods wet that should not be
       considered as foraging time.}
 
-    \item{\code{dive.thr}:}{Object of class \dQuote{numeric} the
+    \item{\code{dive.thr}:}{Object of class \sQuote{numeric} the
       criteria used for defining a dive.}
 
-    \item{\code{speed.calib.coefs}:}{Object of class \dQuote{numeric}
+    \item{\code{speed.calib.coefs}:}{Object of class \sQuote{numeric}
       the intercept and slope derived from the speed calibration
       procedure.  Defaults to c(0, 1) meaning uncalibrated speeds.}
 
@@ -92,13 +92,13 @@
   holds all the information necessary for calculating requested
   summaries for a TDR.}
 
-% -------------------------------------------------------------------------
-
-\author{Sebastian P. Luque \email{spluque@gmail.com}}
-
 
 \seealso{\code{\link{TDR}} for links to other classes in the package.
   \code{\link{TDRcalibrate-methods}} for the various methods available.}
+
+% -------------------------------------------------------------------------
+
+\author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 
 \keyword{classes}
