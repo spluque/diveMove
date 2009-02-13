@@ -12,6 +12,11 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.9.5:
+
+        * Documentation fixes in preparation for new release.  New parser
+          has more strict rules for syntax.
+
 *** Version 0.9.4:
 
         * More helpful help pages, particularly in readTDR(), to indicate

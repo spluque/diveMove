@@ -8,7 +8,7 @@
 \concept{Dive analysis}
 % -------------------------------------------------------------------------
 
-\title{Time depth recorder analysis}
+\title{Dive Analysis and Calibration}
 
 
 \description{This package is a collection of functions for visualizing,
@@ -25,7 +25,7 @@
   \code{\link[diveMove:diveMove-package]{calibrateDepth}},
   \code{\link[diveMove:diveMove-package]{calibrateSpeed}},
   \code{\link[diveMove:diveMove-package]{timeBudget}},
-  \code{\link[diveMove:diveMove-package]{stampDive}}.}
+  \code{\link[diveMove:diveMove-package]{stampDive}}. }
 
 % -------------------------------------------------------------------------
 

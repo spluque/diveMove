@@ -1,6 +1,6 @@
 ## $Id$
 
-##_+ Custom VARS ----------------------------------------------------------
+###_+ Custom VARS ---------------------------------------------------------
 # We don't need to do anything with the Sweave files, as R CMD build
 # weaves them before calling make
 LATEX=pdflatex

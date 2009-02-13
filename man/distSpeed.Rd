@@ -60,7 +60,7 @@ lapply(locs.std.tr, function(x) {
     quantile(x[, 1], seq(0.90, 0.99, 0.01), na.rm=TRUE) # distance
 })
 
-## Travel summary between arbitrary two sets of points
+## Travel summary between two arbitrary sets of points
 distSpeed(locs[c(1, 5, 10), 3:5], locs[c(25, 30, 35), 3:5])
 
 }

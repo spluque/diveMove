@@ -25,17 +25,18 @@
   A comma separated value (csv) file with 69560 \acronym{TDR} readings
   with the following columns:
 
-  \item{date}{Date}
+  \itemize{
+    \item{date}{Date}
 
-  \item{time}{Time}
+    \item{time}{Time}
 
-  \item{depth}{Depth in m}
+    \item{depth}{Depth in m}
 
-  \item{light}{Light level}
+    \item{light}{Light level}
 
-  \item{temperature}{Temperature in C}
+    \item{temperature}{Temperature in degrees Celsius}
 
-  \item{speed}{Speed in m/s}
+    \item{speed}{Speed in m/s} }
 
   The data are also provided as a \code{\link{TDR}} object (*.RData
   format) for convenience.  }
