@@ -1,6 +1,7 @@
 ## $Id$
 
 ###_+ Custom VARS ---------------------------------------------------------
+
 # We don't need to do anything with the Sweave files, as R CMD build
 # weaves them before calling make
 LATEX=pdflatex
@@ -10,6 +11,7 @@ RMOTHERTRASH=-find . -name '*.png' -a ! -name 'tcltk.png' -delete
 
 
 ###_+ Phonies -------------------------------------------------------------
+
 .PHONY : clean
 
 ###_+ Rules ---------------------------------------------------------------
@@ -32,7 +34,7 @@ clean :
 	$(RMOTHERTRASH)
 
 
-###_ Emacs local variables
+###_+ Emacs local variables
 ## Local variables:
 ## allout-layout: (1 + : 0)
 ## End:

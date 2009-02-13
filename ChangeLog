@@ -1,3 +1,16 @@
+2009-02-13  Sebastian P. Luque <spluque@gmail.com>
+
+	Version 0.9.5 released.
+
+	* DESCRIPTION, README, man/distSpeed.Rd, man/diveMove-package.Rd,
+	  man/dives.Rd, man/sealLocs.Rd:
+	  Documentation fixes in preparation for new release.
+
+2008-11-09  Sebastian P. Luque <spluque@gmail.com>
+
+	* inst/doc/Makefile:
+	  Fixed layout of comments.
+
 2008-11-04  Sebastian P. Luque <spluque@gmail.com>
 
 	Version 0.9.4 released.
