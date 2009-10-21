@@ -1,5 +1,7 @@
 2009-10-21  Sebastian P. Luque <spluque@gmail.com>
 
+	Version 0.9.6 released.
+
 	* DESCRIPTION, R/detDive.R, man/calibrateDepth.Rd:
 	Fixed .cutDive() to behave as intended; wiggles above wiggle.tol
 	should not be allowed to terminate descent phase.  Better
