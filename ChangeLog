@@ -1,3 +1,10 @@
+2009-10-21  Sebastian P. Luque <spluque@gmail.com>
+
+	* DESCRIPTION, R/detDive.R, man/calibrateDepth.Rd:
+	Fixed .cutDive() to behave as intended; wiggles above wiggle.tol
+	should not be allowed to terminate descent phase.  Better
+	documentation explaining the basics of dive phase detection.
+
 2009-02-13  Sebastian P. Luque <spluque@gmail.com>
 
 	Version 0.9.5 released.

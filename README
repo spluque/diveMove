@@ -12,6 +12,14 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.9.6:
+
+        * Fixed .cutDive() to behave as intended: wiggles above wiggle.tol
+	  should not be allowed to terminate descent phase.
+
+	* Better documentation explaining the basics of dive phase
+	  detection.
+
 *** Version 0.9.5:
 
         * Documentation fixes in preparation for new release.  New parser

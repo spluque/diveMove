@@ -83,6 +83,72 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4, offset,
 
 }
 
+\section{Detection of dive phases}{
+
+  A bottom depth is defined as the maximum depth multiplied by a factor
+  (\code{wiggle.tol}, [0, 1])
+
+  \describe{
+
+    \item{Descent}{Using all depths from the first one in the dive down
+    to the maximum depth, the rate of descent for each segment is
+    calculated, and a critical rate is defined as the quantile
+    (\code{descent.crit.q}) of all the positive rates of descent.  This
+    subsetting avoids defining a critical rate that may be negative, due
+    to wiggling during the descent.
+
+    To allow detection of wiggles during descent, a vector of the
+    indices of the rates of descent that were lower than the critical
+    value is defined, and a logical vector with TRUE for rates of
+    descent >= 0 above the bottom depth defined previously is also
+    created.
+
+    The following tests are performed (in order):
+
+    If there were any rates below the critical value, as well as any
+    descent wiggles, the indices where the wiggles occurred are removed.
+    If this resulted in removal of all indices, then the index defining
+    the end of descent is the number of rates of descent, otherwise it
+    is the last after the removal.
+
+    If there were not any rates below the critical value, the index
+    defining the end of descent is the number of rates of descent,
+    otherwise it is the first of them.}
+
+
+  \item{Ascent}{The order of depths is reversed in order to detect
+    ascent starting from the bottom, taking all depths after the maximum
+    depth.  The rate of ascent for each segment is calculated, and a
+    critical rate is defined as the quantile (\code{ascent.crit.q}) of
+    all the positive rates of ascent, analogously to the descent
+    detection procedure.
+
+    To allow detection of bottom wiggling, a vector of the indices of
+    the rates of ascent that were higher than the critical value is
+    defined, and a logical vector with TRUE for rates of ascent <= 0
+    below the bottom depth defined previously is also created.
+
+    The following tests are performed (in order):
+
+    If there were any bottom wiggles, then the index defining the
+    beginning of ascent is that corresponding to the maximum depth plus
+    that corresponding to the last bottom wiggle, otherwise:
+
+    If there were no rates above the critical value, then the index
+    defining the beginning of ascent is the last reading below the
+    surface.  Otherwise, it is the one corresponding to the maximum
+    depth plus the first of the indices of rates above the critical
+    value.}
+
+}
+
+The particular dive phase categories are subsequently defined using
+simple set operations.
+
+}
+
+
+
 
 \value{An object of class \code{\link{TDRcalibrate}}.}
 

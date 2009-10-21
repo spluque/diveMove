@@ -9,7 +9,8 @@
     ## Value: data frame with log frequencies and bin mid-points
     ## --------------------------------------------------------------------
     ## Arguments: x=numeric vector, bw=bin width for histogram,
-    ## plot=logical whether to plot or not
+    ## method=method used to construct the histogram, plot=logical whether
+    ## to plot or not
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
@@ -110,7 +111,7 @@
     ## Value: plot of fitted model of log frequencies on x, with bec line.
     ## --------------------------------------------------------------------
     ## Arguments: fit=nls list, lnfreq=data frame with named objects
-    ## lnfreq and x.
+    ## lnfreq and x, bec.lty=line type for arrow
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
@@ -150,7 +151,8 @@
     ## Arguments: x=numeric vector or matrix with variable or variables,
     ## respectively, to use for splitting bouts; bec=vector or matrix with
     ## corresponding bout ending criterion (i.e. each element/column of x
-    ## is compared against the element in bec at the same index).
+    ## is compared against the element in bec at the same index),
+    ## bec.method=what method was used to identify bouts
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
@@ -202,12 +204,10 @@
 {
     ## Value: An mle object with fitted parameters
     ## --------------------------------------------------------------------
-    ## Arguments: loglik.fun=string naming the function to fit;
-    ## start=named list with starting values (exactly as given in ll.fun2,
-    ## i.e. the reparameterized versions); back.convert=a list of strings
-    ## naming the function applied to convert each parameter in 'start'
-    ## back to the original ll.fun1; x=numeric vector with variable to
-    ## model; ...=passed to mle
+    ## Arguments: loglik.fun=string naming the function to fit; start=named
+    ## list with starting values (exactly as given in ll.fun2, i.e. the
+    ## reparameterized versions); x=numeric vector with variable to model;
+    ## ...=passed to mle
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
@@ -280,7 +280,7 @@
     ## --------------------------------------------------------------------
     ## Arguments: fit=mle object with fitted 2-process model, x=numeric
     ## vector with observed data, draw.bec=logical; whether to draw the bec;
-    ## bec.lty=line type for the bec reference line.
+    ## bec.lty=line type for the bec reference line; ...=passed to plot()
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
