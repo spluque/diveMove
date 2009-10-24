@@ -44,7 +44,7 @@
 
 \title{An Introduction to the \Rpackage{diveMove} Package}
 
-\author{Sebasti·n P.~Luque\thanks{Contact: \texttt{spluque@gmail.com}.
+\author{Sebasti√°n P.~Luque\thanks{Contact: \texttt{spluque@gmail.com}.
     Comments for improvement are very welcome!}}
 
 \date{}
