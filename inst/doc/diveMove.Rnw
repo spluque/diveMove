@@ -794,7 +794,7 @@ solve many problems during development.
 
 
 \bibliographystyle{abbrvnat}
-\bibliography{/home/sluque/Documents/References/biblioSPL}
+\bibliography{biblioSPL}
 
 
 \clearpage{}

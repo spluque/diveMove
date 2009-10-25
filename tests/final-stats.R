@@ -19,3 +19,9 @@ head(tdrstats)
 head(stamps <- stampDive(vcalib))
 (att <- timeBudget(vcalib, FALSE))
 (att <- timeBudget(vcalib, TRUE))
+
+
+###_ + Emacs local variables
+## Local variables:
+## allout-layout: (+ : 0)
+## End:

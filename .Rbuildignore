@@ -3,3 +3,4 @@
 EXAMPLES.*
 ^TODO$
 inst/doc/(.+\.png)
+inst/doc/(.+\.bib)

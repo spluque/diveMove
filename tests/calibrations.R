@@ -22,3 +22,9 @@ phaselabs <- diveMove:::.labDivePhase(sealX, detd[, 1], descent.crit.q=0.1,
                                       ascent.crit.q=0.5, wiggle.tol=0.85)
 
 vcalib <- calibrateSpeed(dcalib, z=0, cex.pts=0.2)
+
+
+###_ + Emacs local variables
+## Local variables:
+## allout-layout: (+ : 0)
+## End:
