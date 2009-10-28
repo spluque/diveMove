@@ -7,8 +7,9 @@ Suggests: KernSmooth, quantreg, tcltk
 Imports: stats4
 Author: Sebastian P. Luque <spluque@gmail.com>
 Maintainer: Sebastian P. Luque <spluque@gmail.com>
-Description: Functions to filter and summarize time-depth recorder (TDR)
-             data, and miscellaneous functions for handling location data.
+Description: Utilities to represent, visualize, filter, analyse, and summarize
+	     time-depth recorder (TDR) data.  Miscellaneous functions for
+	     handling location data are also provided.
 LazyLoad: yes
 ZipData: no
 Collate: AllClass.R AllGenerics.R AllMethod.R austFilter.R bouts.R calibrate.R

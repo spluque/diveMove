@@ -1,3 +1,22 @@
+2009-10-28  Sebastian P. Luque <spluque@gmail.com>
+
+	* DESCRIPTION, inst/doc/biblioSPL.bib:
+	  Updated DESCRIPTION and *.bib.
+
+2009-10-25  Sebastian P. Luque <spluque@gmail.com>
+
+	* .Rbuildignore, inst/doc/biblioSPL.bib, inst/doc/diveMove.Rnw,
+	  tests/calibrations.R, tests/final-stats.R:
+	  Adding *.bib file because it's needed for R-forge building, but
+	  ignore it for building.
+
+2009-10-24  Sebastian P. Luque <spluque@gmail.com>
+
+	* inst/doc, inst/doc/diveMove.Rnw, inst/doc/tcltk.png:
+	  Saved vignette in UTF-8, as that is what was used.
+
+	  Added tcltk.png, needed for building.
+
 2009-10-21  Sebastian P. Luque <spluque@gmail.com>
 
 	Version 0.9.6 released.
