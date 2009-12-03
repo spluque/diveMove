@@ -1,2 +1,5 @@
 * Find a way to embed R graphics in tcltk widgets for plotTD().
 * Complete the vignette with bout detection examples.
+* Use a more objective way to ZOC data.  There must be a time-series method
+   to look for drifts in zero that we can use, rather than doing this
+   visually.
