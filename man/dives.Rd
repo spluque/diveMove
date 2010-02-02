@@ -25,7 +25,7 @@
   A comma separated value (csv) file with 69560 \acronym{TDR} readings
   with the following columns:
 
-  \itemize{
+  \describe{
     \item{date}{Date}
 
     \item{time}{Time}
@@ -36,10 +36,13 @@
 
     \item{temperature}{Temperature in degrees Celsius}
 
-    \item{speed}{Speed in m/s} }
+    \item{speed}{Speed in m/s}
+  }
 
   The data are also provided as a \code{\link{TDR}} object (*.RData
-  format) for convenience.  }
+  format) for convenience.
+
+}
 
 
 \details{
