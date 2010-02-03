@@ -1,3 +1,21 @@
+2010-02-03  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/readTDR.R, data/dives.csv, data/sealLocs.csv,
+	  inst/doc/diveMove.Rnw, man/austFilter.Rd, man/distSpeed.Rd,
+	  man/diveMove-package.Rd, man/dives.Rd, man/readLocs.Rd,
+	  man/readTDR.Rd, man/sealLocs.Rd, tests/calibrations.R,
+	  tests/class-tests.R, tests/final-stats.R:
+	  New argument '\ldots' to readTDR, passed to read.csv(), for
+	  consistency and more flexibility.
+
+	  We changed comma to semi-colon delimiter in data files. This
+	  prompted changes in the examples (*.Rd files).
+
+2010-02-02  Sebastian P. Luque <spluque@gmail.com>
+
+	* man/dives.Rd, man/sealLocs.Rd:
+	  Fixed *.Rd files with markup that is no longer valid.
+
 2009-10-28  Sebastian P. Luque <spluque@gmail.com>
 
 	* DESCRIPTION, inst/doc/biblioSPL.bib:

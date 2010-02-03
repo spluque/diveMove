@@ -130,7 +130,7 @@ higher than threshold.}
 locs <- readLocs(system.file(file.path("data", "sealLocs.csv"),
                              package="diveMove"), idCol=1, dateCol=2,
                   dtformat="\%Y-\%m-\%d \%H:\%M:\%S", classCol=3, lonCol=4,
-                  latCol=5)
+                  latCol=5, sep=";")
 ringy <- subset(locs, id == "ringy" & !is.na(lon) & !is.na(lat))
 
 ## Austin et al.'s group filter alone

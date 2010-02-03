@@ -40,7 +40,7 @@
 
 \examples{
 sealLocs <- read.csv(system.file(file.path("data", "sealLocs.csv"),
-                                 package="diveMove"))
+                                 package="diveMove"), sep=";")
 str(sealLocs)
 
 }

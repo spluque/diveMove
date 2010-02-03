@@ -21,20 +21,20 @@
 
 "readTDR" <- function(file, dateCol=1, timeCol=2, depthCol=3, speed=FALSE,
                       subsamp=5, concurrentCols=4:6,
-                      dtformat="%d/%m/%Y %H:%M:%S", tz="GMT")
+                      dtformat="%d/%m/%Y %H:%M:%S", tz="GMT", ...)
 {
     ## Value: TDR or TDRspeed object from *.csv file
     ## --------------------------------------------------------------------
     ## Arguments: file=path to file to read; dateCol=col no. with date,
     ## timeCol=col no. with time, depthCol=col no. with depth,
-    ## speedCol=col no. with speed, subsamp=subsample at this interval,
-    ## dtformat=format to interpret the pasted date and time columns,
-    ## tz=time zone to assume
+    ## speedCol=col no. with speed; subsamp=subsample at this interval;
+    ## dtformat=format to interpret the pasted date and time columns;
+    ## tz=time zone to assume; ...=passed to read.csv()
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
     srcfile <- basename(file)
-    rawdat <- read.csv(file, header=TRUE, na.strings="", as.is=TRUE)
+    rawdat <- read.csv(file, ...)
     names(rawdat) <- tolower(names(rawdat))
     rawdat.ncol <- seq(ncol(rawdat))
     dtpasted <- paste(rawdat[, dateCol], rawdat[, timeCol])

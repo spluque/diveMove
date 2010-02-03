@@ -7,7 +7,7 @@
 \title{Read comma-delimited file with location data}
 
 
-\description{Read a comma delimited (*.csv) file with (at least) time,
+\description{Read a delimited (*.csv) file with (at least) time,
   latitude, longitude readings.}
 
 
@@ -75,8 +75,8 @@ readLocs(file, loc.idCol, idCol, dateCol, timeCol=NULL,
 
 locs <- readLocs(system.file(file.path("data", "sealLocs.csv"),
                              package="diveMove"), idCol=1, dateCol=2,
-                 dtformat="\%Y-\%m-\%d \%H:\%M:\%S",
-                 classCol=3, lonCol=4, latCol=5)
+                 dtformat="\%Y-\%m-\%d \%H:\%M:\%S", classCol=3,
+                 lonCol=4, latCol=5, sep=";")
 
 summary(locs)
 

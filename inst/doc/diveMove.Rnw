@@ -214,8 +214,8 @@ format, they can be read into a data frame, using e.g.:
 
 <<readin-csv>>=
 ff <- system.file(file.path("data", "dives.csv"),
-package="diveMove")
-tdrXcsv <- read.csv(ff)
+                  package="diveMove")
+tdrXcsv <- read.csv(ff, sep=";")
 @
 
 and then put into one of the \Rclass{TDR} classes using the function
@@ -242,10 +242,10 @@ classes representing \texttt{TDR} data (\Rclass{TDRspeed} in this case),
 and immediately begin using the methods provided:
 
 <<readin-tdr, eval=FALSE, results=hide>>=
-tdrX <- readTDR(ff, speed=TRUE)
+tdrX <- readTDR(ff, speed=TRUE, sep=";", na.strings="", as.is=TRUE)
 plotTDR(tdrX)
 <<eval=TRUE, echo=FALSE, results=hide>>=
-tdrX <- readTDR(ff, speed=TRUE)
+tdrX <- readTDR(ff, speed=TRUE, sep=";", na.strings="", as.is=TRUE)
 png("plot_tdr.png"); plotTDR(tdrX, interact=FALSE, cex.lab=1.3); dev.off()
 @
 \begin{figure}%[tbhp]

@@ -10,7 +10,7 @@
 
 
 
-\description{Read a comma delimited (*.csv) file containing time-depth
+\description{Read a delimited (*.csv) file containing time-depth
   recorder (\dfn{TDR}) data from various \acronym{TDR} models.  Return a
   \code{TDR} or \code{TDRspeed} object. \code{createTDR} creates an
   object of one of these classes from other objects.}
@@ -19,7 +19,7 @@
 \usage{
 readTDR(file, dateCol=1, timeCol=2, depthCol=3, speed=FALSE,
         subsamp=5, concurrentCols=4:6,
-        dtformat="\%d/\%m/\%Y \%H:\%M:\%S", tz="GMT")
+        dtformat="\%d/\%m/\%Y \%H:\%M:\%S", tz="GMT", \ldots)
 createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
 }
 
@@ -49,6 +49,8 @@ createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
 
   \item{tz}{A string indicating the time zone assumed for the date and
     time readings.}
+
+  \item{\ldots}{Passed to \code{\link{read.csv}}}
 
   \item{time}{A \code{POSIXct} object with date and time readings for
     each reading.}
@@ -93,11 +95,13 @@ createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
 
 \examples{
 readTDR(system.file(file.path("data", "dives.csv"),
-                    package="diveMove"), speed=TRUE)
+                    package="diveMove"),
+        speed=TRUE, sep=";", na.strings="", as.is=TRUE)
 
 ## Or more pedestrian
 tdrX <- read.csv(system.file(file.path("data", "dives.csv"),
-                             package="diveMove"), na.strings="", as.is=TRUE)
+                             package="diveMove"),
+                 sep=";", na.strings="", as.is=TRUE)
 date.time <- paste(tdrX$date, tdrX$time)
 tdr.time <- as.POSIXct(strptime(date.time, format="\%d/\%m/\%Y \%H:\%M:\%S"),
                        tz="GMT")

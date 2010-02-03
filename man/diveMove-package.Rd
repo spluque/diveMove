@@ -32,7 +32,8 @@
 \examples{
 ## read in data and create a TDR object
 (sealX <- readTDR(system.file(file.path("data", "dives.csv"),
-                              package="diveMove"), speed=TRUE))
+                              package="diveMove"),
+                  speed=TRUE, sep=";", na.strings="", as.is=TRUE))
 
 if (dev.interactive(orNone=TRUE)) plotTDR(sealX)  # interactively pan and zoom
 

@@ -74,7 +74,8 @@
 
 \examples{
 dives <- read.csv(system.file(file.path("data", "dives.csv"),
-                              package="diveMove"))
+                              package="diveMove"),
+                  sep=";", na.strings="")
 str(dives)
 
 }

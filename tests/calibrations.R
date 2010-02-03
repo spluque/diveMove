@@ -2,7 +2,8 @@ library(diveMove)
 
 (sealX <- readTDR(system.file(file.path("data", "dives.csv"),
                               package="diveMove"),
-                  concurrentCols=4:6, speed=TRUE))
+                  concurrentCols=4:6, speed=TRUE,
+                  sep=";", na.strings="", as.is=TRUE))
 (dcalib <- calibrateDepth(sealX, dry.thr=3610, offset=3))
 (dcalib <- calibrateDepth(sealX, offset=3, ascent.crit=0.5,
                           descent.crit=0.5, wiggle=0.75))

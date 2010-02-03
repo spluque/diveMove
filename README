@@ -12,6 +12,15 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.9.7:
+
+        * New argument '...' to readTDR for more flexibility in formats of
+          input files.  This is passed to read.csv().
+
+	* Comma-delimited files (*.csv) under data/ now are delimited by
+          semi-colon so they load as proper 'data.frame' objects with
+          data().
+
 *** Version 0.9.6:
 
         * Fixed .cutDive() to behave as intended: wiggles above wiggle.tol
