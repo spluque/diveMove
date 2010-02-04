@@ -1,3 +1,10 @@
+2010-02-04  Sebastian P. Luque <spluque@gmail.com>
+
+	  Version 0.9.7 released.
+
+	* ChangeLog, README, inst/doc/biblioSPL.bib:
+	Updated bibliography.
+
 2010-02-03  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/readTDR.R, data/dives.csv, data/sealLocs.csv,
@@ -9,7 +16,8 @@
 	  consistency and more flexibility.
 
 	  We changed comma to semi-colon delimiter in data files. This
-	  prompted changes in the examples (*.Rd files).
+	  prompted changes in the examples (*.Rd files).  Thanks to Kurt
+	  Hornik for spotting this in the warning check.
 
 2010-02-02  Sebastian P. Luque <spluque@gmail.com>
 

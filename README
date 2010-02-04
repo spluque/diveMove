@@ -17,7 +17,7 @@ vignette is also available by doing vignette("diveMove").
         * New argument '...' to readTDR for more flexibility in formats of
           input files.  This is passed to read.csv().
 
-	* Comma-delimited files (*.csv) under data/ now are delimited by
+	* Comma-delimited files (*.csv) under data/ are now delimited by
           semi-colon so they load as proper 'data.frame' objects with
           data().
 
