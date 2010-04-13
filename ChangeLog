@@ -1,3 +1,16 @@
+2010-04-22  Sebastian P. Luque <spluque@gmail.com>
+
+	* DESCRIPTION:
+	  Require R 2.11.0 due to POSIXct() function in preparation for
+	  2.12.0.
+
+2010-04-13  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/AllMethod.R, R/detPhase.R, R/diveStats.R:
+	  Applied changes suggested by Brian Ripley, in preparation for
+	  2.12.0, where function .POSIXct() will be used for S4 classes
+	  (see email).
+
 2010-02-04  Sebastian P. Luque <spluque@gmail.com>
 
 	  Version 0.9.7 released.

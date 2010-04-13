@@ -12,6 +12,11 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.9.8:
+
+        * New function .POSIXct() is used for assignments to S4 time slots,
+          in preparation for 2.12.0.
+
 *** Version 0.9.7:
 
         * New argument '...' to readTDR for more flexibility in formats of

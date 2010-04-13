@@ -14,10 +14,10 @@
     runs <- rle(as.vector(act))
     cuttimbr <- factor(rep(seq(along=runs$lengths), runs$lengths))
     timsplit <- split(time, cuttimbr)
-    begtim <- structure(sapply(timsplit, "[", 1), class=c("POSIXt", "POSIXct"),
-                        tzone="GMT", names=NULL)
-    endtim <- structure(sapply(timsplit, function(x) x[length(x)]),
-                        class=c("POSIXt", "POSIXct"), tzone="GMT", names=NULL)
+    begtim <- .POSIXct(sapply(timsplit, "[", 1),  "GMT")
+    names(begtim) <- NULL
+    endtim <- .POSIXct(sapply(timsplit, function(x) x[length(x)]), "GMT")
+    names(endtim) <- NULL
     duration <- difftime(endtim, begtim, units="secs") + interval
     list(time.br=cuttimbr,
          time.peract=duration,

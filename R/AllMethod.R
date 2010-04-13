@@ -101,7 +101,18 @@ setMethod("plotTDR", signature(x="TDRcalibrate"),
 ###_  . TDR and TDRspeed
 setMethod("getFileName", signature(x="TDR"), function(x) x@file)
 
-setMethod("getTime", signature(x="TDR"), function(x) x@time)
+if (getRversion() < "2.11.0") {
+    .POSIXct <- function(xx, tz=NULL) {
+        structure(xx, class=c("POSIXt", "POSIXct"), tzone=tz)
+    }
+}
+setMethod("getTime", signature(x="TDR"),
+          function(x) {
+              xx <- x@time
+              if (getRversion() >= "2.12.0") {
+                  .POSIXct(unclass(xx), attr(xx, "tzone"))
+              } else xx
+          })
 
 setMethod("getDepth", signature(x="TDR"), function(x) x@depth)
 
