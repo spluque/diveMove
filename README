@@ -12,6 +12,11 @@ vignette is also available by doing vignette("diveMove").
 
 ** Changes/New Features
 
+*** Version 0.9.9:
+
+        * readLocs() now accepts a string for a path or an existing
+          `data.frame' to read data from.
+
 *** Version 0.9.8:
 
         * New function .POSIXct() is used for assignments to S4 time slots,

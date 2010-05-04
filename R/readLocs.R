@@ -1,6 +1,6 @@
 ## $Id$
 
-"readLocs" <- function(file, loc.idCol, idCol, dateCol, timeCol=NULL,
+"readLocs" <- function(x, loc.idCol, idCol, dateCol, timeCol=NULL,
                        dtformat="%m/%d/%Y %H:%M:%S", tz="GMT", classCol,
                        lonCol, latCol, alt.lonCol=NULL, alt.latCol=NULL, ...)
 {
@@ -18,8 +18,14 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    srcfile <- basename(file)
-    inLocs <- read.csv(file, ...)
+    if (is.character(x) && file.exists(x)) {
+        srcfile.name <- basename(x)
+        inLocs <- read.csv(x, ...)
+    } else {
+        if (! is.data.frame(x)) {
+            stop ("'x' must be a data.frame or a path (as a character string)")
+        } else {inLocs <- x}
+    }
     if (missing(loc.idCol)) {
         loc.id <- seq(nrow(inLocs))
     } else loc.id <- inLocs[, loc.idCol]
@@ -33,7 +39,8 @@
                        class=inLocs[, classCol])
     if (!is.null(alt.lonCol)) locs$alt.lon <- inLocs[, alt.lonCol]
     if (!is.null(alt.latCol)) locs$alt.lat <- inLocs[, alt.latCol]
-    comment(locs) <- srcfile
+    comment(locs) <- ifelse(exists("srcfile.name"), srcfile.name,
+                            paste(deparse(match.call()), collapse=""))
 
     locs[order(locs[, 2], locs[, 3]), ] # sort by seal id and time
 }
