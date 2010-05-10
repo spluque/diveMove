@@ -1,30 +1,30 @@
 ## $Id$
 
-"readLocs" <- function(x, loc.idCol, idCol, dateCol, timeCol=NULL,
+"readLocs" <- function(locations, loc.idCol, idCol, dateCol, timeCol=NULL,
                        dtformat="%m/%d/%Y %H:%M:%S", tz="GMT", classCol,
                        lonCol, latCol, alt.lonCol=NULL, alt.latCol=NULL, ...)
 {
     ## Value: A data frame with ARGOS locations.
     ## --------------------------------------------------------------------
-    ## Arguments: file=quoted file name, including path, of file to read,
-    ## loc.idCol=column number containing the location id, idCol=column
-    ## number identifying locations belonging to different groups,
-    ## dateCol=column number containing dates and, optionally, times,
-    ## timeCol=optional column number containing times, latCol and
-    ## lonCol=latitude and longitude column numbers, respectively,
-    ## alt.latCol and alt.lonCol=alternative latitude and longitude
-    ## columns, respectively, classCol=ARGOS classification; ...= passed
-    ## to read.csv()
+    ## Arguments: locations=quoted file name, including path, of file to
+    ## read, or data.frame with data to read, loc.idCol=column number
+    ## containing the location id, idCol=column number identifying
+    ## locations belonging to different groups, dateCol=column number
+    ## containing dates and, optionally, times, timeCol=optional column
+    ## number containing times, latCol and lonCol=latitude and longitude
+    ## column numbers, respectively, alt.latCol and alt.lonCol=alternative
+    ## latitude and longitude columns, respectively, classCol=ARGOS
+    ## classification; ...= passed to read.csv()
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    if (is.character(x) && file.exists(x)) {
-        srcfile.name <- basename(x)
-        inLocs <- read.csv(x, ...)
+    if (is.character(locations) && file.exists(locations)) {
+        srcfile.name <- basename(locations)
+        inLocs <- read.csv(locations, ...)
     } else {
-        if (! is.data.frame(x)) {
-            stop ("'x' must be a data.frame or a path (as a character string)")
-        } else {inLocs <- x}
+        if (! is.data.frame(locations)) {
+            stop ("'locations' must be a data.frame or a path (as a character string)")
+        } else {inLocs <- locations}
     }
     if (missing(loc.idCol)) {
         loc.id <- seq(nrow(inLocs))

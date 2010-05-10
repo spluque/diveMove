@@ -12,7 +12,7 @@
 
 
 \usage{
-readLocs(x, loc.idCol, idCol, dateCol, timeCol=NULL,
+readLocs(locations, loc.idCol, idCol, dateCol, timeCol=NULL,
          dtformat="\%m/\%d/\%Y \%H:\%M:\%S", tz="GMT",
          classCol, lonCol, latCol, alt.lonCol=NULL, alt.latCol=NULL, \ldots)
 }
@@ -21,8 +21,8 @@ readLocs(x, loc.idCol, idCol, dateCol, timeCol=NULL,
 
 \arguments{
 
-  \item{x}{A string indicating the name of the file to read, or a
-    \code{\link{data.frame}} available in the search list. Provide the
+  \item{locations}{A string indicating the name of the file to read, or
+    a \code{\link{data.frame}} available in the search list. Provide the
     entire path if the file is not on the current directory.}
 
   \item{loc.idCol}{Column number containing location ID.  If missing, a

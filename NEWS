@@ -1,0 +1,191 @@
+* Changes/New Features					     -*-outline-*-
+======================
+
+
+** Version 0.9.9:
+
+   o readLocs() now accepts a string for a path or an existing
+     `data.frame' to read data from.
+
+** Version 0.9.8:
+
+   o New function .POSIXct() is used for assignments to S4 time slots,
+     in preparation for 2.12.0.
+
+** Version 0.9.7:
+
+   o New argument '...' to readTDR for more flexibility in formats of input
+     files.  This is passed to read.csv().
+
+   o Comma-delimited files (*.csv) under data/ are now delimited by
+     semi-colon so they load as proper 'data.frame' objects with data().
+
+** Version 0.9.6:
+
+   o Fixed .cutDive() to behave as intended: wiggles above wiggle.tol
+     should not be allowed to terminate descent phase.
+
+   o Better documentation explaining the basics of dive phase detection.
+
+** Version 0.9.5:
+
+   o Documentation fixes in preparation for new release.  New parser has
+     more strict rules for syntax.
+
+** Version 0.9.4:
+
+   o More helpful help pages, particularly in readTDR(), to indicate that
+     problems in input text files are better dealt with outside GNU R.
+
+   o Vignette now includes introduction to the bout detection functions.
+
+** Version 0.9.3:
+
+   o Fixed bug that avoided vignette to be built.
+
+** Version 0.9.2:
+
+   o New vignette now builds up on R News article.
+
+   o Fixed bug in diveStats() so that a warning regarding duplicate
+     row.names is no longer given.
+
+** Version 0.9.1:
+
+   o Use the 'grid' manager rather than 'pack', and rearrange widgets for a
+     better fit in plotTD().
+
+** Version 0.9.0:
+
+   o Minor package-building improvements.
+
+** Version 0.8.9:
+
+   o Fixed bug in rmsDistFilter() causing the filter to fail with very
+     small data sets with message warning that window size is larger than
+     available data, because locations at ends were not being counted.
+
+** Version 0.8.8:
+
+   o The root-mean-square filter in rmsDistFilter() now works as described
+     in Freitas et al. (2008), rather than as in the original McConnell et
+     al. (1992).  The latter may not have been the actual implementation,
+     although other studies may have followed it (e.g. Austin et al. 2003).
+
+** Version 0.8.7:
+
+   o Fixed citations in *.Rd files and CITATION.
+
+** Version 0.8.6:
+
+   o Fixed bug in grpSpeedFilter() whereby the test to fail if any speed >
+     threshold, rather than if ALL speeds > threshold.
+
+** Version 0.8.5:
+
+   o Improved validity check for input in distFilter().
+
+** Version 0.8.4:
+
+   o Fixed bug in rmsDistfilter() to intercept an error due to the number
+     of rows being exactly equal to the test window size.  The dimensions
+     of internal objects are now handled properly.
+
+** Version 0.8.3:
+
+   o Better explanation of location filtering procedures in man pages.
+
+** Version 0.8.0:
+
+   o New methods for identification and analysis of bouts of behaviour
+     (mostly diving, but apply to others too).
+
+** Version 0.7-8:
+
+   o Better arrangement of widgets in plotTD() and its methods.
+
+** Version 0.7-7:
+
+   o S4 documentation bug fix.
+
+** Version 0.7-6:
+
+   o Fixes bug in plotTD() to work with stricter object class management in
+     R devel.
+
+** Version 0.7-5:
+
+	* Full examples for movement functions.
+
+** Version 0.7-4:
+
+   o distSpeed() no longer uses 'id' argument.
+
+   o Complete examples for location filtering functions.
+
+   o createTDR() now provides useful default for 'concurrentData', and test
+     for missing 'dtime'.  Completed example accordingly.
+
+   o Improved show() method for 'TDRcalibrate' objects.
+
+   o plotTD(), and hence the plotTDR() methods now accept an ellipsis
+     argument to pass to par() for more flexibility drawing the plot.  They
+     also now accept a new argument 'cex.pts' to set the relative size of
+     points.
+
+** Version 0.7-3:
+
+   o detPhase() and detDive() are now private functions (renamed with a
+     preceding dot), and should only be used through calibrateDepth().
+
+   o Rearranged documentation, reflecting the higher importance of
+     calibrateDepth() and calibrateSpeed() functions.
+
+   o distSpeed() no longer uses 'speed' and 'subset' arguments, and always
+     returns a matrix.  All location filtering functions are now adapted to
+     this change.
+
+** Version 0.7-2:
+
+   o More examples for important functions.
+
+** Version 0.7-1:
+
+   o 'TDRcalibrate' method for plot() now plots correctly if no dives were
+     identified.  New argument 'interact' to allow for static plots,
+     without 'tcltk' interaction.
+
+   o plot method replaced by 'plotTDR', to avoid unusual introduction of
+     arguments in methods and simplify code.  This method is now based on
+     the new function plotTD(), which replaces plotDive(). This system now
+     makes the relationships between functions much more clear.
+
+   o Function getAct() renamed to rleActivity() to make it clearer that it
+     calculates statistics from running series of readings with the same
+     activity.
+
+** Version 0.7-0:
+
+   o Arguments 'seaerr', 'landerr', and 'divethres' were renamed to
+     'wet.thr', 'dry.thr', and 'dive.thr'.  Likewise, slots
+     'land.threshold', 'sea.threshold', and 'dive.threshold' in class
+     TDRcalibrate were renamed to 'dry.thr', 'wet.thr', and 'dive.thr',
+     respectively, for consistency/appropriateness.
+
+   o The argument 'contours' to rqPlot() should now be a list with 2
+     components.
+
+** Version 0.6-9:
+
+   o New arguments for calibrateDepth(), offering improved control over
+     detection of descent, bottom, and ascent phases.  We now use rates of
+     vertical movement for detection, with a further argument for defining
+     what determines a bottom wiggle.
+
+   o New arguments for plotDive() to decide whether to plot legend and to
+     set limits for depth plot.
+
+   o Documentation for formal classes and methods was split to make them
+     easier to read.
+
+   o attendance() has been renamed to timeBudget().
