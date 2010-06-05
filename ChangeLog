@@ -1,3 +1,16 @@
+2010-06-04  Sebastian P. Luque  <spluque@gmail.com>
+
+	Version 0.9.9 released.
+
+2010-05-10  Sebastian P. Luque <spluque@gmail.com>
+
+	* inst/doc/biblioSPL.bib:
+	  Updated bibliography file.
+
+	* R/readLocs.R, man/readLocs.Rd:
+	  Added checks for 'locations' argument in readLocs(). Updated help
+	  page.
+
 2010-05-04  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/readLocs.R, man/readLocs.Rd:
