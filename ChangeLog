@@ -1,3 +1,12 @@
+2010-06-11  Sebastian P. Luque  <spluque@gmail.com>
+
+	Version 1.0 released.
+
+	* R/AllMethod.R:
+	Fixed bug in "[" method for TDR objects whereby empty data.frame
+	concurrentData slot was triggering an error from getCCData(),
+	which was unable to extract the slot.
+
 2010-06-04  Sebastian P. Luque  <spluque@gmail.com>
 
 	Version 0.9.9 released.

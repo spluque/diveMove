@@ -252,7 +252,9 @@ setMethod("[", signature("TDR"), function(x, i, j, ..., drop) {
     if (!missing(j) || !missing(...) || !missing(drop))
         stop("subsetting TDR objects can only be done on a single index")
     new(class(x), file=getFileName(x), dtime=getDtime(x), time=getTime(x)[i],
-        depth=getDepth(x)[i], concurrentData=getCCData(x)[i, , drop=FALSE])
+        depth=getDepth(x)[i],
+        concurrentData=tryCatch(getCCData(x)[i, , drop=FALSE],
+          error=function(k) data.frame()))
 })
 
 

@@ -1,22 +1,18 @@
 ## -*- R -*-
 citHeader("To cite the R package 'diveMove' in publications use:")
 
-citEntry(entry  = "Article",
-         title  = "Diving Behaviour Analysis in {R}",
-         author = personList(
+citEntry(entry="Article",
+         title="Diving Behaviour Analysis in {R}",
+         author=personList(
              person(first="Sebastian", middle="P.", last="Luque",
                     email="spluque@gmail.com")),
-         journal = "{R News}",
-         year = 2007,
-         month = "June",
-         volume = 7,
-         number = 3,
-         pages = "8--14",
-         issn = 1609-3631,
-         note = paste(
+         journal="{R News}",
+         year=2007, month="June", volume=7, number=3, pages="8--14",
+         issn=1609-3631,
+         note=paste(
              "Contributions from:",
              "John P.Y. Arnould, Laurent Dubroca, and Andy Liaw"),
-         url = "http://cran.r-project.org/doc/Rnews/",
-         textVersion = paste(
+         url="http://cran.r-project.org/doc/Rnews/",
+         textVersion=paste(
              "Luque, S.P.  Diving Behaviour Analysis in R. ",
              "R News 7(3):8-14.  December, 2007."))

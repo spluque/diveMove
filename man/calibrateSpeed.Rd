@@ -20,9 +20,7 @@ calibrateSpeed(x, tau=0.1, contour.level=0.1, z=0, bad=c(0, 0),
 
 \arguments{
 
-  \item{x}{An object of class \code{\link{TDR}} for
-    \code{\link{calibrateDepth}} or an object of class
-    \code{\link{TDRcalibrate}} for \code{\link{calibrateSpeed}}.}
+  \item{x}{An object of class \code{\link{TDRcalibrate}}.}
 
   \item{tau}{Quantile on which to regress speed on rate of depth change;
     passed to \code{\link[quantreg]{rq}}.}
