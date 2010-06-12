@@ -7,6 +7,8 @@
    o Fixed bug in "[" method for TDR objects with empty 'concurrentData'
      'data.frame'.
 
+   o Minor documentation fixes.
+
 ** Version 0.9.9:
 
    o readLocs() now accepts a string for a path or an existing

@@ -21,7 +21,9 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4, offset,
 
 \arguments{
 
-  \item{x}{An object of class \code{\link{TDR}}.}
+  \item{x}{An object of class \code{\link{TDR}} for
+    \code{\link{calibrateDepth}} or an object of class
+    \code{\link{TDRcalibrate}} for \code{\link{calibrateSpeed}}.}
 
   \item{dry.thr}{Dry error threshold in seconds.  Dry phases shorter
     than this threshold will be considered as wet.}

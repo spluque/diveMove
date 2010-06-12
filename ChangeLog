@@ -1,6 +1,8 @@
-2010-06-11  Sebastian P. Luque  <spluque@gmail.com>
+2010-06-12  Sebastian P. Luque  <spluque@gmail.com>
 
 	Version 1.0 released.
+
+2010-06-11  Sebastian P. Luque  <spluque@gmail.com>
 
 	* R/AllMethod.R:
 	Fixed bug in "[" method for TDR objects whereby empty data.frame
