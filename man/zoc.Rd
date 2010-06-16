@@ -1,21 +1,21 @@
 % $Id$
-\name{zoc}
+\name{plotTD}
 
-\alias{zoc}
 \alias{plotTD}
 
 % -------------------------------------------------------------------------
 
-\title{Interactive zero-offset correction of "TDR" data}
+\title{Interactive plotting and zero-offset correction windows for "TDR"
+  data}
 
 
-\description{Correct zero-offset in \acronym{TDR} records, with the aid
-  of a graphical user interface (GUI), allowing for dynamic selection of
-  offset and multiple time windows to perform the adjustment.}
+\description{Plot and optionally set zero-offset correction windows in
+  \acronym{TDR} records, with the aid of a graphical user interface
+  (GUI), allowing for dynamic selection of offset and multiple time
+  windows to perform the adjustment.}
 
 
 \usage{
-zoc(time, depth, offset)
 plotTD(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
        xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
        concurVarTitles=deparse(substitute(concurVars)),
@@ -32,9 +32,6 @@ plotTD(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
   \item{time}{\code{POSIXct} object with date and time.}
 
   \item{depth}{Numeric vector with depth in m.}
-
-  \item{offset}{Known amount of meters to subtract for zero-offset
-    correcting depth throughout the entire \acronym{TDR} record.}
 
   \item{concurVars}{Matrix with additional variables in each column to
     plot concurrently with depth.}
@@ -78,32 +75,16 @@ plotTD(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
 }
 
 
-\details{These functions are used primarily to correct, visually, drifts
-  in the pressure transducer of \acronym{TDR} records. \code{zoc} calls
-  \code{plotDive}, which plots depth and, optionally, speed vs. time
-  with the possibility zooming in and out on time, changing maximum
-  depths displayed, and panning through time. The option to zero-offset
-  correct sections of the record gathers x and y coordinates for two
-  points, obtained by clicking on the plot region. The first point
-  clicked indicates the offset and beginning time of section to correct,
-  and the second one indicates the ending time of the section to
-  correct.  Multiple sections of the record can be corrected in this
-  manner, by panning through the time and repeating the procedure.  In
-  case there's overlap between zero offset corrected windows, the last
-  one prevails.
-
-  Once the whole record has been zero-offset corrected, remaining points
-  with depth values lower than zero, are turned into zeroes, as these
-  are assumed to be values at the surface.}
+\details{This function is used primarily to correct drifts in the
+  pressure transducer of \acronym{TDR} records and noise in depth
+  measurements via method=\dQuote{visual} in
+  \code{\link{calibrateDepth}}.}
 
 
-\value{ \code{zoc} returns a numeric vector, as long as \code{depth} of
-  zero-offset corrected depths.
-
-  \code{plotTD} returns (invisibly) a list with as many components as
-  sections of the record that were zero-offset corrected, each
-  consisting of two further lists with the same components as those
-  returned by \code{\link{locator}}.}
+\value{A list (invisibly) with as many components as sections of the
+  record that were zero-offset corrected, each consisting of two further
+  lists with the same components as those returned by
+  \code{\link{locator}}.}
 
 
 \seealso{\code{\link{calibrateDepth}}, and \code{\link{plotTDR}}.}
@@ -115,8 +96,7 @@ plotTD(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
 data(divesTDR)
 
 ## Use interact=TRUE (default) to set the offset interactively
-depth.zoc <- zoc(getTime(divesTDR), getDepth(divesTDR), offset=3)
-plotTD(getTime(divesTDR), depth.zoc, interact=FALSE)
+plotTD(getTime(divesTDR), getDepth(divesTDR), interact=FALSE)
 
 }
 
