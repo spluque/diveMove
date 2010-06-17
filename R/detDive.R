@@ -17,22 +17,22 @@
     rawid <- rep(seq(along=runs$lengths), runs$lengths)
 
     diveid <- rawid
-    diveid[dive == 0] <- 0               # non-dive are 0, and dives conseq:
+    diveid[dive == 0] <- 0             # non-dives are 0, and dives conseq:
     diveid[dive != 0] <- rep(seq(along=table(diveid)[-1]), table(diveid)[-1])
-    pdid <- numeric(length(rawid))        # dives are 0 and postdives conseq:
+    pdid <- numeric(length(rawid))      # dives are 0 and postdives conseq:
     pdinds <- rawid %in% (unique(rawid[dive == 1]) + 1)
     pdid[pdinds] <- rep(seq(along=table(rawid[pdinds])), table(rawid[pdinds]))
     cbind(dive.id=diveid, postdive.id=pdid)
 }
 
 
-".detDive" <- function(zdepth, act, dive.thr=4, ...)
+".detDive" <- function(zdepth, act, dive.thr, ...)
 {
     ## Value: A data frame; detecting dives, using a depth threshold
     ## --------------------------------------------------------------------
     ## Arguments: zdepth=depth vector of zoc'ed data, act=factor with
     ## land/sea activity IDs (2nd element returned by detPhase), with
-    ## values "W" for at-sea, dive.thr=dive threshold in m/s ...=sampling
+    ## values "W" for at-sea, dive.thr=dive threshold in m ...=sampling
     ## interval in (s), to pass to labDive
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
@@ -44,9 +44,18 @@
     labuw <- diveMove:::.labDive(act, "U", ...) # label underwater excursions
     ## Max depth of each "U" phase
     uwmax <- tapply(zdepth[underw], labuw[underw, 1], max, na.rm=TRUE)
-    ## Change each "U" phase to "D" if its max depth > dive threshold
+    ## Change each "U" (underwater) phase to "D" (diving) if its max depth
+    ## > dive threshold; i.e. we assume a dive started when depth dipped
+    ## below zero and ended when it returned to zero *if the maximum depth
+    ## of such a phase exceeded the dive threshold*.  This is a problem if
+    ## we have noise above the dive threshold, so we need to switch the
+    ## observations <= surface back to "U" and relabel the activity vector
+    ## accordingly (this works great!)
     act[labuw[, 1] %in% as.numeric(names(uwmax[uwmax > dive.thr]))] <- "D"
 
+    dives.maybe <- diveMove:::.labDive(act, "D", ...)
+    surface.idx <- which(dives.maybe[, 1] > 0 & zdepth <= dive.thr)
+    act[surface.idx] <- "U"
     inddive <- diveMove:::.labDive(act, "D", ...)
     ndives <- length(unique(inddive[act == "D", 1]))
     message(ndives, " dives detected")
@@ -150,12 +159,15 @@
     ## Value: A factor labelling portions of dives
     ## --------------------------------------------------------------------
     ## Arguments: x=class TDR object, diveID=numeric vector indexing each
-    ## dive (non-dives should be 0)
+    ## dive (non-dives should be 0). As it is called by calibrateDepth,
+    ## these indices include underwater phases, not necessarily below dive
+    ## threshold.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
     if (!is(x, "TDR")) stop("x must be a TDR object")
     ok <- which(diveID > 0 & !is.na(getDepth(x))) # required diving indices
+
     if (length(ok) > 0) {
         ddepths <- getDepth(x)[ok]               # diving depths
         dtimes <- getTime(x)[ok]                 # diving times

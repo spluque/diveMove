@@ -14,7 +14,7 @@
 
 
 \usage{
-.detDive(zdepth, act, dive.thr=4, \dots)
+.detDive(zdepth, act, dive.thr, \dots)
 }
 
 
@@ -47,7 +47,7 @@
 }
 
 
-\seealso{\code{\link{.detPhase}}, \code{\link{zoc}}}
+\seealso{\code{\link{.detPhase}}, \code{\link{.zoc}}}
 
 % -------------------------------------------------------------------------
 

@@ -111,7 +111,7 @@ stampDive(x, ignoreZ=TRUE)
   start and end times for each dive.}
 
 
-\seealso{\code{\link{.detPhase}}, \code{\link{zoc}},
+\seealso{\code{\link{calibrateDepth}}, \code{\link{.detPhase}},
   \code{\link{TDRcalibrate-class}}}
 
 % -------------------------------------------------------------------------

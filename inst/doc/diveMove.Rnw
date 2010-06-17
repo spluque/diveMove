@@ -224,7 +224,6 @@ knowledge of the sampling interval and making sure that the data for each
 slot are valid:
 
 <<create-tdr>>=
-library(diveMove)
 ddtt.str <- paste(tdrXcsv$date, tdrXcsv$time)
 ddtt <- strptime(ddtt.str, format="%d/%m/%Y %H:%M:%S")
 time.posixct <- as.POSIXct(ddtt, tz="GMT")
@@ -281,24 +280,41 @@ of the slots.  \Rclass{TDR} objects can additionally be coerced to
 \section{Identification of Activities at Various Scales}
 \label{sec:ident-act}
 
-One the first steps of dive analysis involves correcting depth for shifts
-in the pressure transducer, so that surface readings correspond to zero.
-Such shifts are usually constant for an entire deployment period, but there
-are cases where the shifts vary within a particular deployment, so shifts
-remain difficult to detect and dives are often missed.  Therefore, a visual
-examination of the data is often the only way to detect the location and
-magnitude of the shifts.  Visual adjustment for shifts in depth readings is
-tedious, but has many advantages which may save time during later stages of
-analysis.  These advantages include increased understanding of the data,
-and early detection of obvious problems in the records, such as instrument
-malfunction during certain intervals, which should be excluded from
-analysis.
+One of the first steps of dive analysis is to identify dry and wet periods
+in the record.  This is done with function \Rfunction{calibrateDepth()}.
+Wet periods are those with depth readings, dry periods are those without
+them.  However, records may have aberrant missing depth that should not
+define dry periods, as they are usually of very short
+duration\footnote{They may result from animals resting at the surface of
+  the water long enough to dry the sensors.}.  Likewise, there may be
+periods of wet activity that are too short to be compared with other wet
+periods, and need to be excluded from further analyses.  These aspects can
+be controlled by setting the arguments \Rfunarg{dry.thr} and
+\Rfunarg{wet.thr} to appropriate values.
 
-Zero-offset correction (\texttt{ZOC}) is done using the function
-\Rfunction{zoc()}.  However, a more efficient method of doing this is with
-function \Rfunction{calibrateDepth()}, which takes a \Rclass{TDR} object to
-perform three basic tasks.  The first is to ZOC the data, optionally using
-the \Rpackage{tcltk} package to be able to do it interactively:
+The next step involves correcting depth for shifts in the pressure
+transducer, so that surface readings correspond to zero.  Such shifts are
+usually constant for an entire deployment period, but there are cases where
+the shifts vary within a particular deployment, so shifts remain difficult
+to detect and dives are often missed.  Therefore, a visual examination of
+the data is often the only way to detect the location and magnitude of the
+shifts.  Visual adjustment for shifts in depth readings is tedious, but has
+many advantages which may save time during later stages of analysis.  These
+advantages include increased understanding of the data, and early detection
+of obvious problems in the records, such as instrument malfunction during
+certain intervals, which should be excluded from analysis.
+
+Function \Rfunction{calibrateDepth()} takes a \Rclass{TDR} object to
+perform three basic tasks:
+\begin{inparaenum}
+\item identify wet and dry periods,
+\item zero-offset correct (ZOC) the data, and
+\item identify all dives in the record and their phases.
+\end{inparaenum}
+ZOC can be done using one of three methods: ``visual'', ``offset'', and
+``filter''.  The first one (``visual'') is the default method, which let's
+the user perform the correction interactively, using the \Rpackage{tcltk}
+package:
 
 <<eval=FALSE>>=
 dcalib <- calibrateDepth(tdrX)
@@ -318,27 +334,36 @@ using the mouse.  Clicking on the ZOC button waits for two clicks:
 \end{inparaenum}
 This procedure can be repeated as many times as needed.  If there is any
 overlap between time windows, then the last one prevails.  However, if the
-offset is known a priori, there is no need to go through all this
-procedure, and the value can be provided as the argument \Rfunarg{offset}
-to \Rfunction{calibrateDepth()}.  For example, preliminary inspection of
-object \Robject{tdrX} would have revealed a 3 m offset, and we could have
-simply called (without plotting):
+offset is known a priori, method ``offset'' lets the user specify this
+value as the argument \Rfunarg{offset} to \Rfunction{calibrateDepth()}.
+For example, preliminary inspection of object \Robject{tdrX} would have
+revealed a 3 m offset, and we could have simply called (without plotting):
 
 <<eval=FALSE>>=
-dcalib <- calibrateDepth(tdrX, offset=3)
+dcalib <- calibrateDepth(tdrX, zoc.method="offset", offset=3)
 @
 
-Once depth has been ZOC'ed, the second step \Rfunction{calibrateDepth()}
-will perform is identify dry and wet periods in the record.  Wet periods
-are those with depth readings, dry periods are those without them.
-However, records may have aberrant missing depth that should not define dry
-periods, as they are usually of very short duration\footnote{They may
-  result from animals resting at the surface of the water long enough to
-  dry the sensors.}.  Likewise, there may be periods of wet activity that
-are too short to be compared with other wet periods, and need to be
-excluded from further analyses.  These aspects can be controlled by setting
-the arguments \Rfunarg{dry.thr} and \Rfunarg{wet.thr} to appropriate
-values.
+A third method (``filter'') implements a smoothing/filtering mechanism
+where running quantiles can be applied to depth measurements sequentially,
+using \Rfunction{.depth.filter}.  It relies on the \Rpackage{caTools}
+package.  This method is still under development, but reasonable results
+can already be achieved by applying two filters, the first one using a
+running median with a narrow window to denoise the time series, followed by
+a running low quantile using a wide time window.  The integer vector given
+as argument \Rfunarg{k} specifies the width of the moving window(s), where
+$k_{i}$ is the width for the $i^{th}$ filter in units of the sampling
+interval of the \Rclass{TDR} object.  Similarly, the integer vector given
+as argument \Rfunarg{probs} specifies the quantile for each filter, where
+$probs_{i}$ is the quantile for the $i^{th}$ filter.
+
+<<eval=FALSE>>=
+dcalib <- calibrateDepth(tdrX, zoc.method="filter",
+                         k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE)
+@
+
+Once the whole record has been zero-offset corrected, remaining depths
+below zero, are set to zero, as these are assumed to indicate values at the
+surface.
 
 Finally, \Rfunction{calibrateDepth()} identifies all dives in the record,
 according to a minimum depth criterion given as its \Rfunarg{dive.thr}
@@ -370,9 +395,9 @@ A more refined call to \Rfunction{calibrateDepth()} for object
 \Robject{tdrX} may be:
 
 <<zoc>>=
-dcalib <- calibrateDepth(tdrX, offset=3, wet.thr=70, dry.thr=3610,
-dive.thr=4, descent.crit.q=0.1, ascent.crit.q=0.1,
-wiggle.tol=0.8)
+dcalib <- calibrateDepth(tdrX, zoc.method="offset", offset=3, wet.thr=70,
+                         dry.thr=3610, dive.thr=4, descent.crit.q=0.1,
+                         ascent.crit.q=0.1, wiggle.tol=0.8)
 @
 
 The result (value) of this function is an object of class

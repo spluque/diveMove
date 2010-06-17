@@ -1,6 +1,7 @@
 % $Id$
 \name{diveMove-internal}
 
+\alias{.depthFilter}
 \alias{.diveIndices}
 \alias{.getInterval}
 \alias{.speedStats}
@@ -8,6 +9,7 @@
 \alias{.rleActivity}
 \alias{.speedNames}
 \alias{.speedCol}
+\alias{.zoc}
 
 % -------------------------------------------------------------------------
 
@@ -19,16 +21,29 @@
 
 
 \usage{
+.depthFilter(depth, k, probs, na.rm)
 .diveIndices(diveID, diveNo)
 .getInterval(time)
 .speedStats(x, vdist)
 .night(time, sunrise.time, sunset.time)
 .rleActivity(time, act, interval)
 .speedCol(x)
+.zoc(time, depth, method, control)
 }
 
 
 \arguments{
+
+  \item{depth}{Numeric vector with depth in m.}
+
+  \item{k}{Vector of moving window width integers (coerced to integer by
+    \code{\link[caTools]{runquantile}}) to be applied sequentially.}
+
+  \item{probs}{Vector of quantiles to extract at each step indicated by
+    \code{k} (so it must be as long as \code{k}).}
+
+  \item{na.rm}{Should \code{\link{NA}} values be removed prior to
+    calculating running quantiles?}
 
   \item{diveID}{Numeric vector of all dive and non dive IDs.}
 
@@ -53,12 +68,21 @@
 
   \item{interval}{Sampling interval in seconds.}
 
+  \item{method}{Character string to indicate the method to use for
+    zero offset correction.  One of \dQuote{visual}, \dQuote{offset}, or
+    \dQuote{filter} (see \sQuote{Details}).}
+
+  \item{control}{Named list of control parameters to be used for ZOC
+    method \code{filter} (\code{k}, \code{probs}, \code{na.rm}) and
+    \code{offset} (\code{offset}).}
+
 }
 
 
 \details{These functions are not meant to be called directly by the
   user, as he/she could not care less (right?).  This may change in the
-  future.
+  future.  Nonetheless, they can be called in the usual way for
+  functions that are not exported: \code{diveMove:::.functionName}.
 
   \code{.speedNames} is a character vector with possible names for a
   speed vector.
@@ -90,13 +114,24 @@
 
   \code{.rleActivity} returns a list with components:
 
-  \item{time.br}{A factor dividing \code{act} into different periods of
-    activity.}
+  \itemize{
 
-  \item{time.peract}{The duration of each period of activity.}
+    \item{time.br:} {A factor dividing \code{act} into different periods
+      of activity.}
 
-  \item{beg.time, end.time}{POSIXct objects indicating the beginning and
-    ending times of each period of activity.}
+    \item{time.peract:} {The duration of each period of activity.}
+
+    \item{beg.time, end.time:} {POSIXct objects indicating the beginning
+      and ending times of each period of activity.}
+
+  }
+
+  \code{.zoc} returns a vector with all corrected depths based on
+  \sQuote{method}.  Depths < 0 are set to 0.
+
+  \code{.depthFilter} returns a \code{\link{matrix}} with the filtered
+  depths at each step, and corrected depth as last column, so it has
+  dimensions \code{length(depth)} rows by \code{length(k) + 1} columns.
 
 }
 

@@ -72,12 +72,12 @@
 
 
 \value{ If called with the \code{interact} argument set to \code{TRUE},
-  returns coordinates from the ZOC procedure (see \code{\link{zoc}}). }
+  returns coordinates from the \dQuote{visual} ZOC method (see
+  \code{\link{calibrateDepth}} and underlying \code{\link{plotTD}}). }
 
 
-\seealso{
-  \code{\link{zoc}}
-}
+\seealso{ \code{\link{calibrateDepth}}, \code{\link{plotTD}},
+  \code{\link{.zoc}} }
 
 % -------------------------------------------------------------------------
 

@@ -20,8 +20,8 @@ plotTD(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
        xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
        concurVarTitles=deparse(substitute(concurVars)),
        xlab.format="\%d-\%b \%H:\%M", sunrise.time="06:00:00",
-       sunset.time="18:00:00", night.col="gray60",
-       phaseCol=NULL, interact=TRUE, key=TRUE, cex.pts=0.4, \ldots)
+       sunset.time="18:00:00", night.col="gray60", phase.factor=NULL,
+       interact=TRUE, key=TRUE, cex.pts=0.4, \ldots)
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -57,7 +57,7 @@ plotTD(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
 
   \item{night.col}{Color for shading night time.}
 
-  \item{phaseCol}{Factor dividing rows into sections.}
+  \item{phase.factor}{Factor dividing rows into sections.}
 
   \item{interact}{Logical; whether to provide interactive tcltk controls
     and access to the associated ZOC functionality.}

@@ -40,7 +40,8 @@ if (dev.interactive(orNone=TRUE)) plotTDR(sealX)  # interactively pan and zoom
 ## detect periods of activity, and calibrate depth, creating
 ## a 'TDRcalibrate' object
 if (dev.interactive(orNone=TRUE)) dcalib <- calibrateDepth(sealX)
-(dcalib <- calibrateDepth(sealX, offset=3)) # zero-offset correct at 3 m
+## Use the 'offset' ZOC method to zero-offset correct depth at 3 m
+(dcalib <- calibrateDepth(sealX, zoc.method="offset", offset=3))
 
 if (dev.interactive(orNone=TRUE)) {
     ## plot all readings and label them with the phase of the record
