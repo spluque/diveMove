@@ -91,8 +91,8 @@ setMethod("plotTDR", signature(x="TDRcalibrate"),
                   if (!is.character(concurVars))
                       stop("concurVars must be of class character")
                   ccd <- getCCData(tdr, concurVars)[ok, , drop=FALSE]
-                  plotTDR(newtdr, concurVars=ccd, phaseCol=labs, ...)
-              } else plotTDR(newtdr, phaseCol=labs, ...)
+                  plotTDR(newtdr, concurVars=ccd, phase.factor=labs, ...)
+              } else plotTDR(newtdr, phase.factor=labs, ...)
           })
 
 
