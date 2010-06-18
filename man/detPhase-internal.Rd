@@ -69,9 +69,20 @@
 }
 
 
-\seealso{\code{\link{.detDive}}}
+\seealso{\code{\link{.detDive}}, \code{\link{calibrateDepth}}}
 
 % -------------------------------------------------------------------------
+
+\examples{
+
+data(divesTDR)
+depths <- getDepth(divesTDR)
+times <- getTime(divesTDR)
+
+detp <- diveMove:::.detPhase(times, depths, dry.thr=70,
+                             wet.thr=3610, getDtime(divesTDR))
+
+}
 
 \author{Sebastian P. Luque \email{spluque@gmail.com} and Andy Liaw.}
 

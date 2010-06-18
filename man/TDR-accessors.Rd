@@ -125,7 +125,8 @@ data(divesTDR)
 ## Retrieve the name of the source file
 getFileName(divesTDR)
 ## Retrieve concurrent temperature measurements
-temp <- getCCData(divesTDR, "temperature")
+temp <- getCCData(divesTDR, "temperature"); head(temp)
+temp <- getCCData(divesTDR); head(temp)
 
 ## Coerce to a data frame
 dives.df <- as.data.frame(divesTDR)

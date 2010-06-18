@@ -6,8 +6,8 @@ citEntry(entry="Article",
          author=personList(
              person(first="Sebastian", middle="P.", last="Luque",
                     email="spluque@gmail.com")),
-         journal="{R News}",
-         year=2007, month="June", volume=7, number=3, pages="8--14",
+         journal="{R News}", year=2007, month="June",
+         volume=7, number=3, pages="8--14",
          issn=1609-3631,
          note=paste(
              "Contributions from:",

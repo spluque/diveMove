@@ -51,6 +51,19 @@
 
 % -------------------------------------------------------------------------
 
+\examples{
+
+data(divesTDRcalibrate)
+
+tdr <- getTDR(divesTDRcalibrate)
+
+## Extract the gross activity from an already calibrated TDR object
+gross.act <- getGAct(divesTDRcalibrate)
+detd <- diveMove:::.detDive(getDepth(tdr), gross.act[[2]], 4,
+                            getDtime(tdr))
+
+}
+
 \author{Sebastian P. Luque \email{spluque@gmail.com}}
 
 

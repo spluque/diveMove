@@ -219,6 +219,12 @@ divesTDR
 ## Consider a 3 m offset, and a dive threshold of 3 m
 dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="offset",
                          offset=3)
+## Or ZOC algorithmically with method="filter":
+\dontrun{# This can take a while due to large window needed for 2nd
+## filter in this dataset
+dcalib <- calibrateDepth(divesTDR, zoc.method="filter", k=c(3, 5760),
+                         probs=c(0.5, 0.02), na.rm=TRUE)
+}
 if (dev.interactive(orNone=TRUE)) {
     plotTDR(dcalib, labels="dive.phase", surface=TRUE)
 }

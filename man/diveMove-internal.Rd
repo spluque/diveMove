@@ -84,14 +84,45 @@
   future.  Nonetheless, they can be called in the usual way for
   functions that are not exported: \code{diveMove:::.functionName}.
 
-  \code{.speedNames} is a character vector with possible names for a
-  speed vector.
+  \code{.depthFilter} performs the zero-offset correction with
+  method=\dQuote{filter}.  It takes a numeric vector and applies a
+  running quantile to it, and the process is repeated zero or more times
+  on the filtered/smooth vector from the previous process.
+
+  \code{.diveIndices} takes a numeric vector with sequences of dive
+  numbers, and selects the indices of dive numbers listed uniquely in
+  the vector given as its second argument.
+
+  \code{.getInterval} takes a \code{\link{POSIXct}} object and
+  calculates the the most frequent interval between successive elements.
+
+  \code{.speedStats} takes matrix of time and speed, and an optional
+  vector of vertical distance travelled between segments, and calculates
+  the total vertical distance travelled, mean speed, and angle.  Input
+  and output correspond to a single section of a dive.
+
+  \code{.night} takes a \code{\link{POSIXct}} object, sunrise and sunset
+  time strings to provide a list of sunrise and sunset times for each
+  day in the \code{\link{POSIXct}} input.
 
   \code{.rleActivity} takes a factor indicating different activity
   phases, their associated time, and the sampling interval to return a
   factor uniquely identifying each phase of activity, i.e. labelling
   them.  In addition, it returns the duration of each phase, and their
   beginning and end times.
+
+  \code{.speedNames} is a character vector with possible names for a
+  speed vector.
+
+  \code{.speedCol} takes a \code{\link{data.frame}} and checks whether
+  there is a column with a name matching one of those in
+  \code{\link{.speedNames}}.
+
+  \code{.zoc} is the main workhorse for the zero-offset correction
+  \acronym{ZOC} procedure in \code{\link{calibrateDepth}}.  It takes a
+  \code{\link{POSIXct}} object, corresponding \code{\link{numeric}}
+  depth vector, a string representing a method to use for the procedure,
+  and a list of control parameters for the chosen method to perform ZOC.
 
 }
 
@@ -137,6 +168,46 @@
 
 
 % -------------------------------------------------------------------------
+
+\examples{
+
+data(divesTDR)
+
+times <- getTime(divesTDR)
+depths <- getDepth(divesTDR)
+
+## This can take a while, due to the large size of the second filter's
+## window
+d.filter <- diveMove:::.depthFilter(depth=depths, k=c(3, 5760),
+                                    probs=c(0.5, 0.02),
+                                    na.rm=TRUE)
+## If we consider depths above zero to be actually zero
+d.filter[d.filter[, 3] < 0, 3] <- 0
+
+## Plotting
+
+idx <- seq(32000, 33500)		# try different slices
+## Look at the top 10 m only plus a few meters above
+ylim <- c(-10, 5)
+
+layout(seq(3))
+plot(times[idx], -depths[idx], type="l", col="gray",
+     ylab="Depth (m)", ylim=ylim)
+abline(h=0, lty=2)
+legend("topleft", legend="original", lty=1, col="gray")
+plot(times[idx], -d.filter[idx, 1], type="l", col=2,
+     ylab="Depth (m)", ylim=ylim)
+abline(h=0, lty=2)
+lines(times[idx], -d.filter[idx, 2])
+legend("topleft", legend=colnames(d.filter)[-3],
+       lty=1, col=c(2, 1))
+plot(times[idx], -d.filter[idx, 3], type="l", ylim=ylim,
+     ylab="Depth (m)"); abline(h=0, lty=2)
+legend("topleft", legend=paste("Original -", colnames(d.filter)[2]),
+       lty=1)
+
+}
+
 
 \author{Sebastian P. Luque \email{spluque@gmail.com}}
 

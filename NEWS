@@ -16,6 +16,9 @@
 
    o Removed unnecessary default in .detDive().
 
+   o The package now depends on caTools (for new ZOC method) and
+     RColorBrewer (for better coloring of points in plot methods).
+
 ** Version 1.0:
 
    o Fixed bug in "[" method for TDR objects with empty 'concurrentData'
