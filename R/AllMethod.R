@@ -157,7 +157,9 @@ setMethod("getCCData", signature(x="TDR", y="character"), function(x, y) {
     } else if (any(bady)) {
         warning("components: ", y[bady], " could not be found and were ignored")
     }
-    as.data.frame(ccd[, ok])
+    ccdf <- as.data.frame(ccd[, ok])
+    names(ccdf) <- ccdnames[ok]
+    ccdf
 })
 
 ###_  . TDRcalibrate
