@@ -24,18 +24,18 @@
     if (na.rm) {
         d.ok <- which(!is.na(depth))
     } else d.ok <- seq(length(depth))
-    depth.filters <- matrix(depth, ncol=1)
+    filters <- matrix(depth, ncol=1)
     for (i in seq(length(k))) {
-        depth.filters <- cbind(depth.filters, depth)
-        dd <- depth.filters[d.ok, i]
-        depth.filters[d.ok, i + 1] <- caTools::runquantile(dd, k=k[i],
-                                                           probs=probs[i])
+        filters <- cbind(filters, depth)
+        dd <- filters[d.ok, i]
+        filters[d.ok, i + 1] <- caTools::runquantile(dd, k=k[i],
+                                                     probs=probs[i])
     }
     dnames <- c("depth",
                 paste("smooth", paste(k, probs, sep="_"), sep="."))
-    dimnames(depth.filters)[[2]] <- dnames
-    depth.adj <- depth - depth.filters[, ncol(depth.filters)]
-    cbind(depth.filters[, -1], depth.adj) # don't output original depth
+    dimnames(filters)[[2]] <- dnames
+    depth.adj <- depth - filters[, ncol(filters)]
+    cbind(filters[, -1], depth.adj)     # don't output original depth
 }
 
 

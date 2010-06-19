@@ -1,3 +1,54 @@
+2010-06-19  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/zoc.R:
+	  Renamed 'depth.filters' object to 'filters' in function
+	  'depthFilter'.
+
+2010-06-18  Sebastian P. Luque <spluque@gmail.com>
+
+	* man/calibrateDepth.Rd, man/detPhase-internal.Rd,
+	  man/diveMove-package.Rd:
+	  Fixed documentation buglets.
+
+	* man/diveMove-internal.Rd, man/diveMove-package.Rd:
+	  Extended documentation.
+
+	* man/TDR-accessors.Rd, man/calibrateDepth.Rd,
+	  man/detDive-internal.Rd, man/detPhase-internal.Rd:
+	  Added to Examples.
+
+	* R/AllMethod.R:
+	  Return data.frame with appropriate names in getCCData().
+
+2010-06-17  Sebastian P. Luque <spluque@gmail.com>
+
+	* DESCRIPTION, NEWS, inst/doc/diveMove.Rnw, man/calibrateDepth.Rd,
+	  man/detDive-internal.Rd, man/diveMove-internal.Rd,
+	  man/diveMove-package.Rd, man/diveStats.Rd, man/plotTD.Rd,
+	  man/plotTDR-methods.Rd, tests/calibrations.R,
+	  tests/final-stats.R:
+	  New version to incorporate changes required to accomodate latest
+	  modifications under /R to implement new ZOC and phase techniques.
+
+	* R/calibrate.R, R/detDive.R, R/zoc.R:
+	  Implement new method for ZOC and identification of dives and dive
+	  phases. This was necessary to allow depth measurements above the
+	  dive threshold to retain their variability, while not affecting
+	  dive detection and dive phase identification.
+
+	* R/AllMethod.R, R/plotTD.R:
+	  Renamed argument 'phaseCol' to 'phase.factor' to avoid confusion
+	  with a column number identifier.
+
+2010-06-16  Sebastian P. Luque <spluque@gmail.com>
+
+	* man/plotTD.Rd:
+	  Renaming this file since we only have one function here.
+
+	* man/zoc.Rd:
+	  Removed zoc(), since that function was moved to the internal
+	  functions group.
+
 2010-06-12  Sebastian P. Luque  <spluque@gmail.com>
 
 	Version 1.0 released.
