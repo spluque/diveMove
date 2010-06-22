@@ -1,3 +1,20 @@
+2010-06-22  Sebastian P. Luque <spluque@gmail.com>
+
+	* tests/calibrations.R:
+	  Remove unused '...' argument from .detDive() and replaced
+	  ellipsis argument by 'interval' in .detPhase().
+
+	* R/detDive.R, man/detDive-internal.Rd, man/labDive-internal.Rd:
+	  Remove unused 'interval' and '...' arguments from .labDive() and
+	  the calling .detDive(), respectively.
+
+	* R/calibrate.R:
+	  .detDive() no longer uses interval argument.
+
+	* R/calibrate.R, R/detPhase.R, man/detPhase-internal.Rd:
+	  Replaced ellipsis argument with 'interval' in .detPhase() since
+	  it is a single argument.
+
 2010-06-19  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/zoc.R:

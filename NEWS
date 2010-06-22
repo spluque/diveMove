@@ -19,6 +19,11 @@
    o The package now depends on caTools (for new ZOC method) and
      RColorBrewer (for better coloring of points in plot methods).
 
+   o Removed unused arguments 'interval' and ellipsis from .labDive() and
+     .detDive(), respectively.
+
+   o Replaced ellipsis argument with 'interval' in .detPhase().
+
 ** Version 1.0:
 
    o Fixed bug in "[" method for TDR objects with empty 'concurrentData'

@@ -12,13 +12,13 @@ library(diveMove)
 
 ###_ : Check phase detection
 detp <- diveMove:::.detPhase(getTime(sealX), getDepth(sealX), dry.thr=70,
-                             wet.thr=3610, getDtime(sealX))
+                             wet.thr=3610, interval=getDtime(sealX))
 ###_ : Check zoc
 zd <- diveMove:::.zoc(getTime(sealX), getDepth(sealX),
                       method="offset", control=list(offset=3))
 if (!is.null(zd)) sealX@depth <- zd
 ###_ : Check dive detection
-detd <- diveMove:::.detDive(getDepth(sealX), detp[[2]], 4, getDtime(sealX))
+detd <- diveMove:::.detDive(getDepth(sealX), detp[[2]], 4)
 ###_ : Check labelling of dive phases
 phaselabs <- diveMove:::.labDivePhase(sealX, detd[, 1], descent.crit.q=0.1,
                                       ascent.crit.q=0.5, wiggle.tol=0.85)
