@@ -36,7 +36,7 @@
     }
     zd <- diveMove:::.zoc(time, depth, method=zoc.method, control=ell)
     if (!is.null(zd)) x@depth <- zd
-    detd <- diveMove:::.detDive(getDepth(x), detp[[2]], dive.thr, getDtime(x))
+    detd <- diveMove:::.detDive(getDepth(x), detp[[2]], dive.thr)
 
     ## Identify dive phases
     phaselabs <- diveMove:::.labDivePhase(x, detd[, 1],
