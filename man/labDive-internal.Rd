@@ -18,7 +18,7 @@
 
 \usage{
 .cutDive(x, descent.crit.q, ascent.crit.q, wiggle.tol)
-.labDive(act, string, interval)
+.labDive(act, string)
 .labDivePhase(x, diveID, descent.crit.q, ascent.crit.q, wiggle.tol)
 }
 
@@ -37,8 +37,6 @@
 
   \item{string}{A character belonging to a level of \code{act} to search
     for and label sequentially.}
-
-  \item{interval}{The sampling interval in seconds.}
 
   \item{diveID}{Numeric vector indexing each dive (non-dives should be
     0)}

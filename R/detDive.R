@@ -1,13 +1,12 @@
 ## $Id$
 
-".labDive" <- function(act, string, interval)
+".labDive" <- function(act, string)
 {
     ## Value: Label dives along vector of same length as input.  Return a
     ## matrix labelling each dive and postdive reading
     ## --------------------------------------------------------------------
     ## Arguments: act=factor with values to label, string=character string
-    ## to search in act to be labelled sequentially, interval=sampling
-    ## interval in the input
+    ## to search in act to be labelled sequentially
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
@@ -26,7 +25,7 @@
 }
 
 
-".detDive" <- function(zdepth, act, dive.thr, ...)
+".detDive" <- function(zdepth, act, dive.thr)
 {
     ## Value: A data frame; detecting dives, using a depth threshold
     ## --------------------------------------------------------------------
@@ -41,7 +40,8 @@
     underw <- which(act == "W" & zdepth > 0)
     act[underw] <- "U"
 
-    labuw <- diveMove:::.labDive(act, "U", ...) # label underwater excursions
+    ## Label underwater excursions
+    labuw <- diveMove:::.labDive(act, "U")
     ## Max depth of each "U" phase
     uwmax <- tapply(zdepth[underw], labuw[underw, 1], max, na.rm=TRUE)
     ## Change each "U" (underwater) phase to "D" (diving) if its max depth
@@ -53,10 +53,10 @@
     ## accordingly (this works great!)
     act[labuw[, 1] %in% as.numeric(names(uwmax[uwmax > dive.thr]))] <- "D"
 
-    dives.maybe <- diveMove:::.labDive(act, "D", ...)
+    dives.maybe <- diveMove:::.labDive(act, "D")
     surface.idx <- which(dives.maybe[, 1] > 0 & zdepth <= dive.thr)
     act[surface.idx] <- "U"
-    inddive <- diveMove:::.labDive(act, "D", ...)
+    inddive <- diveMove:::.labDive(act, "D")
     ndives <- length(unique(inddive[act == "D", 1]))
     message(ndives, " dives detected")
 

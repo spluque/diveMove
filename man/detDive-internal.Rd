@@ -14,7 +14,7 @@
 
 
 \usage{
-.detDive(zdepth, act, dive.thr, \dots)
+.detDive(zdepth, act, dive.thr)
 }
 
 
@@ -27,8 +27,6 @@
 
   \item{dive.thr}{Threshold depth below which an underwater phase
     should be considered a dive.}
-
-  \item{\dots}{The sampling interval in seconds.}
 
 }
 
@@ -59,8 +57,7 @@ tdr <- getTDR(divesTDRcalibrate)
 
 ## Extract the gross activity from an already calibrated TDR object
 gross.act <- getGAct(divesTDRcalibrate)
-detd <- diveMove:::.detDive(getDepth(tdr), gross.act[[2]], 4,
-                            getDtime(tdr))
+detd <- diveMove:::.detDive(getDepth(tdr), gross.act[[2]], 4)
 
 }
 
