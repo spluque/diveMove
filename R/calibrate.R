@@ -22,7 +22,7 @@
     time <- getTime(x)
     ## Detect trips and dives
     detp <- diveMove:::.detPhase(time, depth, dry.thr=dry.thr,
-                                 wet.thr=wet.thr, getDtime(x))
+                                 wet.thr=wet.thr, interval=getDtime(x))
     ## ZOC procedure
     zoc.method <- match.arg(zoc.method)
     ell <- list(...)

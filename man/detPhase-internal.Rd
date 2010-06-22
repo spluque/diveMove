@@ -16,7 +16,7 @@
 
 
 \usage{
-.detPhase(time, depth, dry.thr, wet.thr, \dots)
+.detPhase(time, depth, dry.thr, wet.thr, interval)
 }
 %- maybe also 'usage' for other objects documented here.
 
@@ -29,7 +29,7 @@
 
   \item{dry.thr, wet.thr}{Passed from \code{\link{calibrateDepth}}.}
 
-  \item{\dots}{Passed from \code{\link{calibrateDepth}}; sampling
+  \item{interval}{Passed from \code{\link{calibrateDepth}}; sampling
     interval in seconds.}
 
 }
@@ -79,8 +79,8 @@ data(divesTDR)
 depths <- getDepth(divesTDR)
 times <- getTime(divesTDR)
 
-detp <- diveMove:::.detPhase(times, depths, dry.thr=70,
-                             wet.thr=3610, getDtime(divesTDR))
+detp <- diveMove:::.detPhase(times, depths, dry.thr=70, wet.thr=3610,
+                             interval=getDtime(divesTDR))
 
 }
 
