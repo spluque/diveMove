@@ -1,6 +1,7 @@
 * Changes/New Features					     -*-outline-*-
 ======================
 
+See ChangeLog for more details.
 
 ** Version 1.1:
 
@@ -8,11 +9,18 @@
      quantile smoothing/filtering.  Thanks to Roland Fried for suggesting
      this approach.  Although still under development, it already produces
      reliable results.  This has made it necessary to change how
-     calibrateDepth() is used, so that the previous 'offset' argument is
-     now passed as part of the ellipsis ('...') argument, and a new
-     argument 'zoc.method' is required to choose among the three available
-     methods.  Function zoc() has been relegated to an internal function
-     (.zoc()) to avoid duplication of arguments.
+     calibrateDepth() is used, so that the old 'offset' argument is now
+     passed as part of the ellipsis ('...') argument, and a new argument
+     'zoc.method' is required to choose among the three available methods.
+     Function zoc() has been relegated to an internal function (.zoc()) to
+     avoid duplication of arguments.
+
+   o New argument 'interp.wet' (logical) in calibrateDepth() that controls
+     whether a spline interpolation method should be used to impute missing
+     data during periods coded as wet.  This is useful to rectify problems
+     with some instruments or on-board software that produce incomplete
+     dive traces, where observations near or at the surface are often
+     missing.
 
    o Removed unnecessary default in .detDive().
 

@@ -1,3 +1,17 @@
+2010-06-23  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/plotTD.R:
+	  Improved control over colors and legend.
+
+	* R/calibrate.R, man/calibrateDepth.Rd:
+	  Implemented spline interpolation option through wet periods for
+	  imputing missing data near the beginning/end of dives produced by
+	  certain instruments.
+
+	* R/plotTD.R:
+	  Minimum number of colors should be 3 due to limitation of
+	  palette.
+
 2010-06-22  Sebastian P. Luque <spluque@gmail.com>
 
 	* tests/calibrations.R:
