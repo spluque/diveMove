@@ -1,5 +1,11 @@
 2010-06-23  Sebastian P. Luque <spluque@gmail.com>
 
+	* data/divesSummary.RData, data/divesTDRcalibrate.RData:
+	  Replaced data with results from new calibration procedures.
+
+	* man/TDRcalibrate-accessors.Rd:
+	  Fixed documentation.
+
 	* R/plotTD.R:
 	  Improved control over colors and legend.
 

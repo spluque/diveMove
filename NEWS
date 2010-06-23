@@ -24,13 +24,13 @@ See ChangeLog for more details.
 
    o Removed unnecessary default in .detDive().
 
-   o The package now depends on caTools (for new ZOC method) and
-     RColorBrewer (for better coloring of points in plot methods).
-
    o Removed unused arguments 'interval' and ellipsis from .labDive() and
      .detDive(), respectively.
 
    o Replaced ellipsis argument with 'interval' in .detPhase().
+
+   o The package now depends on caTools (for new ZOC method) and
+     RColorBrewer (for better coloring of points in plot methods).
 
 ** Version 1.0:
 
