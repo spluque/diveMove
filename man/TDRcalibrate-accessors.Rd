@@ -26,7 +26,7 @@
   Objects}
 
 
-\description{ Plot, print summaries and extract information from
+\description{ Show and extract information from
   \code{\link{TDRcalibrate}} objects. }
 
 \usage{
@@ -43,17 +43,20 @@
 
   \item{x}{\code{\link{TDRcalibrate}} object.}
 
-  \item{diveNo}{numeric vector with dive numbers to plot.}
+  \item{diveNo}{numeric vector with dive numbers to extract information
+    from.}
 
   \item{y}{string; \dQuote{dive.id}, \dQuote{dive.activity}, or
     \dQuote{postdive.id} in the case of \code{getDAct}, to extract the
-    numeric dive ID, the factor identifying dive phases in each dive, or
-    the numeric postdive ID, respectively.  In the case of
-    \code{getGAct} it should be one of \dQuote{phase.id},
-    \dQuote{activity}, \dQuote{begin}, or \dQuote{end}, to extract the
-    numeric phase ID for each observation, a factor indicating what
-    major activity the observation corresponds to, or the beginning and
-    end times of each phase in the record, respectively.}  }
+    numeric dive ID, the factor identifying activity phases (with
+    underwater and diving levels possibly represented), or the numeric
+    postdive ID, respectively.  In the case of \code{getGAct} it should
+    be one of \dQuote{phase.id}, \dQuote{activity}, \dQuote{begin}, or
+    \dQuote{end}, to extract the numeric phase ID for each observation,
+    a factor indicating what major activity the observation corresponds
+    to (where diving and underwater levels are not represented), or the
+    beginning and end times of each phase in the record, respectively.}
+    }
 
 
 \section{Show Methods}{

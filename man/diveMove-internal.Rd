@@ -52,10 +52,10 @@
 
   \item{time}{\code{POSIXct} object representing time.}
 
-  \item{x}{For \code{.speedStats}, a matrix with a dive's section data
-    (time, speed).  A single dive's data, a 3-col matrix with time,
-    depth, and speed.  For .speedCol, a data frame where names are
-    searched for strings matching \code{.speedNames} (see Details).}
+  \item{x}{For \code{.speedStats}, a matrix with a dive's section data.
+    A single dive's data: 3-col matrix with time, depth, and speed.  For
+    .speedCol, a data frame where names are searched for strings
+    matching \code{.speedNames} (see Details).}
 
   \item{vdist}{Vertical distance travelled during this time.  If
     \code{vdist} is missing, then it's all horizontal movements (no
@@ -176,17 +176,20 @@ data(divesTDR)
 times <- getTime(divesTDR)
 depths <- getDepth(divesTDR)
 
-## This can take a while, due to the large size of the second filter's
+## .depthFilter
+
+## This can take a while, due to large size of the second filter's
 ## window
 d.filter <- diveMove:::.depthFilter(depth=depths, k=c(3, 5760),
                                     probs=c(0.5, 0.02),
                                     na.rm=TRUE)
-## If we consider depths above zero to be actually zero
+## Set negative depths to zero
 d.filter[d.filter[, 3] < 0, 3] <- 0
 
 ## Plotting
 
-idx <- seq(32000, 33500)		# try different slices
+idx <- seq(95, 6000)		# try different slices
+idx <- seq(nrow(d.filter))
 ## Look at the top 10 m only plus a few meters above
 ylim <- c(-10, 5)
 

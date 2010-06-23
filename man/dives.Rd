@@ -55,9 +55,12 @@
   data in \code{dives}.
 
   \code{divesTDRcalibrate} is a \code{\link{TDRcalibrate}} object
-  representing the data in dives, calibrated at default criteria (see
-  \code{\link{calibrateDepth}}), and 3 m offset.
+  representing the data in dives, calibrated as (see
+  \code{\link{calibrateDepth}}):
 
+  \preformatted{calibrateDepth(divesTDR, dive.thr=3, zoc.method="filter",
+               k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE)}
+  
   \code{divesSummary} is a data frame containing a summary of all dives
   in this dataset (see \code{\link{diveStats}} and
   \code{\link{stampDive}} for the information contained in this object.
