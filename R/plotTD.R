@@ -76,11 +76,13 @@
         lines(time, depth)
         if (!is.null(phase.factor)) {
             phase.factor <- phase.factor[, drop=TRUE]
-            colors <- brewer.pal(n=nlevels(phase.factor), name="Set1")
+            nlevs <- nlevels(phase.factor)
+            ncolors <- pmax(3, nlevs)
+            colors <- brewer.pal(n=ncolors, name="Set1")
             points(time, depth, col=colors[phase.factor], pch=19, cex=cex.pts)
-            if (key && nlevels(phase.factor) < 11) {
+            if (key && nlevs < 11) {
                 legend("bottomright", legend=levels(phase.factor), col=colors,
-                       pch=19, cex=0.7, ncol=nlevels(phase.factor), bg="white")
+                       pch=19, cex=0.7, ncol=nlevs, bg="white")
             }
         }
         if (!is.null(concurVars)) {
