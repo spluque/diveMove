@@ -77,10 +77,10 @@
         if (!is.null(phase.factor)) {
             phase.factor <- phase.factor[, drop=TRUE]
             nlevs <- nlevels(phase.factor)
-            ncolors <- pmax(3, nlevs)
+            ncolors <- max(3, min(nlevs, 9))
             colors <- brewer.pal(n=ncolors, name="Set1")
             points(time, depth, col=colors[phase.factor], pch=19, cex=cex.pts)
-            if (key && nlevs < 11) {
+            if (key && nlevs < 10) {
                 legend("bottomright", legend=levels(phase.factor), col=colors,
                        pch=19, cex=0.7, ncol=nlevs, bg="white")
             }
