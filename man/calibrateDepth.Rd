@@ -16,7 +16,8 @@
 \usage{
 calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
                zoc.method=c("visual", "offset", "filter"), \ldots,
-               descent.crit.q=0.1, ascent.crit.q=0.1, wiggle.tol=0.8)
+               interp.wet=FALSE, descent.crit.q=0.1,
+               ascent.crit.q=0.1, wiggle.tol=0.8)
 }
 
 
@@ -42,6 +43,12 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   \item{\ldots}{Arguments required for ZOC methods \code{filter}
     (\code{k}, \code{probs}, \code{na.rm} (defaults to TRUE)) and
     \code{offset} (\code{offset}).}
+
+  \item{interp.wet}{Logical.  If TRUE (default is FALSE), then an
+  interpolating spline function is used to impute NA depths in wet
+  periods (\emph{after ZOC}).  \emph{Use with caution}: it may only be
+  useful in cases where the missing data pattern in wet periods is
+  restricted to shallow depths near the beginning and end of dives.}
 
   \item{descent.crit.q}{Critical quantile of rates of descent below
     which descent is deemed to have ended.}
@@ -77,6 +84,17 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   Zero-offset correction of depth is performed at this stage (see
   \sQuote{ZOC} below).
 
+  Some instruments produce a peculiar pattern of missing data near the
+  surface, at the beginning and/or end of dives.  The argument
+  \code{interp.wet} may help to rectify this problem by using an
+  interpolating spline function to impute the missing data, constraining
+  the result to a minimum depth of zero.  Please note that this optional
+  step is performed after ZOC and before identifying dives, so that
+  interpolation is performed through dry phases coded as wet because
+  their duration was briefer than \code{dry.thr}.  Therefore,
+  \code{dry.thr} must be chosen carefully to avoid interpolation through
+  legitimate dry periods.
+  
   The next step is to detect dives whenever the zero-offset corrected
   depth in an underwater phase is below the specified dive threshold.  A
   new factor with finer levels of activity is thus generated, including
@@ -84,7 +102,7 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   ones described above.
 
   Once dives have been detected and assigned to a period of wet
-  activity, phases within dives are detected using the descent, ascent
+  activity, phases within dives are identified using the descent, ascent
   and wiggle criteria (see \sQuote{Detection of dive phases} below).
   This procedure generates a factor with levels \dQuote{D}, \dQuote{DB},
   \dQuote{B}, \dQuote{BA}, \dQuote{A}, \dQuote{DA}, and \dQuote{X},

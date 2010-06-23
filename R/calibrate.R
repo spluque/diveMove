@@ -2,8 +2,8 @@
 
 "calibrateDepth" <-  function(x, dry.thr=70, wet.thr=3610, dive.thr=4,
                               zoc.method=c("visual", "offset", "filter"),
-                              ..., descent.crit.q=0.1, ascent.crit.q=0.1,
-                              wiggle.tol=0.80)
+                              ..., interp.wet=FALSE, descent.crit.q=0.1,
+                              ascent.crit.q=0.1, wiggle.tol=0.80)
 {
     ## Value: A TDRcalibrate object.  Detect water/land phases in TDR
     ## object, zoc data, detect dives and their phases, and label them.
@@ -13,7 +13,10 @@
     ## .detPhase and .detDive; descent.crit, ascent.crit, and wiggle.tol
     ## see .labDivePhase documentation; zoc.method=method to use for
     ## zero-offset correction; ...=arguments required for ZOC methods
-    ## zoc.filter (k, probs, na.rm (defaults to TRUE)) and offset (offset).
+    ## zoc.filter (k, probs, na.rm (defaults to TRUE)) and offset (offset);
+    ## interp.wet=logical (proposal) to control whether we interpolate NA
+    ## depths in wet periods (*after ZOC*).  Be careful with latter, which
+    ## uses an interpolating spline to impute the missing data.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
@@ -36,6 +39,18 @@
     }
     zd <- diveMove:::.zoc(time, depth, method=zoc.method, control=ell)
     if (!is.null(zd)) x@depth <- zd
+
+    if (interp.wet) {
+        zdepth <- getDepth(x)
+        wet <- detp[[2]] == "W"
+        wet.na <- wet & is.na(zdepth)
+        time.out <- time[wet.na]
+        interpFun <- splinefun(time[wet], zdepth[wet])
+        interp.depth <- interpFun(x=time.out)
+        zdepth[wet.na] <- pmax(0, interp.depth) # set negatives to 0
+        x@depth <- zdepth
+    }
+
     detd <- diveMove:::.detDive(getDepth(x), detp[[2]], dive.thr)
 
     ## Identify dive phases
