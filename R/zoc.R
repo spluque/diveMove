@@ -10,7 +10,7 @@
     ## be applied sequentially (coerced to integer in runquantile());
     ## probs=vector of quantiles to extract at each step indicated by k (so
     ## must be as long as k); na.rm=do we remove NA from depth before
-    ## filtering (recommended)?
+    ## filtering (recommended if there are no level shifts)?
     ## --------------------------------------------------------------------
     ## Purpose: Calculate running quantiles on sequential filters, starting
     ## with the original depth vector and correct depth as: original depth
@@ -21,8 +21,9 @@
     require(caTools) || stop("caTools package is required for this method")
     if (length(k) != length(probs))
         stop("k and probs should have the same length")
+    d.na <- is.na(depth)
     if (na.rm) {
-        d.ok <- which(!is.na(depth))
+        d.ok <- !d.na
     } else d.ok <- seq(length(depth))
     filters <- matrix(depth, ncol=1)
     for (i in seq(length(k))) {
@@ -30,6 +31,8 @@
         dd <- filters[d.ok, i]
         filters[d.ok, i + 1] <- caTools::runquantile(dd, k=k[i],
                                                      probs=probs[i])
+        ## NA input should be NA output regardless of na.rm
+        filters[d.na, i + 1] <- NA
     }
     dnames <- c("depth",
                 paste("smooth", paste(k, probs, sep="_"), sep="."))
