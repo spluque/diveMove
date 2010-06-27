@@ -134,7 +134,7 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 
   Method \dQuote{filter} implements a smoothing/filtering mechanism
   where running quantiles can be applied to depth measurements in a
-  sequential manner, using \code{.depth.filter}. It relies on function
+  recursive manner, using \code{.depth.filter}. It relies on function
   \code{\link[caTools]{runquantile}} from the \code{caTools} package.
   The method calculates the first running quantile defined by
   \code{probs[1]} on a moving window of size \code{k[1]}.  The next
@@ -148,7 +148,14 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   where \eqn{d_{0}}{d[0]} is original depth and \eqn{d_{n}}{d[n]} is the
   last smoothed/filtered depth.  This method is under development, but
   reasonable results can be achieved by applying two filters (see
-  \sQuote{Examples}).
+  \sQuote{Examples}).  The default \code{na.rm=TRUE} works well when
+  there are no level shifts between non-NA phases in the data, but
+  \code{na.rm=FALSE} is better in the presence of such shifts.  In other
+  words, there is no reason to pollute the moving window with NAs when
+  non-NA phases can be regarded as a continuum, so splicing non-NA
+  phases makes sense.  Conversely, if there are level shifts between
+  non-NA phases, then it is better to retain NA phases to help the
+  algorithm recognize the shifts while sliding the window(s).
 
   Once the whole record has been zero-offset corrected, remaining depths
   below zero, are set to zero, as these are assumed to indicate values
