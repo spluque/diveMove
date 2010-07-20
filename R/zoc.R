@@ -28,7 +28,7 @@
     d.in.bounds <- depth > depth.bounds[1] & depth < depth.bounds[2]
     if (na.rm) {
         d.ok <- !d.na & d.in.bounds     # logical
-    } else d.ok <- which(d.in.bounds)   # numeric
+    } else d.ok <- which(d.in.bounds | is.na(depth))   # numeric
     filters <- matrix(depth, ncol=1)
     for (i in seq(length(k))) {
         filters <- cbind(filters, depth)

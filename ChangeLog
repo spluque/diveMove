@@ -1,3 +1,9 @@
+2010-07-20  Sebastian P. Luque  <spluque@gmail.com>
+
+	* R/zoc.R (".depthFilter"):
+	  Depths were not being included in the logical when na.rm=FALSE
+	  which was wrong.
+
 2010-07-20  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/calibrate.R, R/zoc.R, inst/doc/diveMove.Rnw,
