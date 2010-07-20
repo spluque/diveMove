@@ -1,6 +1,6 @@
 ## $Id$
 
-".depthFilter" <- function(depth, k, probs, na.rm)
+".depthFilter" <- function(depth, k, probs, depth.bounds, na.rm)
 {
     ## Value: A matrix with the filtered depths at each step, and corrected
     ## depth as last column, so it has dimensions length(depth) rows by
@@ -9,8 +9,9 @@
     ## Arguments: depth=depth vector; k=vector of window width integers to
     ## be applied sequentially (coerced to integer in runquantile());
     ## probs=vector of quantiles to extract at each step indicated by k (so
-    ## must be as long as k); na.rm=do we remove NA from depth before
-    ## filtering (recommended if there are no level shifts)?
+    ## must be as long as k); depth.bounds=minimum and maximum depth bounds
+    ## where search should be restricted to; na.rm=do we remove NA from
+    ## depth before filtering (recommended if there are no level shifts)?
     ## --------------------------------------------------------------------
     ## Purpose: Calculate running quantiles on sequential filters, starting
     ## with the original depth vector and correct depth as: original depth
@@ -21,16 +22,24 @@
     require(caTools) || stop("caTools package is required for this method")
     if (length(k) != length(probs))
         stop("k and probs should have the same length")
+    if (length(depth.bounds) != 2 && !is.numeric(depth.bounds))
+        stop("depth.bounds must be a 2-element numeric vector")
     d.na <- is.na(depth)
+    d.in.bounds <- depth > depth.bounds[1] & depth < depth.bounds[2]
     if (na.rm) {
-        d.ok <- !d.na
-    } else d.ok <- seq(length(depth))
+        d.ok <- !d.na & d.in.bounds     # logical
+    } else d.ok <- which(d.in.bounds)   # numeric
     filters <- matrix(depth, ncol=1)
     for (i in seq(length(k))) {
         filters <- cbind(filters, depth)
         dd <- filters[d.ok, i]
         filters[d.ok, i + 1] <- caTools::runquantile(dd, k=k[i],
                                                      probs=probs[i])
+        ## Linear interpolation for depths out of bounds
+        offbounds <- which(!d.in.bounds)
+        offbounds.fun <- approxfun(seq(length(depth))[d.in.bounds],
+                                   filters[d.in.bounds, i + 1], rule=2)
+        filters[offbounds, i + 1] <- offbounds.fun(offbounds)                                   
         ## NA input should be NA output regardless of na.rm
         filters[d.na, i + 1] <- NA
     }
@@ -82,9 +91,10 @@
                      depth <- depth - offset},
            filter = {k <- control$k
                      probs <- control$probs
+                     depth.bounds <- control$depth.bounds
                      na.rm <- control$na.rm
                      depthmtx <- diveMove:::.depthFilter(depth, k, probs,
-                                                         na.rm)
+                                                         depth.bounds, na.rm)
                      depth <- depthmtx[, ncol(depthmtx)]})
     ## Turn all negative and NA depths into zeroes (we don't care now about
     ## dry time, since we've already done that, and we need surface and dry

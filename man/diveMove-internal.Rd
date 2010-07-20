@@ -21,7 +21,7 @@
 
 
 \usage{
-.depthFilter(depth, k, probs, na.rm)
+.depthFilter(depth, k, probs, depth.bounds, na.rm)
 .diveIndices(diveID, diveNo)
 .getInterval(time)
 .speedStats(x, vdist)
@@ -41,6 +41,9 @@
 
   \item{probs}{Vector of quantiles to extract at each step indicated by
     \code{k} (so it must be as long as \code{k}).}
+
+  \item{depth.bounds}{Numeric vector of length two, with minimum and
+    maximum depth to bound the search for the surface.}
 
   \item{na.rm}{Should \code{\link{NA}} values be removed prior to
     calculating running quantiles?}
@@ -181,7 +184,7 @@ depths <- getDepth(divesTDR)
 ## This can take a while, due to large size of the second filter's
 ## window
 d.filter <- diveMove:::.depthFilter(depth=depths, k=c(3, 5760),
-                                    probs=c(0.5, 0.02),
+                                    probs=c(0.5, 0.02), depth.bounds=c(0, 5),
                                     na.rm=TRUE)
 ## Set negative depths to zero
 d.filter[d.filter[, 3] < 0, 3] <- 0

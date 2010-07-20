@@ -354,7 +354,12 @@ as argument \Rfunarg{k} specifies the width of the moving window(s), where
 $k_{i}$ is the width for the $i^{th}$ filter in units of the sampling
 interval of the \Rclass{TDR} object.  Similarly, the integer vector given
 as argument \Rfunarg{probs} specifies the quantile for each filter, where
-$probs_{i}$ is the quantile for the $i^{th}$ filter.
+$probs_{i}$ is the quantile for the $i^{th}$ filter.  Smoothing/filtering
+can be performed within specified minimum and maximum depth bounds using
+argument \Rfunarg{depth.bounds}\footnote{Defaults to the depth range}, in
+cases where surface durations are relatively brief separated by long
+periods of deep diving.  These cases usually require large windows, and
+using depth bounds helps to stabilize the surface signal.
 
 <<eval=FALSE>>=
 dcalib <- calibrateDepth(tdrX, zoc.method="filter",

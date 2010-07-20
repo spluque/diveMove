@@ -13,10 +13,11 @@
     ## .detPhase and .detDive; descent.crit, ascent.crit, and wiggle.tol
     ## see .labDivePhase documentation; zoc.method=method to use for
     ## zero-offset correction; ...=arguments required for ZOC methods
-    ## zoc.filter (k, probs, na.rm (defaults to TRUE)) and offset (offset);
-    ## interp.wet=logical (proposal) to control whether we interpolate NA
-    ## depths in wet periods (*after ZOC*).  Be careful with latter, which
-    ## uses an interpolating spline to impute the missing data.
+    ## zoc.filter (k, probs, depth.bounds, na.rm (defaults to TRUE)) and
+    ## offset (offset); interp.wet=logical (proposal) to control whether we
+    ## interpolate NA depths in wet periods (*after ZOC*).  Be careful with
+    ## latter, which uses an interpolating spline to impute the missing
+    ## data.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
@@ -35,6 +36,8 @@
     if (zoc.method == "filter") {
         if (!("k" %in% ell.names && "probs" %in% ell.names))
             stop("k and probs are indispensable for this method")
+        if (!("depth.bounds" %in% ell.names))
+            ell$depth.bounds <- range(depth, na.rm=TRUE)
         if (!"na.rm" %in% ell.names) ell$na.rm <- TRUE
     }
     zd <- diveMove:::.zoc(time, depth, method=zoc.method, control=ell)

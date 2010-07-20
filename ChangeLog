@@ -1,3 +1,10 @@
+2010-07-20  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/calibrate.R, R/zoc.R, inst/doc/diveMove.Rnw,
+	  man/calibrateDepth.Rd, man/diveMove-internal.Rd:
+	  New argument 'depth.bounds' to bound smoothing/filtering for
+	  searching surface.
+
 2010-06-23  Sebastian P. Luque <spluque@gmail.com>
 
 	* data/divesSummary.RData, data/divesTDRcalibrate.RData:

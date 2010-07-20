@@ -41,8 +41,8 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
     \dQuote{filter} (see \sQuote{Details}).}
 
   \item{\ldots}{Arguments required for ZOC methods \code{filter}
-    (\code{k}, \code{probs}, \code{na.rm} (defaults to TRUE)) and
-    \code{offset} (\code{offset}).}
+    (\code{k}, \code{probs}, \code{depth.bounds} (defaults to range),
+    \code{na.rm} (defaults to TRUE)) and \code{offset} (\code{offset}).}
 
   \item{interp.wet}{Logical.  If TRUE (default is FALSE), then an
   interpolating spline function is used to impute NA depths in wet
@@ -155,7 +155,10 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   non-NA phases can be regarded as a continuum, so splicing non-NA
   phases makes sense.  Conversely, if there are level shifts between
   non-NA phases, then it is better to retain NA phases to help the
-  algorithm recognize the shifts while sliding the window(s).
+  algorithm recognize the shifts while sliding the window(s).  The
+  search for the surface can be limited to specified bounds during
+  smoothing/filtering, so that observations outside these bounds are
+  interpolated using the bounded smoothed/filtered series.
 
   Once the whole record has been zero-offset corrected, remaining depths
   below zero, are set to zero, as these are assumed to indicate values
