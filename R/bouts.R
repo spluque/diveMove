@@ -184,8 +184,7 @@
 "bouts2.ll" <- function(x) # 2-process Poisson
 {
     function(p, lambda1, lambda2) {
-        -sum(log(p * lambda1 * exp(-lambda1 * x) +
-                 (1 - p) * lambda2 * exp(-lambda2 * x)))
+        -sum(diveMove::bouts2.mleFUN(x, p, lambda1, lambda2))
     }
 }
 
@@ -195,8 +194,7 @@
         p <- unLogit(p)
         lambda1 <- exp(lambda1)
         lambda2 <- exp(lambda2)
-        -sum(log(p * lambda1 * exp(-lambda1 * x) +
-                 (1 - p) * lambda2 * exp(-lambda2 * x)))
+        -sum(diveMove::bouts2.mleFUN(x, p, lambda1, lambda2))
     }
 }
 

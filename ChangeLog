@@ -1,3 +1,9 @@
+2010-07-25  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/bouts.R:
+	  Use bouts2.mleFUN() in bouts2.ll() and bouts2.LL() as I
+	  originally intended to keep code cleaner.
+
 2010-07-20  Sebastian P. Luque  <spluque@gmail.com>
 
 	* R/zoc.R (".depthFilter"):
