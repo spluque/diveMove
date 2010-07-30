@@ -48,7 +48,8 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   interpolating spline function is used to impute NA depths in wet
   periods (\emph{after ZOC}).  \emph{Use with caution}: it may only be
   useful in cases where the missing data pattern in wet periods is
-  restricted to shallow depths near the beginning and end of dives.}
+  restricted to shallow depths near the beginning and end of dives.
+  This pattern is common in some satellite-linked \acronym{TDR}s.}
 
   \item{descent.crit.q}{Critical quantile of rates of descent below
     which descent is deemed to have ended.}
@@ -232,11 +233,20 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 }
 
 
+\references{
+
+  Luque, S.P. (Submitted) Recursive filtering for zero offset correction
+  of diving depth time series.
+
+}
+
+
 \value{An object of class \code{\link{TDRcalibrate}}.}
 
 
 \seealso{\code{\link{TDRcalibrate}}, \code{\link{.zoc}},
-  \code{\link{.detPhase}}, \code{\link{.detDive}}.}
+  \code{\link{.depthFilter}} \code{\link{.detPhase}},
+  \code{\link{.detDive}}.}
 
 % -------------------------------------------------------------------------
 
