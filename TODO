@@ -1,7 +1,6 @@
 * Find a way to embed R graphics in tcltk widgets for plotTD().
 * Complete the vignette with bout detection examples.
 * Check whether functions to extract parts of a track corresponding to
-  diving period interpolations should be included here.
-* Do we need a function to interpolate depth for "W" periods?  This seems
-   to be needed for some files that have lots of missing values near the
-   surface (e.g. SPLASH archival data).
+   diving period interpolations should be included here.
+* For TDRs without salt-water switch, consider how to identify dry periods
+   based on concurrent data.
