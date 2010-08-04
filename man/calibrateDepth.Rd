@@ -235,8 +235,8 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 
 \references{
 
-  Luque, S.P. (Submitted) Recursive filtering for zero offset correction
-  of diving depth time series.
+  Luque, S.P. and Fried, R. (Submitted) Recursive filtering for zero
+  offset correction of diving depth time series.
 
 }
 
