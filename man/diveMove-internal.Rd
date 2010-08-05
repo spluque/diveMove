@@ -179,10 +179,9 @@ data(divesTDR)
 times <- getTime(divesTDR)
 depths <- getDepth(divesTDR)
 
+\dontrun{## This can take too long
 ## .depthFilter
 
-## This can take a while, due to large size of the second filter's
-## window
 d.filter <- diveMove:::.depthFilter(depth=depths, k=c(3, 5760),
                                     probs=c(0.5, 0.02), depth.bounds=c(0, 5),
                                     na.rm=TRUE)
@@ -211,6 +210,7 @@ plot(times[idx], -d.filter[idx, 3], type="l", ylim=ylim,
      ylab="Depth (m)"); abline(h=0, lty=2)
 legend("topleft", legend=paste("Original -", colnames(d.filter)[2]),
        lty=1)
+}
 
 }
 
