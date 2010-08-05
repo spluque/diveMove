@@ -1,3 +1,10 @@
+2010-08-05  Sebastian P. Luque <spluque@gmail.com>
+
+	Version 1.1 released.
+
+	* man/diveMove-internal.Rd:
+	  Example takes too long, so use \dontrun{}.
+
 2010-07-30  Sebastian P. Luque <spluque@gmail.com>
 
 	* man/calibrateDepth.Rd:
