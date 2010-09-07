@@ -1,5 +1,11 @@
 2010-09-07  Sebastian P. Luque <spluque@gmail.com>
 
+	* man/diveStats.Rd:
+	  Updated documentation.
+
+	* data/divesSummary.RData, data/divesTDRcalibrate.RData:
+	  Updated objects.
+
 	* R/oneDiveStats.R:
 	  Added bottom mean and sd summaries to output. Use ifelse()
 	  instead of if () in the final 'data.frame' output.

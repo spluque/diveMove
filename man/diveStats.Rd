@@ -71,6 +71,10 @@ stampDive(x, ignoreZ=TRUE)
     differences while at the bottom of each dive; measure of amount of
     \dQuote{wiggling} while at bottom.}
 
+  \item{bottdep.m}{Mean bottom depth.}
+
+  \item{bottdep.sd}{Standard deviation of bottom depths.}
+
   \item{ascdist}{Numeric vector with ascent depth.}
 
   \item{desc.tdist}{Numeric vector with descent total distance,
