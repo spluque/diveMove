@@ -65,17 +65,21 @@ stampDive(x, ignoreZ=TRUE)
 
   \item{asctim}{Ascent duration of each dive.}
 
-  \item{descdist}{Numeric vector with descent depth.}
+  \item{divetim}{Dive duration.}
+
+  \item{descdist}{Numeric vector with last descent depth.}
 
   \item{bottdist}{Numeric vector with the sum of absolute depth
     differences while at the bottom of each dive; measure of amount of
     \dQuote{wiggling} while at bottom.}
 
+  \item{ascdist}{Numeric vector with first ascent depth.}
+
   \item{bottdep.m}{Mean bottom depth.}
 
   \item{bottdep.sd}{Standard deviation of bottom depths.}
 
-  \item{ascdist}{Numeric vector with ascent depth.}
+  \item{maxdep}{Numeric vector with maximum depth.}
 
   \item{desc.tdist}{Numeric vector with descent total distance,
     estimated from speed.}
@@ -97,10 +101,6 @@ stampDive(x, ignoreZ=TRUE)
 
   \item{asc.angle}{Numeric vector with ascent angle, from the bottom
     plane.}
-
-  \item{divetim}{Dive duration.}
-
-  \item{maxdep}{Numeric vector with maximum depth.}
 
   \item{postdive.dur}{Postdive duration.}
 

@@ -41,11 +41,12 @@
         cbind(begdesc=begdesc, enddesc=enddesc, begasc=begasc,
               desctim=desctim,
               botttim=ifelse(exists("botttim"), botttim, NA),
-              asctim=asctim, descdist=descdist,
+              asctim=asctim, divetim=divetim, descdist=descdist,
               bottdist=ifelse(exists("bottdist"), bottdist, NA),
+              ascdist=ascdist,
               bottdep.m=ifelse(exists("botttim"), bottdep.m, NA),
               bottdep.sd=ifelse(exists("botttim"), bottdep.sd, NA),
-              ascdist=ascdist, divetim=divetim, maxdep=maxdep)
+              maxdep=maxdep)
     } else {
         descv <- diveMove:::.speedStats(desc[, -2], vdist=descdist)
         bottv <- diveMove:::.speedStats(bott[, -2])
@@ -53,16 +54,16 @@
         cbind(begdesc=begdesc, enddesc=enddesc, begasc=begasc,
               desctim=desctim,
               botttim=ifelse(exists("botttim"), botttim, NA),
-              asctim=asctim, descdist=descdist,
+              asctim=asctim,  divetim=divetim, descdist=descdist,
               bottdist=ifelse(exists("bottdist"), bottdist, NA),
+              ascdist=ascdist,
               bottdep.m=ifelse(exists("botttim"), bottdep.m, NA),
               bottdep.sd=ifelse(exists("botttim"), bottdep.sd, NA),
-              ascdist=ascdist, desc.tdist=descv[, 1],
+              maxdep=maxdep, desc.tdist=descv[, 1],
               desc.mean.speed=descv[, 2], desc.angle=descv[, 3],
               bott.tdist=bottv[, 1], bott.mean.speed=bottv[, 2],
               asc.tdist=ascv[, 1], asc.mean.speed=ascv[, 2],
-              asc.angle=ascv[, 3], divetim=divetim,
-              maxdep=maxdep)
+              asc.angle=ascv[, 3])
     }
 }
 

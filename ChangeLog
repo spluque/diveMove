@@ -1,5 +1,8 @@
 2010-09-07  Sebastian P. Luque <spluque@gmail.com>
 
+	* R/oneDiveStats.R, man/diveStats.Rd:
+	  Reorganized output columns.
+
 	* man/diveStats.Rd:
 	  Updated documentation.
 
