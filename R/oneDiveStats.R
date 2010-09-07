@@ -23,6 +23,8 @@
     if (nrow(bott) > 0) {
         botttim <- difftime(bott[nrow(bott), 1], bott[1, 1], units="secs")
         bottdist <- sum(abs(diff(bott[!is.na(bott[, 2]), 2])))
+        bottdep.m <- mean(bott[, 2], na.rm=TRUE)
+        bottdep.sd <- sd(bott[, 2], na.rm=TRUE)
     }
     ## ASCENT
     begasc <- asc[1, 1]
@@ -41,6 +43,8 @@
               botttim=ifelse(exists("botttim"), botttim, NA),
               asctim=asctim, descdist=descdist,
               bottdist=ifelse(exists("bottdist"), bottdist, NA),
+              bottdep.m=ifelse(exists("botttim"), bottdep.m, NA),
+              bottdep.sd=ifelse(exists("botttim"), bottdep.sd, NA),
               ascdist=ascdist, divetim=divetim, maxdep=maxdep)
     } else {
         descv <- diveMove:::.speedStats(desc[, -2], vdist=descdist)
@@ -48,9 +52,11 @@
         ascv <- diveMove:::.speedStats(asc[, -2], vdist=ascdist)
         cbind(begdesc=begdesc, enddesc=enddesc, begasc=begasc,
               desctim=desctim,
-              botttim=if (exists("botttim")) botttim else NA,
+              botttim=ifelse(exists("botttim"), botttim, NA),
               asctim=asctim, descdist=descdist,
-              bottdist=if (exists("bottdist")) bottdist else NA,
+              bottdist=ifelse(exists("bottdist"), bottdist, NA),
+              bottdep.m=ifelse(exists("botttim"), bottdep.m, NA),
+              bottdep.sd=ifelse(exists("botttim"), bottdep.sd, NA),
               ascdist=ascdist, desc.tdist=descv[, 1],
               desc.mean.speed=descv[, 2], desc.angle=descv[, 3],
               bott.tdist=bottv[, 1], bott.mean.speed=bottv[, 2],
