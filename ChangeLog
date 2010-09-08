@@ -1,5 +1,11 @@
 2010-09-08  Sebastian P. Luque <spluque@gmail.com>
 
+	* R/detDive.R, man/calibrateDepth.Rd:
+	  Improved definition of descent. The index defining the end of
+	  descent is the one corresponding to the _first_ minimum rate of
+	  descent after the removal of indices corresponding to descent
+	  wiggles when there were rates below the critical quantile.
+
 	* R/AllMethod.R:
 	  Corrected 'show' method for 'TDR' class.
 

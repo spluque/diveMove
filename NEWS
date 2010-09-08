@@ -8,6 +8,11 @@ See ChangeLog for more details.
    o New slot 'call' for 'TDRcalibrate' class recording the matching call
      to the corresponding generator calibrateDepth().
 
+   o Improved definition of descent. The index defining the end of descent
+     is the one corresponding to the _first_ minimum rate of descent after
+     the removal of indices corresponding to descent wiggles when there
+     were rates below the critical quantile.
+
    o Removed /data objects 'divesTDRcalibrate' and 'divesSummary' because
      it is better to generate and inspect them in examples in help files.
 
