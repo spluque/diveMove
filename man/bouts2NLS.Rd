@@ -95,9 +95,11 @@ plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
 
 \examples{
 
-data(divesSummary)
+## Using the Example from '?diveStats':
+utils::example("diveStats", package="diveMove",
+               ask=FALSE, echo=FALSE)
 ## Postdive durations
-postdives <- divesSummary$postdive.dur[divesSummary$trip.no == 2]
+postdives <- tdrX.tab$postdive.dur[tdrX.tab$trip.no == 2]
 postdives.diff <- abs(diff(postdives))
 ## Remove isolated dives
 postdives.diff <- postdives.diff[postdives.diff < 2000]

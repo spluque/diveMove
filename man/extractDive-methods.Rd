@@ -42,15 +42,15 @@
 
 \examples{
 
-data(divesTDR)
-divesTDR
-data(divesTDRcalibrate)
-divesTDRcalibrate
+## Continuing the Example from '?calibrateDepth':
+utils::example("calibrateDepth", package="diveMove",
+               ask=FALSE, echo=FALSE)
+dcalib		# the 'TDRcalibrate' that was created
 
-diveX <- extractDive(divesTDR, 9, getDAct(divesTDRcalibrate, "dive.id"))
+diveX <- extractDive(divesTDR, 9, getDAct(dcalib, "dive.id"))
 plotTDR(diveX, interact=FALSE)
 
-diveX <- extractDive(divesTDRcalibrate, 5:10)
+diveX <- extractDive(dcalib, 5:10)
 plotTDR(diveX, interact=FALSE)
 
 }

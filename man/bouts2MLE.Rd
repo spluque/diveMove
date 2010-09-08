@@ -157,8 +157,10 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
 \examples{
 
-data(divesSummary)
-postdives <- divesSummary$postdive.dur[divesSummary$trip.no == 2]
+## Using the Example from '?diveStats':
+utils::example("diveStats", package="diveMove",
+               ask=FALSE, echo=FALSE)
+postdives <- tdrX.tab$postdive.dur[tdrX.tab$trip.no == 2]
 postdives.diff <- abs(diff(postdives))
 
 ## Remove isolated dives

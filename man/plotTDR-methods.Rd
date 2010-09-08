@@ -83,17 +83,19 @@
 
 \examples{
 
-data(divesTDR)
-divesTDR
-
+## Continuing the Example from '?calibrateDepth':
+utils::example("calibrateDepth", package="diveMove",
+               ask=FALSE, echo=FALSE)
+## Plot the 'TDR' object
 plotTDR(divesTDR, interact=FALSE)
 
-data(divesTDRcalibrate)
-divesTDRcalibrate
-
-plotTDR(divesTDRcalibrate, interact=FALSE)
-plotTDR(divesTDRcalibrate, diveNo=19:25, interact=FALSE)
-plotTDR(divesTDRcalibrate, labels="dive.phase", interact=FALSE)
+## Plot different aspects of the 'TDRcalibrate' object
+plotTDR(dcalib, interact=FALSE)
+plotTDR(dcalib, diveNo=19:25, interact=FALSE)
+plotTDR(dcalib, labels="dive.phase", interact=FALSE)
+if (dev.interactive(orNone=TRUE)) { # add surface observations and interact
+    plotTDR(dcalib, labels="dive.phase", surface=TRUE)
+}
 
 }
 

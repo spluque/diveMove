@@ -4,8 +4,6 @@
 
 \alias{dives}
 \alias{divesTDR}
-\alias{divesTDRcalibrate}
-\alias{divesSummary}
 
 % -------------------------------------------------------------------------
 
@@ -15,9 +13,8 @@
 
 \description{This data set is meant to show a typical organization of a
   \acronym{TDR} *.csv file, suitable as input for \code{\link{readTDR}},
-  or to construct a \code{\link{TDR}} object.  \code{divesTDR} and
-  \code{divesTDRcalibrate} are example \code{\link{TDR}} and
-  \code{\link{TDRcalibrate}} objects.}
+  or to construct a \code{\link{TDR}} object.  \code{divesTDR} is an
+  example \code{\link{TDR}} object.}
 
 
 \format{
@@ -53,17 +50,6 @@
 
   \code{divesTDR} is a \code{\link{TDR}} object representation of the
   data in \code{dives}.
-
-  \code{divesTDRcalibrate} is a \code{\link{TDRcalibrate}} object
-  representing the data in dives, calibrated as (see
-  \code{\link{calibrateDepth}}):
-
-  \preformatted{calibrateDepth(divesTDR, dive.thr=3, zoc.method="filter",
-               k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE)}
-  
-  \code{divesSummary} is a data frame containing a summary of all dives
-  in this dataset (see \code{\link{diveStats}} and
-  \code{\link{stampDive}} for the information contained in this object.
 
 }
 

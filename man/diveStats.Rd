@@ -122,11 +122,13 @@ stampDive(x, ignoreZ=TRUE)
 
 \examples{
 
-data(divesTDRcalibrate)
-divesTDRcalibrate
+## Continuing the Example from '?calibrateDepth':
+utils::example("calibrateDepth", package="diveMove",
+               ask=FALSE, echo=FALSE)
+dcalib		# the 'TDRcalibrate' that was created
 
-tdrX <- diveStats(divesTDRcalibrate)
-stamps <- stampDive(divesTDRcalibrate, ignoreZ=TRUE)
+tdrX <- diveStats(dcalib)
+stamps <- stampDive(dcalib, ignoreZ=TRUE)
 tdrX.tab <- data.frame(stamps, tdrX)
 summary(tdrX.tab)
 

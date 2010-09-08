@@ -128,8 +128,10 @@ unLogit(logit)
 
 \examples{
 
-data(divesSummary)
-postdives <- divesSummary$postdive.dur[divesSummary$trip.no == 2]
+## Using the Example from '?diveStats':
+utils::example("diveStats", package="diveMove",
+               ask=FALSE, echo=FALSE)
+postdives <- tdrX.tab$postdive.dur[tdrX.tab$trip.no == 2]
 ## Remove isolated dives
 postdives <- postdives[postdives < 2000]
 lnfreq <- boutfreqs(postdives, bw=0.1, method="seq.diff", plot=FALSE)

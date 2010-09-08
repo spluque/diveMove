@@ -26,6 +26,10 @@
 \section{Slots}{
   \describe{
 
+    \item{\code{call}:}{Object of class \code{\link{call}}.
+
+      The matched call to the function that created the object.}
+
     \item{\code{tdr}:}{Object of class \code{\link{TDR}}.
 
       This slot contains the time, zero-offset corrected depth, and

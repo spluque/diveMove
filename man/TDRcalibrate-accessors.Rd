@@ -125,19 +125,20 @@
 
 \examples{
 
-data(divesTDRcalibrate)
-
-divesTDRcalibrate		# show
+## Continuing the Example from '?calibrateDepth':
+utils::example("calibrateDepth", package="diveMove",
+               ask=FALSE, echo=FALSE)
+dcalib		# the 'TDRcalibrate' that was created
 
 ## Beginning times of each successive phase in record
-getGAct(divesTDRcalibrate, "begin")
+getGAct(dcalib, "begin")
 
 ## Factor of dive IDs
-dids <- getDAct(divesTDRcalibrate, "dive.id")
+dids <- getDAct(dcalib, "dive.id")
 table(dids[dids > 0])		# samples per dive
 
 ## Factor of dive phases for given dive
-getDPhaseLab(divesTDRcalibrate, 19)
+getDPhaseLab(dcalib, 19)
 
 }
 
