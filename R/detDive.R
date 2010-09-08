@@ -107,7 +107,7 @@
             if (length(low.rates) > 0 & any(desc.wiggle)) {
                 low.below <- setdiff(low.rates, which(desc.wiggle))
                 crit.id <- ifelse(length(low.below) < 1, length(rate),
-                                  low.below[length(low.below)])
+                                  low.below[which.min(rate[low.below])])
             } else if (length(low.rates) < 1) {
                 crit.id <- length(rate)
             } else crit.id <- low.rates[1]

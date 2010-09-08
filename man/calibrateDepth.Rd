@@ -170,7 +170,7 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 
 \section{Detection of dive phases}{
 
-  A bottom depth is defined as the maximum depth multiplied by factor
+  Bottom depth is defined as the maximum depth multiplied by factor
   (\code{wiggle.tol}, [0, 1])
 
   \describe{
@@ -191,10 +191,12 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
       The following tests are performed (in order):
 
       If there were any rates below the critical value, as well as any
-      descent wiggles, the indices where the wiggles occurred are removed.
-      If this resulted in removal of all indices, then the index defining
-      the end of descent is the number of rates of descent, otherwise it
-      is the last after the removal.
+      descent wiggles, the indices where the wiggles occurred are
+      removed.  If this resulted in removal of all indices, then the
+      index defining the end of descent is the number of rates of
+      descent, otherwise it is the one corresponding to the \emph{first}
+      minimum rate of descent below the critical value after the
+      removal.
 
       If there were not any rates below the critical value, the index
       defining the end of descent is the number of rates of descent,
