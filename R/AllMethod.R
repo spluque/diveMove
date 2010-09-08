@@ -50,7 +50,7 @@ setMethod("plotTDR", signature(x="TDRspeed"),
 ###_  . TDRcalibrate
 setMethod("show", signature=signature(object="TDRcalibrate"),
           definition=function(object) {
-              mCall <- deparse(object@call)
+              mCall <- gsub(" = ", "=", gsub("^ +", "", deparse(object@call)))
               dry <- object@gross.activity$activity == "L"
               dd <- length(unique(object@gross.activity$ phase.id[dry]))
               wet <- object@gross.activity$activity == "W"
