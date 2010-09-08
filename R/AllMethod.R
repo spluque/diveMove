@@ -8,21 +8,24 @@ setMethod("show", signature=signature(object="TDR"),
               trange <- range(object@time)
               cat("Time-Depth Recorder data -- Class",
                   class(object), "object\n")
-              cat("  Source File          :", object@file, "\n")
-              cat("  Sampling Interval (s):", object@dtime, "\n")
-              cat("  Number of Samples    :", length(object@time), "\n")
-              cat("  Sampling Begins      :",
-                  paste(object@time[1]), "\n")
-              cat("  Sampling Ends        :",
-                  paste(object@time[length(object@time)]), "\n")
-              cat("  Total Duration (d)   :",
-                  difftime(trange[2], trange[1], units="days"), "\n")
+              cat("  Source File          : ", object@file, "\n",
+                  sep="")
+              cat("  Sampling Interval (s): ", object@dtime, "\n",
+                  sep="")
+              cat("  Number of Samples    : ", length(object@time), "\n",
+                  sep="")
+              cat("  Sampling Begins      : ",
+                  paste(object@time[1]), "\n", sep="")
+              cat("  Sampling Ends        : ",
+                  paste(object@time[length(object@time)]), "\n", sep="")
+              cat("  Total Duration (d)   : ",
+                  difftime(trange[2], trange[1], units="days"), "\n", sep="")
               drange <- range(object@depth, na.rm=TRUE)
               cat("  Measured depth range : [",
-                  drange[1], ",", drange[2], "]\n")
+                  drange[1], ",", drange[2], "]\n", sep="")
               if (length(names(object@concurrentData)) > 0) {
-                  cat("  Other variables      :",
-                      names(object@concurrentData), "\n")
+                  cat("  Other variables      : ",
+                      names(object@concurrentData), "\n", sep="")
               }
           })
 
@@ -47,26 +50,35 @@ setMethod("plotTDR", signature(x="TDRspeed"),
 ###_  . TDRcalibrate
 setMethod("show", signature=signature(object="TDRcalibrate"),
           definition=function(object) {
+              mCall <- deparse(object@call)
               dry <- object@gross.activity$activity == "L"
               dd <- length(unique(object@gross.activity$ phase.id[dry]))
               wet <- object@gross.activity$activity == "W"
               wetz <- object@gross.activity$activity == "Z"
               ww <- length(unique(object@gross.activity$ phase.id[wet | wetz]))
-              cat("Depth calibration -- Class", class(object), "object\n")
-              cat("  Source file                   :", object@tdr@file, "\n")
-              cat("  Containing TDR of class       :", class(object@tdr), "\n")
-              cat("  Number of dry phases          :", dd, "\n")
-              cat("  Number of aquatic phases      :", ww, "\n")
-              cat("  Number of dives detected      :",
-                  max(object@dive.activity$dive.id, na.rm=TRUE), "\n")
-              cat("  Dry threshold used (s)        :", object@dry.thr, "\n")
-              cat("  Aquatic theshold used (s)     :", object@wet.thr, "\n")
-              cat("  Dive threshold used (s)       :", object@dive.thr)
+              cat("Depth calibration -- Class", class(object), "object\n",
+                  sep="")
+              cat("  Call                          : ", mCall, "\n", sep="")
+              cat("  Source file                   : ", object@tdr@file, "\n",
+                  sep="")
+              cat("  Containing TDR of class       : ", class(object@tdr),
+                  "\n", sep="")
+              cat("  Number of dry phases          : ", dd, "\n", sep="")
+              cat("  Number of aquatic phases      : ", ww, "\n", sep="")
+              cat("  Number of dives detected      : ",
+                  max(object@dive.activity$dive.id, na.rm=TRUE), "\n", sep="")
+              cat("  Dry threshold used (s)        : ", object@dry.thr, "\n",
+                  sep="")
+              cat("  Aquatic theshold used (s)     : ", object@wet.thr, "\n",
+                  sep="")
+              cat("  Dive threshold used (s)       : ", object@dive.thr,
+                  sep="")
               if (is(object@tdr, "TDRspeed")) {
                   cat("\n  Speed calibration coefficients: a =",
                       format(object@speed.calib.coefs[1], digits=2), "; b =",
-                      format(object@speed.calib.coefs[2], digits=2), "\n")
-              } else cat("\n")
+                      format(object@speed.calib.coefs[2], digits=2), "\n",
+                      sep="")
+              } else cat("\n", sep="")
           })
 
 setMethod("plotTDR", signature(x="TDRcalibrate"),

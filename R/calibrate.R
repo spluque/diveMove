@@ -22,6 +22,7 @@
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
     if (!is(x, "TDR")) stop ("x is not a TDR object")
+    mCall <- match.call()
     depth <- getDepth(x)
     time <- getTime(x)
     ## Detect trips and dives
@@ -63,6 +64,7 @@
                                           wiggle.tol=wiggle.tol)
 
     new("TDRcalibrate",
+        call=mCall,
         tdr=x,
         gross.activity=detp,
         dive.activity=detd,

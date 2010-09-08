@@ -1,3 +1,24 @@
+2010-09-08  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/AllClass.R, R/AllMethod.R, R/calibrate.R:
+	  Added new slot to 'TDRcalibrate' class to record the matching
+	  call.
+
+	* man/TDRcalibrate-accessors.Rd, man/TDRcalibrate-class.Rd,
+	  man/bout-misc.Rd, man/bouts2MLE.Rd, man/bouts2NLS.Rd,
+	  man/calibrateDepth.Rd, man/calibrateSpeed.Rd,
+	  man/detDive-internal.Rd, man/diveStats.Rd,
+	  man/extractDive-methods.Rd, man/plotTDR-methods.Rd,
+	  man/timeBudget-methods.Rd:
+	  Updated examples, using example() to continue using objects
+	  created elsewhere.
+
+	* man/dives.Rd:
+	  Removing documentation for objects no longer needed.
+
+	* data/divesSummary.RData, data/divesTDRcalibrate.RData:
+	  Removing objects no longer needed.
+
 2010-09-07  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/oneDiveStats.R, man/diveStats.Rd:
