@@ -1,5 +1,11 @@
 2010-09-08  Sebastian P. Luque <spluque@gmail.com>
 
+	* R/AllMethod.R:
+	  Corrected 'show' method for 'TDR' class.
+
+	  Corrected 'show' method for 'TDRcalibrate' class, if it contains
+	  a 'TDRspeed' object.
+
 	* R/AllClass.R, R/AllMethod.R, R/calibrate.R:
 	  Added new slot to 'TDRcalibrate' class to record the matching
 	  call.

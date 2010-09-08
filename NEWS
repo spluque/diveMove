@@ -3,6 +3,14 @@
 
 See ChangeLog for more details.
 
+** Version 1.1.1:
+
+   o New slot 'call' for 'TDRcalibrate' class recording the matching call
+     to the corresponding generator calibrateDepth().
+
+   o Removed /data objects 'divesTDRcalibrate' and 'divesSummary' because
+     it is better to generate and inspect them in examples in help files.
+
 ** Version 1.1:
 
    o New method for zero-offset correction based on sequential running

@@ -22,10 +22,10 @@ setMethod("show", signature=signature(object="TDR"),
                   difftime(trange[2], trange[1], units="days"), "\n", sep="")
               drange <- range(object@depth, na.rm=TRUE)
               cat("  Measured depth range : [",
-                  drange[1], ",", drange[2], "]\n", sep="")
+                  drange[1], ", ", drange[2], "]\n", sep="")
               if (length(names(object@concurrentData)) > 0) {
                   cat("  Other variables      : ",
-                      names(object@concurrentData), "\n", sep="")
+                      names(object@concurrentData), "\n")
               }
           })
 
