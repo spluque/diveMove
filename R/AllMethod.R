@@ -74,8 +74,8 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
               cat("  Dive threshold used (s)       : ", object@dive.thr,
                   sep="")
               if (is(object@tdr, "TDRspeed")) {
-                  cat("\n  Speed calibration coefficients: a =",
-                      format(object@speed.calib.coefs[1], digits=2), "; b =",
+                  cat("\n  Speed calibration coefficients: a=",
+                      format(object@speed.calib.coefs[1], digits=2), "; b=",
                       format(object@speed.calib.coefs[2], digits=2), "\n",
                       sep="")
               } else cat("\n", sep="")
