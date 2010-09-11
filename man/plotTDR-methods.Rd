@@ -4,10 +4,12 @@
 \alias{plotTDR-methods}
 
 \alias{plotTDR}
+\alias{plotDPhaseModel}
 
 \alias{plotTDR,TDR-method}
 \alias{plotTDR,TDRspeed-method}
 \alias{plotTDR,TDRcalibrate-method}
+\alias{plotDPhaseModel,TDRcalibrate,numeric-method}
 
 % -------------------------------------------------------------------------
 
@@ -25,6 +27,8 @@
 \S4method{plotTDR}{TDRspeed}(x, concurVars, concurVarTitles, \ldots)
 \S4method{plotTDR}{TDRcalibrate}(x, diveNo=seq(max(getDAct(x, "dive.id"))),
         labels="phase.id", concurVars, surface=FALSE, \ldots)
+
+\S4method{plotDPhaseModel}{TDRcalibrate,numeric}(x, diveNo)
 }
 
 
@@ -67,6 +71,14 @@
     \item{plotTDR}{\code{signature(x="TDRcalibrate")}: plot the TDR
       object, labelling identified sections of it (see \code{Usage}).}
 
+    \item{plotDPhaseModel}{\code{signature(x="TDRcalibrate",
+      diveNo="numeric")}: plot a particular dive.  It produces a two
+      panel figure; the top figure show the observed depth against time,
+      the cubic spline smoother, the identified descent and ascent
+      phases (which form the basis for identifying the rest of the dive
+      phases), while the bottom figure shows the first derivative of the
+      smooth trace.}
+
   }
 }
 
@@ -95,6 +107,11 @@ plotTDR(dcalib, diveNo=19:25, interact=FALSE)
 plotTDR(dcalib, labels="dive.phase", interact=FALSE)
 if (dev.interactive(orNone=TRUE)) { # add surface observations and interact
     plotTDR(dcalib, labels="dive.phase", surface=TRUE)
+
+## Plot the dive phase model for one dive
+
+plotDPhaseModel(dcalib, diveNo=200)
+
 }
 
 }

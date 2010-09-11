@@ -66,65 +66,81 @@
                postdive.id=inddive[, 2])
 }
 
-##_+ Dive Detection with quantiles of rates of descent/ascent -------------
-".cutDive" <- function(x, descent.crit.q, ascent.crit.q, wiggle.tol)
+##_+ Dive Detection with smoothing spline and derivative
+".cutDive" <- function(x, smooth.par, knot.factor)
 {
-    ## Value: Create a factor that breaks a dive into descent,
-    ## descent/bottom, bottom, bottom/ascent, ascent, and/or
-    ## descent/ascent given a proportion of maximum depth for bottom time.
-    ## Return a character matrix with orig ID and corresponding label.
+    ## Value: Factor that breaks a dive into descent, descent/bottom,
+    ## bottom, bottom/ascent, ascent, and/or descent/ascent given a
+    ## proportion of maximum depth for bottom time.  Return a character
+    ## matrix with orig ID and corresponding label.
     ## --------------------------------------------------------------------
     ## Arguments: x=a 3-col matrix with index in original TDR object and
-    ## non NA depths.  A single dive's data.
+    ## non NA depths.  A single dive's data; smooth.par=spar parameter for
+    ## smooth.spline(); knot.factor=numeric scalar that multiplies the
+    ## duration of the dive (used to construct the time predictor for the
+    ## derivative)
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
+    ## If this is a single observation, return as "DA" and NULLs
+    if (nrow(x) < 2) {
+        return(list(label.matrix=cbind(rowids=x[, 1], labs="DA"),
+                    dive.spline=NULL, spline.deriv1=NULL, descent.crit=NULL,
+                    ascent.crit=NULL))
+    }
     depths <- x[, 2]
     times <- x[, 3]
-    "det.fun" <- function(x, y, index, ascent=FALSE) {
-        bottom.depth <- y[index] * wiggle.tol
-        if (ascent) {
-            asc <- y[index:length(y)]
-            diffx <- diff(x[index:length(x)])
-            rate <- -diff(asc) / diffx
-            crit.rate <- quantile(rate[rate > 0], ascent.crit.q)
-            beyond <- which(rate > crit.rate)
-            bott.wiggle <- rate <= 0 & asc[-1] > bottom.depth
-            if (any(bott.wiggle)) {
-                crit.id <- index + max(which(bott.wiggle))
-            } else {
-                crit.id <- ifelse(length(beyond) < 1, length(x),
-                                  index + beyond[1] - 1)
-            }
-            crit.id:length(x)
-        } else {
-            desc <- y[1:index]
-            diffx <- diff(x[1:index])
-            rate <- diff(desc) / diffx
-            crit.rate <- quantile(rate[rate > 0], descent.crit.q)
-            low.rates <- which(rate < crit.rate)
-            desc.wiggle <- rate <= 0 & desc[-length(desc)] < bottom.depth
-            if (length(low.rates) > 0 & any(desc.wiggle)) {
-                low.below <- setdiff(low.rates, which(desc.wiggle))
-                crit.id <- ifelse(length(low.below) < 1, length(rate),
-                                  low.below[which.min(rate[low.below])])
-            } else if (length(low.rates) < 1) {
-                crit.id <- length(rate)
-            } else crit.id <- low.rates[1]
-            1:crit.id
-        }
+    if (nrow(x) >= 4) { # guard against smooth.spline() limitations
+        times.scaled <- as.numeric(times) - as.numeric(times[1])
+    } else {
+        times.scaledOrig <- as.numeric(times) - as.numeric(times[1])
+        times4 <- seq(times[1], times[length(times)], length.out=4)
+        times4.scaled <- as.numeric(times4) - as.numeric(times4[1])
+        depths.itpfun <- approxfun(times.scaledOrig, depths)
+        depths <- depths.itpfun(times4.scaled)
+        times.scaled <- seq(times.scaledOrig[1],
+                            times.scaledOrig[length(times.scaledOrig)],
+                            length.out=4)
+    }
+    times.pred <- seq(times.scaled[1], times.scaled[length(times.scaled)],
+                      length.out=length(times.scaled) * knot.factor)
+    depths.smooth <- stats::smooth.spline(times.scaled, depths,
+                                          spar=smooth.par, all.knots=TRUE)
+    depths.deriv <- predict(depths.smooth, times.pred, deriv=1)
+    depths.s <- depths.deriv$y
+
+    ## Descent ------------------------------------------------------------
+    Dd1pos.l <- rle(sign(depths.s))$lengths[1]
+    Dd1pos.min <- which.min(depths.s[seq(Dd1pos.l)])
+    Dd1pos.crit <- which.min(abs(times.pred[Dd1pos.min] - times.scaled))
+
+    ## Ascent -------------------------------------------------------------
+    ## Length of the sequence of negative derivative at the end of the
+    ## predicted smooth depths (from end)
+    Ad1neg.l <- rle(sign(rev(depths.s)))$lengths[1]
+    ## Position of the *first* maximum negative derivative in the sequence
+    ## at the end of the predicted smooth depths (from end)
+    Ad1neg.max <- which.max(rev(depths.s)[seq(Ad1neg.l)])
+    ## Absolute differences between the time predictor corresponding to the
+    ## position above and scaled time (it's important it's in reverse, so
+    ## that we can find the first minimum below)
+    Ad1neg.ad <- abs(rev(times.pred)[Ad1neg.max] - rev(times.scaled))
+    ## Position of the *first* minimum absolute difference above
+    Ad1neg.crit <- length(times.scaled) - which.min(Ad1neg.ad) + 1
+
+    ## Correct both descent and ascent critical indices if this is a brief
+    ## dive
+    if (nrow(x) < 4) {
+        Dd1pos.crit <- which.min(abs(times.scaled[Dd1pos.crit] -
+                                     times.scaledOrig))
+        Ad1neg.crit <- which.min(abs(times.scaled[Ad1neg.crit] -
+                                     times.scaledOrig))
     }
 
-    ## Descent detection
-    desc.maxdd.id <- which.max(depths)
-    descind <- det.fun(times, depths, desc.maxdd.id, ascent=FALSE)
+    descind <- seq(Dd1pos.crit)
+    ascind <- seq(Ad1neg.crit, nrow(x))
 
-    ## Ascent detection
-    depths.rev <- rev(depths)
-    asc.maxdd.id <- (nrow(x) - which.max(depths.rev)) + 1
-    ascind <- det.fun(times, depths, asc.maxdd.id, ascent=TRUE)
-
-    ## Bottom detection
+    ## Bottom -------------------------------------------------------------
     bottind <- c(descind[length(descind)],
                  setdiff(seq(nrow(x)), union(descind, ascind)),
                  ascind[1])
@@ -151,17 +167,21 @@
     labs[da] <- "DA"
     ## If there are repetitions, keep the last one to avoid missing ascent labels
     rowids <- unique(c(x[d, 1], x[db, 1], x[b, 1], x[ba, 1], x[a, 1], x[da, 1]))
-    cbind(rowids, labs)
+    label.mat <- cbind(rowids, labs)
+    list(label.matrix=label.mat, dive.spline=depths.smooth,
+         spline.deriv1=depths.deriv, descent.crit=Dd1pos.crit,
+         ascent.crit=Ad1neg.crit)
 }
 
-".labDivePhase" <- function(x, diveID, descent.crit.q, ascent.crit.q, wiggle.tol)
+".labDivePhase" <- function(x, diveID, ...)
 {
     ## Value: A factor labelling portions of dives
     ## --------------------------------------------------------------------
     ## Arguments: x=class TDR object, diveID=numeric vector indexing each
     ## dive (non-dives should be 0). As it is called by calibrateDepth,
     ## these indices include underwater phases, not necessarily below dive
-    ## threshold.
+    ## threshold. ...=arguments passed to .cutDive(), usually from
+    ## calibrateDepth() and include 'smooth.par' and 'knot.factor'.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
@@ -174,16 +194,18 @@
         dids <- diveID[ok]                       # dive IDs
         ## We send a matrix of indices, and non-NA depths and times
         td <- matrix(data=c(ok, ddepths, as.numeric(dtimes)), ncol=3)
-        perdivetd <- by(td, dids, diveMove:::.cutDive, descent.crit.q,
-                        ascent.crit.q, wiggle.tol)
-        labdF <- do.call(rbind, perdivetd)
+        perdivetd <- lapply(by(td, dids, diveMove:::.cutDive, ...), "[")
+        labdF <- do.call(rbind, lapply(perdivetd, function(p) {
+            p["label.matrix"][[1]]
+        }))
         ff <- factor(rep("X", length(diveID)),
                      levels=c(unique(labdF[, 2]), "X"))
         ff[as.numeric(labdF[, 1])] <- labdF[, 2]
-        ff
+        list(phase.labels=ff, phase.models=perdivetd)
     } else {
         warning("no dives were found in x")
-        factor(rep("X", length(diveID)))
+        list(phase.labels=factor(rep("X", length(diveID))),
+             phase.models=NULL)
     }
 }
 
@@ -202,3 +224,6 @@
     okr <- pmin(length(diveID), setdiff(ok + 1, ok))
     sort(c(okl, ok, okr))               # add the surface points
 }
+
+
+## TEST ZONE --------------------------------------------------------------

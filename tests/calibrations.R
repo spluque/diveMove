@@ -6,7 +6,7 @@ library(diveMove)
                   sep=";", na.strings="", as.is=TRUE))
 (dcalib <- calibrateDepth(sealX, dry.thr=3610, zoc.method="offset", offset=3))
 (dcalib <- calibrateDepth(sealX, zoc.method="offset", offset=3,
-                          ascent.crit=0.5, descent.crit=0.5, wiggle=0.75))
+                          smooth.par=0.1, knot.factor=3))
 
 ###_+ Check all calibrateDepth() procedure
 
@@ -20,8 +20,8 @@ if (!is.null(zd)) sealX@depth <- zd
 ###_ : Check dive detection
 detd <- diveMove:::.detDive(getDepth(sealX), detp[[2]], 4)
 ###_ : Check labelling of dive phases
-phaselabs <- diveMove:::.labDivePhase(sealX, detd[, 1], descent.crit.q=0.1,
-                                      ascent.crit.q=0.5, wiggle.tol=0.85)
+phaselabs <- diveMove:::.labDivePhase(sealX, detd[, 1], smooth.par=0.1,
+                                      knot.factor=3)
 
 vcalib <- calibrateSpeed(dcalib, z=0, cex.pts=0.2)
 

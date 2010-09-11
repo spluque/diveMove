@@ -17,9 +17,9 @@
 
 
 \usage{
-.cutDive(x, descent.crit.q, ascent.crit.q, wiggle.tol)
+.cutDive(x, smooth.par, knot.factor)
 .labDive(act, string)
-.labDivePhase(x, diveID, descent.crit.q, ascent.crit.q, wiggle.tol)
+.labDivePhase(x, diveID, \ldots)
 }
 
 
@@ -30,8 +30,7 @@
     object, non NA depths, and numeric vector representing
     \code{\link{POSIXct}} times.}
 
-  \item{descent.crit.q, ascent.crit.q, wiggle.tol}{Passed from
-    \code{calibrateDepth}.}
+  \item{smooth.par, knot.factor}{Passed from \code{calibrateDepth}.}
 
   \item{act}{Factor with values to label.}
 
@@ -40,6 +39,9 @@
 
   \item{diveID}{Numeric vector indexing each dive (non-dives should be
     0)}
+  
+  \item{\ldots}{Arguments passed to \code{.cutDive} (\code{smooth.par}
+    and \code{knot.factor}).}
 
 }
 
@@ -62,7 +64,7 @@
 
   .cutDive generates a character vector that breaks a dive into descent,
   descent/bottom, bottom, bottom/ascent, ascent, and/or descent/ascent
-  given a proportion of maximum depth for bottom time.  It return a
+  given a proportion of maximum depth for bottom time.  It returns a
   character matrix with orig ID and corresponding label.
 
 }

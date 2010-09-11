@@ -1,3 +1,18 @@
+2010-09-11  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/AllClass.R, R/AllGenerics.R, R/AllMethod.R, R/calibrate.R,
+	  R/detDive.R, inst/doc/diveMove.Rnw,
+	  man/TDRcalibrate-accessors.Rd, man/TDRcalibrate-class.Rd,
+	  man/calibrateDepth.Rd, man/labDive-internal.Rd,
+	  man/plotTDR-methods.Rd, tests/calibrations.R:
+	  Complete redesign of dive phase identification, based on cubic
+	  spline smoothing and derivatives.
+
+	  New slot to 'TDRcalibrate' objects to store the new phase
+	  identification process.
+
+	  New accessor and plotting methods to use the new functionality.
+
 2010-09-08  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/detDive.R, man/calibrateDepth.Rd:

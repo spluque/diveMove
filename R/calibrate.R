@@ -2,8 +2,8 @@
 
 "calibrateDepth" <-  function(x, dry.thr=70, wet.thr=3610, dive.thr=4,
                               zoc.method=c("visual", "offset", "filter"),
-                              ..., interp.wet=FALSE, descent.crit.q=0.1,
-                              ascent.crit.q=0.1, wiggle.tol=0.80)
+                              ..., interp.wet=FALSE, smooth.par=0.1,
+                              knot.factor=3)
 {
     ## Value: A TDRcalibrate object.  Detect water/land phases in TDR
     ## object, zoc data, detect dives and their phases, and label them.
@@ -17,7 +17,8 @@
     ## offset (offset); interp.wet=logical (proposal) to control whether we
     ## interpolate NA depths in wet periods (*after ZOC*).  Be careful with
     ## latter, which uses an interpolating spline to impute the missing
-    ## data.
+    ## data.  'smooth.par' and 'knot.factor' are arguments passed to
+    ## .cutDive() via .labDivePhase().
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
@@ -59,16 +60,18 @@
 
     ## Identify dive phases
     phaselabs <- diveMove:::.labDivePhase(x, detd[, 1],
-                                          descent.crit.q=descent.crit.q,
-                                          ascent.crit.q=ascent.crit.q,
-                                          wiggle.tol=wiggle.tol)
+                                          smooth.par=smooth.par,
+                                          knot.factor=knot.factor)
+    phaselabsF <- phaselabs$phase.labels
+    phaseModels <- phaselabs$phase.models
 
     new("TDRcalibrate",
         call=mCall,
         tdr=x,
         gross.activity=detp,
         dive.activity=detd,
-        dive.phases=phaselabs,
+        dive.phases=phaselabsF,
+        phase.models=phaseModels,
         dry.thr=dry.thr,
         wet.thr=wet.thr,
         dive.thr=dive.thr)

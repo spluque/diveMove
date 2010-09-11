@@ -16,8 +16,7 @@
 \usage{
 calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
                zoc.method=c("visual", "offset", "filter"), \ldots,
-               interp.wet=FALSE, descent.crit.q=0.1,
-               ascent.crit.q=0.1, wiggle.tol=0.8)
+               interp.wet=FALSE, smooth.par=0.1, knot.factor=3)
 }
 
 
@@ -51,16 +50,11 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   restricted to shallow depths near the beginning and end of dives.
   This pattern is common in some satellite-linked \acronym{TDR}s.}
 
-  \item{descent.crit.q}{Critical quantile of rates of descent below
-    which descent is deemed to have ended.}
+  \item{smooth.par}{Numeric scalar representing amount of smoothing
+    (argument \code{spar} in \code{\link[stats]{smooth.spline}}.}
 
-  \item{ascent.crit.q}{Critical quantile of rates of ascent above which
-    ascent is deemed to have started.}
-
-  \item{wiggle.tol}{Proportion of maximum depth above which wiggles
-    should not be allowed to define the end of descent.  It's also the
-    proportion of maximum depth below which wiggles should be considered
-    part of bottom phase.}
+  \item{knot.factor}{Numeric scalar that multiplies the duration of the
+    dive (used to construct the time predictor for the derivative).}
 
 }
 
@@ -169,9 +163,6 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 
 
 \section{Detection of dive phases}{
-
-  Bottom depth is defined as the maximum depth multiplied by factor
-  (\code{wiggle.tol}, [0, 1])
 
   \describe{
 

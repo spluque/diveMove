@@ -6,6 +6,7 @@
 
 \alias{getDAct}
 \alias{getDPhaseLab}
+\alias{getDPhaseModel}
 \alias{getGAct}
 \alias{getTDR}
 \alias{getSpeedCoef}
@@ -14,6 +15,8 @@
 \alias{getDAct,TDRcalibrate,character-method}
 \alias{getDPhaseLab,TDRcalibrate,missing-method}
 \alias{getDPhaseLab,TDRcalibrate,numeric-method}
+\alias{getDPhaseModel,TDRcalibrate,missing-method}
+\alias{getDPhaseModel,TDRcalibrate,numeric-method}
 \alias{getGAct,TDRcalibrate,missing-method}
 \alias{getGAct,TDRcalibrate,character-method}
 \alias{show,TDRcalibrate-method}
@@ -34,6 +37,8 @@
 \S4method{getDAct}{TDRcalibrate,character}(x, y)
 \S4method{getDPhaseLab}{TDRcalibrate,missing}(x)
 \S4method{getDPhaseLab}{TDRcalibrate,numeric}(x, diveNo)
+\S4method{getDPhaseModel}{TDRcalibrate,missing}(x)
+\S4method{getDPhaseModel}{TDRcalibrate,numeric}(x, diveNo)
 \S4method{getGAct}{TDRcalibrate,missing}(x)
 \S4method{getGAct}{TDRcalibrate,character}(x, y)
 }
@@ -80,19 +85,28 @@
       and postdive number, and a factor identifying all readings to a
       particular activity.}
 
-    \item{getDAct}{\code{signature(x="TDRcalibrate", y = "character")}:
-	as the method for missing \code{y}, but selects a particular
-	vector to extract.  See \code{\link{TDRcalibrate}} for possible
+    \item{getDAct}{\code{signature(x="TDRcalibrate", y="character")}: as
+	the method for missing \code{y}, but selects a particular vector
+	to extract.  See \code{\link{TDRcalibrate}} for possible
 	strings.}
 
-    \item{getDPhaseLab}{\code{signature(x="TDRcalibrate", diveNo =
-	"missing")}: extracts a factor identifying all readings to a
-	particular dive phase.  This accesses the dive.phases slot of
-	\code{\link{TDRcalibrate}} objects, which is a factor.}
+    \item{getDPhaseLab}{\code{signature(x="TDRcalibrate",
+	diveNo="missing")}: extracts a factor identifying all readings
+	to a particular dive phase.  This accesses the dive.phases slot
+	of \code{\link{TDRcalibrate}} objects, which is a factor.}
 
-    \item{getDPhaseLab}{\code{signature(x="TDRcalibrate", diveNo =
-	"numeric")}: as the method for missing \code{y}, but selects
-	data from a particular dive number to extract.}
+    \item{getDPhaseLab}{\code{signature(x="TDRcalibrate",
+	diveNo="numeric")}: as the method for missing \code{y}, but
+	selects data from a particular dive number to extract.}
+
+    \item{getDPhaseModel}{\code{signature(x="TDRcalibrate",
+	diveNo="missing")}: extracts a list with all dive phase models.
+	This accesses the phase.models slot of
+	\code{\link{TDRcalibrate}} objects.}
+
+    \item{getDPhaseModel}{\code{signature(x="TDRcalibrate",
+	diveNo="numeric")}: as the method for missing \code{diveNo}, but
+	selects data from a particular dive number to extract.}
 
     \item{getGAct}{\code{signature(x="TDRcalibrate", y="missing")}: this
       accesses the \code{gross.activity} slot of

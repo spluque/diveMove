@@ -107,6 +107,37 @@ setMethod("plotTDR", signature(x="TDRcalibrate"),
               } else plotTDR(newtdr, phase.factor=labs, ...)
           })
 
+setMethod("plotDPhaseModel", signature(x="TDRcalibrate", diveNo="numeric"),
+          function(x, diveNo) {
+              phaseM <- getDPhaseModel(x, diveNo)[[1]]
+              times <- phaseM$dive.spline$data$x
+              depths <- -phaseM$dive.spline$data$y
+              depths.s <- -phaseM$dive.spline$y
+              times.deriv1 <- phaseM$spline.deriv1$x
+              depths.deriv1 <- phaseM$spline.deriv1$y
+              d.crit <- phaseM$descent.crit
+              a.crit <- phaseM$ascent.crit
+              layout(matrix(1:2, ncol=1)); par(mar=c(3, 4, 0, 1) + 0.1, las=1)
+              plot(times, depths, type="o", axes=FALSE, pch=19, cex=0.5,
+                   frame.plot=TRUE, ylab="Depth")
+              axis(side=1)
+              axis(side=2, at=pretty(depths), labels=rev(pretty(-depths)),
+                   las=1)
+              lines(times, depths.s, lty=2, col="green")
+              lines(times[seq(d.crit)], depths[seq(d.crit)], col="blue", lwd=2)
+              lines(times[a.crit:length(times)], depths[a.crit:length(times)],
+                    col="lightblue", lwd=2)
+              legend("top", ncol=2,
+                     legend=c("original", "smoothed", "descent", "ascent"),
+                     lty=c(1, 2, 1, 1),
+                     col=c("black", "green", "blue", "lightblue"), cex=0.7)
+              plot(times.deriv1, depths.deriv1, xlab="Time index",
+                   ylab="First derivative", col="red", type="b", cex=0.3)
+              abline(h=0, v=c(times[d.crit], times[a.crit]), lty=2)
+              text(c(times[d.crit], times[a.crit]), 0,
+                   labels=c("descent", "ascent"), pos=1, cex=0.7)
+          })
+
 
 ###_ + Accessors
 
@@ -202,6 +233,13 @@ setMethod("getDPhaseLab", signature(x="TDRcalibrate", diveNo="numeric"),
               okpts <- diveMove:::.diveIndices(getDAct(x, "dive.id"), diveNo)
               phases[okpts]
           })
+
+## access the entire factor
+setMethod("getDPhaseModel", signature(x="TDRcalibrate", diveNo="missing"),
+          function(x) x@phase.models)
+## access only those from certain dives
+setMethod("getDPhaseModel", signature(x="TDRcalibrate", diveNo="numeric"),
+          function(x, diveNo) x@phase.models[diveNo])
 
 setMethod("getSpeedCoef", signature(x="TDRcalibrate"),
           function(x) x@speed.calib.coefs)

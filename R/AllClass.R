@@ -42,8 +42,8 @@ setClass("TDRspeed", contains="TDR",
 setClass("TDRcalibrate",
          representation=representation(call="call", tdr="TDR",
            gross.activity="list", dive.activity="data.frame",
-           dive.phases="factor", dry.thr="numeric", wet.thr="numeric",
-           dive.thr="numeric", speed.calib.coefs="numeric"),
+           dive.phases="factor", phase.models="list", dry.thr="numeric",
+           wet.thr="numeric", dive.thr="numeric", speed.calib.coefs="numeric"),
          prototype=prototype(speed.calib.coefs=c(0, 1)),
          validity=function(object) {
              if (length(slot(object, "dry.thr")) > 1) {
