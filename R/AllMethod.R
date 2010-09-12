@@ -110,6 +110,7 @@ setMethod("plotTDR", signature(x="TDRcalibrate"),
 setMethod("plotDPhaseModel", signature(x="TDRcalibrate", diveNo="numeric"),
           function(x, diveNo) {
               phaseM <- getDPhaseModel(x, diveNo)[[1]]
+              stopifnot(!is.null(phaseM$dive.spline))
               times <- phaseM$dive.spline$data$x
               depths <- -phaseM$dive.spline$data$y
               depths.s <- -phaseM$dive.spline$y
