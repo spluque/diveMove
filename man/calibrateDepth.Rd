@@ -56,6 +56,12 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   \item{knot.factor}{Numeric scalar that multiplies the duration of the
     dive (used to construct the time predictor for the derivative).}
 
+  \item{descent.crit.q}{Critical quantile of rates of descent below
+    which descent is deemed to have ended.}
+
+  \item{ascent.crit.q}{Critical quantile of rates of ascent above which
+    ascent is deemed to have started.}
+
 }
 
 

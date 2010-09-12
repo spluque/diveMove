@@ -17,7 +17,7 @@
 
 
 \usage{
-.cutDive(x, smooth.par, knot.factor)
+.cutDive(x, smooth.par, knot.factor, descent.crit.q, ascent.crit.q)
 .labDive(act, string)
 .labDivePhase(x, diveID, \ldots)
 }
@@ -30,7 +30,8 @@
     object, non NA depths, and numeric vector representing
     \code{\link{POSIXct}} times.}
 
-  \item{smooth.par, knot.factor}{Passed from \code{calibrateDepth}.}
+  \item{smooth.par, knot.factor, descent.crit.q, ascent.crit.q}{Passed
+  from \code{calibrateDepth}.}
 
   \item{act}{Factor with values to label.}
 
@@ -62,10 +63,10 @@
   bottom/ascent, ascent, and non-dive, respectively.  If \code{x}
   contains no dives, only level \dQuote{X} is present for all readings.
 
-  .cutDive generates a character vector that breaks a dive into descent,
-  descent/bottom, bottom, bottom/ascent, ascent, and/or descent/ascent
-  given a proportion of maximum depth for bottom time.  It returns a
-  character matrix with orig ID and corresponding label.
+  \code{.cutDive} generates a character vector that breaks a dive into
+  descent, descent/bottom, bottom, bottom/ascent, ascent, and/or
+  descent/ascent using cubic spline smoothing and its first derivative.
+  It returns a list with details of the process.
 
 }
 
