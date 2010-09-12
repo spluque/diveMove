@@ -16,7 +16,8 @@
 \usage{
 calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
                zoc.method=c("visual", "offset", "filter"), \ldots,
-               interp.wet=FALSE, smooth.par=0.1, knot.factor=3)
+               interp.wet=FALSE, smooth.par=0.1, knot.factor=3,
+               descent.crit.q=0, ascent.crit.q=0.1)
 }
 
 
@@ -254,7 +255,7 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 data(divesTDR)
 divesTDR
 
-## Consider a 3 m offset, and a dive threshold of 3 m
+## Consider a 3 m offset, and a dive threshold of 3 m, defaults for the rest
 (dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="offset",
                           offset=3))
 ## Or ZOC algorithmically with method="filter":

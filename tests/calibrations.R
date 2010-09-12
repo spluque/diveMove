@@ -21,7 +21,8 @@ if (!is.null(zd)) sealX@depth <- zd
 detd <- diveMove:::.detDive(getDepth(sealX), detp[[2]], 4)
 ###_ : Check labelling of dive phases
 phaselabs <- diveMove:::.labDivePhase(sealX, detd[, 1], smooth.par=0.1,
-                                      knot.factor=3)
+                                      knot.factor=3, descent.crit.q=0,
+                                      ascent.crit.q=0.1)
 
 vcalib <- calibrateSpeed(dcalib, z=0, cex.pts=0.2)
 

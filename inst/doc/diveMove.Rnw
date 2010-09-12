@@ -402,7 +402,7 @@ A more refined call to \Rfunction{calibrateDepth()} for object
 <<zoc>>=
 dcalib <- calibrateDepth(tdrX, zoc.method="offset", offset=3, wet.thr=70,
                          dry.thr=3610, dive.thr=4, smooth.par=0.1,
-                         knot.factor=3)
+                         knot.factor=3, descent.crit.q=0, ascent.crit.q=0.3)
 @
 
 The result (value) of this function is an object of class

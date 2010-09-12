@@ -1,3 +1,23 @@
+2010-09-12  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/calibrate.R, inst/doc/diveMove.Rnw, man/calibrateDepth.Rd,
+	  tests/calibrations.R:
+	  Updates to follow changes in .cutDive().
+
+	* man/calibrateDepth.Rd, man/labDive-internal.Rd:
+	  Updated documentation.
+
+	* R/AllMethod.R:
+	  Guard against non-existent phase model, due to brief dives that
+	  didn't need it.
+
+	* R/detDive.R:
+	  Reincorporated quantiles for dive phase detection, but they have
+	  a slightly different interpretation now. The quantiles refer to
+	  the first derivative, which include all the knots used in the
+	  spline. This allows us to infer the rates of descent at any
+	  number of points, based on 'knot.factor'.
+
 2010-09-11  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/AllClass.R, R/AllGenerics.R, R/AllMethod.R, R/calibrate.R,
