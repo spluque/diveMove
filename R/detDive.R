@@ -88,7 +88,8 @@
     if (nrow(x) < 2) {
         return(list(label.matrix=cbind(rowids=x[, 1], labs="DA"),
                     dive.spline=NULL, spline.deriv1=NULL, descent.crit=NULL,
-                    ascent.crit=NULL))
+                    ascent.crit=NULL, descent.crit.rate=NULL,
+                    ascent.crit.rate=NULL))
     }
     ## We're passed sub-dive threshold observations, so we add 0 at ends to
     ## get proper derivatives
@@ -108,6 +109,16 @@
                             times.scaledOrig[length(times.scaledOrig)],
                             length.out=4)
     }
+    ## Interpolate wiggles at ends; assume they are ZOC errors
+    if ((length(times) > 4) && (depths[3] <= depths[2])) {
+        depths[2] <- approx(1:2, c(depths[3], 0), xout=1.5)$y
+    }
+    if ((length(times) > 4) &&
+        (depths[length(depths) - 1] >= depths[length(depths) - 2])) {
+        depths[length(depths) - 1] <- approx(1:2,
+                                             c(depths[length(depths) - 2], 0),
+                                             xout=1.5)$y
+    }
     times.pred <- seq(times.scaled[1], times.scaled[length(times.scaled)],
                       length.out=length(times.scaled) * knot.factor)
     depths.smooth <- stats::smooth.spline(times.scaled, depths,
@@ -126,8 +137,8 @@
     if (all(Dd1.maybe <= 0)) {     # but first maximum if all non-positives
         Dd1pos.min <- which.max(Dd1.maybe)
     } else {
-        crit.rate <- quantile(Dd1.maybe, probs=descent.crit.q)
-        beyond <- Dd1.maybe >= crit.rate
+        d.crit.rate <- quantile(Dd1.maybe, probs=descent.crit.q)
+        beyond <- Dd1.maybe > d.crit.rate
         Dd1pos.min <- ifelse(any(beyond),
                              which.min(Dd1.maybe[beyond]),
                              which.min(Dd1.maybe >= 0))
@@ -152,10 +163,10 @@
     if (all(Ad1.maybe >= 0)) {      # but first minimum if all non-negative
         Ad1neg.max.nat <- which.min(Ad1.maybe.nat)
     } else {
-        crit.rate <- quantile(Ad1.maybe.nat, probs=(1 - ascent.crit.q))
-        beyond <- Ad1.maybe.nat <= crit.rate
+        a.crit.rate <- quantile(Ad1.maybe.nat, probs=(1 - ascent.crit.q))
+        beyond <- Ad1.maybe.nat < a.crit.rate
         beyond.w <- which(beyond)    # indices below critical in candidates
-        beyond0 <- Ad1.maybe.nat <= 0
+        beyond0 <- Ad1.maybe.nat < 0
         beyond0.w <- which(beyond0) # indices of non-positives in candidates
         Ad1neg.max.nat <- ifelse(any(beyond),
                                  beyond.w[which.max(Ad1.maybe.nat[beyond])],
@@ -167,9 +178,15 @@
     ## Absolute differences between time predictor corresponding to the
     ## position above and scaled time (it's important it's in reverse, so
     ## that we can find the first minimum below)
-    Ad1neg.ad <- abs(rev(times.pred)[Ad1neg.max] - rev(times.scaled))
+    Ad1neg.diff <- rev(times.pred)[Ad1neg.max] - rev(times.scaled)
+    left <- max(which(Ad1neg.diff <= 0))
+    right <- left + 1
+    left.idx <- length(times.scaled) - left + 1
+    right.idx <- length(times.scaled) - right + 1
+    both.idx <- length(times.scaled) - which.min(abs(Ad1neg.diff)) + 1
     ## Position of the *first* minimum absolute difference above
-    Ad1neg.crit <- length(times.scaled) - which.min(Ad1neg.ad) + 1
+    Ad1neg.crit <- ifelse(depths[left.idx] == depths[right.idx],
+                          left.idx, both.idx)
 
     ## Correct both critical indices if this is a brief dive
     if (length(times) < 4) {
@@ -214,7 +231,8 @@
     label.mat <- cbind(rowids[!is.na(rowids)], labs[!is.na(rowids)])
     list(label.matrix=label.mat, dive.spline=depths.smooth,
          spline.deriv1=depths.deriv, descent.crit=Dd1pos.crit,
-         ascent.crit=Ad1neg.crit)
+         ascent.crit=Ad1neg.crit, descent.crit.q=d.crit.rate,
+         ascent.crit.q=a.crit.rate)
 }
 
 ".labDivePhase" <- function(x, diveID, ...)
@@ -272,9 +290,10 @@
 
 ## TEST ZONE --------------------------------------------------------------
 
-## diveX <- as.data.frame(extractDive(tdr.calib, diveNo=100))
+## X <- c(7, 100, 120, 2329)
+## diveX <- as.data.frame(extractDive(tdr.calib, diveNo=X[1]))
 ## phases <- .cutDive(cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
 ##                          diveX$depth[-c(1, nrow(diveX))],
 ##                          diveX$time[-c(1, nrow(diveX))]),
-##                    smooth.par=0.1, knot.factor=20, descent.crit.q=0,
-##                    ascent.crit.q=0.5)
+##                    smooth.par=0.1, knot.factor=20, descent.crit.q=0.01,
+##                    ascent.crit.q=0.01)
