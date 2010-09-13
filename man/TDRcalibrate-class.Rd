@@ -75,28 +75,34 @@
     \item{\code{phase.models}:}{Object of class \sQuote{list}.  This
       slot contains the details of the process of dive phase
       identification for each dive.  It has the same form as the
-      \dQuote{phase.models} component of the list returned by
+      \code{phase.models} component of the list returned by
       \code{\link{.labDivePhase}}.  It has as many components as there
       are dives in the \code{\link{TDR}} object, each consisting of:
-      \dQuote{label.matrix}, \dQuote{dive.spline},
-      \dQuote{spline.deriv1}, \dQuote{descent.crit}, and
-      \dQuote{ascent.crit}.
+      \code{label.matrix}, \code{dive.spline}, \code{spline.deriv1},
+      \code{descent.crit}, \code{ascent.crit}, \code{descent.crit.rate},
+      \code{ascent.crit.rate}.
 
-      \dQuote{label.matrix} is a 2-column character matrix with row
+      \code{label.matrix} is a 2-column character matrix with row
       numbers matching each observation to the full \code{\link{TDR}}
       object, and a vector labelling the phases of each dive.
 
-      \dQuote{dive.spline} is a list with the cubic smoothing spline fit
+      \code{dive.spline} is a list with the cubic smoothing spline fit
       details (see \code{\link[stats]{smooth.spline}}).
 
-      \dQuote{spline.deriv1} is a list with the first derivative of the
+      \code{spline.deriv1} is a list with the first derivative of the
       smoothing spline (see \code{\link[stats]{predict.smooth.spline}}).
 
-      \dQuote{descent.crit} is a numeric scalar denoting the index of
+      \code{descent.crit} is a numeric scalar denoting the index of
       the observation at which the descent was deemed to have ended.
 
-      \dQuote{ascent.crit} is a numeric scalar denoting the index of
+      \code{ascent.crit} is a numeric scalar denoting the index of
       the observation at which the ascent was deemed to have ended.}
+
+      \code{descent.crit.rate} is a numeric scalar denoting the rate
+      of descent corresponding to the critical quantile requested.
+
+      \code{ascent.crit.rate} is a numeric scalar denoting the rate of
+      ascent corresponding to the critical quantile requested.
 
     \item{\code{dry.thr}:}{Object of class \sQuote{numeric} the temporal
       criteria used for detecting dry periods that should be considered

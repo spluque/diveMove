@@ -1,3 +1,12 @@
+2010-09-13  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/AllGenerics.R, R/AllMethod.R, man/TDRcalibrate-class.Rd,
+	  man/plotTDR-methods.Rd:
+	  Removed plotDPhaseModel(), and incorporated it into plotTDR().
+
+	* R/detDive.R:
+	  Added separate critical quantile options for descent and ascent.
+
 2010-09-12  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/calibrate.R, inst/doc/diveMove.Rnw, man/calibrateDepth.Rd,

@@ -6,11 +6,6 @@ if (!isGeneric("plotTDR")) {
                function(x, ...) standardGeneric("plotTDR"))
 }
 
-if (!isGeneric("plotDPhaseModel")) {
-    setGeneric("plotDPhaseModel",
-               function(x, diveNo) standardGeneric("plotDPhaseModel"))
-}
-
 
 ###_ + Accessors
 if (!isGeneric("getFileName")) {        # File name accessor

@@ -82,62 +82,90 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
           })
 
 setMethod("plotTDR", signature(x="TDRcalibrate"),
-          function(x, diveNo=seq(max(getDAct(x, "dive.id"))),
+          function(x, what=c("TDR", "phase.models"),
+                   diveNo=seq(max(getDAct(x, "dive.id"))),
                    labels="phase.id", concurVars, surface=FALSE, ...) {
+              what <- match.arg(what)
               diveids <- getDAct(x, "dive.id")
               tdr <- getTDR(x)
-              if (max(unique(diveids)) < 1) {
-                  ok <- seq(along=slot(tdr, "depth"))
-              } else if (surface) {
-                  dives <- diveids %in% diveNo
-                  postdiveids <- getDAct(x, "postdive.id")
-                  postdives <- postdiveids %in% diveNo
-                  ok <- which(dives | postdives)
-              } else ok <- diveMove:::.diveIndices(diveids, diveNo)
-              newtdr <- tdr[ok]
-              switch(labels,
-                     phase.id={labs <- as.factor(getGAct(x, "phase.id")[ok])},
-                     dive.phase={labs <- getDPhaseLab(x)[ok]})
-              labs <- factor(as.character(labs))
-              if (!missing(concurVars)) {
-                  if (!is.character(concurVars))
-                      stop("concurVars must be of class character")
-                  ccd <- getCCData(tdr, concurVars)[ok, , drop=FALSE]
-                  plotTDR(newtdr, concurVars=ccd, phase.factor=labs, ...)
-              } else plotTDR(newtdr, phase.factor=labs, ...)
-          })
-
-setMethod("plotDPhaseModel", signature(x="TDRcalibrate", diveNo="numeric"),
-          function(x, diveNo) {
-              phaseM <- getDPhaseModel(x, diveNo)[[1]]
-              stopifnot(!is.null(phaseM$dive.spline))
-              times <- phaseM$dive.spline$data$x
-              depths <- -phaseM$dive.spline$data$y
-              depths.s <- -phaseM$dive.spline$y
-              times.deriv1 <- phaseM$spline.deriv1$x
-              depths.deriv1 <- phaseM$spline.deriv1$y
-              d.crit <- phaseM$descent.crit
-              a.crit <- phaseM$ascent.crit
-              layout(matrix(1:2, ncol=1)); par(mar=c(3, 4, 0, 1) + 0.1, las=1)
-              plot(times, depths, type="o", axes=FALSE, pch=19, cex=0.5,
-                   frame.plot=TRUE, ylab="Depth")
-              axis(side=1)
-              axis(side=2, at=pretty(depths), labels=rev(pretty(-depths)),
-                   las=1)
-              lines(times, depths.s, lty=2, col="green")
-              lines(times[seq(d.crit)], depths[seq(d.crit)], col="blue", lwd=2)
-              lines(times[a.crit:length(times)], depths[a.crit:length(times)],
-                    col="lightblue", lwd=2)
-              legend("top", ncol=2,
-                     legend=c("original", "smoothed", "descent", "ascent"),
-                     lty=c(1, 2, 1, 1),
-                     col=c("black", "green", "blue", "lightblue"), cex=0.7)
-              plot(times.deriv1, depths.deriv1, xlab="Time index",
-                   ylab="First derivative", col="red", type="b", cex=0.3)
-              abline(h=0, v=c(times[d.crit], times[a.crit]), lty=2)
-              text(c(times[d.crit], times[a.crit]), 0,
-                   labels=c("descent", "ascent"), pos=1, cex=0.7)
-          })
+              switch(what,
+                     TDR = {
+                         if (max(unique(diveids)) < 1) {
+                             ok <- seq(along=slot(tdr, "depth"))
+                         } else if (surface) {
+                             dives <- diveids %in% diveNo
+                             postdiveids <- getDAct(x, "postdive.id")
+                             postdives <- postdiveids %in% diveNo
+                             ok <- which(dives | postdives)
+                         } else ok <- diveMove:::.diveIndices(diveids, diveNo)
+                         newtdr <- tdr[ok]
+                         switch(labels,
+                                phase.id = {
+                                    labs <- as.factor(getGAct(x, "phase.id")[ok])
+                                },
+                                dive.phase = {labs <- getDPhaseLab(x)[ok]})
+                         labs <- factor(as.character(labs))
+                         if (!missing(concurVars)) {
+                             if (!is.character(concurVars))
+                                 stop("concurVars must be of class character")
+                             ccd <- getCCData(tdr, concurVars)[ok, , drop=FALSE]
+                             plotTDR(newtdr, concurVars=ccd, phase.factor=labs, ...)
+                         } else plotTDR(newtdr, phase.factor=labs, ...)
+                     },
+                     phase.models = {
+                         if (length(diveNo) != 1)
+                             stop("Only one dive's phase model can be plotted")
+                         phaseM <- getDPhaseModel(x, diveNo)[[1]]
+                         dive <- extractDive(x, diveNo)
+                         times <- phaseM$dive.spline$data$x
+                         depths <- -getDepth(dive)
+                         stopifnot(!is.null(phaseM$dive.spline))
+                         depths.s <- -phaseM$dive.spline$y
+                         times.deriv1 <- phaseM$spline.deriv1$x
+                         depths.deriv1 <- phaseM$spline.deriv1$y
+                         d.crit <- phaseM$descent.crit
+                         a.crit <- phaseM$ascent.crit
+                         d.critq <- phaseM$descent.crit.q
+                         a.critq <- phaseM$ascent.crit.q
+                         descent.c1 <- times.deriv1 < times[d.crit]
+                         descent.c2 <- depths.deriv1 > d.critq
+                         descent <- descent.c1 & descent.c2
+                         ascent.c1 <- times.deriv1 > times[a.crit]
+                         ascent.c2 <- depths.deriv1 < a.critq
+                         ascent <- ascent.c1 & ascent.c2
+                         layout(matrix(1:2, ncol=1))
+                         par(mar=c(3, 4, 0, 1) + 0.1, las=1)
+                         plot(times, depths, type="o", axes=FALSE, pch=19,
+                              cex=0.5, frame.plot=TRUE, ylab="Depth",
+                              ylim=range(depths, depths.s))
+                         axis(side=1)
+                         axis(side=2, at=pretty(c(depths, depths.s)),
+                              labels=rev(pretty(-c(depths, depths.s))), las=1)
+                         lines(times, depths.s, lty=2, col="green")
+                         lines(times[seq(d.crit)], depths[seq(d.crit)],
+                               col="blue")
+                         lines(times[a.crit:length(times)],
+                               depths[a.crit:length(times)], col="lightblue")
+                         legend("top", ncol=2, title=paste("Dive:", diveNo),
+                                legend=c("original", "smoothed",
+                                  "descent", "ascent"), lty=c(1, 2, 1, 1),
+                                col=c("black", "green",
+                                  "blue", "lightblue"), cex=0.7)
+                         plot(times.deriv1, depths.deriv1, xlab="Time index",
+                              ylab="First derivative", type="l", cex=0.3)
+                         points(times.deriv1[descent], depths.deriv1[descent],
+                                col="blue", cex=0.3)
+                         points(times.deriv1[ascent], depths.deriv1[ascent],
+                                col="lightblue", cex=0.3)
+                         abline(h=c(d.critq, a.critq),
+                                v=c(times[d.crit], times[a.crit]), lty=2)
+                         text(0.8, c(d.critq, a.critq),
+                              labels=c(expression(paste("descent ", hat(q))),
+                                expression(paste("ascent ", hat(q)))),
+                              pos=c(3, 1), cex=0.7)
+                         text(c(times[d.crit], times[a.crit]), 0,
+                              labels=c("descent", "ascent"), pos=1, cex=0.7)
+                     })})
 
 
 ###_ + Accessors
