@@ -1,5 +1,8 @@
 2010-09-13  Sebastian P. Luque <spluque@gmail.com>
 
+	* NEWS, man/calibrateDepth.Rd:
+	  Explain dive phase detection in documentation.
+
 	* R/AllGenerics.R, R/AllMethod.R, man/TDRcalibrate-class.Rd,
 	  man/plotTDR-methods.Rd:
 	  Removed plotDPhaseModel(), and incorporated it into plotTDR().

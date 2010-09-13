@@ -171,61 +171,36 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 
 \section{Detection of dive phases}{
 
-  \describe{
+  The process for each dive begins by taking all observations below the
+  dive detection threshold, and setting the beginning and end depths to
+  zero, at time steps prior to the first and after the last,
+  respectively.  A smoothing spline is used to model the dive and its
+  derivative to investigate its changes in vertical rate.  This method
+  requires at least 4 observations (see
+  \code{\link[stats]{smooth.spline}}), so the time series is linearly
+  interpolated at equally spaced time steps if this limit is not
+  achieved in the current dive.  Wiggles at the beginning and end of the
+  dive are assumed to be zero offset correction errors, so depth
+  observations at these extremes are interpolated between zero and the
+  next observations when this occurs.
 
-    \item{Descent}{Using all depths from the first one in the dive down
-      to the maximum depth, the rate of descent for each segment is
-      calculated, and a critical rate is defined as the quantile
-      (\code{descent.crit.q}) of all the positive rates of descent.  This
-      subsetting avoids defining a critical rate that may be negative, due
-      to wiggling during the descent.
+  A set of knots is established to fit the smoothing spline by using an
+  regular time sequence with beginning and end equal to the extremes of
+  the input sequence, and with length equal to \eqn{N \times
+  knot.factor}{N * \code{knot.factor}}.  The first derivate of the
+  spline is evaluated at the same set of knots to calculate the vertical
+  rate throughout the dive and determine the end of descent and
+  beginning of ascent as follows.
 
-      To allow detection of wiggles during descent, a vector of the
-      indices of the rates of descent that were lower than the critical
-      value is defined, and a logical vector with TRUE for rates of
-      descent >= 0 above the bottom depth defined previously is also
-      created.
-
-      The following tests are performed (in order):
-
-      If there were any rates below the critical value, as well as any
-      descent wiggles, the indices where the wiggles occurred are
-      removed.  If this resulted in removal of all indices, then the
-      index defining the end of descent is the number of rates of
-      descent, otherwise it is the one corresponding to the \emph{first}
-      minimum rate of descent below the critical value after the
-      removal.
-
-      If there were not any rates below the critical value, the index
-      defining the end of descent is the number of rates of descent,
-      otherwise it is the first of them.}
-
-
-    \item{Ascent}{The order of depths is reversed in order to detect
-      ascent starting from the bottom, taking all depths after the maximum
-      depth.  The rate of ascent for each segment is calculated, and a
-      critical rate is defined as the quantile (\code{ascent.crit.q}) of
-      all the positive rates of ascent, analogously to the descent
-      detection procedure.
-
-      To allow detection of bottom wiggling, a vector of the indices of
-      the rates of ascent that were higher than the critical value is
-      defined, and a logical vector with TRUE for rates of ascent <= 0
-      below the bottom depth defined previously is also created.
-
-      The following tests are performed (in order):
-
-      If there were any bottom wiggles, then the index defining the
-      beginning of ascent is that corresponding to the maximum depth plus
-      that corresponding to the last bottom wiggle, otherwise:
-
-      If there were no rates above the critical value, then the index
-      defining the beginning of ascent is the last reading below the
-      surface.  Otherwise, it is the one corresponding to the maximum
-      depth plus the first of the indices of rates above the critical
-      value.}
-
-  }
+  Equivalent procedures are used for detecting descent and ascent
+  phases.  The quantile corresponding to (\code{descent.crit.q}) of all
+  the positive derivatives (rate of descent) at the beginning of the
+  dive is used as threshold for determining the end of descent.  Descent
+  is deemed to have ended at the \emph{first} minimum derivative, and
+  the nearest input time observation is considered to indicate the end
+  of descent.  The sign of the comparisons is reversed for detecting the
+  ascent.  If observed depth to the left and right of the derivative
+  defining the ascent, the right takes precedence.
 
   The particular dive phase categories are subsequently defined using
   simple set operations.
@@ -245,8 +220,8 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 
 
 \seealso{\code{\link{TDRcalibrate}}, \code{\link{.zoc}},
-  \code{\link{.depthFilter}} \code{\link{.detPhase}},
-  \code{\link{.detDive}}.}
+  \code{\link{.depthFilter}}, \code{\link{.detPhase}},
+  \code{\link{.detDive}}, \code{\link{plotTDR}}.}
 
 % -------------------------------------------------------------------------
 
@@ -264,6 +239,9 @@ divesTDR
 (dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="filter",
                           k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE))
 }
+
+## Plot the dive phase model for a dive
+plotTDR(dcalib, what="phase.models", diveNo=100)
 
 }
 

@@ -3,7 +3,7 @@
 
 See ChangeLog for more details.
 
-** Version 1.1.1:
+** Version 1.2:
 
    o New slot 'call' for 'TDRcalibrate' class recording the matching call
      to the corresponding generator calibrateDepth().
