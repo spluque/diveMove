@@ -4,7 +4,7 @@
                               zoc.method=c("visual", "offset", "filter"),
                               ..., interp.wet=FALSE,
                               smooth.par=0.1, knot.factor=3,
-                              descent.crit.q=0, ascent.crit.q=0.1)
+                              descent.crit.q=0, ascent.crit.q=0)
 {
     ## Value: A TDRcalibrate object.  Detect water/land phases in TDR
     ## object, zoc data, detect dives and their phases, and label them.
@@ -67,7 +67,7 @@
                                           descent.crit.q=descent.crit.q,
                                           ascent.crit.q=ascent.crit.q)
     phaselabsF <- phaselabs$phase.labels
-    phaseModels <- phaselabs$phase.models
+    diveModels <- phaselabs$dive.models
 
     new("TDRcalibrate",
         call=mCall,
@@ -75,7 +75,7 @@
         gross.activity=detp,
         dive.activity=detd,
         dive.phases=phaselabsF,
-        phase.models=phaseModels,
+        dive.models=diveModels,
         dry.thr=dry.thr,
         wet.thr=wet.thr,
         dive.thr=dive.thr)

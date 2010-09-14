@@ -6,7 +6,7 @@
 
 \alias{getDAct}
 \alias{getDPhaseLab}
-\alias{getDPhaseModel}
+\alias{getDiveModel}
 \alias{getGAct}
 \alias{getTDR}
 \alias{getSpeedCoef}
@@ -15,8 +15,8 @@
 \alias{getDAct,TDRcalibrate,character-method}
 \alias{getDPhaseLab,TDRcalibrate,missing-method}
 \alias{getDPhaseLab,TDRcalibrate,numeric-method}
-\alias{getDPhaseModel,TDRcalibrate,missing-method}
-\alias{getDPhaseModel,TDRcalibrate,numeric-method}
+\alias{getDiveModel,TDRcalibrate,missing-method}
+\alias{getDiveModel,TDRcalibrate,numeric-method}
 \alias{getGAct,TDRcalibrate,missing-method}
 \alias{getGAct,TDRcalibrate,character-method}
 \alias{show,TDRcalibrate-method}
@@ -37,8 +37,8 @@
 \S4method{getDAct}{TDRcalibrate,character}(x, y)
 \S4method{getDPhaseLab}{TDRcalibrate,missing}(x)
 \S4method{getDPhaseLab}{TDRcalibrate,numeric}(x, diveNo)
-\S4method{getDPhaseModel}{TDRcalibrate,missing}(x)
-\S4method{getDPhaseModel}{TDRcalibrate,numeric}(x, diveNo)
+\S4method{getDiveModel}{TDRcalibrate,missing}(x)
+\S4method{getDiveModel}{TDRcalibrate,numeric}(x, diveNo)
 \S4method{getGAct}{TDRcalibrate,missing}(x)
 \S4method{getGAct}{TDRcalibrate,character}(x, y)
 }
@@ -99,12 +99,12 @@
 	diveNo="numeric")}: as the method for missing \code{y}, but
 	selects data from a particular dive number to extract.}
 
-    \item{getDPhaseModel}{\code{signature(x="TDRcalibrate",
+    \item{getDiveModel}{\code{signature(x="TDRcalibrate",
 	diveNo="missing")}: extracts a list with all dive phase models.
-	This accesses the phase.models slot of
-	\code{\link{TDRcalibrate}} objects.}
+	This accesses the dive.models slot of \code{\link{TDRcalibrate}}
+	objects.}
 
-    \item{getDPhaseModel}{\code{signature(x="TDRcalibrate",
+    \item{getDiveModel}{\code{signature(x="TDRcalibrate",
 	diveNo="numeric")}: as the method for missing \code{diveNo}, but
 	selects data from a particular dive number to extract.}
 
@@ -135,6 +135,9 @@
 \value{ The extractor methods return an object of the same class as
   elements of the slot they extracted. }
 
+
+\seealso{\code{\link{diveModel}}, \code{\link{plotDiveModel}}.}
+
 % -------------------------------------------------------------------------
 
 \examples{
@@ -153,6 +156,8 @@ table(dids[dids > 0])		# samples per dive
 
 ## Factor of dive phases for given dive
 getDPhaseLab(dcalib, 19)
+## Full dive model
+getDiveModel(dcalib, 19)
 
 }
 

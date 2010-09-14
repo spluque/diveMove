@@ -1,3 +1,18 @@
+2010-09-14  Sebastian P. Luque <spluque@gmail.com>
+
+	* NAMESPACE, NEWS, R/AllGenerics.R, R/AllMethod.R, R/calibrate.R,
+	  R/detDive.R, man/TDRcalibrate-accessors.Rd,
+	  man/TDRcalibrate-class.Rd, man/calibrateDepth.Rd,
+	  man/diveModel-class.Rd, man/plotDiveModel-methods.Rd,
+	  man/plotTDR-methods.Rd:
+	  Added methods for 'diveModel' class.
+
+	* R/AllClass.R, man/diveModel-class.Rd,
+	  man/plotDiveModel-methods.Rd:
+	  New diveModel class for dive phase detection process.
+
+	  Improved validity test for 'TDRcalibrate'.
+
 2010-09-13  Sebastian P. Luque <spluque@gmail.com>
 
 	* NEWS, man/calibrateDepth.Rd:

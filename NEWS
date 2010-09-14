@@ -11,7 +11,9 @@ See ChangeLog for more details.
    o Improved definition of dive phases. The method uses smoothing splines
      and their derivatives to find the end of descent, and the beginning of
      ascent, which form the basis for the identification of the rest of the
-     phases.  A plotting method is also available to examine the process.
+     phases.  This prompted the creation of a new S4 class to hold the
+     details of the dive modelling process.  New plotting methods are also
+     available to examine this process.
 
    o Removed /data objects 'divesTDRcalibrate' and 'divesSummary' because
      it is better to generate and inspect them in examples in help files.

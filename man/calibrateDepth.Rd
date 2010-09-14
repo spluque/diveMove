@@ -17,7 +17,7 @@
 calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
                zoc.method=c("visual", "offset", "filter"), \ldots,
                interp.wet=FALSE, smooth.par=0.1, knot.factor=3,
-               descent.crit.q=0, ascent.crit.q=0.1)
+               descent.crit.q=0, ascent.crit.q=0)
 }
 
 
@@ -230,18 +230,20 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 data(divesTDR)
 divesTDR
 
-## Consider a 3 m offset, and a dive threshold of 3 m, defaults for the rest
+## Consider a 3 m offset, a dive threshold of 3 m, the 1\% quantile for
+## critical vertical rates, and a set of knots 20 times as long as the
+## observed time steps.
 (dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="offset",
-                          offset=3))
+                          offset=3, descent.crit.q=0.01, ascent.crit.q=0.01,
+                          knot.factor=20))
 ## Or ZOC algorithmically with method="filter":
 \dontrun{## This can take a while due to large window needed for 2nd
 ## filter in this dataset
 (dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="filter",
-                          k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE))
+                          k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE,
+                          descent.crit.q=0.01, ascent.crit.q=0.01,
+                          knot.factor=20))
 }
-
-## Plot the dive phase model for a dive
-plotTDR(dcalib, what="phase.models", diveNo=100)
 
 }
 

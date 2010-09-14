@@ -6,6 +6,10 @@ if (!isGeneric("plotTDR")) {
                function(x, ...) standardGeneric("plotTDR"))
 }
 
+if (!isGeneric("plotDiveModel")) {
+    setGeneric("plotDiveModel",
+               function(x, y, ...) standardGeneric("plotDiveModel"))
+}
 
 ###_ + Accessors
 if (!isGeneric("getFileName")) {        # File name accessor
@@ -49,9 +53,9 @@ if (!isGeneric("getDPhaseLab")) {       # dive phase label accessor
                function(x, diveNo) standardGeneric("getDPhaseLab"))
 }
 
-if (!isGeneric("getDPhaseModel")) {     # dive phase model accessor
-    setGeneric("getDPhaseModel",
-               function(x, diveNo) standardGeneric("getDPhaseModel"))
+if (!isGeneric("getDiveModel")) {     # dive phase model accessor
+    setGeneric("getDiveModel",
+               function(x, diveNo) standardGeneric("getDiveModel"))
 }
 
 if (!isGeneric("getSpeedCoef")) {       # speed calibration coefs accessor

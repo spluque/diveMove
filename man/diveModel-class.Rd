@@ -11,8 +11,10 @@
 \title{Class "diveModel" for representing a model for identifying dive
   phases}
 
+
 \description{ Details of model used to identify the different phases of
   a dive. }
+
 
 \section{Objects from the Class}{ Objects can be created by calls of the
   form \code{new("diveModel", ...)}.
@@ -24,6 +26,7 @@
   \code{\link{.cutDive}}.
   
 }
+
 
 \section{Slots}{
 
@@ -52,15 +55,16 @@
 
     \item{\code{descent.crit.rate}:}{Object of class \code{"numeric"}.
       The rate of descent corresponding to the critical quantile
-      requested.}
+      used.}
 
     \item{\code{ascent.crit.rate}:}{Object of class \code{"numeric"}.
       The rate of ascent corresponding to the critical quantile
-      requested.}
+      used.}
    
   }
   
 }
+
 
 \seealso{\code{\link{plotDiveModel}}}
 

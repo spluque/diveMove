@@ -84,23 +84,15 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    ## If this is a single observation, return as "DA" and NULLs
-    if (nrow(x) < 2) {
-        return(list(label.matrix=cbind(rowids=x[, 1], labs="DA"),
-                    dive.spline=NULL, spline.deriv1=NULL, descent.crit=NULL,
-                    ascent.crit=NULL, descent.crit.rate=NULL,
-                    ascent.crit.rate=NULL))
-    }
     ## We're passed sub-dive threshold observations, so we add 0 at ends to
     ## get proper derivatives
     depths <- c(0, x[, 2], 0)
-    times <- c(x[1, 3] - diff(x[, 3])[1],
-               x[, 3],
-               x[nrow(x), 3] + diff(x[, 3])[nrow(x) - 1])
+    step.l <- if (nrow(x) < 2) 1 else median(diff(x[, 3]), na.rm=TRUE)
+    times <- c(x[1, 3] - step.l, x[, 3], x[nrow(x), 3] + step.l)
     if (length(times) >= 4) {   # guard against smooth.spline() limitations
         times.scaled <- times - times[1]
     } else {
-        times.scaledOrig <- as.numeric(times) - as.numeric(times[1])
+        times.scaledOrig <- times - times[1]
         times4 <- seq(times[1], times[length(times)], length.out=4)
         times4.scaled <- as.numeric(times4) - as.numeric(times4[1])
         depths.itpfun <- approxfun(times.scaledOrig, depths)
@@ -114,6 +106,7 @@
         depths[2] <- approx(1:2, c(depths[3], 0), xout=1.5)$y
     }
     if ((length(times) > 4) &&
+        (depths[length(depths) - 1] < max(depths)) &&
         (depths[length(depths) - 1] >= depths[length(depths) - 2])) {
         depths[length(depths) - 1] <- approx(1:2,
                                              c(depths[length(depths) - 2], 0),
@@ -229,10 +222,14 @@
                      fromLast=TRUE)
     ## Any remaining rowids are nonexistent labels
     label.mat <- cbind(rowids[!is.na(rowids)], labs[!is.na(rowids)])
-    list(label.matrix=label.mat, dive.spline=depths.smooth,
-         spline.deriv1=depths.deriv, descent.crit=Dd1pos.crit,
-         ascent.crit=Ad1neg.crit, descent.crit.q=d.crit.rate,
-         ascent.crit.q=a.crit.rate)
+    new("diveModel",
+        label.matrix=label.mat,
+        dive.spline=depths.smooth,
+        spline.deriv=depths.deriv,
+        descent.crit=Dd1pos.crit,
+        ascent.crit=Ad1neg.crit,
+        descent.crit.rate=d.crit.rate,
+        ascent.crit.rate=a.crit.rate)
 }
 
 ".labDivePhase" <- function(x, diveID, ...)
@@ -256,18 +253,20 @@
         dids <- diveID[ok]                       # dive IDs
         ## We send a matrix of indices, and non-NA depths and times
         td <- matrix(data=c(ok, ddepths, as.numeric(dtimes)), ncol=3)
-        perdivetd <- lapply(by(td, dids, diveMove:::.cutDive, ...), "[")
-        labdF <- do.call(rbind, lapply(perdivetd, function(p) {
-            p["label.matrix"][[1]]
+        ## Problems with by() always returning 'by', not list
+        perdivetd <- lapply(by(td, dids, diveMove:::.cutDive, ...),
+                            function(x) x)
+        labdF <- do.call(rbind, lapply(perdivetd, function(l) {
+            slot(l, "label.matrix")
         }))
         ff <- factor(rep("X", length(diveID)),
                      levels=c(unique(labdF[, 2]), "X"))
         ff[as.numeric(labdF[, 1])] <- labdF[, 2]
-        list(phase.labels=ff, phase.models=perdivetd)
+        list(phase.labels=ff, dive.models=perdivetd)
     } else {
         warning("no dives were found in x")
         list(phase.labels=factor(rep("X", length(diveID))),
-             phase.models=NULL)
+             dive.models=NULL)
     }
 }
 
@@ -290,7 +289,7 @@
 
 ## TEST ZONE --------------------------------------------------------------
 
-## X <- c(7, 100, 120, 2329)
+## X <- c(2, 7, 100, 120, 2329)
 ## diveX <- as.data.frame(extractDive(tdr.calib, diveNo=X[1]))
 ## phases <- .cutDive(cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
 ##                          diveX$depth[-c(1, nrow(diveX))],

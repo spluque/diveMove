@@ -23,8 +23,7 @@
 \usage{
 \S4method{plotTDR}{TDR}(x, \ldots)
 \S4method{plotTDR}{TDRspeed}(x, concurVars, concurVarTitles, \ldots)
-\S4method{plotTDR}{TDRcalibrate}(x, what=c("TDR", "phase.models"),
-        diveNo=seq(max(getDAct(x, "dive.id"))),
+\S4method{plotTDR}{TDRcalibrate}(x, diveNo=seq(max(getDAct(x, "dive.id"))),
         labels="phase.id", concurVars, surface=FALSE, \ldots)
 }
 
@@ -43,9 +42,6 @@
     method, \var{concurVars} is a \bold{character} vector indicating
     which additional components from the concurrent data frame should
     also be plotted, if any.}
-
-  \item{what}{String specifying what aspect of the TDRcalibrate object
-    should be plotted.}
 
   \item{diveNo}{Numeric vector with dive numbers to plot.}
 
@@ -71,24 +67,13 @@
     \item{plotTDR}{\code{signature(x="TDRcalibrate")}: plot the
       \code{\link{TDRcalibrate}} object, labelling identified sections
       of it (see \code{Usage}).  By default it plots all dives, labelled
-      by the activity phase they belong to.
-
-      Argument \code{what} specifies what aspect of the
-      \code{\link{TDRcalibrate}} object should be plotted: \dQuote{TDR}
-      specifies plotting dives in the \code{\link{TDR}} object,
-      \dQuote{phase.models} specifies plotting the phase model for a
-      particular dive.
-
-      It produces a multi-panel figure.  If \code{what="TDR"}, the
-      bottom panel shows depth against time, and possibly more panels
-      above it showing other concurrent data.  If
-      \code{what="phase.models"}, the top panel shows the observed depth
-      against time, the cubic spline smoother, the identified descent
-      and ascent phases (which form the basis for identifying the rest
-      of the dive phases), while the bottom panel shows the first
-      derivative of the smooth trace.}
+      by the activity phase they belong to.  It produces a plot
+      consisting of one or more panels; the first panel shows depth
+      against time, and additional panels show other concurrent data in
+      the object.}
 
   }
+  
 }
 
 
@@ -116,10 +101,8 @@ plotTDR(dcalib, diveNo=19:25, interact=FALSE)
 plotTDR(dcalib, labels="dive.phase", interact=FALSE)
 if (dev.interactive(orNone=TRUE)) { # add surface observations and interact
     plotTDR(dcalib, labels="dive.phase", surface=TRUE)
-
-## Plot the dive phase model for one dive
-plotTDR(dcalib, what="phase.models", diveNo=200)
-
+    ## Plot one dive
+    plotTDR(dcalib, diveNo=200, labels="dive.phase")
 }
 
 }

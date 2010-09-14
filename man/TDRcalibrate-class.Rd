@@ -72,37 +72,12 @@
       \dQuote{phase.labels} component of the list returned by
       \code{\link{.labDivePhase}}.}
 
-    \item{\code{phase.models}:}{Object of class \sQuote{list}.  This
-      slot contains the details of the process of dive phase
-      identification for each dive.  It has the same form as the
-      \code{phase.models} component of the list returned by
-      \code{\link{.labDivePhase}}.  It has as many components as there
-      are dives in the \code{\link{TDR}} object, each consisting of:
-      \code{label.matrix}, \code{dive.spline}, \code{spline.deriv1},
-      \code{descent.crit}, \code{ascent.crit}, \code{descent.crit.rate},
-      \code{ascent.crit.rate}.
-
-      \code{label.matrix} is a 2-column character matrix with row
-      numbers matching each observation to the full \code{\link{TDR}}
-      object, and a vector labelling the phases of each dive.
-
-      \code{dive.spline} is a list with the cubic smoothing spline fit
-      details (see \code{\link[stats]{smooth.spline}}).
-
-      \code{spline.deriv1} is a list with the first derivative of the
-      smoothing spline (see \code{\link[stats]{predict.smooth.spline}}).
-
-      \code{descent.crit} is a numeric scalar denoting the index of
-      the observation at which the descent was deemed to have ended.
-
-      \code{ascent.crit} is a numeric scalar denoting the index of
-      the observation at which the ascent was deemed to have ended.}
-
-      \code{descent.crit.rate} is a numeric scalar denoting the rate
-      of descent corresponding to the critical quantile requested.
-
-      \code{ascent.crit.rate} is a numeric scalar denoting the rate of
-      ascent corresponding to the critical quantile requested.
+    \item{\code{dive.models}:}{Object of class \sQuote{list}.  This slot
+      contains the details of the process of dive phase identification
+      for each dive.  It has the same form as the \code{dive.models}
+      component of the list returned by \code{\link{.labDivePhase}}.  It
+      has as many components as there are dives in the \code{\link{TDR}}
+      object, each of them of class \code{\link{diveModel}}.}
 
     \item{\code{dry.thr}:}{Object of class \sQuote{numeric} the temporal
       criteria used for detecting dry periods that should be considered
