@@ -42,10 +42,14 @@ setClass("TDRspeed", contains="TDR",
 setClass("TDRcalibrate",
          representation=representation(call="call", tdr="TDR",
            gross.activity="list", dive.activity="data.frame",
-           dive.phases="factor", phase.models="list", dry.thr="numeric",
+           dive.phases="factor", dive.models="list", dry.thr="numeric",
            wet.thr="numeric", dive.thr="numeric", speed.calib.coefs="numeric"),
          prototype=prototype(speed.calib.coefs=c(0, 1)),
          validity=function(object) {
+             ndives <- max(object@dive.activity$dive.id, na.rm=TRUE)
+             if (length(slot(object, "dive.models")) != ndives) {
+                 return("All dives must have a corresponding dive model")
+             }
              if (length(slot(object, "dry.thr")) > 1) {
                  return("dry.thr must be a single number")
              }
@@ -58,6 +62,29 @@ setClass("TDRcalibrate",
              if (length(slot(object, "speed.calib.coefs")) != 2) {
                  return("speed.calib.coefs must be a length-2 vector")
              }
+             return(TRUE)
+         })
+
+setOldClass("smooth.spline")
+setClass("diveModel",
+         representation=representation(label.matrix="matrix",
+           dive.spline="smooth.spline", spline.deriv="list",
+           descent.crit="numeric", ascent.crit="numeric",
+           descent.crit.rate="numeric", ascent.crit.rate="numeric"),
+         validity=function(object) {
+             if (length(slot(object, "descent.crit")) > 1) {
+                 return("descent.crit must be a single number")
+             }
+             if (length(slot(object, "ascent.crit")) > 1) {
+                 return("ascent.crit must be a single number")
+             }
+             if (length(slot(object, "descent.crit.rate")) > 1) {
+                 return("descent.crit.rate must be a single number")
+             }
+             if (length(slot(object, "ascent.crit.rate")) > 1) {
+                 return("ascent.crit.rate must be a single number")
+             }
+             return(TRUE)
          })
 
 setOldClass("nls")                      # For bout methods
