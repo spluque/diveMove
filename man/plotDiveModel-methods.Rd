@@ -18,9 +18,11 @@
 
 \usage{
 \S4method{plotDiveModel}{diveModel,missing}(x, diveNo)
-\S4method{plotDiveModel}{numeric,numeric}(x, y, times.s, depths.s,
-        d.crit, a.crit, diveNo=1, times.deriv, depths.deriv,
-        d.crit.rate, a.crit.rate)
+
+\S4method{plotDiveModel}{numeric,numeric}(x, y, times.s, depths.s, d.crit, a.crit,
+              diveNo=1, times.deriv, depths.deriv,
+              d.crit.rate, a.crit.rate)
+
 \S4method{plotDiveModel}{TDRcalibrate,missing}(x, diveNo)
 }
 

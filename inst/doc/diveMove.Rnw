@@ -418,6 +418,7 @@ information during the major procedures performed by
 \Rfunction{calibrateDepth()}:
 
 \begin{description}
+\item[call:] \texttt{TDR}.  The call used to generate the object.
 \item[tdr:] \texttt{TDR}.  The object which was calibrated.
 \item[gross.activity:] \Rclass{list}.  This list contains four components
   with details on wet/dry activities detected, such as start and end times,
@@ -437,6 +438,8 @@ information during the major procedures performed by
   descent/bottom, bottom, bottom/ascent, and ascent phases.  The
   descent/bottom and bottom/ascent levels are useful for readings which
   could not unambiguously be assigned to one of the other levels.
+\item[dive.models:] \Rclass{list}.  This list contains all the details of
+  the modelling process used to identifies dive phases.
 \item[dry.thr:] \Rclass{numeric}.
 \item[wet.thr:] \Rclass{numeric}.
 \item[dive.thr:] \Rclass{numeric}.  These last three slots store
