@@ -47,11 +47,11 @@
 
     \item{\code{descent.crit}:}{Object of class \code{"numeric"}.  The
       index of the observation at which the descent was deemed to have
-      ended.}
+      ended (from initial surface observation).}
 
     \item{\code{ascent.crit}:}{Object of class \code{"numeric"}.  the
       index of the observation at which the ascent was deemed to have
-      ended.}
+      ended (from initial surface observation).}
 
     \item{\code{descent.crit.rate}:}{Object of class \code{"numeric"}.
       The rate of descent corresponding to the critical quantile
