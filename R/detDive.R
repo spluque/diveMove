@@ -254,11 +254,9 @@
         ## We send a matrix of indices, and non-NA depths and times
         td <- matrix(data=c(ok, ddepths, as.numeric(dtimes)), ncol=3)
         ## Problems with by() always returning 'by', not list
-        perdivetd <- lapply(by(td, dids, diveMove:::.cutDive, ...),
-                            function(x) x)
-        labdF <- do.call(rbind, lapply(perdivetd, function(l) {
-            slot(l, "label.matrix")
-        }))
+        perdivetd <- lapply(by(td, dids, diveMove:::.cutDive, ...,
+                               simplify=FALSE), function(x) x)
+        labdF <- do.call(rbind, lapply(perdivetd, slot, "label.matrix"))
         ff <- factor(rep("X", length(diveID)),
                      levels=c(unique(labdF[, 2]), "X"))
         ff[as.numeric(labdF[, 1])] <- labdF[, 2]
@@ -296,5 +294,5 @@
 ## diveX.m <- cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
 ##                  diveX$depth[-c(1, nrow(diveX))],
 ##                  diveX$time[-c(1, nrow(diveX))])
-## phases <- .cutDive(diveX.m, smooth.par=0.1, knot.factor=20,
-##                    descent.crit.q=0.01, ascent.crit.q=0.01)
+## phases <- diveMove:::.cutDive(diveX.m, smooth.par=0.1, knot.factor=20,
+##                               descent.crit.q=0.01, ascent.crit.q=0.01)
