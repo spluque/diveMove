@@ -5,18 +5,18 @@ See ChangeLog for more details.
 
 ** Version 1.2:
 
-   o New slot 'call' for 'TDRcalibrate' class recording the matching call
-     to the corresponding generator calibrateDepth().
-
    o Improved definition of dive phases. The method uses smoothing splines
-     and their derivatives to find the end of descent, and the beginning of
+     and their derivatives to find the end of descent and the beginning of
      ascent, which form the basis for the identification of the rest of the
      phases.  This prompted the creation of a new S4 class to hold the
      details of the dive modelling process.  New plotting methods are also
-     available to examine this process.
+     available to examine the process.
 
    o Removed /data objects 'divesTDRcalibrate' and 'divesSummary' because
      it is better to generate and inspect them in examples in help files.
+
+   o New slot 'call' for 'TDRcalibrate' class recording the matching call
+     to the corresponding generator calibrateDepth().
 
 ** Version 1.1:
 
