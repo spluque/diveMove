@@ -70,17 +70,16 @@
 ".cutDive" <- function(x, smooth.par, knot.factor, descent.crit.q,
                        ascent.crit.q)
 {
-    ## Value: Factor that breaks a dive into descent, descent/bottom,
-    ## bottom, bottom/ascent, ascent, and/or descent/ascent given a
-    ## proportion of maximum depth for bottom time.  Return a character
-    ## matrix with orig ID and corresponding label.
+    ## Value: 'diveModel' object with details of dive phase model.
     ## --------------------------------------------------------------------
     ## Arguments: x=a 3-col numeric matrix with index in original TDR
     ## object, non-NA depths and numeric time.  A single dive's data
     ## (*below* 'dive.threshold'); smooth.par=spar parameter for
     ## smooth.spline(); knot.factor=numeric scalar that multiplies the
     ## duration of the dive (used to construct the time predictor for the
-    ## derivative)
+    ## derivative); descent.crit.q=ascent.crit.q quantiles defining the
+    ## critical vertical rates of descent and ascent where descent should
+    ## and ascent begin.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
@@ -234,7 +233,8 @@
 
 ".labDivePhase" <- function(x, diveID, ...)
 {
-    ## Value: A factor labelling portions of dives
+    ## Value: A list with a factor labelling portions of dives, and a list
+    ## of 'diveModel' objects for each dive.
     ## --------------------------------------------------------------------
     ## Arguments: x=class TDR object, diveID=numeric vector indexing each
     ## dive (non-dives should be 0). As it is called by calibrateDepth,
@@ -289,10 +289,11 @@
 
 ## TEST ZONE --------------------------------------------------------------
 
-## X <- c(2, 7, 100, 120, 2329)
-## diveX <- as.data.frame(extractDive(tdr.calib, diveNo=X[1]))
-## phases <- .cutDive(cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
-##                          diveX$depth[-c(1, nrow(diveX))],
-##                          diveX$time[-c(1, nrow(diveX))]),
-##                    smooth.par=0.1, knot.factor=20, descent.crit.q=0.01,
-##                    ascent.crit.q=0.01)
+## utils::example("calibrateDepth", package="diveMove", ask=FALSE, echo=FALSE)
+## X <- c(2, 7, 100, 120)
+## diveX <- as.data.frame(extractDive(dcalib, diveNo=X[1]))
+## diveX.m <- cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
+##                  diveX$depth[-c(1, nrow(diveX))],
+##                  diveX$time[-c(1, nrow(diveX))])
+## phases <- diveMove:::.cutDive(diveX.m, smooth.par=0.1, knot.factor=20,
+##                               descent.crit.q=0.01, ascent.crit.q=0.01)

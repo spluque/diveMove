@@ -57,16 +57,17 @@
   arguments with two columns: dive.id, and postdive.id, each one
   sequentially numbering each dive and postdive period.
 
-  \code{.labDivePhase} returns a factor with levels \dQuote{D},
-  \dQuote{DB}, \dQuote{B}, \dQuote{BA}, \dQuote{A}, \dQuote{DA}, and
-  \dQuote{X}, breaking the input into descent, descent/bottom, bottom,
-  bottom/ascent, ascent, and non-dive, respectively.  If \code{x}
-  contains no dives, only level \dQuote{X} is present for all readings.
+  \code{.labDivePhase} returns a list with a factor having levels
+  \dQuote{D}, \dQuote{DB}, \dQuote{B}, \dQuote{BA}, \dQuote{A},
+  \dQuote{DA}, and \dQuote{X}, breaking the input into descent,
+  descent/bottom, bottom, bottom/ascent, ascent, and non-dive,
+  respectively.  If \code{x} contains no dives, only level \dQuote{X} is
+  present for all readings.  The list also contains another list with
+  \code{\link{diveModel}} objects for each dive.
 
-  \code{.cutDive} generates a character vector that breaks a dive into
-  descent, descent/bottom, bottom, bottom/ascent, ascent, and/or
-  descent/ascent using cubic spline smoothing and its first derivative.
-  It returns a list with details of the process.
+  \code{.cutDive} generates a \code{\link{diveModel}} object with
+  details of model used to detect dive phases using cubic spline
+  smoothing and its first derivative.
 
 }
 
