@@ -174,9 +174,11 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   The process for each dive begins by taking all observations below the
   dive detection threshold, and setting the beginning and end depths to
   zero, at time steps prior to the first and after the last,
-  respectively.  A smoothing spline is used to model the dive and its
-  derivative to investigate its changes in vertical rate.  This method
-  requires at least 4 observations (see
+  respectively.  The latter ensures that descent and ascent derivatives
+  are non-negative and non-positive, respectively, so that the end and
+  beginning of these phases are not truncated.  A smoothing spline is
+  used to model the dive and its derivative to investigate its changes
+  in vertical rate.  This method requires at least 4 observations (see
   \code{\link[stats]{smooth.spline}}), so the time series is linearly
   interpolated at equally spaced time steps if this limit is not
   achieved in the current dive.  Wiggles at the beginning and end of the
@@ -190,17 +192,17 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   knot.factor}{N * \code{knot.factor}}.  The first derivate of the
   spline is evaluated at the same set of knots to calculate the vertical
   rate throughout the dive and determine the end of descent and
-  beginning of ascent as follows.
+  beginning of ascent.  Equivalent procedures are used for detecting
+  descent and ascent phases.
 
-  Equivalent procedures are used for detecting descent and ascent
-  phases.  The quantile corresponding to (\code{descent.crit.q}) of all
-  the positive derivatives (rate of descent) at the beginning of the
-  dive is used as threshold for determining the end of descent.  Descent
-  is deemed to have ended at the \emph{first} minimum derivative, and
-  the nearest input time observation is considered to indicate the end
-  of descent.  The sign of the comparisons is reversed for detecting the
+  The quantile corresponding to (\code{descent.crit.q}) of all the
+  positive derivatives (rate of descent) at the beginning of the dive is
+  used as threshold for determining the end of descent.  Descent is
+  deemed to have ended at the \emph{first} minimum derivative, and the
+  nearest input time observation is considered to indicate the end of
+  descent.  The sign of the comparisons is reversed for detecting the
   ascent.  If observed depth to the left and right of the derivative
-  defining the ascent, the right takes precedence.
+  defining the ascent are the same, the right takes precedence.
 
   The particular dive phase categories are subsequently defined using
   simple set operations.
