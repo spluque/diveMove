@@ -1,5 +1,13 @@
 2010-09-15  Sebastian P. Luque <spluque@gmail.com>
 
+	* R/detDive.R, man/calibrateDepth.Rd:
+	  Use c() instead of lapply() in .labDivePhase() to ensure 'list'
+	  result. Kinda weird to do all these acrobatics just to get a
+	  list.
+
+	* NEWS, inst/doc/diveMove.Rnw:
+	  Updated vignette slightly.
+
 	* NEWS, R/AllGenerics.R, R/AllMethod.R,
 	  man/TDRcalibrate-accessors.Rd, man/diveModel-class.Rd:
 	  New accessor method for the derivative.
