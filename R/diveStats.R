@@ -1,6 +1,36 @@
 ## $Id$
 
-"diveStats" <- function(x)
+".derivStats" <- function(x)
+{
+    ## Value: Matrix with one row per dive, keeping order in 'x'
+    ## --------------------------------------------------------------------
+    ## Arguments: x=TDRcalibrate object
+    ## --------------------------------------------------------------------
+    ## Purpose: Provide summary statistics (summary() and sd()) of
+    ## derivatives for descent, bottom, and ascent phases for each dive.
+    ## --------------------------------------------------------------------
+    ## Author: Sebastian P. Luque
+    ## --------------------------------------------------------------------
+    ndives <- max(getDAct(x, "dive.id"))
+    summarize.phase <- function(diveNo, phase, label) {
+        der <- getDiveDeriv(x, diveNo=diveNo, phase=phase)
+        der.summ <- summary(der$y)
+        names(der.summ) <- gsub("[ \\.]", "", tolower(names(der.summ)))
+        der.sd <- sd(der$y)
+        der.m <- c(der.summ, sd=der.sd)
+        names(der.m) <- paste(label, names(der.m), sep=".")
+        der.m
+    }
+    d <- do.call(rbind,
+                 lapply(seq(ndives), summarize.phase, "descent", "descD"))
+    b <- do.call(rbind,
+                 lapply(seq(ndives), summarize.phase, "bottom", "bottD"))
+    a <- do.call(rbind,
+                 lapply(seq(ndives), summarize.phase, "ascent", "ascD"))
+    cbind(d, b, a)
+}
+
+"diveStats" <- function(x, depth.deriv=TRUE)
 {
     ## Value: A data frame with per-dive statistics
     ## --------------------------------------------------------------------
@@ -46,5 +76,7 @@
         for (i in 1:3) res[, i] <- .POSIXct(res[, i], dtimestz)
     }
 
-    res
+    if (depth.deriv) {
+        data.frame(res, diveMove:::.derivStats(x))
+    } else res
 }
