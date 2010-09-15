@@ -33,12 +33,12 @@
   \item{smooth.par, knot.factor, descent.crit.q, ascent.crit.q}{Passed
   from \code{calibrateDepth}.}
 
-  \item{act}{Factor with values to label.}
+  \item{act}{factor with values to label.}
 
-  \item{string}{A character belonging to a level of \code{act} to search
-    for and label sequentially.}
+  \item{string}{character string belonging to a level of \code{act} to
+    search for and label sequentially.}
 
-  \item{diveID}{Numeric vector indexing each dive (non-dives should be
+  \item{diveID}{numeric vector indexing each dive (non-dives should be
     0)}
   
   \item{\ldots}{Arguments passed to \code{.cutDive} (\code{smooth.par}

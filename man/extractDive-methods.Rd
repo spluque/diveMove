@@ -26,10 +26,10 @@
 
   \item{obj}{\code{\link{TDR}} object.}
 
-  \item{diveNo}{Numeric vector or scalar with dive numbers to extract.}
+  \item{diveNo}{numeric vector or scalar with dive numbers to extract.}
 
-  \item{id}{Numeric vector of dive numbers from where \code{diveNo}
-    should be chosen.}
+  \item{id}{numeric vector or scalar of dive numbers from where
+    \code{diveNo} should be chosen.}
 
 }
 

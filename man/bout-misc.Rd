@@ -33,28 +33,31 @@ unLogit(logit)
     \dQuote{method}. For \code{labelBouts} it can also be a matrix with
     different variables for which bouts should be identified.}
 
-  \item{bw}{bin width for the histogram.}
+  \item{bw}{numeric scalar: bin width for the histogram.}
 
-  \item{method, bec.method}{method used for calculating the frequencies:
-    \dQuote{standard} simply uses x, while \dQuote{seq.diff} uses the
-    sequential differences method.}
+  \item{method, bec.method}{character: method used for calculating the
+    frequencies: \dQuote{standard} simply uses x, while
+    \dQuote{seq.diff} uses the sequential differences method.}
 
   \item{plot}{logical, whether to plot results or not.}
 
-  \item{lnfreq}{data frame with components \var{lnfreq} (log
+  \item{lnfreq}{data.frame with components \var{lnfreq} (log
     frequencies) and corresponding \var{x} (mid points of histogram
     bins).}
 
-  \item{x.break}{x value defining the break point for broken stick
-    model, such that x < xlim is 1st process, and x >= xlim is 2nd one.}
+  \item{x.break}{numeric scalar: x value defining the break point for
+    broken stick model, such that x < xlim is 1st process, and x >= xlim
+    is 2nd one.}
 
   \item{bec}{numeric vector or matrix with values for the bout ending
     criterion which should be compared against the values in x for
     identifying the bouts.}
 
-  \item{p}{vector of proportions (0-1) to transform to the logit scale.}
+  \item{p}{numeric vector of proportions (0-1) to transform to the logit
+    scale.}
 
-  \item{logit}{Logit value to transform back to original scale.}
+  \item{logit}{numeric scalar: logit value to transform back to original
+    scale.}
 
 }
 

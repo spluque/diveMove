@@ -43,14 +43,14 @@
     which additional components from the concurrent data frame should
     also be plotted, if any.}
 
-  \item{diveNo}{Numeric vector with dive numbers to plot.}
+  \item{diveNo}{numeric vector or scalar with dive numbers to plot.}
 
-  \item{labels}{One of \dQuote{phase.id} or \dQuote{dive.phase},
-    specifying whether to label observations based on the gross phase ID
-    of the \code{\link{TDR}} object, or based on each dive
-    phase, respectively.}
+  \item{labels}{character: one of \dQuote{phase.id} or
+    \dQuote{dive.phase}, specifying whether to label observations based
+    on the gross phase ID of the \code{\link{TDR}} object, or based on
+    each dive phase, respectively.}
 
-  \item{surface}{Logical indicating whether to plot surface readings.}
+  \item{surface}{logical: whether to plot surface readings.}
 
 }
 

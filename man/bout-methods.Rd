@@ -32,7 +32,7 @@
 
   \item{fit}{\code{\link{nls}} or \code{\link[stats4]{mle}} object.}
 
-  \item{x}{Numeric object with variable modelled.}
+  \item{x}{numeric object with variable modelled.}
 
   \item{\ldots}{Arguments passed to the underlying
     \code{\link{plotBouts2.nls}} and \code{\link{plotBouts2.mle}}.}

@@ -34,36 +34,36 @@
     (numeric,numeric method), or \code{\link{TDRcalibrate}} object
     (TDRcalibrate,numeric method).}
 
-  \item{y}{Numeric object with depth observations at each time step.}
-
-  \item{diveNo}{Integer representing the dive number selected for
+  \item{diveNo}{integer representing the dive number selected for
     plotting.}
 
-  \item{times.s}{Numeric vector with time steps used to generate the
+  \item{y}{numeric vector with depth observations at each time step.}
+
+  \item{times.s}{numeric vector with time steps used to generate the
     smoothing spline (i.e. the knots, see \code{\link{diveModel}}.}
 
-  \item{depths.s}{Numeric vector with smoothed depth (see
+  \item{depths.s}{numeric vector with smoothed depth (see
   \code{\link{diveModel}}).}
 
-  \item{d.crit}{Integer denoting the index where descent ends in the
+  \item{d.crit}{integer denoting the index where descent ends in the
     observed time series (see \code{\link{diveModel}}).}
 
-  \item{a.crit}{Integer denoting the index where ascent begins in the
+  \item{a.crit}{integer denoting the index where ascent begins in the
     observed time series (see \code{\link{diveModel}}).}
 
-  \item{times.deriv}{Numeric vector representing the time steps where
+  \item{times.deriv}{numeric vector representing the time steps where
     the derivative of the smoothing spline was evaluated
     \code{\link{diveModel}}.}
 
-  \item{depths.deriv}{Numeric vector representing the derivative of the
+  \item{depths.deriv}{numeric vector representing the derivative of the
     smoothing spline evaluated at \code{times.deriv}
     \code{\link{diveModel}}.}
 
-  \item{d.crit.rate}{Vertical rate of descent corresponding to the
-    quantile used (see \code{\link{diveModel}}.}
+  \item{d.crit.rate}{numeric scalar: vertical rate of descent
+    corresponding to the quantile used (see \code{\link{diveModel}}.}
 
-  \item{a.crit.rate}{Vertical rate of ascent corresponding to the
-    quantile used (see \code{\link{diveModel}}.}
+  \item{a.crit.rate}{numeric scalar: vertical rate of ascent
+    corresponding to the quantile used (see \code{\link{diveModel}}.}
 
 }
 

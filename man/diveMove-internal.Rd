@@ -2,6 +2,7 @@
 \name{diveMove-internal}
 
 \alias{.depthFilter}
+\alias{.derivStats}
 \alias{.diveIndices}
 \alias{.getInterval}
 \alias{.speedStats}
@@ -22,6 +23,7 @@
 
 \usage{
 .depthFilter(depth, k, probs, depth.bounds, na.rm)
+.derivStats(x)
 .diveIndices(diveID, diveNo)
 .getInterval(time)
 .speedStats(x, vdist)
@@ -58,7 +60,8 @@
   \item{x}{For \code{.speedStats}, a matrix with a dive's section data.
     A single dive's data: 3-col matrix with time, depth, and speed.  For
     .speedCol, a data frame where names are searched for strings
-    matching \code{.speedNames} (see Details).}
+    matching \code{.speedNames} (see Details).  For \code{.derivStats},
+    a \code{\link{TDRcalibrate}} object.}
 
   \item{vdist}{Vertical distance travelled during this time.  If
     \code{vdist} is missing, then it's all horizontal movements (no
@@ -91,6 +94,10 @@
   method=\dQuote{filter}.  It takes a numeric vector and applies a
   running quantile to it, and the process is repeated zero or more times
   on the filtered/smooth vector from the previous process.
+
+  \code{.derivStats} obtains summary statistics (summary() and sd()) of
+    derivatives for descent, bottom, and ascent phases for each dive.
+    It takes a \code{\link{TDRcalibrate}} object.
 
   \code{.diveIndices} takes a numeric vector with sequences of dive
   numbers, and selects the indices of dive numbers listed uniquely in

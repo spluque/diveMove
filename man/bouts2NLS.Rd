@@ -28,12 +28,12 @@ plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
 
 \arguments{
 
-  \item{x}{Numeric vector with values to model.}
+  \item{x}{numeric vector with values to model.}
 
-  \item{a1, lambda1, a2, lambda2}{Parameters from the mixture of Poisson
-    processes.}
+  \item{a1, lambda1, a2, lambda2}{numeric: parameters from the mixture
+    of Poisson processes.}
 
-  \item{lnfreq}{data frame with named components \var{lnfreq} (log
+  \item{lnfreq}{data.frame with named components \var{lnfreq} (log
     frequencies) and corresponding \var{x} (mid points of histogram
     bins).}
 

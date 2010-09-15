@@ -27,16 +27,16 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
     \code{\link{calibrateDepth}} or an object of class
     \code{\link{TDRcalibrate}} for \code{\link{calibrateSpeed}}.}
 
-  \item{dry.thr}{Dry error threshold in seconds.  Dry phases shorter
-    than this threshold will be considered as wet.}
+  \item{dry.thr}{numeric: dry error threshold in seconds.  Dry phases
+    shorter than this threshold will be considered as wet.}
 
-  \item{wet.thr}{Wet threshold in seconds. At-sea phases shorter than
-    this threshold will be considered as trivial wet.}
+  \item{wet.thr}{numeric: wet threshold in seconds. At-sea phases
+    shorter than this threshold will be considered as trivial wet.}
 
-  \item{dive.thr}{Threshold depth below which an underwater phase
-    should be considered a dive.}
+  \item{dive.thr}{numeric: threshold depth below which an underwater
+    phase should be considered a dive.}
 
-  \item{zoc.method}{Character string to indicate the method to use for
+  \item{zoc.method}{character string to indicate the method to use for
     zero offset correction.  One of \dQuote{visual}, \dQuote{offset}, or
     \dQuote{filter} (see \sQuote{Details}).}
 
@@ -44,24 +44,24 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
     (\code{k}, \code{probs}, \code{depth.bounds} (defaults to range),
     \code{na.rm} (defaults to TRUE)) and \code{offset} (\code{offset}).}
 
-  \item{interp.wet}{Logical.  If TRUE (default is FALSE), then an
+  \item{interp.wet}{logical: if TRUE (default is FALSE), then an
   interpolating spline function is used to impute NA depths in wet
   periods (\emph{after ZOC}).  \emph{Use with caution}: it may only be
   useful in cases where the missing data pattern in wet periods is
   restricted to shallow depths near the beginning and end of dives.
   This pattern is common in some satellite-linked \acronym{TDR}s.}
 
-  \item{smooth.par}{Numeric scalar representing amount of smoothing
+  \item{smooth.par}{numeric scalar representing amount of smoothing
     (argument \code{spar} in \code{\link[stats]{smooth.spline}}.}
 
-  \item{knot.factor}{Numeric scalar that multiplies the duration of the
+  \item{knot.factor}{numeric scalar that multiplies the duration of the
     dive (used to construct the time predictor for the derivative).}
 
-  \item{descent.crit.q}{Critical quantile of rates of descent below
-    which descent is deemed to have ended.}
+  \item{descent.crit.q}{numeric: critical quantile of rates of descent
+    below which descent is deemed to have ended.}
 
-  \item{ascent.crit.q}{Critical quantile of rates of ascent above which
-    ascent is deemed to have started.}
+  \item{ascent.crit.q}{numeric: critical quantile of rates of ascent
+    above which ascent is deemed to have started.}
 
 }
 

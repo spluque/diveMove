@@ -26,42 +26,44 @@ createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
 
 \arguments{
 
-  \item{file}{A string indicating the path to the file to read.}
+  \item{file}{character: a string indicating the path to the file to
+    read.}
 
-  \item{dateCol}{Column number containing dates, and optionally, times.}
+  \item{dateCol}{integer: column number containing dates, and
+    optionally, times.}
 
-  \item{timeCol}{Column number with times.}
+  \item{timeCol}{integer: column number with times.}
 
-  \item{depthCol}{Column number containing depth readings.}
+  \item{depthCol}{integer: column number containing depth readings.}
 
-  \item{speed}{For \code{readTDR}: Logical indicating whether speed is
-    included in one of the columns of concurrentCols.}
+  \item{speed}{logical: whether speed is included in one of the columns
+    of concurrentCols.}
 
-  \item{subsamp}{Subsample rows in \code{file} with \code{subsamp}
-    interval, in s.}
+  \item{subsamp}{numeric scalar: subsample rows in \code{file} with
+    \code{subsamp} interval, in s.}
 
-  \item{concurrentCols}{Column numbers to include as concurrent data
-    collected.}
+  \item{concurrentCols}{integer vector of column numbers to include as
+    concurrent data collected.}
 
-  \item{dtformat}{A string, specifying the format in which the date and
-    time columns, when pasted together, should be interpreted (see
-    \code{\link{strptime}}).}
+  \item{dtformat}{character: a string specifying the format in which the
+    date and time columns, when pasted together, should be interpreted
+    (see \code{\link{strptime}}).}
 
-  \item{tz}{A string indicating the time zone assumed for the date and
-    time readings.}
+  \item{tz}{character: a string indicating the time zone assumed for the
+    date and time readings.}
 
   \item{\ldots}{Passed to \code{\link{read.csv}}}
 
   \item{time}{A \code{POSIXct} object with date and time readings for
     each reading.}
 
-  \item{depth}{Numeric vector with depth readings.}
+  \item{depth}{numeric vector with depth readings.}
 
-  \item{concurrentData}{Data frame with additional, concurrent data
+  \item{concurrentData}{data.frame with additional, concurrent data
     collected.}
 
-  \item{dtime}{Sampling interval used in seconds.  If missing, it is
-    calculated from the \code{time} argument.}
+  \item{dtime}{numeric scalar: sampling interval used in seconds.  If
+    missing, it is calculated from the \code{time} argument.}
 
 }
 

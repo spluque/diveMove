@@ -28,21 +28,21 @@ rmsDistFilter(x, speed.thr, window=5, dist.thr)
   \item{time}{\code{POSIXct} object with dates and times for each
     point.}
 
-  \item{lon}{Numeric vectors of longitudes, in decimal degrees.}
+  \item{lon}{numeric vectors of longitudes, in decimal degrees.}
 
-  \item{lat}{Numeric vector of latitudes, in decimal degrees.}
+  \item{lat}{numeric vector of latitudes, in decimal degrees.}
 
   \item{id}{A factor grouping points in different categories
     (e.g. individuals).}
 
-  \item{speed.thr}{Speed threshold (m/s) above which filter tests
-    should fail any given point.}
+  \item{speed.thr}{numeric scalar: speed threshold (m/s) above which
+    filter tests should fail any given point.}
 
-  \item{dist.thr}{Distance threshold (km) above which the last filter
-    test should fail any given point.}
+  \item{dist.thr}{numeric scalar: distance threshold (km) above which
+    the last filter test should fail any given point.}
 
-  \item{window}{Integer indicating the size of the moving window over
-    which tests should be carried out.}
+  \item{window}{integer: the size of the moving window over which tests
+    should be carried out.}
 
   \item{x}{3-column matrix with column 1: \code{POSIXct} vector; column
     2: numeric longitude vector; column 3: numeric latitude vector.}

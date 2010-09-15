@@ -25,8 +25,7 @@
 \arguments{
   \item{obj}{\code{\link{TDRcalibrate}} object.}
 
-  \item{ignoreZ}{Logical indicating whether to ignore trivial aquatic
-    periods.}
+  \item{ignoreZ}{logical: whether to ignore trivial aquatic periods.}
 
 }
 

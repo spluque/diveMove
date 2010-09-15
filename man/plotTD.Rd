@@ -31,38 +31,38 @@ plotTD(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
 
   \item{time}{\code{POSIXct} object with date and time.}
 
-  \item{depth}{Numeric vector with depth in m.}
+  \item{depth}{numeric vector with depth in m.}
 
-  \item{concurVars}{Matrix with additional variables in each column to
+  \item{concurVars}{matrix with additional variables in each column to
     plot concurrently with depth.}
 
-  \item{xlim}{Vector of length 2, with lower and upper limits of time to
-    be plotted.}
+  \item{xlim}{\code{POSIXct} or numeric vector of length 2, with lower
+    and upper limits of time to be plotted.}
 
-  \item{depth.lim}{Numeric vector of length 2, with the lower and upper
+  \item{depth.lim}{numeric vector of length 2, with the lower and upper
     limits of depth to be plotted.}
 
-  \item{xlab, ylab.depth}{Strings to label the corresponding
+  \item{xlab, ylab.depth}{character strings to label the corresponding
     y-axes.}
 
-  \item{concurVarTitles}{Character vector of titles to label each new
+  \item{concurVarTitles}{character vector of titles to label each new
     variable given in \var{concurVars}.}
 
-  \item{xlab.format}{Format string for formatting the x axis; see
-    \code{\link{strptime}}.}
+  \item{xlab.format}{character: format string for formatting the x axis;
+    see \code{\link{strptime}}.}
 
-  \item{sunrise.time, sunset.time}{Character string with time of sunrise
+  \item{sunrise.time, sunset.time}{character string with time of sunrise
     and sunset, respectively, in 24 hr format.  This is used for shading
     night time.}
 
-  \item{night.col}{Color for shading night time.}
+  \item{night.col}{color for shading night time.}
 
-  \item{phase.factor}{Factor dividing rows into sections.}
+  \item{phase.factor}{factor dividing rows into sections.}
 
-  \item{interact}{Logical; whether to provide interactive tcltk controls
+  \item{interact}{logical: whether to provide interactive tcltk controls
     and access to the associated ZOC functionality.}
 
-  \item{key}{Logical indicating whether to draw a key.}
+  \item{key}{logical: whether to draw a key.}
 
   \item{cex.pts}{Passed to \code{\link{points}} to set the relative size
     of points to plot (if any).}

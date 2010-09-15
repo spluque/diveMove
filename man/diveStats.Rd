@@ -15,7 +15,7 @@
 
 
 \usage{
-diveStats(x)
+diveStats(x, depth.deriv=TRUE)
 oneDiveStats(x, interval, speed=FALSE)
 stampDive(x, ignoreZ=TRUE)
 }
@@ -30,13 +30,17 @@ stampDive(x, ignoreZ=TRUE)
     object with the time for each reading, a numeric depth vector, and a
     numeric speed vector) for \code{oneDiveStats}.}
 
-  \item{interval}{Sampling interval for interpreting \code{x}.}
+  \item{depth.deriv}{logical: should depth derivative statistics be
+    calculated?}
 
-  \item{speed}{Logical; should speed statistics be calculated?}
+  \item{interval}{numeric scalar: sampling interval for interpreting
+    \code{x}.}
 
-  \item{ignoreZ}{Logical indicating whether trips should be numbered
-    considering all aquatic activities (\dQuote{W} and \dQuote{Z}) or
-    ignoring \dQuote{Z} activities.}
+  \item{speed}{logical: should speed statistics be calculated?}
+
+  \item{ignoreZ}{logical: whether trips should be numbered considering
+    all aquatic activities (\dQuote{W} and \dQuote{Z}) or ignoring
+    \dQuote{Z} activities.}
 
 }
 
@@ -109,7 +113,10 @@ stampDive(x, ignoreZ=TRUE)
 
   \item{postdive.mean.speed}{Numeric vector with postdive mean speed.}
 
-  The number of columns depends on the value of speed.
+  If \code{depth.deriv=TRUE}, 21 additional columns with the minimum,
+  first quartile, median, mean, third quartile, maximum, and standard
+  deviation of the depth derivative for each phase of the dive.  The
+  number of columns also depends on the value of speed.
 
   \code{stampDive} returns a data.frame with trip number, trip type, and
   start and end times for each dive.}

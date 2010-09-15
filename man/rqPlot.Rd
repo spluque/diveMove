@@ -24,32 +24,33 @@ rqPlot(rddepth, speed, z, contours, rqFit, main="qtRegression",
 
 \arguments{
 
-  \item{speed}{Speed in m/s.}
+  \item{speed}{numeric vector with speed in m/s.}
 
-  \item{rddepth}{Numeric vector with rate of depth change.}
+  \item{rddepth}{numeric vector with rate of depth change.}
 
-  \item{z}{A list with the bivariate kernel density estimates (1st
+  \item{z}{list with the bivariate kernel density estimates (1st
     component the x points of the mesh, 2nd the y points, and 3rd the
     matrix of densities).}
 
-  \item{contours}{List with components: \code{pts} which should be a
+  \item{contours}{list with components: \code{pts} which should be a
     matrix with columns named \code{x} and \code{y}, \code{level} a
     number indicating the contour level the points in \code{pts}
     correspond to.}
 
-  \item{rqFit}{Object of class \dQuote{rq} representing a quantile
+  \item{rqFit}{object of class \dQuote{rq} representing a quantile
     regression fit of rate of depth change on mean speed.}
 
-  \item{main}{String; title prefix to include in ouput plot.}
+  \item{main}{character: string with title prefix to include in ouput
+    plot.}
 
-  \item{xlab, ylab}{axis labels.}
+  \item{xlab, ylab}{character vectors with axis labels.}
 
-  \item{colramp}{Function taking an integer n as an argument and
+  \item{colramp}{function taking an integer n as an argument and
     returning n colors.}
 
-  \item{col.line}{Color to use for the regression line.}
+  \item{col.line}{color to use for the regression line.}
 
-  \item{cex.pts}{A numerical value specifying the amount by which to
+  \item{cex.pts}{numeric: value specifying the amount by which to
     enlarge the size of points.}
 
 }

@@ -25,7 +25,7 @@
 
   \item{time}{\code{POSIXct} object with date and time for all depths.}
 
-  \item{depth}{Numeric vector with depth readings.}
+  \item{depth}{numeric vector with depth readings.}
 
   \item{dry.thr, wet.thr}{Passed from \code{\link{calibrateDepth}}.}
 

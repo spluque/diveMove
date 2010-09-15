@@ -31,10 +31,10 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
 \arguments{
 
-  \item{x}{Numeric vector with values to model.}
+  \item{x}{numeric vector with values to model.}
 
-  \item{p, lambda1, lambda2}{Parameters of the mixture of Poisson
-    processes.}
+  \item{p, lambda1, lambda2}{numeric: parameters of the mixture of
+    Poisson processes.}
 
   \item{ll.fun}{function returning the negative of the maximum
     likelihood function that should be maximized.  This should be a
@@ -47,12 +47,12 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
   \item{fit}{\code{\link[stats4]{mle}} object.}
 
-  \item{xlab, ylab}{Titles for the x and y axes.}
+  \item{xlab, ylab}{character: titles for the x and y axes.}
 
   \item{bec.lty}{Line type specification for drawing the BEC reference
     line.}
 
-  \item{draw.bec}{Logical; do we draw the BEC?}
+  \item{draw.bec}{logical; do we draw the BEC?}
 
 }
 
