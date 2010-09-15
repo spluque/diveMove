@@ -379,30 +379,30 @@ below \Rfunarg{dive.thr} and the subsequent return to the surface.  Each
 dive may subsequently be referred to by an integer number indicating its
 position in the time series.
 
-Dive phases are also identified at this last stage.  Detection of dive
-phases is controlled by three arguments: a critical quantile for rates of
-vertical descent (\Rfunarg{descent.crit.q}), a critical quantile for rates
-of ascent (\Rfunarg{ascent.crit.q}), and a proportion of maximum depth
-(\Rfunarg{wiggle.tol}).  The first two arguments are used to define the
-rate of descent below which the descent phase is deemed to have ended, and
-the rate of ascent above which the ascent phases is deemed to have started,
-respectively.  The rates are obtained from all successive rates of vertical
-movement from the surface to the first (descent) and last (ascent) maximum
-dive depth.  Only positive rates are considered for the descent, and only
-negative rates are considered for the ascent.  The purpose of this
-restriction is to avoid having any reversals of direction or histeresis
-events resulting in phases determined exclusively by those events.  The
-\Rfunarg{wiggle.tol} argument determines the proportion of maximum dive
-depth above which wiggles are not allowed to terminate descent, or below
-which they should be considered as part of the bottom phase.
+Dive phases are also identified at this last stage, and is done using a
+smoothing spline model of the dive and its first derivative.  Detection of
+dive phases is controlled by four arguments: a critical quantile for rates
+of vertical descent (\Rfunarg{descent.crit.q}), a critical quantile for
+rates of ascent (\Rfunarg{ascent.crit.q}), a smoothing parameter
+(\Rfunarg{smooth.par}), and a factor (\Rfunarg{knot.factor}) that
+multiplies the duration of the dive to obtain the number of knots at which
+to evaluate the derivative of the smoothing spline.  The first two
+arguments are used to define the rate of descent below which the descent
+phase is deemed to have ended, and the rate of ascent above which the
+ascent phase is deemed to have started, respectively.  The rates are
+obtained by evaluating the derivative of the smoothing at a number of knots
+placed regularly throughout the dive.  Descent is deemed to have ended at
+the \emph{first} minimum derivative, and the nearest input time observation
+is considered to indicate the end of descent.  The sign of the comparisons
+is reversed for detecting the ascent.
 
 A more refined call to \Rfunction{calibrateDepth()} for object
 \Robject{tdrX} may be:
 
 <<zoc>>=
-dcalib <- calibrateDepth(tdrX, zoc.method="offset", offset=3, wet.thr=70,
-                         dry.thr=3610, dive.thr=4, smooth.par=0.1,
-                         knot.factor=3, descent.crit.q=0, ascent.crit.q=0.3)
+dcalib <- calibrateDepth(tdrX, dive.thr=3, zoc.method="offset",
+                               offset=3, descent.crit.q=0.01, ascent.crit.q=0,
+                               knot.factor=20)
 @
 
 The result (value) of this function is an object of class
@@ -439,7 +439,9 @@ information during the major procedures performed by
   descent/bottom and bottom/ascent levels are useful for readings which
   could not unambiguously be assigned to one of the other levels.
 \item[dive.models:] \Rclass{list}.  This list contains all the details of
-  the modelling process used to identifies dive phases.
+  the modelling process used to identifies dive phases.  Each member of
+  this list consists of objects of class \Rclass{diveModel}, for which
+  important methods are available.
 \item[dry.thr:] \Rclass{numeric}.
 \item[wet.thr:] \Rclass{numeric}.
 \item[dive.thr:] \Rclass{numeric}.  These last three slots store
@@ -594,10 +596,28 @@ dphases <- getDPhaseLab(dcalib, c(100:300))
 @
 
 The latter method is useful for visually inspecting the assignment of
-points to particular dive phases.  Before doing that though, this is a good
-time to introduce another generic function that allows the subsetting of
-the original \Rclass{TDR} object to a single a dive or group of dives'
-data:
+points to particular dive phases.  More information about the dive phase
+identification procedure can be gleaned by using the
+\Rmethod{plotDiveModel} (Figure~\ref{fig:4}):
+
+<<diveModel, eval=FALSE>>=
+plotDiveModel(dcalib, diveNo=260)
+<<eval=TRUE, echo=FALSE, results=hide>>=
+png("plot_dive_model.png")
+plotDiveModel(dcalib, diveNo=260)
+dev.off()
+@
+\begin{figure}%
+  \centering
+  \includegraphics[trim=10 0 10 0,width=\linewidth]{plot_dive_model}
+  \caption{Details of the process of identification of dive phases shown by
+    \Rmethod{plotDiveModel}, which has methods for objects of class
+    \Rclass{TDRcalibrate} and \Rclass{diveModel}.}
+  \label{fig:4}
+\end{figure}
+
+Another generic function that allows the subsetting of the original
+\Rclass{TDR} object to a single a dive or group of dives' data:
 
 <<extractdive>>=
 sealX <- extractDive(dcalib, diveNo=c(100:300))
@@ -764,10 +784,10 @@ dev.off()
     can be used to calibrate speed readings.  The line defining the
     calibration for speed measurements passes through the bottom edge of a
     chosen contour, extracted from a bivariate kernel density grid.}
-  \label{fig:4}
+  \label{fig:5}
 \end{figure}
 
-This call produces the plot shown in Figure~\ref{fig:4}, which can be
+This call produces the plot shown in Figure~\ref{fig:5}, which can be
 suppressed by the use of the logical argument \Rfunarg{plot}.  Calibrating
 speed readings allows for the meaningful interpretation of further
 parameters calculated by \Rfunction{diveStats()}, whenever a

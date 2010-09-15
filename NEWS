@@ -10,8 +10,8 @@ See ChangeLog for more details.
      beginning of ascent, which form the basis for the identification of
      the rest of the phases.  This prompted the creation of a new S4 class
      to hold the details of the dive modelling process.  New plotting and
-     accessor methods are also provided to examine the process.  More
-     methods will be added to take full advantage of the information
+     accessor methods are also provided to examine the process.  Additional
+     methods are being developed to take full advantage of the information
      available in objects of this class.
 
    o Removed /data objects 'divesTDRcalibrate' and 'divesSummary' because
