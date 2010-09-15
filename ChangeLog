@@ -1,5 +1,10 @@
 2010-09-15  Sebastian P. Luque <spluque@gmail.com>
 
+	Releasing version 1.2
+
+	* R/diveStats.R:
+	  Calculate derivative statistics.
+
 	* R/detDive.R, man/calibrateDepth.Rd:
 	  Use c() instead of lapply() in .labDivePhase() to ensure 'list'
 	  result. Kinda weird to do all these acrobatics just to get a
