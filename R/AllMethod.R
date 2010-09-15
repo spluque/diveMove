@@ -315,6 +315,49 @@ setMethod("getDiveModel", signature(x="TDRcalibrate", diveNo="numeric"),
               if (length(diveNo == 1L)) dm[[1]] else dm
           })
 
+## Basic diveModel
+setMethod("getDiveDeriv", signature(x="diveModel"),
+          function(x, phase=c("all", "descent", "bottom", "ascent")) {
+              phase <- match.arg(phase)
+              d.crit <- x@descent.crit
+              a.crit <- x@ascent.crit
+              switch(phase,
+                     all = {x@spline.deriv},
+                     descent = {
+                         spd <- x@spline.deriv
+                         t.crit <- x@dive.spline$data$x[d.crit]
+                         descent <- which(spd$x < t.crit)
+                         spd$x <- spd$x[descent]
+                         spd$y <- spd$y[descent]
+                         spd
+                     },
+                     bottom = {
+                         spd <- x@spline.deriv
+                         t.desc.crit <- x@dive.spline$data$x[d.crit]
+                         t.asc.crit <- x@dive.spline$data$x[a.crit]
+                         bottom <- which(spd$x >= t.desc.crit &
+                                         spd$x <= t.asc.crit)
+                         spd$x <- spd$x[bottom]
+                         spd$y <- spd$y[bottom]
+                         spd
+                     },
+                     ascent = {
+                         spd <- x@spline.deriv
+                         t.crit <- x@dive.spline$data$x[a.crit]
+                         ascent <- which(spd$x > t.crit)
+                         spd$x <- spd$x[ascent]
+                         spd$y <- spd$y[ascent]
+                         spd
+                     })
+          })
+## TDRcalibrate
+setMethod("getDiveDeriv", signature(x="TDRcalibrate"),
+          function(x, diveNo, phase=c("all", "descent", "bottom", "ascent")) {
+              phase <- match.arg(phase)
+              dm <- getDiveModel(x, diveNo=diveNo)
+              getDiveDeriv(dm, phase=phase)
+          })
+
 setMethod("getSpeedCoef", signature(x="TDRcalibrate"),
           function(x) x@speed.calib.coefs)
 

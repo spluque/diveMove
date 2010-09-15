@@ -1,3 +1,9 @@
+2010-09-15  Sebastian P. Luque <spluque@gmail.com>
+
+	* NEWS, R/AllGenerics.R, R/AllMethod.R,
+	  man/TDRcalibrate-accessors.Rd, man/diveModel-class.Rd:
+	  New accessor method for the derivative.
+
 2010-09-14  Sebastian P. Luque <spluque@gmail.com>
 
 	* man/calibrateDepth.Rd:

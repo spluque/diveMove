@@ -66,7 +66,7 @@
 }
 
 
-\seealso{\code{\link{plotDiveModel}}}
+\seealso{\code{\link{getDiveDeriv}}, \code{\link{plotDiveModel}}}
 
 % -------------------------------------------------------------------------
 

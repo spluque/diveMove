@@ -53,9 +53,14 @@ if (!isGeneric("getDPhaseLab")) {       # dive phase label accessor
                function(x, diveNo) standardGeneric("getDPhaseLab"))
 }
 
-if (!isGeneric("getDiveModel")) {     # dive phase model accessor
+if (!isGeneric("getDiveModel")) {     # dive model accessor
     setGeneric("getDiveModel",
                function(x, diveNo) standardGeneric("getDiveModel"))
+}
+
+if (!isGeneric("getDiveDeriv")) {     # dive derivative accessor
+    setGeneric("getDiveDeriv",
+               function(x, ...) standardGeneric("getDiveDeriv"))
 }
 
 if (!isGeneric("getSpeedCoef")) {       # speed calibration coefs accessor
