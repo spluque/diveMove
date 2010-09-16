@@ -21,13 +21,13 @@
 }
 
 ###_ + Main Function
-"plotTD" <- function(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
-                     xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
-                     concurVarTitles=deparse(substitute(concurVars)),
-                     xlab.format="%d-%b %H:%M", sunrise.time="06:00:00",
-                     sunset.time="18:00:00", night.col="gray60",
-                     phase.factor=NULL, interact=TRUE, key=TRUE,
-                     cex.pts=0.4, ...)
+"plotTDR" <- function(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
+                      xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
+                      concurVarTitles=deparse(substitute(concurVars)),
+                      xlab.format="%d-%b %H:%M", sunrise.time="06:00:00",
+                      sunset.time="18:00:00", night.col="gray60",
+                      phase.factor=NULL, interact=TRUE, key=TRUE,
+                      cex.pts=0.4, ...)
 {
     ## Value: Returns (invisibly) a list with coordinates for each zoc'ed
     ## time window.  Also Plot time, depth, and other concurrent data.
