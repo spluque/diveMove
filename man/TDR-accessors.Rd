@@ -42,7 +42,8 @@
   \code{\link{TDR}}. }
 
 
-\section{Show Methods}{
+\section{Show Method}{
+
   \describe{
 
     \item{show}{\code{signature(object="TDR")}: print an informative
@@ -115,7 +116,7 @@
 }
 
 
-\seealso{ \code{\link{extractDive}}, \code{\link{plotTD}}.  }
+\seealso{ \code{\link{extractDive}}, \code{\link{plotTDR}}.  }
 
 % -------------------------------------------------------------------------
 

@@ -117,7 +117,7 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   pressure transducer of \acronym{TDR} records and noise in depth
   measurements.  Three methods are available to perform this correction.
 
-  Method \dQuote{visual} calls \code{\link{plotTD}}, which plots depth
+  Method \dQuote{visual} calls \code{\link{plotTDR}}, which plots depth
   and, optionally, speed vs. time with the ability of zooming in and out
   on time, changing maximum depths displayed, and panning through time.
   The button to zero-offset correct sections of the record allows for
@@ -223,7 +223,7 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 
 \seealso{\code{\link{TDRcalibrate}}, \code{\link{.zoc}},
   \code{\link{.depthFilter}}, \code{\link{.detPhase}},
-  \code{\link{.detDive}}, \code{\link{plotTDR}}.}
+  \code{\link{.detDive}}, \code{\link[diveMove]{plot}}.}
 
 % -------------------------------------------------------------------------
 

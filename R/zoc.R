@@ -65,7 +65,7 @@
     ## something like method="filter")
     ## --------------------------------------------------------------------
     switch(method,
-           visual = {zoclims <- plotTD(time, depth)
+           visual = {zoclims <- plotTDR(time, depth)
                      dev.off()
                      if (length(zoclims) == 0) {
                          message("No ZOC performed.")

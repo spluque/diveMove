@@ -1,6 +1,6 @@
 ## $Id$
 
-###_ + Show and PlotTDR
+###_ + Show and plot
 
 ###_  . TDR and TDRspeed
 setMethod("show", signature=signature(object="TDR"),
@@ -29,22 +29,22 @@ setMethod("show", signature=signature(object="TDR"),
               }
           })
 
-setMethod("plotTDR", signature(x="TDR"),
-          function(x, ...) {
-              plotTD(getTime(x), getDepth(x), ...)
+setMethod("plot", signature(x="TDR", y="missing"),
+          function(x, y, ...) {
+              plotTDR(getTime(x), getDepth(x), ...)
           })
 
-setMethod("plotTDR", signature(x="TDRspeed"),
-          function(x, concurVars, concurVarTitles, ...) {
+setMethod("plot", signature(x="TDRspeed", y="missing"),
+          function(x, y, concurVars, concurVarTitles, ...) {
               if (missing(concurVarTitles) && !missing(concurVars)) {
                   concurVarTitles <- colnames(concurVars)
               } else if (missing(concurVarTitles) && missing(concurVars)) {
                   concurVars <- NULL
                   concurVarTitles <- "speed (m/s)"
               }
-              plotTD(getTime(x), getDepth(x),
-                     concurVars=cbind(getSpeed(x), concurVars),
-                     concurVarTitles=concurVarTitles, ...)
+              plotTDR(getTime(x), getDepth(x),
+                      concurVars=cbind(getSpeed(x), concurVars),
+                      concurVarTitles=concurVarTitles, ...)
           })
 
 ###_  . TDRcalibrate
@@ -56,8 +56,7 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
               wet <- object@gross.activity$activity == "W"
               wetz <- object@gross.activity$activity == "Z"
               ww <- length(unique(object@gross.activity$ phase.id[wet | wetz]))
-              cat("Depth calibration -- Class", class(object), "object\n",
-                  sep="")
+              cat("Depth calibration -- Class", class(object), "object\n")
               cat("  Call                          : ", mCall, "\n", sep="")
               cat("  Source file                   : ", object@tdr@file, "\n",
                   sep="")
@@ -81,8 +80,8 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
               } else cat("\n", sep="")
           })
 
-setMethod("plotTDR", signature(x="TDRcalibrate"),
-          function(x, diveNo=seq(max(getDAct(x, "dive.id"))),
+setMethod("plot", signature(x="TDRcalibrate", y="missing"),
+          function(x, y, diveNo=seq(max(getDAct(x, "dive.id"))),
                    labels="phase.id", concurVars, surface=FALSE, ...) {
               diveids <- getDAct(x, "dive.id")
               tdr <- getTDR(x)
@@ -105,13 +104,14 @@ setMethod("plotTDR", signature(x="TDRcalibrate"),
                   if (!is.character(concurVars))
                       stop("concurVars must be of class character")
                   ccd <- getCCData(tdr, concurVars)[ok, , drop=FALSE]
-                  plotTDR(newtdr, concurVars=ccd, phase.factor=labs, ...)
-              } else plotTDR(newtdr, phase.factor=labs, ...)
+                  plotTDR(getTime(newtdr), getDepth(newtdr),
+                          concurVars=ccd, phase.factor=labs, ...)
+              } else plotTDR(getTime(newtdr), getDepth(newtdr),
+                             phase.factor=labs, ...)
           })
 
 ###_  . diveModel
-setMethod("plotDiveModel",
-          signature(x="diveModel", y="missing"),
+setMethod("plotDiveModel", signature(x="diveModel", y="missing"),
           function(x, diveNo) {
               if (missing(diveNo)) diveNo <- "Unknown"
               diveM <- x

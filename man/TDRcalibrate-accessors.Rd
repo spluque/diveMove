@@ -154,7 +154,8 @@
   elements of the slot they extracted. }
 
 
-\seealso{\code{\link{diveModel}}, \code{\link{plotDiveModel}}.}
+\seealso{\code{\link{diveModel}}, \code{\link{plotDiveModel}},
+\code{\link[diveMove]{plot}}.}
 
 % -------------------------------------------------------------------------
 

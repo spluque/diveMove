@@ -1,7 +1,7 @@
 Package: diveMove
 Type: Package
 Title: Dive analysis and calibration
-Version: 1.2
+Version: 1.2.1
 Depends: R (>= 2.11.0), methods, stats4, caTools, RColorBrewer
 Suggests: KernSmooth, quantreg, tcltk
 Imports: stats4
@@ -13,7 +13,7 @@ Description: Utilities to represent, visualize, filter, analyse, and summarize
 LazyLoad: yes
 ZipData: no
 Collate: AllClass.R AllGenerics.R AllMethod.R austFilter.R bouts.R calibrate.R
-	 detDive.R detPhase.R distSpeed.R diveStats.R oneDiveStats.R plotTD.R
+	 detDive.R detPhase.R distSpeed.R diveStats.R oneDiveStats.R plotTDR.R
 	 readLocs.R readTDR.R speedStats.R stampDive.R zoc.R zzz.R
 License: GPL-3
 URL: http://r-forge.r-project.org/projects/divemove

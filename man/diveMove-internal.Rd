@@ -67,7 +67,7 @@
     \code{vdist} is missing, then it's all horizontal movements (no
     angles).}
 
-  \item{sunrise.time, sunset.time}{Passed from \code{plotTD}.}
+  \item{sunrise.time, sunset.time}{Passed from \code{plotTDR}.}
 
   \item{act}{A numeric vector indicating the activity for every element
     of \code{time}.}

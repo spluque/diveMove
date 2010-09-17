@@ -88,7 +88,7 @@ plotTDR(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
     \code{\link{par}}; useful defaults \code{las=1}, \code{bty="n"}, and
     \code{mar} (the latter depending on whether additional concurrent
     data will be plotted) are provided, but they can be overridden.  For
-    S4 methods; arguments passed to \code{plotTDR}.}
+    S4 methods; arguments passed to the appropriate methods.}
 
   \item{x, y}{\code{\link{TDR}}, \code{\link{TDRspeed}}, or
     \code{\link{TDRcalibrate}} object.}

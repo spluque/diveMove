@@ -5,7 +5,7 @@
 {
     ## Value: A list with sunset and sunrise times for dates in 'time'
     ## --------------------------------------------------------------------
-    ## Arguments: Passed from plotTD
+    ## Arguments: Passed from plotTDR
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
