@@ -242,17 +242,17 @@ and immediately begin using the methods provided:
 
 <<readin-tdr, eval=FALSE, results=hide>>=
 tdrX <- readTDR(ff, speed=TRUE, sep=";", na.strings="", as.is=TRUE)
-plot(tdrX)
+plotTDR(tdrX)
 <<eval=TRUE, echo=FALSE, results=hide>>=
 tdrX <- readTDR(ff, speed=TRUE, sep=";", na.strings="", as.is=TRUE)
-png("plot_tdr.png"); plot(tdrX, interact=FALSE, cex.lab=1.3); dev.off()
+png("plot_tdr.png"); plotTDR(tdrX, interact=FALSE, cex.lab=1.3); dev.off()
 @
 \begin{figure}%[tbhp]
   \centering
   \includegraphics[width=\linewidth]{plot_tdr}
   \includegraphics[width=0.5\linewidth]{tcltk}
-  \caption{The \Rmethod{plot()} method for \Rclass{TDR} objects produces an
-    interactive plot of the data, allowing for zooming and panning.}
+  \caption{The \Rmethod{plotTDR()} method for \Rclass{TDR} objects produces
+    an interactive plot of the data, allowing for zooming and panning.}
   \label{fig:1}
 \end{figure}
 
@@ -264,8 +264,8 @@ readings.
 Various methods are available for displaying TDR objects, including
 \Rfunction{show()}, which provides an informative summary of the data in
 the object, extractors and replacement methods for all the slots.  There is
-a \Rfunction{plot()} method (Figure~\ref{fig:1}) for both \Rclass{TDR} and
-\Rclass{TDRspeed} objects.  The \Rfunarg{interact} argument allows for
+a \Rfunction{plotTDR()} method (Figure~\ref{fig:1}) for both \Rclass{TDR}
+and \Rclass{TDRspeed} objects.  The \Rfunarg{interact} argument allows for
 suppression of the \Rpackage{tcltk} interface.  Information on these
 methods is available from \Rmethod{methods?TDR}.
 
@@ -457,25 +457,25 @@ class?TDRcalibrate).  An appropriate \Rmethod{show()} method is available
 to display a short summary of such objects, including the number of dry and
 wet periods identified, and the number of dives detected.
 
-The \Rclass{TDRcalibrate} \Rmethod{plot()} method for these objects allows
-visualizing the major wet/dry activities throughout the record
+The \Rclass{TDRcalibrate} \Rmethod{plotTDR()} method for these objects
+allows visualizing the major wet/dry activities throughout the record
 (Figure~\ref{fig:2}):
 
 <<plot-gross-activity, eval=FALSE>>=
-plot(dcalib, concurVars="light", concurVarTitles=c("speed (m/s)", "light"),
-     surface=TRUE)
+plotTDR(dcalib, concurVars="light", concurVarTitles=c("speed (m/s)", "light"),
+        surface=TRUE)
 <<eval=TRUE, echo=FALSE, results=hide>>=
 png("plot_tdr_calibrate.png", width=380)
-plot(dcalib, concurVars="light", concurVarTitles=c("speed (m/s)", "light"),
-     surface=TRUE, interact=FALSE, cex.lab=1.3)
+plotTDR(dcalib, concurVars="light", concurVarTitles=c("speed (m/s)", "light"),
+        surface=TRUE, interact=FALSE, cex.lab=1.3)
 dev.off()
 @
 \begin{figure}[tb]
   \centering
   \includegraphics[width=\linewidth]{plot_tdr_calibrate}
-  \caption{The \Rfunction{plot()} method for \Rclass{TDRcalibrate} objects
-    displays information on the major activities identified throughout the
-    record (wet/dry periods here).}
+  \caption{The \Rfunction{plotTDR()} method for \Rclass{TDRcalibrate}
+    objects displays information on the major activities identified
+    throughout the record (wet/dry periods here).}
   \label{fig:2}
 \end{figure}
 
@@ -494,22 +494,22 @@ that can be passed from these methods.
 
 A more detailed view of the record can be obtained by using a combination
 of the \Rfunarg{diveNo} and the \Rfunarg{labels} arguments to this
-\Rmethod{plot()} method.  This is useful if, for instance, closer
+\Rmethod{plotTDR()} method.  This is useful if, for instance, closer
 inspection of certain dives is needed.  The following call displays a plot
 of dives 2 through 8 (Figure~\ref{fig:3}):
 
 <<plot-dive-activity, eval=FALSE>>=
-plot(dcalib, diveNo=2:8, labels="dive.phase")
+plotTDR(dcalib, diveNo=2:8, labels="dive.phase")
 <<eval=TRUE, echo=FALSE, results=hide>>=
 png("plot_tdr_dives.png", height=380)
-plot(dcalib, diveNo=2:8, labels="dive.phase", interact=FALSE,
-     cex.lab=1.3, depth.lim=c(0, 80))
+plotTDR(dcalib, diveNo=2:8, labels="dive.phase", interact=FALSE,
+        cex.lab=1.3, depth.lim=c(0, 80))
 dev.off()
 @
 \begin{figure}%[tb]
   \centering
   \includegraphics[width=\linewidth]{plot_tdr_dives}
-  \caption{The \Rmethod{plot()} method for \Rclass{TDRcalibrate} objects
+  \caption{The \Rmethod{plotTDR()} method for \Rclass{TDRcalibrate} objects
     can also display information on the different activities during each
     dive record (descent=D, descent/bottom=DB, bottom=B, bottom/ascent=BA,
     ascent=A, X=surface).}
@@ -633,7 +633,7 @@ the \Rmethod{plot} method\footnote{The function that the method uses is
   by reading the help page for \Rfunction{plotTD}}:
 
 <<plot-phases, eval=FALSE>>=
-plot(sealX, phaseCol=dphases)
+plotTDR(sealX, phaseCol=dphases)
 @
 
 With the information obtained during this calibration procedure, it is

@@ -1,3 +1,24 @@
+2010-09-18  Sebastian P. Luque <spluque@gmail.com>
+
+	* NAMESPACE, R/AllGenerics.R, R/AllMethod.R, R/plotTDR.R,
+	  inst/doc/diveMove.Rnw, man/TDRcalibrate-accessors.Rd,
+	  man/calibrateDepth.Rd, man/diveMove-package.Rd,
+	  man/extractDive-methods.Rd, man/plotTDR-methods.Rd:
+	  Implementing new plotTDR() generic.
+
+2010-09-17  Sebastian P. Luque <spluque@gmail.com>
+
+	* inst/doc/diveMove.Rnw:
+	  Use proper height.
+
+	* man/plot-methods.Rd:
+	  Fixed documentation.
+
+2010-09-16  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/plotTD.R:
+	  Renaming to plotTDR(), as this should be the main method.
+
 2010-09-15  Sebastian P. Luque <spluque@gmail.com>
 
 	Releasing version 1.2

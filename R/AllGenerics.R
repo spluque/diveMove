@@ -1,9 +1,9 @@
 ## $Id$
 
 ###_ + Plotting
-if (!isGeneric("plot")) {
-    setGeneric("plot",
-               function(x, y, ...) standardGeneric("plot"))
+if (!isGeneric("plotTDR")) {
+    setGeneric("plotTDR",
+               function(x, y, ...) standardGeneric("plotTDR"))
 }
 
 if (!isGeneric("plotDiveModel")) {

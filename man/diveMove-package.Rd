@@ -35,7 +35,7 @@
                               package="diveMove"),
                   speed=TRUE, sep=";", na.strings="", as.is=TRUE))
 
-if (dev.interactive(orNone=TRUE)) plot(sealX)  # interactively pan and zoom
+if (dev.interactive(orNone=TRUE)) plotTDR(sealX)  # interactively pan and zoom
 
 ## detect periods of activity, and calibrate depth, creating
 ## a "TDRcalibrate" object
@@ -46,9 +46,9 @@ if (dev.interactive(orNone=TRUE)) dcalib <- calibrateDepth(sealX)
 if (dev.interactive(orNone=TRUE)) {
     ## plot all readings and label them with the phase of the record
     ## they belong to, excluding surface readings
-    plot(dcalib, labels="phase.id", surface=FALSE)
+    plotTDR(dcalib, labels="phase.id", surface=FALSE)
     ## plot the first 300 dives, showing dive phases and surface readings
-    plot(dcalib, diveNo=seq(300), labels="dive.phase", surface=TRUE)
+    plotTDR(dcalib, diveNo=seq(300), labels="dive.phase", surface=TRUE)
 }
 
 ## calibrate speed (using changes in depth > 1 m and default remaining arguments)

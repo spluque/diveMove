@@ -10,24 +10,25 @@
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
     morn.uniq <- unique(format(time, format=paste("%Y-%m-%d", sunrise.time)))
-    morn <- as.POSIXct(morn.uniq, tz = attr(time, "tzone")) + 86400
+    tz <- ifelse(is.null(attr(time, "tzone")), "", attr(time, "tzone"))
+    morn <- as.POSIXct(morn.uniq, tz=tz) + 86400
     morn.before <- morn[1] - 86400
     morn.all <- rbind(data.frame(x=morn.before), data.frame(x=morn))[[1]]
     night.uniq <- unique(format(time, format=paste("%Y-%m-%d", sunset.time)))
-    night <- as.POSIXct(night.uniq, tz=attr(time, "tzone"))
+    night <- as.POSIXct(night.uniq, tz=tz)
     night.before <- night[1] - 86400
     night.all <- rbind(data.frame(x=night.before), data.frame(x=night))[[1]]
     list(sunrises=morn.all, sunsets=night.all)
 }
 
 ###_ + Main Function
-"plotTDR" <- function(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
-                      xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
-                      concurVarTitles=deparse(substitute(concurVars)),
-                      xlab.format="%d-%b %H:%M", sunrise.time="06:00:00",
-                      sunset.time="18:00:00", night.col="gray60",
-                      phase.factor=NULL, interact=TRUE, key=TRUE,
-                      cex.pts=0.4, ...)
+".plotTDR" <- function(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
+                       xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
+                       concurVarTitles=deparse(substitute(concurVars)),
+                       xlab.format="%d-%b %H:%M", sunrise.time="06:00:00",
+                       sunset.time="18:00:00", night.col="gray60",
+                       phase.factor=NULL, interact=TRUE, key=TRUE,
+                       cex.pts=0.4, ...)
 {
     ## Value: Returns (invisibly) a list with coordinates for each zoc'ed
     ## time window.  Also Plot time, depth, and other concurrent data.
@@ -208,6 +209,7 @@
         invisible(coords)
     }
 }
+
 
 
 ###_ + Emacs local variables

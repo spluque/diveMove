@@ -155,7 +155,7 @@
 
 
 \seealso{\code{\link{diveModel}}, \code{\link{plotDiveModel}},
-\code{\link[diveMove]{plot}}.}
+\code{\link{plotTDR}}.}
 
 % -------------------------------------------------------------------------
 

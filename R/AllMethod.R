@@ -29,22 +29,45 @@ setMethod("show", signature=signature(object="TDR"),
               }
           })
 
-setMethod("plot", signature(x="TDR", y="missing"),
-          function(x, y, ...) {
-              plotTDR(getTime(x), getDepth(x), ...)
+setMethod("plotTDR", signature(x="POSIXt", y="numeric"),
+          function(x, y, concurVars=NULL, xlim=NULL, depth.lim=NULL,
+                   xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
+                   concurVarTitles=deparse(substitute(concurVars)),
+                   xlab.format="%d-%b %H:%M", sunrise.time="06:00:00",
+                   sunset.time="18:00:00", night.col="gray60",
+                   phase.factor=NULL, interact=TRUE, key=TRUE,
+                   cex.pts=0.4, ...) {
+              stopifnot(identical(length(x), length(y)), is.vector(y))
+              diveMove:::.plotTDR(time=x, depth=y, concurVars=concurVars,
+                                  xlim=xlim, depth.lim=depth.lim, xlab=xlab,
+                                  ylab.depth=ylab.depth,
+                                  concurVarTitles=concurVarTitles,
+                                  xlab.format=xlab.format,
+                                  sunrise.time=sunrise.time,
+                                  sunset.time=sunset.time,
+                                  night.col=night.col,
+                                  phase.factor=phase.factor,
+                                  interact=interact, key=key,
+                                  cex.pts=cex.pts, ...)
           })
 
-setMethod("plot", signature(x="TDRspeed", y="missing"),
+setMethod("plotTDR", signature(x="TDR", y="missing"),
+          function(x, y, ...) {
+              diveMove:::.plotTDR(time=getTime(x), depth=getDepth(x), ...)
+          })
+
+setMethod("plotTDR", signature(x="TDRspeed", y="missing"),
           function(x, y, concurVars, concurVarTitles, ...) {
               if (missing(concurVarTitles) && !missing(concurVars)) {
-                  concurVarTitles <- colnames(concurVars)
+                  concurVarTitles <- c(diveMove:::.speedNames[1],
+                                       colnames(concurVars))
               } else if (missing(concurVarTitles) && missing(concurVars)) {
                   concurVars <- NULL
                   concurVarTitles <- "speed (m/s)"
               }
-              plotTDR(getTime(x), getDepth(x),
-                      concurVars=cbind(getSpeed(x), concurVars),
-                      concurVarTitles=concurVarTitles, ...)
+              diveMove:::.plotTDR(time=getTime(x), depth=getDepth(x),
+                                  concurVars=cbind(getSpeed(x), concurVars),
+                                  concurVarTitles=concurVarTitles, ...)
           })
 
 ###_  . TDRcalibrate
@@ -80,7 +103,7 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
               } else cat("\n", sep="")
           })
 
-setMethod("plot", signature(x="TDRcalibrate", y="missing"),
+setMethod("plotTDR", signature(x="TDRcalibrate", y="missing"),
           function(x, y, diveNo=seq(max(getDAct(x, "dive.id"))),
                    labels="phase.id", concurVars, surface=FALSE, ...) {
               diveids <- getDAct(x, "dive.id")
@@ -104,10 +127,9 @@ setMethod("plot", signature(x="TDRcalibrate", y="missing"),
                   if (!is.character(concurVars))
                       stop("concurVars must be of class character")
                   ccd <- getCCData(tdr, concurVars)[ok, , drop=FALSE]
-                  plotTDR(getTime(newtdr), getDepth(newtdr),
-                          concurVars=ccd, phase.factor=labs, ...)
-              } else plotTDR(getTime(newtdr), getDepth(newtdr),
-                             phase.factor=labs, ...)
+                  callGeneric(x=newtdr, concurVars=ccd,
+                              phase.factor=labs, ...)
+              } else callGeneric(x=newtdr, phase.factor=labs, ...)
           })
 
 ###_  . diveModel

@@ -223,7 +223,7 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 
 \seealso{\code{\link{TDRcalibrate}}, \code{\link{.zoc}},
   \code{\link{.depthFilter}}, \code{\link{.detPhase}},
-  \code{\link{.detDive}}, \code{\link[diveMove]{plot}}.}
+  \code{\link{.detDive}}, \code{\link{plotTDR}}.}
 
 % -------------------------------------------------------------------------
 

@@ -5,11 +5,8 @@ See ChangeLog for more details.
 
 ** Version 1.2.1:
 
-   o Deprecated plotTDR() generic, since all its functionality should be
-     handled by a plot() generic, so plot() now has methods for all the
-     major classes: TDR, TDRspeed, TDRcalibrate.  To remain consistent,
-     plotTD() has been renamed plotTDR() to receive the methods dispatched
-     by plot().
+   o Implemented new plotTDR() generic, providing more consistent interface
+     for all classes.
 
 ** Version 1.2:
 

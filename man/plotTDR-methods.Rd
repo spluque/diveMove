@@ -1,14 +1,14 @@
 % $Id$
-\name{plot-methods}
+\name{plotTDR-methods}
 \docType{methods}
-\alias{plot-methods}
+\alias{plotTDR-methods}
 
-\alias{plot}
 \alias{plotTDR}
 
-\alias{plot,TDR,missing-method}
-\alias{plot,TDRspeed,missing-method}
-\alias{plot,TDRcalibrate,missing-method}
+\alias{plotTDR,POSIXt,numeric-method}
+\alias{plotTDR,TDR,missing-method}
+\alias{plotTDR,TDRspeed,missing-method}
+\alias{plotTDR,TDRcalibrate,missing-method}
 
 % -------------------------------------------------------------------------
 
@@ -25,16 +25,16 @@
 
 \usage{
 
-plotTDR(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
+\S4method{plotTDR}{POSIXt,numeric}(x, y, concurVars=NULL, xlim=NULL, depth.lim=NULL,
         xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
         concurVarTitles=deparse(substitute(concurVars)),
         xlab.format="\%d-\%b \%H:\%M", sunrise.time="06:00:00",
-        sunset.time="18:00:00", night.col="gray60", phase.factor=NULL,
-        interact=TRUE, key=TRUE, cex.pts=0.4, \ldots)
-
-\S4method{plot}{TDR,missing}(x, y, \ldots)
-\S4method{plot}{TDRspeed,missing}(x, y, concurVars, concurVarTitles, \ldots)
-\S4method{plot}{TDRcalibrate,missing}(x, y, diveNo=seq(max(getDAct(x, "dive.id"))),
+        sunset.time="18:00:00", night.col="gray60",
+        phase.factor=NULL, interact=TRUE, key=TRUE,
+        cex.pts=0.4, \ldots)
+\S4method{plotTDR}{TDR,missing}(x, y, \ldots)
+\S4method{plotTDR}{TDRspeed,missing}(x, y, concurVars, concurVarTitles, \ldots)
+\S4method{plotTDR}{TDRcalibrate,missing}(x, y, diveNo=seq(max(getDAct(x, "dive.id"))),
      labels="phase.id", concurVars, surface=FALSE, \ldots)
 
 }
@@ -42,9 +42,10 @@ plotTDR(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
 
 \arguments{
 
-  \item{time}{\code{POSIXct} object with date and time.}
+  \item{x}{\code{POSIXct} object with date and time, \code{\link{TDR}},
+    \code{\link{TDRspeed}}, or \code{\link{TDRcalibrate}} object.}
 
-  \item{depth}{numeric vector with depth in m.}
+  \item{y}{numeric vector with depth in m.}
 
   \item{concurVars}{matrix with additional variables in each column to
     plot concurrently with depth.  For the \code{\link{TDRspeed}}
@@ -84,14 +85,12 @@ plotTDR(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
   \item{cex.pts}{Passed to \code{\link{points}} to set the relative size
     of points to plot (if any).}
 
-  \item{\ldots}{For \code{plotTDR}, arguments passed to
-    \code{\link{par}}; useful defaults \code{las=1}, \code{bty="n"}, and
-    \code{mar} (the latter depending on whether additional concurrent
-    data will be plotted) are provided, but they can be overridden.  For
-    S4 methods; arguments passed to the appropriate methods.}
-
-  \item{x, y}{\code{\link{TDR}}, \code{\link{TDRspeed}}, or
-    \code{\link{TDRcalibrate}} object.}
+  \item{\ldots}{For the \code{(POSIXt,numeric)} method, arguments passed
+    to \code{\link{par}} for all methods; useful defaults \code{las=1},
+    \code{bty="n"}, and \code{mar} (the latter depending on whether
+    additional concurrent data will be plotted) are provided, but they
+    can be overridden.  For other methods, these can be any of the
+    arguments for the \code{(POSIXt,numeric)} method.}
 
   \item{diveNo}{numeric vector or scalar with dive numbers to plot.}
 
@@ -118,14 +117,17 @@ plotTDR(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
 \section{Methods}{
   \describe{
 
-    \item{plot}{\code{signature(x="TDR", y="missing")}: interactive
-      graphical display of the data, with zooming and panning
+    \item{plotTDR}{\code{signature(x="TDR", y="numeric")}: interactive
+      graphical display of time-depth data, with zooming and panning
       capabilities.}
 
-    \item{plot}{\code{signature(x="TDRspeed", y="missing")}: As the TDR
-      method, but also plots the concurrent speed readings.}
+    \item{plotTDR}{\code{signature(x="TDR", y="missing")}: As method
+    above.}
 
-    \item{plot}{\code{signature(x="TDRcalibrate", y="missing")}: plot
+    \item{plotTDR}{\code{signature(x="TDRspeed", y="missing")}: As the
+      TDR method, but also plots the concurrent speed readings.}
+
+    \item{plotTDR}{\code{signature(x="TDRcalibrate", y="missing")}: plot
       the \code{\link{TDRcalibrate}} object, labelling identified
       sections of it (see \code{Usage}).  By default it plots all dives,
       labelled by the activity phase they belong to.  It produces a plot
@@ -157,17 +159,17 @@ utils::example("calibrateDepth", package="diveMove",
 ## Use interact=TRUE (default) to set an offset interactively
 plotTDR(getTime(divesTDR), getDepth(divesTDR), interact=FALSE)
 ## Plot the 'TDR' object
-plot(divesTDR, interact=FALSE)
+plotTDR(divesTDR, interact=FALSE)
 
 ## Plot different aspects of the 'TDRcalibrate' object
-plot(dcalib, interact=FALSE)
-plot(dcalib, diveNo=19:25, interact=FALSE)
-plot(dcalib, labels="dive.phase", interact=FALSE)
+plotTDR(dcalib, interact=FALSE)
+plotTDR(dcalib, diveNo=19:25, interact=FALSE)
+plotTDR(dcalib, labels="dive.phase", interact=FALSE)
 if (dev.interactive(orNone=TRUE)) {
     ## Add surface observations and interact
-    plot(dcalib, labels="dive.phase", surface=TRUE)
+    plotTDR(dcalib, labels="dive.phase", surface=TRUE)
     ## Plot one dive
-    plot(dcalib, diveNo=200, labels="dive.phase")
+    plotTDR(dcalib, diveNo=200, labels="dive.phase")
 }
 
 }
