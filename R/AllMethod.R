@@ -185,8 +185,7 @@ setMethod("plotDiveModel",
               depths.s <- diveM@dive.spline$y
               times.deriv <- diveM@spline.deriv$x
               if (length(times) < 4L) {
-                  ff <- times[length(times)] /
-                      times.s[length(times.s)]
+                  ff <- times[length(times)] / times.s[length(times.s)]
                   times.s <- times.s * ff
                   times.deriv <- times.deriv * ff
               }
@@ -347,11 +346,11 @@ setMethod("getDPhaseLab", signature(x="TDRcalibrate", diveNo="numeric"),
 ## access the entire object
 setMethod("getDiveModel", signature(x="TDRcalibrate", diveNo="missing"),
           function(x) x@dive.models)
-## access only those from certain dives
+## access only those from certain dives -- simplify if only one
 setMethod("getDiveModel", signature(x="TDRcalibrate", diveNo="numeric"),
           function(x, diveNo) {
               dm <- x@dive.models[diveNo]
-              if (length(diveNo == 1L)) dm[[1]] else dm
+              if (length(diveNo) == 1L) dm[[1]] else dm
           })
 
 ## Basic diveModel
@@ -389,12 +388,17 @@ setMethod("getDiveDeriv", signature(x="diveModel"),
                          spd
                      })
           })
-## TDRcalibrate
+## TDRcalibrate -- do all dives or selection.  Simplify if only one
 setMethod("getDiveDeriv", signature(x="TDRcalibrate"),
           function(x, diveNo, phase=c("all", "descent", "bottom", "ascent")) {
+              if (missing(diveNo)) diveNo <- seq(max(getDAct(x, "dive.id")))
               phase <- match.arg(phase)
-              dm <- getDiveModel(x, diveNo=diveNo)
-              getDiveDeriv(dm, phase=phase)
+              dl <- lapply(diveNo, function(k) {
+                  dm <- getDiveModel(x, diveNo=k)
+                  getDiveDeriv(dm, phase=phase)
+              })
+              names(dl) <- diveNo
+              if (length(diveNo) == 1L) dl[[1]] else dl
           })
 
 setMethod("getSpeedCoef", signature(x="TDRcalibrate"),

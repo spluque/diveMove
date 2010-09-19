@@ -1,5 +1,9 @@
 2010-09-19  Sebastian P. Luque <spluque@gmail.com>
 
+	* R/AllMethod.R:
+	  Fixed parentheses in getDiveModel() and provide a more complete
+	  getDiveDeriv().
+
 	* R/AllMethod.R, R/plotTDR.R:
 	  Fixed how 'dry.time' was being handled.
 
