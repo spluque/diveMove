@@ -27,8 +27,8 @@
                        concurVarTitles=deparse(substitute(concurVars)),
                        xlab.format="%d-%b %H:%M", sunrise.time="06:00:00",
                        sunset.time="18:00:00", night.col="gray60",
-                       phase.factor=NULL, interact=TRUE, key=TRUE,
-                       cex.pts=0.4, ...)
+                       dry.time=NULL, phase.factor=NULL, interact=TRUE,
+                       key=TRUE, cex.pts=0.4, ...)
 {
     ## Value: Returns (invisibly) a list with coordinates for each zoc'ed
     ## time window.  Also Plot time, depth, and other concurrent data.
@@ -36,14 +36,15 @@
     ## Arguments: time=POSIXct; depth=numeric vector with depth readings,
     ## concurVars=matrix of numeric data with concurrent data to plot,
     ## xlim=POSIXct vector with lower and upper time limits to plot,
-    ## depth.lim=vector with lower and upper depth limits, phase.factor=factor
-    ## classifying each reading, xlab=title for the x axis,
-    ## ylab.depth=title for the depth axis, concurVarTitles=string vector
-    ## with titles for the additional variables, xlab.format=format string
-    ## for formatting time in x axis, sunrise.time=string specifying the
-    ## time of sunrise, sunset.time=string specifying sunset time,
-    ## night.col=color for masking night times, key=logical whether to
-    ## draw a legend; ...=parameters passed to par.
+    ## depth.lim=vector with lower and upper depth limits, dry.time=subset
+    ## of time corresponding to observations considered to be dry;
+    ## phase.factor=factor classifying each reading, xlab=title for the x
+    ## axis, ylab.depth=title for the depth axis, concurVarTitles=string
+    ## vector with titles for the additional variables, xlab.format=format
+    ## string for formatting time in x axis, sunrise.time=string specifying
+    ## the time of sunrise, sunset.time=string specifying sunset time,
+    ## night.col=color for masking night times, key=logical whether to draw
+    ## a legend; ...=parameters passed to par.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
@@ -72,6 +73,8 @@
         xleft <- pmax(unclass(nights$sunsets), usr[1])
         xright <- pmin(unclass(nights$sunrises), usr[2])
         rect(xleft, usr[3], xright, usr[4], col=night.col, border=NA)
+        if (!is.null(dry.time)) segments(dry.time, usr[4], dry.time, usr[4],
+                                         lwd=2, col="tan")
         axis.POSIXct(side=1, time, at=xticks, format=xlab.format)
         axis(side=2)
         lines(time, depth)

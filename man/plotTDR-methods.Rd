@@ -7,13 +7,11 @@
 
 \alias{plotTDR,POSIXt,numeric-method}
 \alias{plotTDR,TDR,missing-method}
-\alias{plotTDR,TDRspeed,missing-method}
 \alias{plotTDR,TDRcalibrate,missing-method}
 
 % -------------------------------------------------------------------------
 
-\title{Methods for plotting objects of class "TDR", "TDRspeed", and
-  "TDRcalibrate"}
+\title{Methods for plotting objects of class "TDR" and "TDRcalibrate"}
 
 
 \description{ Main plotting method for objects of these classes.  Plot
@@ -30,12 +28,11 @@
         concurVarTitles=deparse(substitute(concurVars)),
         xlab.format="\%d-\%b \%H:\%M", sunrise.time="06:00:00",
         sunset.time="18:00:00", night.col="gray60",
-        phase.factor=NULL, interact=TRUE, key=TRUE,
+        dry.time=NULL, phase.factor=NULL, interact=TRUE, key=TRUE,
         cex.pts=0.4, \ldots)
-\S4method{plotTDR}{TDR,missing}(x, y, \ldots)
-\S4method{plotTDR}{TDRspeed,missing}(x, y, concurVars, concurVarTitles, \ldots)
-\S4method{plotTDR}{TDRcalibrate,missing}(x, y, diveNo=seq(max(getDAct(x, "dive.id"))),
-     labels="phase.id", concurVars, surface=FALSE, \ldots)
+\S4method{plotTDR}{TDR,missing}(x, y, concurVars, concurVarTitles, \ldots)
+\S4method{plotTDR}{TDRcalibrate,missing}(x, y, what=c("phases", "dive.model"),
+        diveNo=seq(max(getDAct(x, "dive.id"))), \ldots)
 
 }
 
@@ -43,16 +40,15 @@
 \arguments{
 
   \item{x}{\code{POSIXct} object with date and time, \code{\link{TDR}},
-    \code{\link{TDRspeed}}, or \code{\link{TDRcalibrate}} object.}
+    or \code{\link{TDRcalibrate}} object.}
 
   \item{y}{numeric vector with depth in m.}
 
   \item{concurVars}{matrix with additional variables in each column to
-    plot concurrently with depth.  For the \code{\link{TDRspeed}}
-    method, a matrix with variables to plot, in addition to speed, if
-    any.  For the \code{\link{TDRcalibrate}} method, a \bold{character}
-    vector indicating which additional components from the concurrent
-    data frame should also be plotted, if any.}
+    plot concurrently with depth.  For the (\code{TDR},\code{missing})
+    and (\code{TDRcalibrate},\code{missing}) methods, a
+    \code{\link{character}} vector naming additional variables from the
+    \code{concurrentData} slot to plot, if any.}
 
   \item{xlim}{\code{POSIXct} or numeric vector of length 2, with lower
     and upper limits of time to be plotted.}
@@ -75,6 +71,9 @@
 
   \item{night.col}{color for shading night time.}
 
+  \item{dry.time}{subset of time corresponding to observations
+    considered to be dry.}
+
   \item{phase.factor}{factor dividing rows into sections.}
 
   \item{interact}{logical: whether to provide interactive tcltk controls
@@ -89,17 +88,16 @@
     to \code{\link{par}} for all methods; useful defaults \code{las=1},
     \code{bty="n"}, and \code{mar} (the latter depending on whether
     additional concurrent data will be plotted) are provided, but they
-    can be overridden.  For other methods, these can be any of the
-    arguments for the \code{(POSIXt,numeric)} method.}
+    can be overridden.  For other methods, except
+    \code{(TDRcalibrate,missing)}, these can be any of the arguments for
+    the \code{(POSIXt,numeric)} method.  For
+    \code{(TDRcalibrate,missing)}, these are arguments for the
+    appropriate methods.}
 
   \item{diveNo}{numeric vector or scalar with dive numbers to plot.}
 
-  \item{labels}{character: one of \dQuote{phase.id} or
-    \dQuote{dive.phase}, specifying whether to label observations based
-    on the gross phase ID of the \code{\link{TDR}} object, or based on
-    each dive phase, respectively.}
-
-  \item{surface}{logical: whether to plot surface readings.}
+  \item{what}{character: what aspect of the \code{\link{TDRcalibrate}}
+    to plot, which selects the method to use for plotting.}
 
 }
 
@@ -124,16 +122,28 @@
     \item{plotTDR}{\code{signature(x="TDR", y="missing")}: As method
     above.}
 
-    \item{plotTDR}{\code{signature(x="TDRspeed", y="missing")}: As the
-      TDR method, but also plots the concurrent speed readings.}
-
     \item{plotTDR}{\code{signature(x="TDRcalibrate", y="missing")}: plot
-      the \code{\link{TDRcalibrate}} object, labelling identified
-      sections of it (see \code{Usage}).  By default it plots all dives,
-      labelled by the activity phase they belong to.  It produces a plot
-      consisting of one or more panels; the first panel shows depth
-      against time, and additional panels show other concurrent data in
-      the object.}
+      selected aspects of \code{\link{TDRcalibrate}} object.  Currently,
+      two aspects have plotting methods:
+
+      \itemize{
+	
+	\item{ \code{phases} (Optional arguments: \code{concurVars},
+	  \code{surface}) Plots all dives, labelled by the activity
+	  phase they belong to.  It produces a plot consisting of one or
+	  more panels; the first panel shows depth against time, and
+	  additional panels show other concurrent data in the object.
+	  Optional argument \code{concurVars} is a character vector
+	  indicating which additional components from the
+	  \code{concurrentData} slot to plot, if any.  Optional argument
+	  \code{surface} is a logical: whether to plot surface
+	  readings. }
+
+	\item{\code{dive.model} Plots the dive model for the selected
+	  dive number (\code{diveNo} argument). }
+
+      }
+    }
 
   }
   
@@ -157,19 +167,19 @@
 utils::example("calibrateDepth", package="diveMove",
                ask=FALSE, echo=FALSE)
 ## Use interact=TRUE (default) to set an offset interactively
-plotTDR(getTime(divesTDR), getDepth(divesTDR), interact=FALSE)
 ## Plot the 'TDR' object
+plotTDR(getTime(divesTDR), getDepth(divesTDR), interact=FALSE)
 plotTDR(divesTDR, interact=FALSE)
 
 ## Plot different aspects of the 'TDRcalibrate' object
 plotTDR(dcalib, interact=FALSE)
 plotTDR(dcalib, diveNo=19:25, interact=FALSE)
-plotTDR(dcalib, labels="dive.phase", interact=FALSE)
+plotTDR(dcalib, what="dive.model", diveNo=25)
 if (dev.interactive(orNone=TRUE)) {
     ## Add surface observations and interact
-    plotTDR(dcalib, labels="dive.phase", surface=TRUE)
+    plotTDR(dcalib, surface=TRUE)
     ## Plot one dive
-    plotTDR(dcalib, diveNo=200, labels="dive.phase")
+    plotTDR(dcalib, diveNo=200)
 }
 
 }

@@ -1,3 +1,11 @@
+2010-09-19  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/AllMethod.R, R/plotTDR.R, inst/doc/diveMove.Rnw,
+	  man/diveMove-internal.Rd, man/diveMove-package.Rd,
+	  man/plotTDR-methods.Rd:
+	  Removed 'TDRspeed,missing' method for plotTDR, since it is not
+	  really useful. Corrected plotTDR() methods.
+
 2010-09-18  Sebastian P. Luque <spluque@gmail.com>
 
 	* NAMESPACE, R/AllGenerics.R, R/AllMethod.R, R/plotTDR.R,

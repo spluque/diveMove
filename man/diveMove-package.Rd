@@ -46,9 +46,9 @@ if (dev.interactive(orNone=TRUE)) dcalib <- calibrateDepth(sealX)
 if (dev.interactive(orNone=TRUE)) {
     ## plot all readings and label them with the phase of the record
     ## they belong to, excluding surface readings
-    plotTDR(dcalib, labels="phase.id", surface=FALSE)
+    plotTDR(dcalib, surface=FALSE)
     ## plot the first 300 dives, showing dive phases and surface readings
-    plotTDR(dcalib, diveNo=seq(300), labels="dive.phase", surface=TRUE)
+    plotTDR(dcalib, diveNo=seq(300), surface=TRUE)
 }
 
 ## calibrate speed (using changes in depth > 1 m and default remaining arguments)

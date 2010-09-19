@@ -5,6 +5,7 @@
 \alias{.derivStats}
 \alias{.diveIndices}
 \alias{.getInterval}
+\alias{.plotTDR}
 \alias{.speedStats}
 \alias{.night}
 \alias{.rleActivity}
@@ -105,6 +106,10 @@
 
   \code{.getInterval} takes a \code{\link{POSIXct}} object and
   calculates the the most frequent interval between successive elements.
+
+  \code{.plotTDR} is the underlying plotting function for
+  \code{\link{TDR}} objects.  Arguments are documented in the main S4
+  method (\code{\link{plotTDR}}).
 
   \code{.speedStats} takes matrix of time and speed, and an optional
   vector of vertical distance travelled between segments, and calculates
