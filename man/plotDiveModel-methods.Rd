@@ -88,7 +88,9 @@
 
     \item{\code{signature(x = "TDRcalibrate", y = "missing")}}{ Given a
       \code{\link{TDRcalibrate}} object and a dive number to extract
-      from it, this method plots the observed data and the model. }
+      from it, this method plots the observed data and the model.  The
+      intended use of this method is through \code{\link{plotTDR}} when
+      \code{what="dive.model"}. }
     
 }}
 
