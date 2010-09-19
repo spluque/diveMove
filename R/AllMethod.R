@@ -106,6 +106,7 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
 {
     if (!is(x, "TDRcalibrate")) stop("x must be a TDRcalibrate object")
     ell <- list(...)
+    diveNo <- sort(diveNo)
     diveids <- getDAct(x, "dive.id")
     tdr <- getTDR(x)
     if (max(unique(diveids)) < 1) {
@@ -117,12 +118,17 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
         ok <- which(dives | postdives)
     } else ok <- diveMove:::.diveIndices(diveids, diveNo)
     newtdr <- tdr[ok]
+    alltimes <- getTime(tdr)
+    newtimes <- getTime(newtdr)
+    times.ok <- alltimes >= newtimes[1] & alltimes <= newtimes[length(newtimes)]
+    fulltimes <- alltimes[times.ok]
     labs <- getDPhaseLab(x)[ok]
-    drys <- getGAct(x, "activity")[ok]
+    drys <- getGAct(x, "activity")[times.ok]
     drys[drys == "Z"] <- "L"; drys <- drys[, drop=TRUE]
-    dry <- getTime(newtdr)[drys == "L"]
+    dry.time <- fulltimes[drys == "L"]
     ell$x <- newtdr
     ell$phase.factor <- labs
+    if(length(dry.time) > 0L) ell$dry.time <- dry.time
     if (!missing(concurVars)) {
         if (!is.character(concurVars))
             stop("concurVars must be of class character")

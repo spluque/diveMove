@@ -74,7 +74,7 @@
         xright <- pmin(unclass(nights$sunrises), usr[2])
         rect(xleft, usr[3], xright, usr[4], col=night.col, border=NA)
         if (!is.null(dry.time)) segments(dry.time, usr[4], dry.time, usr[4],
-                                         lwd=2, col="tan")
+                                         lwd=4, col="tan")
         axis.POSIXct(side=1, time, at=xticks, format=xlab.format)
         axis(side=2)
         lines(time, depth)

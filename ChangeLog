@@ -1,5 +1,8 @@
 2010-09-19  Sebastian P. Luque <spluque@gmail.com>
 
+	* R/AllMethod.R, R/plotTDR.R:
+	  Fixed how 'dry.time' was being handled.
+
 	* R/AllMethod.R, R/plotTDR.R, inst/doc/diveMove.Rnw,
 	  man/diveMove-internal.Rd, man/diveMove-package.Rd,
 	  man/plotTDR-methods.Rd:
