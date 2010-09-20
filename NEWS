@@ -8,6 +8,9 @@ See ChangeLog for more details.
    o Implemented new plotTDR() generic, providing more consistent interface
      for all classes.
 
+   o diveStats() provides more dive summary statistics, including
+     derivative summaries.  
+
 ** Version 1.2:
 
    o Improved procedure for defining dive phases. The method uses smoothing

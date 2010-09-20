@@ -1,3 +1,8 @@
+2010-09-20  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/oneDiveStats.R, man/diveStats.Rd:
+	  Output median bottom depth.
+
 2010-09-19  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/AllMethod.R:

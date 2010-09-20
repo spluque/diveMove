@@ -81,6 +81,8 @@ stampDive(x, ignoreZ=TRUE)
 
   \item{bottdep.m}{Mean bottom depth.}
 
+  \item{bottdep.median}{Median bottom depth.}
+
   \item{bottdep.sd}{Standard deviation of bottom depths.}
 
   \item{maxdep}{Numeric vector with maximum depth.}
