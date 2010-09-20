@@ -79,7 +79,7 @@ stampDive(x, ignoreZ=TRUE)
 
   \item{ascdist}{Numeric vector with first ascent depth.}
 
-  \item{bottdep.m}{Mean bottom depth.}
+  \item{bottdep.mean}{Mean bottom depth.}
 
   \item{bottdep.median}{Median bottom depth.}
 

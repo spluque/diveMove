@@ -23,7 +23,7 @@
     if (nrow(bott) > 0) {
         botttim <- difftime(bott[nrow(bott), 1], bott[1, 1], units="secs")
         bottdist <- sum(abs(diff(bott[!is.na(bott[, 2]), 2])))
-        bottdep.m <- mean(bott[, 2], na.rm=TRUE)
+        bottdep.mean <- mean(bott[, 2], na.rm=TRUE)
         bottdep.median <- median(bott[, 2], na.rm=TRUE)
         bottdep.sd <- sd(bott[, 2], na.rm=TRUE)
     }
@@ -45,7 +45,7 @@
               asctim=asctim, divetim=divetim, descdist=descdist,
               bottdist=ifelse(exists("bottdist"), bottdist, NA),
               ascdist=ascdist,
-              bottdep.m=ifelse(exists("botttim"), bottdep.m, NA),
+              bottdep.mean=ifelse(exists("botttim"), bottdep.mean, NA),
               bottdep.median=ifelse(exists("botttim"), bottdep.median, NA),
               bottdep.sd=ifelse(exists("botttim"), bottdep.sd, NA),
               maxdep=maxdep)
@@ -59,7 +59,7 @@
               asctim=asctim,  divetim=divetim, descdist=descdist,
               bottdist=ifelse(exists("bottdist"), bottdist, NA),
               ascdist=ascdist,
-              bottdep.m=ifelse(exists("botttim"), bottdep.m, NA),
+              bottdep.mean=ifelse(exists("botttim"), bottdep.mean, NA),
               bottdep.median=ifelse(exists("botttim"), bottdep.median, NA),
               bottdep.sd=ifelse(exists("botttim"), bottdep.sd, NA),
               maxdep=maxdep, desc.tdist=descv[, 1],
