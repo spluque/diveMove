@@ -1,3 +1,9 @@
+2010-09-23  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/detDive.R:
+	  Subtraction to estimate start of ascent was incorrect in
+	  '.cutDive'.
+
 2010-09-20  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/oneDiveStats.R, man/diveStats.Rd:
