@@ -1,3 +1,10 @@
+2010-09-24  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/detDive.R, R/detPhase.R:
+	  Force the last run of NA depth to be "L" (land) right before
+	  calculating final activity sequences, since it should not be
+	  allowed to be anything else.
+
 2010-09-23  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/detDive.R:

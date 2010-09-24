@@ -53,6 +53,9 @@
     leiacts <- diveMove:::.rleActivity(time, act, interval)
     leisure <- levels(leiacts[[1]])[leiacts[[2]] < wet.thr]
     act[leiacts[[1]] %in% leisure & act == "W"] <- "Z"
+    ## Last run of NAs should be forced back to "L"
+    maxnoNA <- max(which(!is.na(depth)))
+    if (maxnoNA < length(act)) act[(maxnoNA + 1):length(act)] <- "L"
     ## Final run to determine times with all corrected activities
     finacts <- diveMove:::.rleActivity(time, act, interval)
     nphase <- length(levels(finacts[[1]]))
