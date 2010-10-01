@@ -23,6 +23,7 @@
 \alias{getGAct,TDRcalibrate,missing-method}
 \alias{getGAct,TDRcalibrate,character-method}
 \alias{show,TDRcalibrate-method}
+\alias{show,diveModel-method}
 \alias{getTDR,TDRcalibrate-method}
 \alias{getSpeedCoef,TDRcalibrate-method}
 
@@ -78,6 +79,9 @@
 
     \item{show}{\code{signature(object="TDRcalibrate")}: prints an
       informative summary of the data.}
+
+    \item{show}{\code{signature(object="diveModel")}: prints an
+      informative summary of a dive model.}
 
   }
 
@@ -176,7 +180,8 @@ table(dids[dids > 0])		# samples per dive
 ## Factor of dive phases for given dive
 getDPhaseLab(dcalib, 19)
 ## Full dive model
-getDiveModel(dcalib, 19)
+(dm <- getDiveModel(dcalib, 19))
+str(dm)
 
 ## Derivatives
 getDiveDeriv(dcalib, diveNo=19)

@@ -150,6 +150,52 @@ setMethod("plotTDR", signature(x="TDRcalibrate", y="missing"),
           })
 
 ###_  . diveModel
+setMethod("show", signature=signature(object="diveModel"),
+          definition=function(object) {
+              ## Lots stolen from print.smooth.spline()
+              digits <- getOption("digits")
+              cat("Dive model -- Class",
+                  class(object), "object\n")
+              if(!is.null(cl <- object@dive.spline$call)) {
+                  cat("Call:\n")
+                  dput(cl, control=NULL)
+              }
+              ip <- object@dive.spline$iparms
+              cv <- cl$cv
+              if(is.null(cv)) cv <- FALSE else if(is.name(cv)) cv <- eval(cv)
+              cat("\nSmoothing Parameter  spar=",
+                  format(object@dive.spline$spar, digits=digits),
+                  " lambda=", format(object@dive.spline$lambda, digits=digits),
+                  if (ip["ispar"] != 1L) {
+                      paste("(", ip["iter"], " iterations)", sep="")
+                      }, "\n", sep="")
+              cat("Equivalent Degrees of Freedom :",
+                  format(object@dive.spline$df, digits=digits), "\n")
+              cat("Penalized Criterion           :",
+                  format(object@dive.spline$pen.crit, digits=digits), "\n")
+              cat(ifelse(cv,
+                         "PRESS                         : ",
+                         "GCV                           : "),
+                  format(object@dive.spline$cv.crit, digits=digits),
+                  "\n", sep="")
+              cat("Observed N                    : ",
+                  nrow(object@label.matrix), "\n", sep="")
+              cat("Modelled N                    : ",
+                  length(object@dive.spline$data$x), "\n", sep="")
+              cat("Modelled N (distinct)         : ",
+                  length(object@dive.spline$x), "\n", sep="")
+              cat("Derivative evaluated at       : ",
+                  length(object@spline.deriv$x), " points", "\n", sep="")
+              cat("Descent ends after            : ",
+                  object@descent.crit, " steps in model", "\n", sep="")
+              cat("Ascent begins after           : ",
+                  object@ascent.crit, " steps in model", "\n", sep="")
+              cat("Descent critical rate         : ",
+                  object@descent.crit.rate, "\n", sep="")
+              cat("Ascent critical rate          : ",
+                  object@ascent.crit.rate, "\n", sep="")
+          })
+
 setMethod("plotDiveModel", signature(x="diveModel", y="missing"),
           function(x, diveNo) {
               if (missing(diveNo)) diveNo <- "Unknown"
