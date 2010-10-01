@@ -1,3 +1,9 @@
+2010-10-01  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/calibrate.R:
+	  Guard against no missing data in calibrateDepth() when
+	  interp.wet=TRUE.
+
 2010-09-24  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/detDive.R, R/detPhase.R:

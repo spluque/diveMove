@@ -51,11 +51,13 @@
         zdepth <- getDepth(x)
         wet <- detp[[2]] == "W"
         wet.na <- wet & is.na(zdepth)
-        time.out <- time[wet.na]
-        interpFun <- splinefun(time[wet], zdepth[wet])
-        interp.depth <- interpFun(x=time.out)
-        zdepth[wet.na] <- pmax(0, interp.depth) # set negatives to 0
-        x@depth <- zdepth
+        if (any(wet.na)) {
+            time.out <- time[wet.na]
+            interpFun <- splinefun(time[wet], zdepth[wet])
+            interp.depth <- interpFun(x=time.out)
+            zdepth[wet.na] <- pmax(0, interp.depth) # set negatives to 0
+            x@depth <- zdepth
+        }
     }
 
     detd <- diveMove:::.detDive(getDepth(x), detp[[2]], dive.thr)
