@@ -11,6 +11,9 @@ See ChangeLog for more details.
    o diveStats() provides more dive summary statistics, including
      derivative summaries.  
 
+   o When interp.wet=TRUE and there are no missing depth observations,
+     calibrateDepth() no longer performs interpolation.
+
 ** Version 1.2:
 
    o Improved procedure for defining dive phases. The method uses smoothing

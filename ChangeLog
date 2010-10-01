@@ -1,5 +1,8 @@
 2010-10-01  Sebastian P. Luque <spluque@gmail.com>
 
+	* R/AllMethod.R, man/TDRcalibrate-accessors.Rd:
+	  Implemented show() method for diveModel objects.
+
 	* R/calibrate.R:
 	  Guard against no missing data in calibrateDepth() when
 	  interp.wet=TRUE.
