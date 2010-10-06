@@ -1,3 +1,10 @@
+2010-10-06  Sebastian P. Luque <spluque@gmail.com>
+
+	Releasing version 1.2.1
+
+	* R/AllMethod.R, R/plotTDR.R, man/plotTDR-methods.Rd:
+	  Added plot.points argument to plotTDR().
+
 2010-10-01  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/AllMethod.R, man/TDRcalibrate-accessors.Rd:

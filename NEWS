@@ -3,6 +3,11 @@
 
 See ChangeLog for more details.
 
+** Version 1.2.2:
+
+   o New argument plot.points in plotTDR() methods allows plotting points
+     when plotting basic TDR objects.
+
 ** Version 1.2.1:
 
    o Implemented new plotTDR() generic, providing more consistent interface

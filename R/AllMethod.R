@@ -35,8 +35,8 @@ setMethod("plotTDR", signature(x="POSIXt", y="numeric"),
                    concurVarTitles=deparse(substitute(concurVars)),
                    xlab.format="%d-%b %H:%M", sunrise.time="06:00:00",
                    sunset.time="18:00:00", night.col="gray60", dry.time=NULL,
-                   phase.factor=NULL, interact=TRUE, key=TRUE,
-                   cex.pts=0.4, ...) {
+                   phase.factor=NULL, plot.points=FALSE, interact=TRUE,
+                   key=TRUE, cex.pts=0.4, ...) {
               stopifnot(identical(length(x), length(y)), is.vector(y))
               diveMove:::.plotTDR(time=x, depth=y, concurVars=concurVars,
                                   xlim=xlim, depth.lim=depth.lim, xlab=xlab,
@@ -128,7 +128,7 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
     dry.time <- fulltimes[drys == "L"]
     ell$x <- newtdr
     ell$phase.factor <- labs
-    if(length(dry.time) > 0L) ell$dry.time <- dry.time
+    if (length(dry.time) > 0L) ell$dry.time <- dry.time
     if (!missing(concurVars)) {
         if (!is.character(concurVars))
             stop("concurVars must be of class character")

@@ -28,8 +28,8 @@
         concurVarTitles=deparse(substitute(concurVars)),
         xlab.format="\%d-\%b \%H:\%M", sunrise.time="06:00:00",
         sunset.time="18:00:00", night.col="gray60",
-        dry.time=NULL, phase.factor=NULL, interact=TRUE, key=TRUE,
-        cex.pts=0.4, \ldots)
+        dry.time=NULL, phase.factor=NULL, plot.points=FALSE,
+        interact=TRUE, key=TRUE, cex.pts=0.4, \ldots)
 \S4method{plotTDR}{TDR,missing}(x, y, concurVars, concurVarTitles, \ldots)
 \S4method{plotTDR}{TDRcalibrate,missing}(x, y, what=c("phases", "dive.model"),
         diveNo=seq(max(getDAct(x, "dive.id"))), \ldots)
@@ -75,6 +75,8 @@
     considered to be dry.}
 
   \item{phase.factor}{factor dividing rows into sections.}
+
+  \item{plot.points}{logical: whether to plot points.}
 
   \item{interact}{logical: whether to provide interactive tcltk controls
     and access to the associated ZOC functionality.}

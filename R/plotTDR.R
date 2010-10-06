@@ -27,8 +27,8 @@
                        concurVarTitles=deparse(substitute(concurVars)),
                        xlab.format="%d-%b %H:%M", sunrise.time="06:00:00",
                        sunset.time="18:00:00", night.col="gray60",
-                       dry.time=NULL, phase.factor=NULL, interact=TRUE,
-                       key=TRUE, cex.pts=0.4, ...)
+                       dry.time=NULL, phase.factor=NULL, plot.points=FALSE,
+                       interact=TRUE, key=TRUE, cex.pts=0.4, ...)
 {
     ## Value: Returns (invisibly) a list with coordinates for each zoc'ed
     ## time window.  Also Plot time, depth, and other concurrent data.
@@ -88,7 +88,7 @@
                 legend("bottomright", legend=levels(phase.factor), col=colors,
                        pch=19, cex=0.7, ncol=nlevs, bg="white")
             }
-        }
+        } else if (plot.points) points(time, depth, pch=19, cex=cex.pts)
         if (!is.null(concurVars)) {
             if (length(concurVarTitles) != nconcurVars) {
                 concurVarTitles <- rep(concurVarTitles, length.out=nconcurVars)
@@ -105,7 +105,7 @@
                 if (!is.null(phase.factor)) { # we already have 'colors'
                     points(time, vari, col=colors[phase.factor], pch=19,
                            cex=cex.pts)
-                }
+                } else if (plot.points) points(time, vari, pch=19, cex=cex.pts)
                 axis(side=2)
             }
         }
