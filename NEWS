@@ -7,7 +7,9 @@ See ChangeLog for more details.
 
    o If smooth.par is NULL, then then the smoothing parameter is determined
      by Generalized Cross-validation (GCV) when fitting spline dive model
-     for determining dive phases.
+     for determining dive phases.  This approach is only useful when
+     studying individual dives, hence it is not the default in
+     calibrateDepth() for TDR objects, which may contain multiple dives.
 
 ** Version 1.2.2:
 

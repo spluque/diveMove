@@ -1,3 +1,12 @@
+2010-10-12  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/detDive.R:
+	  Guard against beginning of ascent at the last observation in
+	  .cutDive().
+
+	* NEWS, R/detDive.R, man/calibrateDepth.Rd:
+	  Implemented GCV smoothing parameter option in .cutDive().
+
 2010-10-06  Sebastian P. Luque <spluque@gmail.com>
 
 	Releasing version 1.2.2

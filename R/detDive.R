@@ -194,7 +194,7 @@
     }
     ## Correct for added 0 at ends
     descind <- seq(Dd1pos.crit - 1)
-    ascind <- seq(Ad1neg.crit - 1, length(times) - 2)
+    ascind <- seq(min(nrow(x), Ad1neg.crit - 1), length(times) - 2)
 
     ## Bottom -------------------------------------------------------------
     bottind <- c(descind[length(descind)],
@@ -297,9 +297,18 @@
 ## ##                          ascent.crit=0)
 ## ## diveX <- as.data.frame(extractDive(dcalib, diveNo=X[5]))
 ## X <- c(2, 7, 100, 120, 743, 1224, 1222, 1223)
-## diveX <- as.data.frame(extractDive(tdr.calib, diveNo=X[2]))
+## diveX <- as.data.frame(extractDive(tdr.calib, diveNo=X[8]))
 ## diveX.m <- cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
 ##                  diveX$depth[-c(1, nrow(diveX))],
 ##                  diveX$time[-c(1, nrow(diveX))])
 ## phases <- diveMove:::.cutDive(diveX.m, smooth.par=0.1, knot.factor=30,
 ##                               descent.crit.q=0.01, ascent.crit.q=0)
+
+## for (dive in seq(max(dives[dives > 0]))) {
+##     diveX <- as.data.frame(extractDive(tdr.calib, diveNo=dive))
+##     diveX.m <- cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
+##                      diveX$depth[-c(1, nrow(diveX))],
+##                      diveX$time[-c(1, nrow(diveX))])
+##     phases <- diveMove:::.cutDive(diveX.m, smooth.par=0.1, knot.factor=50,
+##                                   descent.crit.q=0.01, ascent.crit.q=0)
+## }
