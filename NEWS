@@ -3,6 +3,12 @@
 
 See ChangeLog for more details.
 
+** Version 1.2.3:
+
+   o If smooth.par is NULL, then then the smoothing parameter is determined
+     by Generalized Cross-validation (GCV) when fitting spline dive model
+     for determining dive phases.
+
 ** Version 1.2.2:
 
    o New argument plot.points in plotTDR() methods allows plotting points

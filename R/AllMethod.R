@@ -285,7 +285,7 @@ setMethod("plotDiveModel",
                      col="lightblue", cex=0.3)
               abline(h=c(d.crit.rate, a.crit.rate),
                      v=c(times[d.crit], times[a.crit]), lty=2)
-              text(0.8, c(d.crit.rate, a.crit.rate),
+              text(2, c(d.crit.rate, a.crit.rate),
                    labels=c(expression(paste("descent ", hat(q))),
                      expression(paste("ascent ", hat(q)))),
                    pos=c(3, 1), cex=0.7)

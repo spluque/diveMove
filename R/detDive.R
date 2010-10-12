@@ -66,7 +66,7 @@
 }
 
 ##_+ Dive Detection with smoothing spline and derivative
-".cutDive" <- function(x, smooth.par, knot.factor, descent.crit.q,
+".cutDive" <- function(x, smooth.par=NULL, knot.factor, descent.crit.q,
                        ascent.crit.q)
 {
     ## Value: 'diveModel' object with details of dive phase model.
@@ -112,8 +112,14 @@
     }
     times.pred <- seq(times.scaled[1], times.scaled[length(times.scaled)],
                       length.out=length(times.scaled) * knot.factor)
-    depths.smooth <- stats::smooth.spline(times.scaled, depths,
-                                          spar=smooth.par, all.knots=TRUE)
+    if (is.null(smooth.par)) {
+        spl <- stats::smooth.spline(times.scaled, depths, all.knots=TRUE)
+        depths.smooth <- stats::smooth.spline(times.scaled, depths,
+                                              spar=spl$spar, all.knots=TRUE)
+    } else {
+        depths.smooth <- stats::smooth.spline(times.scaled, depths,
+                                              spar=smooth.par, all.knots=TRUE)
+    }
     depths.deriv <- predict(depths.smooth, times.pred, deriv=1)
     depths.d <- depths.deriv$y
 
@@ -284,14 +290,14 @@
 
 ## TEST ZONE --------------------------------------------------------------
 
-## ## utils::example("calibrateDepth", package="diveMove", ask=FALSE, echo=FALSE)
-## ## X <- c(2, 7, 100, 120, 240)
+## utils::example("calibrateDepth", package="diveMove", ask=FALSE, echo=FALSE)
+## X <- c(2, 7, 100, 120, 240)
 ## ## diveMove:::.labDivePhase(getTDR(tdr.calib), getDAct(tdr.calib, "dive.id"),
 ## ##                          smooth.par=0.1, knot.factor=30, descent.crit=0.01,
 ## ##                          ascent.crit=0)
 ## ## diveX <- as.data.frame(extractDive(dcalib, diveNo=X[5]))
 ## X <- c(2, 7, 100, 120, 743, 1224, 1222, 1223)
-## diveX <- as.data.frame(extractDive(tdr.calib, diveNo=X[5]))
+## diveX <- as.data.frame(extractDive(tdr.calib, diveNo=X[2]))
 ## diveX.m <- cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
 ##                  diveX$depth[-c(1, nrow(diveX))],
 ##                  diveX$time[-c(1, nrow(diveX))])

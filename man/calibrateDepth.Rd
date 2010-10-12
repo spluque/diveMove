@@ -52,7 +52,9 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   This pattern is common in some satellite-linked \acronym{TDR}s.}
 
   \item{smooth.par}{numeric scalar representing amount of smoothing
-    (argument \code{spar} in \code{\link[stats]{smooth.spline}}.}
+    (argument \code{spar} in \code{\link[stats]{smooth.spline}}.  If it
+    is NULL, then the smoothing parameter is determined by Generalized
+    Cross-validation (GCV).}
 
   \item{knot.factor}{numeric scalar that multiplies the duration of the
     dive (used to construct the time predictor for the derivative).}
