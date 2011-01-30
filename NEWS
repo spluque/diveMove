@@ -3,6 +3,10 @@
 
 See ChangeLog for more details.
 
+** Version 1.2.2:
+
+   o Updated reference for "filter" method in zero offset correction.
+
 ** Version 1.2.3:
 
    o If smooth.par is NULL, then then the smoothing parameter is determined
