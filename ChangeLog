@@ -1,3 +1,9 @@
+2011-02-28  Sebastian P. Luque  <spluque@gmail.com>
+
+	* inst/doc/Makefile:
+	Use $(R_HOME)/bin/R to ensure proper building, as per Brian
+	Ripley's message to developers today.
+
 2011-01-30  Sebastian P. Luque <spluque@gmail.com>
 
 	* DESCRIPTION, NEWS, man/calibrateDepth.Rd:

@@ -19,7 +19,7 @@ RMOTHERTRASH=-find . -name '*.png' -a ! -name 'tcltk.png' -delete
 all : diveMove.pdf clean
 
 %.pdf : %.tex
-	R CMD Rd2dvi --pdf -o '$*-rd.pdf' --title='$*' ../../man/
+	$(R_HOME)/bin/R CMD Rd2dvi --pdf -o '$*-rd.pdf' --title='$*' ../../man/
 	$(LATEX) $*
 	$(BIBTEX) $*
 	$(LATEX) $*
@@ -28,7 +28,7 @@ all : diveMove.pdf clean
 	rm -rf $(TEXTRASH) $*-*
 
 %.tex : %.Rnw
-	R CMD Sweave $*
+	$(R_HOME)/bin/R CMD Sweave $*
 
 clean :
 	$(RMOTHERTRASH)
