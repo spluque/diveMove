@@ -1,5 +1,7 @@
 2011-02-28  Sebastian P. Luque  <spluque@gmail.com>
 
+	Releasing version 1.2.4
+
 	* inst/doc/biblioSPL.bib, inst/doc/diveMove.Rnw:
 	  Updated bibliography and vignette references.
 
