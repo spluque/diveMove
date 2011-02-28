@@ -1,8 +1,10 @@
 2011-02-28  Sebastian P. Luque  <spluque@gmail.com>
 
-	* inst/doc/Makefile:
-	Use $(R_HOME)/bin/R to ensure proper building, as per Brian
-	Ripley's message to developers today.
+	* inst/doc/biblioSPL.bib, inst/doc/diveMove.Rnw:
+	  Updated bibliography and vignette references.
+
+	* inst/doc/Makefile: Use $(R_HOME)/bin/R to ensure proper
+	building, as per Brian Ripley's message to developers today.
 
 2011-01-30  Sebastian P. Luque <spluque@gmail.com>
 
