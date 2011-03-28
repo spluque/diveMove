@@ -5,6 +5,8 @@ import(methods)                         # Paranoid measure
 
 exportPattern("^[^\\.]")
 
+exportClassPattern("^$")               # to over-ride classes implied above
+
 exportClasses("TDR",
               "TDRspeed",
               "TDRcalibrate",
