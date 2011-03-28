@@ -62,9 +62,10 @@
 % -------------------------------------------------------------------------
 
 \examples{
-dives <- read.csv(system.file(file.path("data", "dives.csv"),
-                              package="diveMove"),
-                  sep=";", na.strings="")
+
+zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+                         package="diveMove"), open="r")
+dives <- read.csv(zz, sep=";", na.strings="")
 str(dives)
 
 }

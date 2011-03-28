@@ -1,31 +1,34 @@
 library(diveMove)
 
 ###_ + Reading and as.data.frame ------------------------------------------
-sealX <- readTDR(system.file(file.path("data", "dives.csv"),
-                             package="diveMove"), speed=TRUE,
-                 sep=";", na.strings="", as.is=TRUE)
+zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+                         package="diveMove"), open="r")
+sealX <- readTDR(zz, speed=TRUE, sep=";", na.strings="", as.is=TRUE)
 is(sealX, "TDR")
 is(sealX, "TDRspeed")
-sealX <- readTDR(system.file(file.path("data", "dives.csv"),
-                             package="diveMove"),
-                 sep=";", na.strings="", as.is=TRUE)
+zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+                         package="diveMove"), open="r")
+sealX <- readTDR(zz, sep=";", na.strings="", as.is=TRUE)
 is(sealX, "TDR")
 is(sealX, "TDRspeed")
 
 sealDat <- as.data.frame(sealX)
-sealX <- readTDR(system.file(file.path("data", "dives.csv"),
-                             package="diveMove"), concurrentCols=NULL,
+zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+                         package="diveMove"), open="r")
+sealX <- readTDR(zz, concurrentCols=NULL, sep=";",
+                 na.strings="", as.is=TRUE)
+is(sealX, "TDR")
+is(sealX, "TDRspeed")
+zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+                         package="diveMove"), open="r")
+sealX <- readTDR(zz, subsamp=10, speed=TRUE, concurrentCols=6,
                  sep=";", na.strings="", as.is=TRUE)
 is(sealX, "TDR")
 is(sealX, "TDRspeed")
-sealX <- readTDR(system.file(file.path("data", "dives.csv"),
-                             package="diveMove"), subsamp=10, speed=TRUE,
-                 concurrentCols=6, sep=";", na.strings="", as.is=TRUE)
-is(sealX, "TDR")
-is(sealX, "TDRspeed")
-sealX <- readTDR(system.file(file.path("data", "dives.csv"),
-                             package="diveMove"), subsamp=10, speed=TRUE,
-                 concurrentCols=5:6, sep=";", na.strings="", as.is=TRUE)
+zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+                         package="diveMove"), open="r")
+sealX <- readTDR(zz, subsamp=10, speed=TRUE, concurrentCols=5:6,
+                 sep=";", na.strings="", as.is=TRUE)
 is(sealX, "TDR")
 is(sealX, "TDRspeed")
 

@@ -212,9 +212,11 @@ concurrent measurements.  These classes have the following slots:
 Once the \texttt{TDR} data files are free of errors and in a portable
 format, they can be read into a data frame, using e.g.:
 
+<<dives-con>>=
+ff <- gzfile(system.file(file.path("data", "dives.csv.gz"), 
+                         package="diveMove"), open="r")
 <<readin-csv>>=
-ff <- system.file(file.path("data", "dives.csv"),
-                  package="diveMove")
+srcfn <- basename(summary(ff)$description)
 tdrXcsv <- read.csv(ff, sep=";")
 @
 
@@ -228,11 +230,12 @@ ddtt.str <- paste(tdrXcsv$date, tdrXcsv$time)
 ddtt <- strptime(ddtt.str, format="%d/%m/%Y %H:%M:%S")
 time.posixct <- as.POSIXct(ddtt, tz="GMT")
 tdrX <- createTDR(time=time.posixct, depth=tdrXcsv$depth,
-                  concurrentData=tdrXcsv[, -c(1:3)], dtime=5, file=ff)
+                  concurrentData=tdrXcsv[, -c(1:3)], dtime=5,
+                  file=srcfn)
 ## Or a TDRspeed object, since we know we have speed measurements:
 tdrX <- createTDR(time=time.posixct, depth=tdrXcsv$depth,
-                  concurrentData=tdrXcsv[, -c(1:3)], dtime=5, file=ff,
-                  speed=TRUE)
+                  concurrentData=tdrXcsv[, -c(1:3)], dtime=5,
+                  file=srcfn, speed=TRUE)
 @
 
 If the files are in *.csv format, these steps can be automated using the
@@ -241,9 +244,11 @@ classes representing \texttt{TDR} data (\Rclass{TDRspeed} in this case),
 and immediately begin using the methods provided:
 
 <<readin-tdr, eval=FALSE, results=hide>>=
+<<dives-con>>
 tdrX <- readTDR(ff, speed=TRUE, sep=";", na.strings="", as.is=TRUE)
 plotTDR(tdrX)
 <<eval=TRUE, echo=FALSE, results=hide>>=
+<<dives-con>>
 tdrX <- readTDR(ff, speed=TRUE, sep=";", na.strings="", as.is=TRUE)
 png("plot_tdr.png"); plotTDR(tdrX, interact=FALSE, cex.lab=1.3); dev.off()
 @
@@ -500,10 +505,10 @@ inspection of certain dives is needed.  The following call displays a plot
 of dives 2 through 8 (Figure~\ref{fig:3}):
 
 <<plot-dive-activity, eval=FALSE>>=
-plotTDR(dcalib, diveNo=2:8, labels="dive.phase")
+plotTDR(dcalib, diveNo=2:8, what="phases")
 <<eval=TRUE, echo=FALSE, results=hide>>=
 png("plot_tdr_dives.png", height=380)
-plotTDR(dcalib, diveNo=2:8, labels="dive.phase", interact=FALSE,
+plotTDR(dcalib, diveNo=2:8, what="phases", interact=FALSE,
         cex.lab=1.3, depth.lim=c(0, 80))
 dev.off()
 @

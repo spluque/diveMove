@@ -39,8 +39,10 @@
 % -------------------------------------------------------------------------
 
 \examples{
-sealLocs <- read.csv(system.file(file.path("data", "sealLocs.csv"),
-                                 package="diveMove"), sep=";")
+
+zz <- gzfile(system.file(file.path("data", "sealLocs.csv.gz"),
+                         package="diveMove"), open="r")
+sealLocs <- read.csv(zz, sep=";")
 str(sealLocs)
 
 }

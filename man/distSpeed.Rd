@@ -38,10 +38,9 @@ distSpeed(pt1, pt2)
 
 \examples{
 
-locs <- readLocs(system.file(file.path("data", "sealLocs.csv"),
-                             package="diveMove"), idCol=1, dateCol=2,
-                  dtformat="\%Y-\%m-\%d \%H:\%M:\%S", classCol=3, lonCol=4,
-                  latCol=5, sep=";")
+## Using the Example from '?readLocs':
+utils::example("readLocs", package="diveMove",
+               ask=FALSE, echo=FALSE)
 
 ## Travel summary between successive standard locations
 locs.std <- subset(locs, subset=class == "0" | class == "1" |
