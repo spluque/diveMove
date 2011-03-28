@@ -24,7 +24,8 @@ readLocs(locations, loc.idCol, idCol, dateCol, timeCol=NULL,
   \item{locations}{character: a string indicating the path to the file
     to read, or a \code{\link{data.frame}} available in the search
     list. Provide the entire path if the file is not on the current
-    directory.}
+    directory.  This can also be a text-mode connection, as allowed in
+    \code{\link{read.csv}}.}
 
   \item{loc.idCol}{integer: column number containing location ID.  If
     missing, a \code{loc.id} column is generated with sequential

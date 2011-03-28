@@ -27,7 +27,8 @@ createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
 \arguments{
 
   \item{file}{character: a string indicating the path to the file to
-    read.}
+    read.  This can also be a text-mode connection, as allowed in
+    \code{\link{read.csv}}.}
 
   \item{dateCol}{integer: column number containing dates, and
     optionally, times.}
