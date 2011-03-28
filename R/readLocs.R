@@ -7,23 +7,26 @@
     ## Value: A data frame with ARGOS locations.
     ## --------------------------------------------------------------------
     ## Arguments: locations=quoted file name, including path, of file to
-    ## read, or data.frame with data to read, loc.idCol=column number
-    ## containing the location id, idCol=column number identifying
-    ## locations belonging to different groups, dateCol=column number
-    ## containing dates and, optionally, times, timeCol=optional column
-    ## number containing times, latCol and lonCol=latitude and longitude
-    ## column numbers, respectively, alt.latCol and alt.lonCol=alternative
-    ## latitude and longitude columns, respectively, classCol=ARGOS
-    ## classification; ...= passed to read.csv()
+    ## read, or data.frame with data to read, or a text-mode connection,
+    ## loc.idCol=column number containing the location id, idCol=column
+    ## number identifying locations belonging to different groups,
+    ## dateCol=column number containing dates and, optionally, times,
+    ## timeCol=optional column number containing times, latCol and
+    ## lonCol=latitude and longitude column numbers, respectively,
+    ## alt.latCol and alt.lonCol=alternative latitude and longitude
+    ## columns, respectively, classCol=ARGOS classification; ...= passed to
+    ## read.csv()
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    if (is.character(locations) && file.exists(locations)) {
-        srcfile.name <- basename(locations)
+    if (inherits(locations, "connection") || file.exists(locations)) {
+        srcfile.name <- ifelse(inherits(locations, "connection"),
+                               basename(summary(locations)$description),
+                               basename(locations))
         inLocs <- read.csv(locations, ...)
     } else {
         if (! is.data.frame(locations)) {
-            stop ("'locations' must be a data.frame or a path (as a character string)")
+            stop ("'locations' must be a data.frame, path to a file, or a connection")
         } else {inLocs <- locations}
     }
     if (missing(loc.idCol)) {
