@@ -19,8 +19,8 @@
 
 
 \usage{
-boutfreqs(x, bw, method=c("standard", "seq.diff"), plot=TRUE)
-boutinit(lnfreq, x.break, plot=TRUE)
+boutfreqs(x, bw, method=c("standard", "seq.diff"), plot=TRUE, \ldots)
+boutinit(lnfreq, x.break, plot=TRUE, \ldots)
 labelBouts(x, bec, bec.method=c("standard", "seq.diff"))
 logit(p)
 unLogit(logit)
@@ -40,6 +40,11 @@ unLogit(logit)
     \dQuote{seq.diff} uses the sequential differences method.}
 
   \item{plot}{logical, whether to plot results or not.}
+
+  \item{\ldots}{For \code{boutfreqs}, arguments passed to hist (must
+    exclude \code{breaks} and \code{include.lowest}); for
+    \code{boutinit}, arguments passed to \code{\link{plot}} (must
+    exclude \code{type}).}
 
   \item{lnfreq}{data.frame with components \var{lnfreq} (log
     frequencies) and corresponding \var{x} (mid points of histogram
@@ -67,8 +72,8 @@ unLogit(logit)
   \code{boutfreqs} returns a data frame with components \var{lnfreq}
   containing the log frequencies and \var{x}, containing the
   corresponding mid points of the histogram.  Empty bins are excluded.
-  A plot is produced as a side effect if argument plot is TRUE.  See the
-  Details section.
+  A plot (histogram of \emph{input data}) is produced as a side effect
+  if argument plot is \code{TRUE}.  See the Details section.
 
   \code{boutinit} returns a list with components a1, lambda1, a2, and
   lambda2, which are starting values derived from broken stick model.  A plot
@@ -98,7 +103,8 @@ unLogit(logit)
 
   \code{labelBouts} labels each element (or row, if a matrix) of \var{x}
   with a sequential number, identifying which bout the reading belongs
-  to.
+  to.  The \code{bec} argument needs to have the same dimensions as
+  \code{x} to allow for situations where \code{bec} within \code{x}.
 
   \code{logit} and \code{unLogit} are useful for reparameterizing the
   negative maximum likelihood function, if using Langton et al. (1995).
@@ -125,7 +131,8 @@ unLogit(logit)
 }
 
 
-\seealso{\code{\link{bouts2.nls}}, \code{\link{bouts.mle}}.}
+\seealso{\code{\link{bouts2.nls}}, \code{\link{bouts.mle}}.  These
+  include an example for \code{labelBouts}.}
 
 % -------------------------------------------------------------------------
 
@@ -139,6 +146,8 @@ postdives <- tdrX.tab$postdive.dur[tdrX.tab$trip.no == 2]
 postdives <- postdives[postdives < 2000]
 lnfreq <- boutfreqs(postdives, bw=0.1, method="seq.diff", plot=FALSE)
 boutinit(lnfreq, 50)
+
+## See ?bouts.mle for labelBouts() example
 
 }
 

@@ -4,13 +4,15 @@
 
 "unLogit" <- function(logit) exp(logit) / (exp(logit) + 1)
 
-"boutfreqs" <- function(x, bw, method=c("standard", "seq.diff"), plot=TRUE)
+"boutfreqs" <- function(x, bw, method=c("standard", "seq.diff"),
+                        plot=TRUE, ...)
 {
     ## Value: data frame with log frequencies and bin mid-points
     ## --------------------------------------------------------------------
     ## Arguments: x=numeric vector, bw=bin width for histogram,
     ## method=method used to construct the histogram, plot=logical whether
-    ## to plot or not
+    ## to plot or not; ...=arguments passed to hist (must exclude 'breaks'
+    ## and 'include.lowest')
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
@@ -21,21 +23,22 @@
                        if (brks[length(brks)] < upper) {
                            brks <- c(brks, brks[length(brks)] + bw)
                        }
-                       h <- hist(x, br=brks, include.lowest=TRUE, plot=plot)},
+                       h <- hist(x, breaks=brks, include.lowest=TRUE,
+                                 plot=plot, ...)},
            seq.diff = {diff.x <- abs(diff(x))
                        upper <- max(diff.x, na.rm=TRUE)
                        brks <- seq(0, upper, bw)
                        if (brks[length(brks)] < upper) {
                            brks <- c(brks, brks[length(brks)] + bw)
                        }
-                       h <- hist(diff.x, br=brks, include.lowest=TRUE,
-                                 plot=plot)})
+                       h <- hist(diff.x, breaks=brks, include.lowest=TRUE,
+                                 plot=plot, ...)})
     ok <- which(h$counts > 0)
     freq.adj <- h$counts[ok] / diff(c(0, ok))
     data.frame(lnfreq=log(freq.adj), x=h$mids[ok])
 }
 
-"boutinit" <- function(lnfreq, x.break, plot=TRUE)
+"boutinit" <- function(lnfreq, x.break, plot=TRUE, ...)
 {
     ## Value: list with starting values for nls bout function
     ## --------------------------------------------------------------------
@@ -55,7 +58,7 @@
     lambda2 <- as.vector(-bkstick2[2])
     a2 <- as.vector(exp(bkstick2[1]) / lambda2)
     if (plot) {
-        plot(lnfreq ~ x, lnfreq, las=1, type="n")
+        plot(lnfreq ~ x, lnfreq, type="n", ...)
         points(lnfreq[proc1] ~ x[proc1], lnfreq, pch=21, bg="white")
         points(lnfreq[proc2] ~ x[proc2], lnfreq, pch=21, bg="black")
         curve(log(a1 * lambda1 * exp(-lambda1 * x) +
@@ -110,8 +113,9 @@
 {
     ## Value: plot of fitted model of log frequencies on x, with bec line.
     ## --------------------------------------------------------------------
-    ## Arguments: fit=nls list, lnfreq=data frame with named objects
-    ## lnfreq and x, bec.lty=line type for arrow
+    ## Arguments: fit=nls list, lnfreq=data frame with named objects lnfreq
+    ## and x, bec.lty=line type for arrow; ...=arguments passed to
+    ## plot()
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
@@ -121,7 +125,7 @@
     lambda1_hat <- as.vector(coefs[2])
     a2_hat <- as.vector(coefs[3])
     lambda2_hat <- as.vector(coefs[4])
-    plot(lnfreq ~ x, lnfreq, las=1, type="n", ...)
+    plot(lnfreq ~ x, lnfreq, type="n", ...)
     curve(log(a1_hat * lambda1_hat * exp(-lambda1_hat * x) +
               a2_hat * lambda2_hat * exp(-lambda2_hat * x)),
           min(lnfreq$x), max(lnfreq$x), add=TRUE)
@@ -253,7 +257,7 @@
     curve(log(p_hat * lambda1_hat * exp(-lambda1_hat * x) +
               (1 - p_hat) * lambda2_hat * exp(-lambda2_hat * x)),
           from=range.x[1], to=range.x[2], xlab=xlab, ylab=ylab,
-          xaxs="i", yaxs="i", las=1, ...)
+          xaxs="i", yaxs="i", ...)
     rug(jitter(x), side=3, ticksize=0.015, quiet=TRUE)
     becy <- bouts2.mleFUN(bec, p=p_hat, lambda1=lambda1_hat,
                           lambda2=lambda2_hat)

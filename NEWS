@@ -3,6 +3,14 @@
 
 See ChangeLog for more details.
 
+** Changes in version 1.2.5:
+
+   o New ellipsis argument for boutfreqs() and boutinit() for more
+     flexibility in plots.
+
+   o NAMESPACE now uses an empty exportClassPattern() to over-ride
+     exportPattern(), and keep using the explicit exportClasses().
+
 ** Changes in version 1.2.4:
 
    o Updated reference for "filter" method in zero offset correction.

@@ -43,7 +43,9 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
   \item{start, \ldots}{Arguments passed to \code{\link[stats4]{mle}}.
     For \code{plotBouts2.cdf}, arguments passed to
     \code{\link{plot.ecdf}}. For \code{plotBouts2.mle}, arguments passed
-    to \code{\link{curve}}.}
+    to \code{\link{curve}} (must exclude \code{xaxs}, \code{yaxs}). For
+    \code{plotBouts2.nls}, arguments passed to \code{\link{plot}} (must
+    exclude \code{type}).}
 
   \item{fit}{\code{\link[stats4]{mle}} object.}
 
@@ -188,7 +190,11 @@ plotBouts(bout.fit2, postdives.diff)
 plotBouts2.cdf(bout.fit2, postdives.diff)
 
 ## Estimated BEC
-bec2(bout.fit2)
+bec <- bec2(bout.fit2)
+
+## Label bouts
+labelBouts(postdives, rep(bec, length(postdives)),
+           bec.method="seq.diff")
 
 }
 

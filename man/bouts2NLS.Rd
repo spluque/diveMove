@@ -88,7 +88,8 @@ plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
 
 
 \seealso{
-  \code{\link{bouts.mle}} for a better approach.
+  \code{\link{bouts.mle}} for a better approach;
+  \code{\link{boutfreqs}}; \code{\link{boutinit}}
 }
 
 % -------------------------------------------------------------------------
