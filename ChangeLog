@@ -1,3 +1,46 @@
+2011-03-28  Sebastian P. Luque <spluque@gmail.com>
+
+	* man/readLocs.Rd, man/readTDR.Rd:
+	  Updated argument descriptions, as per changes in source allowing
+	  text-mode connections to be used as first arguments.
+
+	* inst/doc/Makefile:
+	  Modified targets to accomodate new build and check procedures in
+	  R 2.13.0, where Sweave is run before make and the first target
+	  should take care of building and cleaning.
+
+	* R/readLocs.R, R/readTDR.R:
+	  Modified initial tests to allow text-mode connections as input.
+
+	* man/austFilter.Rd, man/distSpeed.Rd, man/diveMove-package.Rd,
+	  man/dives.Rd, man/readLocs.Rd, man/readTDR.Rd, man/sealLocs.Rd,
+	  tests/calibrations.R, tests/class-tests.R, tests/final-stats.R:
+	  Modified examples to accomodate having compressed files in the
+	  data/ directory, as per R 2.13.0.
+
+	* inst/doc/diveMove.Rnw:
+	  Modifications to accomodate having compressed files in the data/
+	  directory, as per R 2.13.0.
+
+	* .Rbuildignore:
+	  Do not remove all png files from building. We do this in the
+	  first target of inst/doc/Makefile, where we do keep the files
+	  that are needed for rebuilding the vignette.
+
+	* data/dives.csv, data/dives.csv.gz, data/sealLocs.csv,
+	  data/sealLocs.csv.gz:
+	  Do use the compressed data files immediately (i.e. before
+	  building), but keep the csv suffix before gz.
+
+	* DESCRIPTION, NEWS, R/bouts.R, data/divesTDR.RData,
+	  man/bout-misc.Rd, man/bouts2MLE.Rd, man/bouts2NLS.Rd:
+	  New ellipsis argument for boutfreqs() and boutinit() for more
+	  flexibility in plots.
+
+	* NAMESPACE:
+	  Use empty pattern for exportClassPattern() to over-ride classes
+	  implied by exportPattern(), as per R 2.13.0.
+
 2011-02-28  Sebastian P. Luque  <spluque@gmail.com>
 
 	Releasing version 1.2.4

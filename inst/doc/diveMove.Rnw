@@ -812,7 +812,7 @@ parameters calculated by \Rfunction{diveStats()}, whenever a
 Diving behaviour often occurs in bouts for several species, so
 \Rpackage{diveMove} implements procedures for defining bout ending criteria
 \citep{7116,7397}.  Please see \texttt{?bouts2.mle} and
-\texttt{?bouts2.nls} for examples.
+\texttt{?bouts2.nls} for examples of 2-process models.
 
 
 \section{Summary}

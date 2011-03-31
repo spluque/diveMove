@@ -5,6 +5,9 @@ See ChangeLog for more details.
 
 ** Changes in version 1.2.5:
 
+   o readTDR() and readLocs() now accept reading from text-mode
+     connections, as allowed in read.csv().
+
    o New ellipsis argument for boutfreqs() and boutinit() for more
      flexibility in plots.
 
