@@ -5,6 +5,11 @@ See ChangeLog for more details.
 
 ** Changes in version 1.2.5:
 
+   o New methods for models consisting of three Poisson processes for
+     detection of dive bouts.  For now, only log-frequency NLS procedure is
+     supported.  Corresponding maximum likelihood approach or better might
+     be available later.
+
    o readTDR() and readLocs() now accept reading from text-mode
      connections, as allowed in read.csv().
 

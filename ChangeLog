@@ -1,3 +1,13 @@
+2011-04-03  Sebastian P. Luque <spluque@gmail.com>
+
+	Releasing version 1.2.5
+
+	* NAMESPACE, R/AllGenerics.R, R/AllMethod.R, R/bouts.R,
+	  man/bout-methods.Rd, man/bout-misc.Rd, man/bouts2MLE.Rd,
+	  man/bouts2NLS.Rd, man/bouts3NLS.Rd:
+	  Added methods for models consisting of three Poisson processes
+	  for detection of dive bouts.
+
 2011-03-28  Sebastian P. Luque <spluque@gmail.com>
 
 	* man/readLocs.Rd, man/readTDR.Rd:
