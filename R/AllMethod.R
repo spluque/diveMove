@@ -600,18 +600,42 @@ setMethod("timeBudget",            # a table of general attendance pattern
 ###_ + plotBouts
 setMethod("plotBouts", signature(fit="nls"),
           function(fit, ...) {
-              if (length(coef(fit)) != 4)
-                  stop("fitted model must have exactly 4 coefficients")
-              plotBouts2.nls(fit=fit, lnfreq=eval.parent(fit$data), ...)
+              ncoefs <- as.character(length(coef(fit)))
+              if (! (ncoefs == "4" || ncoefs == "6")) {
+                  msg <- paste("fitted model must have 4 (2-process) or",
+                               "6 (3-process) coefficients")
+                  stop(msg)
+              }
+              switch(ncoefs,
+                     "4" = {
+                         plotBouts2.nls(fit=fit,
+                                        lnfreq=eval.parent(fit$data), ...)
+                     },
+                     "6" = {
+                         plotBouts3.nls(fit=fit,
+                                        lnfreq=eval.parent(fit$data), ...)
+                     })
           })
 setMethod("plotBouts", signature(fit="mle"),
           function(fit, x, ...) {
-              if (length(coef(fit)) != 3)
-                  stop("fitted model must have exactly 3 coefficients")
-              plotBouts2.mle(fit=fit, x=x, ...)
+              ncoefs <- as.character(length(coef(fit)))
+              if (! (ncoefs == "3" || ncoefs == "5")) {
+                  msg <- paste("fitted model must have 3 (2-process) or",
+                               "5 (3-process) coefficients")
+                  stop(msg)
+              }
+              switch(ncoefs,
+                     "3" = {
+                         plotBouts2.mle(fit=fit, x=x, ...)
+                     },
+                     "5" = {
+                         stop("To be implemented")
+                     })
           })
 
-###_ + Methods for bec2 are in bouts.R to avoid Collate issues in DESCRIPTION
+###_ + Methods for bec2 and bec3 are in bouts.R
+
+## This is to avoid Collate issues in DESCRIPTION
 
 
 ###_ + Emacs local variables

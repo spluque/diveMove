@@ -14,8 +14,7 @@
 
 
 \description{ Application of methods described by Sibly et al. (1990)
-  and Mori et al. (2001) for the identification of bouts of behaviour,
-  based on sequential differences of a variable. }
+  and Mori et al. (2001) for the identification of bouts of behaviour. }
 
 
 \usage{
@@ -50,9 +49,11 @@ unLogit(logit)
     frequencies) and corresponding \var{x} (mid points of histogram
     bins).}
 
-  \item{x.break}{numeric scalar: x value defining the break point for
-    broken stick model, such that x < xlim is 1st process, and x >= xlim
-    is 2nd one.}
+  \item{x.break}{vector of length 1 or 2 with \code{x} value(s) defining
+    the break(s) point(s) for broken stick model, such that \code{x} <
+    \code{x.break}[1] is 1st process, and \code{x} >= \code{x.break}[1]
+    & \code{x} < \code{x.break}[2] is 2nd one, and \code{x} >=
+    \code{x.break}[2] is 3rd one.}
 
   \item{bec}{numeric vector or matrix with values for the bout ending
     criterion which should be compared against the values in x for
@@ -75,9 +76,12 @@ unLogit(logit)
   A plot (histogram of \emph{input data}) is produced as a side effect
   if argument plot is \code{TRUE}.  See the Details section.
 
-  \code{boutinit} returns a list with components a1, lambda1, a2, and
-  lambda2, which are starting values derived from broken stick model.  A plot
-  is produced as a side effect if argument plot is TRUE.
+  \code{boutinit} returns a list with as many elements as the number of
+  processes implied by \code{x.break} (i.e. \code{length(x.break) + 1}).
+  Each element is a vector of length two, corresponding to \code{a} and
+  \code{lambda}, which are starting values derived from broken stick
+  model.  A plot is produced as a side effect if argument \code{plot} is
+  \code{TRUE}.
 
   \code{labelBouts} returns a numeric vector sequentially labelling each
   row or element of \var{x}, which associates it with a particular bout.
@@ -99,7 +103,7 @@ unLogit(logit)
 
   \code{boutinit} fits a "broken stick" model to the log frequencies
   modelled as a function of \var{x} (well, the midpoints of the binned
-  data), using a chosen value to separate the two processes.
+  data), using chosen value(s) to separate the two or three processes.
 
   \code{labelBouts} labels each element (or row, if a matrix) of \var{x}
   with a sequential number, identifying which bout the reading belongs

@@ -36,4 +36,5 @@ exportMethods("as.data.frame",
               "getSpeedCoef",
               "getSpeed",
               "plotBouts",
-              "bec2")
+              "bec2",
+              "bec3")

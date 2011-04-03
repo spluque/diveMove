@@ -101,8 +101,8 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
   function corresponding to the un-transformed model, hence can be used
   for step 4.
 
-  bouts.mle is the function performing the main job of maximizing the
-  -log L2 functions, and is essentially a wrapper around
+  \code{bouts.mle} is the function performing the main job of maximizing
+  the -log L2 functions, and is essentially a wrapper around
   \code{\link[stats4]{mle}}.  It only takes the -log L2 function, a list
   of starting values, and the variable to be modelled, all of which are
   passed to \code{\link[stats4]{mle}} for optimization.  Additionally,
@@ -169,11 +169,13 @@ postdives.diff <- abs(diff(postdives))
 postdives.diff <- postdives.diff[postdives.diff < 2000]
 lnfreq <- boutfreqs(postdives.diff, bw=0.1, plot=FALSE)
 startval <- boutinit(lnfreq, 50)
-p <- startval$a1 / (startval$a1 + startval$a2)
+p <- startval[[1]]["a"] / (startval[[1]]["a"] + startval[[2]]["a"])
 
 ## Fit the reparameterized (transformed parameters) model
-init.parms <- list(p=logit(p), lambda1=log(startval$lambda1),
-                   lambda2=log(startval$lambda2))
+## Drop names by wrapping around as.vector()
+init.parms <- list(p=as.vector(logit(p)),
+                   lambda1=as.vector(log(startval[[1]]["lambda"])),
+                   lambda2=as.vector(log(startval[[2]]["lambda"])))
 bout.fit1 <- bouts.mle(bouts2.LL, start=init.parms, x=postdives.diff,
                        method="L-BFGS-B", lower=c(-2, -5, -10))
 coefs <- as.vector(coef(bout.fit1))

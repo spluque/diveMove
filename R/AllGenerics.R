@@ -95,13 +95,17 @@ if (!isGeneric("timeBudget")) {
                function(obj, ignoreZ) standardGeneric("timeBudget"))
 }
 
-###_ + plotBouts and bec2
+###_ + plotBouts, bec2, and bec3
 if (!isGeneric("plotBouts")) {
     setGeneric("plotBouts", function(fit, ...) standardGeneric("plotBouts"))
 }
 
 if (!isGeneric("bec2")) {
     setGeneric("bec2", function(fit) standardGeneric("bec2"))
+}
+
+if (!isGeneric("bec3")) {
+    setGeneric("bec3", function(fit) standardGeneric("bec3"))
 }
 
 
