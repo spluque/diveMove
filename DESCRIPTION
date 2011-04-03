@@ -2,8 +2,8 @@ Package: diveMove
 Type: Package
 Title: Dive analysis and calibration
 Version: 1.2.5
-Depends: R (>= 2.11.0), methods, stats4, caTools, lattice, RColorBrewer
-Suggests: KernSmooth, quantreg, tcltk
+Depends: R (>= 2.11.0), methods, stats4, caTools, RColorBrewer
+Suggests: KernSmooth, quantreg, lattice, tcltk
 Imports: stats4
 Author: Sebastian P. Luque <spluque@gmail.com>
 Maintainer: Sebastian P. Luque <spluque@gmail.com>
