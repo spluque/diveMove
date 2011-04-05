@@ -178,6 +178,8 @@
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
     axlims <- range(rddepth, speed, na.rm=TRUE)
+    old.par <- par(no.readonly=TRUE)
+    on.exit(par(old.par))
     par(pty="s")
     image(z$x1, z$x2, z$fhat, xlim=axlims, ylim=axlims, col=colramp(256),
           main=main, xlab=xlab, ylab=ylab, cex.lab=1.3, las=1)

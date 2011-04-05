@@ -3,6 +3,11 @@
 
 See ChangeLog for more details.
 
+** Changes in version 1.2.6:
+
+   o New generic plotZOC() with methods for plotting ZOC procedure and
+     visually assess performance.
+
 ** Changes in version 1.2.5:
 
    o New methods for models consisting of three Poisson processes for

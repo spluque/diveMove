@@ -261,6 +261,8 @@ setMethod("plotDiveModel",
               ascent.c2 <- depths.deriv < a.crit.rate
               ascent <- ascent.c1 & ascent.c2
               layout(matrix(1:2, ncol=1))
+              old.par <- par(no.readonly=TRUE)
+              on.exit(par(old.par))
               par(mar=c(3, 4, 0, 1) + 0.1, las=1)
               plot(times, depths, type="o", axes=FALSE, pch=19, cex=0.5,
                    frame.plot=TRUE, ylab="Depth",
@@ -291,6 +293,56 @@ setMethod("plotDiveModel",
                    pos=c(3, 1), cex=0.7)
               text(c(times[d.crit], times[a.crit]), 0,
                    labels=c("descent", "ascent"), pos=1, cex=0.7)
+          })
+
+###_  . plotBouts
+setMethod("plotBouts", signature(fit="nls"),
+          function(fit, ...) {
+              ncoefs <- as.character(length(coef(fit)))
+              if (! (ncoefs == "4" || ncoefs == "6")) {
+                  msg <- paste("fitted model must have 4 (2-process) or",
+                               "6 (3-process) coefficients")
+                  stop(msg)
+              }
+              switch(ncoefs,
+                     "4" = {
+                         plotBouts2.nls(fit=fit,
+                                        lnfreq=eval.parent(fit$data), ...)
+                     },
+                     "6" = {
+                         plotBouts3.nls(fit=fit,
+                                        lnfreq=eval.parent(fit$data), ...)
+                     })
+          })
+setMethod("plotBouts", signature(fit="mle"),
+          function(fit, x, ...) {
+              ncoefs <- as.character(length(coef(fit)))
+              if (! (ncoefs == "3" || ncoefs == "5")) {
+                  msg <- paste("fitted model must have 3 (2-process) or",
+                               "5 (3-process) coefficients")
+                  stop(msg)
+              }
+              switch(ncoefs,
+                     "3" = {
+                         plotBouts2.mle(fit=fit, x=x, ...)
+                     },
+                     "5" = {
+                         stop("To be implemented")
+                     })
+          })
+
+###_  . plotZOC
+setMethod("plotZOC", signature(x="TDR", y="matrix"),
+          function(x, y, xlim, ylim, ylab="Depth (m)", ...) {
+              diveMove:::.plotZOCfilters(x=x, zoc.filter=y,
+                                         xlim=xlim, ylim=ylim,
+                                         ylab=ylab, ...)
+          })
+
+setMethod("plotZOC", signature(x="TDR", y="TDRcalibrate"),
+          function(x, y, xlim, ylim, ylab="Depth (m)", ...) {
+              diveMove:::.plotZOCtdrs(x=x, y=y, xlim=xlim, ylim=ylim,
+                                      ylab=ylab, ...)
           })
 
 
@@ -597,41 +649,6 @@ setMethod("timeBudget",            # a table of general attendance pattern
                          row.names=NULL)
           })
 
-###_ + plotBouts
-setMethod("plotBouts", signature(fit="nls"),
-          function(fit, ...) {
-              ncoefs <- as.character(length(coef(fit)))
-              if (! (ncoefs == "4" || ncoefs == "6")) {
-                  msg <- paste("fitted model must have 4 (2-process) or",
-                               "6 (3-process) coefficients")
-                  stop(msg)
-              }
-              switch(ncoefs,
-                     "4" = {
-                         plotBouts2.nls(fit=fit,
-                                        lnfreq=eval.parent(fit$data), ...)
-                     },
-                     "6" = {
-                         plotBouts3.nls(fit=fit,
-                                        lnfreq=eval.parent(fit$data), ...)
-                     })
-          })
-setMethod("plotBouts", signature(fit="mle"),
-          function(fit, x, ...) {
-              ncoefs <- as.character(length(coef(fit)))
-              if (! (ncoefs == "3" || ncoefs == "5")) {
-                  msg <- paste("fitted model must have 3 (2-process) or",
-                               "5 (3-process) coefficients")
-                  stop(msg)
-              }
-              switch(ncoefs,
-                     "3" = {
-                         plotBouts2.mle(fit=fit, x=x, ...)
-                     },
-                     "5" = {
-                         stop("To be implemented")
-                     })
-          })
 
 ###_ + Methods for bec2 and bec3 are in bouts.R
 
