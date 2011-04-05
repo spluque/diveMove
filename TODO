@@ -1,8 +1,5 @@
 * Work on MLE (or better) method for modelling mixtures of 3 Poisson
    processes for dive bout identification.
 * Find a way to embed R graphics in tcltk widgets for plotTD().
-* Complete the vignette with bout detection examples.
-* Check whether functions to extract parts of a track corresponding to
-   diving period interpolations should be included here.
 * For TDRs without salt-water switch, consider how to identify dry periods
    based on concurrent data.
