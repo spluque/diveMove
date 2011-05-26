@@ -133,6 +133,11 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
   diving behaviour in pinnipeds, so these suggested values may not be
   useful in other cases.
 
+  The lambdas can be very small for some data, particularly
+  \code{lambda2}, so the default \code{ndeps} in \code{\link{optim}} can
+  be so large as to push the search outside the bounds given.  To avoid
+  this problem, provide a smaller \code{ndeps} value.
+
 }
 
 
