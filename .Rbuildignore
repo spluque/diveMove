@@ -2,4 +2,3 @@
 ^\+\+psvn.*
 EXAMPLES.*
 ^TODO$
-inst/doc/(.+\.bib)
