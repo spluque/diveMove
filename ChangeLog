@@ -1,6 +1,10 @@
 2011-05-26  Sebastian P. Luque <spluque@gmail.com>
 
-	Releasing version 1.2.5
+	Releasing version 1.2.6
+
+	* .Rbuildignore:
+	  bib file has to be built now, as per request from CRAN
+	  maintainers who see error when building package.
 
 	* ChangeLog, man/bouts2MLE.Rd:
 	  Note about ndeps.
