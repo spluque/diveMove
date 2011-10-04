@@ -1,6 +1,6 @@
 ## $Id$
 
-".onLoad" <- function(lib, pkg) {
-    require(methods)
-    require(stats4)
-}
+## ".onLoad" <- function(lib, pkg) {
+##     require(methods)
+##     require(stats4)
+## }
