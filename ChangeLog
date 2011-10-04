@@ -1,3 +1,17 @@
+2011-10-05  Sebastian P. Luque  <spluque@gmail.com>
+
+	Releasing version 1.2.7
+
+2011-10-04  Sebastian P. Luque <spluque@gmail.com>
+
+	* NEWS, R/zzz.R:
+	  Removed .onLoad() since it was only needed for require() calls
+	  that are no longer needed.
+
+	* DESCRIPTION, NEWS, inst/doc/Makefile:
+	  Prepare inst/doc/Makefile for R 2.14.0; Rd2dvi will be
+	  deprecated, so use Rd2pdf.
+
 2011-05-26  Sebastian P. Luque <spluque@gmail.com>
 
 	Releasing version 1.2.6
