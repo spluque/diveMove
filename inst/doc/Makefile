@@ -19,7 +19,7 @@ RMOTHERTRASH=-find . -name '*.png' -a ! -name 'tcltk.png' -delete
 all : diveMove.pdf
 
 %.pdf : %.tex
-	$(R_HOME)/bin/R CMD Rd2dvi --pdf --no-preview -o '$*-rd.pdf' \
+	$(R_HOME)/bin/R CMD Rd2pdf --no-preview -o '$*-rd.pdf' \
 	--title='$*' ../../man/
 	$(LATEX) $*
 	$(BIBTEX) $*

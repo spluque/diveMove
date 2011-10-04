@@ -3,6 +3,11 @@
 
 See ChangeLog for more details.
 
+** Changes in version 1.2.7:
+
+   o Prepare inst/doc/Makefile for R 2.14.0; Rd2dvi will be deprecated, so
+     use Rd2pdf.
+
 ** Changes in version 1.2.6:
 
    o New generic plotZOC() with methods for plotting ZOC procedure and
