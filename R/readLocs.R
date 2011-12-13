@@ -19,7 +19,8 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    if (inherits(locations, "connection") || file.exists(locations)) {
+    if (inherits(locations, "connection") ||
+        (is.character(locations) && file.exists(locations))) {
         srcfile.name <- ifelse(inherits(locations, "connection"),
                                basename(summary(locations)$description),
                                basename(locations))

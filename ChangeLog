@@ -1,3 +1,8 @@
+2011-12-13  Sebastian Luque  <spluque@gmail.com>
+
+	* R/readLocs.R ("readLocs"): Ensure that argument for
+	file.exists() is character.
+
 2011-10-05  Sebastian P. Luque  <spluque@gmail.com>
 
 	Releasing version 1.2.7
