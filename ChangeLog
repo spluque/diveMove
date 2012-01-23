@@ -1,5 +1,7 @@
 2012-01-23  Sebastian P. Luque  <spluque@gmail.com>
 
+	Releasing version 1.2.8
+
 	* inst/doc/diveMove.Rnw: Removing dependency on caption package;
 	not needed.
 
