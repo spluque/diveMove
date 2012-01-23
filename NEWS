@@ -5,6 +5,11 @@ See ChangeLog for more details.
 
 ** Changes in version 1.2.7:
 
+   o Ensure that 'locations' argument in readLocs() is a string, if not a
+     connection.
+
+** Changes in version 1.2.7:
+
    o Prepare inst/doc/Makefile for R 2.14.0; Rd2dvi will be deprecated, so
      use Rd2pdf.
 

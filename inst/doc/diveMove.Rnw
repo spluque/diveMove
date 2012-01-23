@@ -3,6 +3,11 @@
 %\VignetteDepends{diveMove}
 %\VignettePackage{diveMove}
 \documentclass[letterpaper, twocolumn]{scrartcl}
+
+\addtokomafont{caption}{\small}
+\setkomafont{captionlabel}{\sffamily\bfseries}
+\renewcommand*{\captionformat}{.\ }
+
 \usepackage[margin=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -12,7 +17,6 @@
 \usepackage{boxedminipage}
 \usepackage{booktabs}
 \usepackage{natbib}
-\usepackage[labelsep=period,labelfont=bf,font=small]{caption}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage{pdfpages}
 \usepackage{Sweave}

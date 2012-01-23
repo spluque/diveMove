@@ -1,3 +1,8 @@
+2012-01-23  Sebastian P. Luque  <spluque@gmail.com>
+
+	* inst/doc/diveMove.Rnw: Removing dependency on caption package;
+	not needed.
+
 2011-12-13  Sebastian Luque  <spluque@gmail.com>
 
 	* R/readLocs.R ("readLocs"): Ensure that argument for
