@@ -1,3 +1,14 @@
+2012-02-06  Sebastian P. Luque <spluque@gmail.com>
+
+	Releasing version 1.2.9
+
+	* .Rinstignore, DESCRIPTION, NEWS:
+	  New version. Do not install Makefile(s), bibliography, or image
+	  files needed for the vignette. Do install vignette.
+
+	* R/plotTDR.R:
+	  plotTDR() now subsets data based on the zoom scale.
+
 2012-01-23  Sebastian P. Luque  <spluque@gmail.com>
 
 	Releasing version 1.2.8
