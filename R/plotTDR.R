@@ -67,7 +67,10 @@
             layout(matrix(seq(plotrows, 1), nrow=plotrows, ncol=1),
                    heights=lheights)
         }
-        plot(depth ~ time, type="n", xlim=xlim, ylim=ylim,
+        now <- (time >= xlim[1]) & (time <= xlim[2])
+        depth.now <- depth[now]
+        time.now <- time[now]
+        plot(depth.now ~ time.now, type="n", xlim=xlim, ylim=ylim,
              xlab=xlab, ylab=ylab.depth, xaxt="n", yaxt="n")
         usr <- par("usr")
         xleft <- pmax(unclass(nights$sunsets), usr[1])
@@ -75,37 +78,40 @@
         rect(xleft, usr[3], xright, usr[4], col=night.col, border=NA)
         if (!is.null(dry.time)) segments(dry.time, usr[4], dry.time, usr[4],
                                          lwd=4, col="tan")
-        axis.POSIXct(side=1, time, at=xticks, format=xlab.format)
+        axis.POSIXct(side=1, time.now, at=xticks, format=xlab.format)
         axis(side=2)
-        lines(time, depth)
+        lines(time.now, depth.now)
         if (!is.null(phase.factor)) {
-            phase.factor <- phase.factor[, drop=TRUE]
+            phase.factor <- phase.factor[now, drop=TRUE]
             nlevs <- nlevels(phase.factor)
             ncolors <- max(3, min(nlevs, 9))
             colors <- brewer.pal(n=ncolors, name="Set1")
-            points(time, depth, col=colors[phase.factor], pch=19, cex=cex.pts)
+            points(time.now, depth.now, col=colors[phase.factor],
+                   pch=19, cex=cex.pts)
             if (key && nlevs < 10) {
                 legend("bottomright", legend=levels(phase.factor), col=colors,
                        pch=19, cex=0.7, ncol=nlevs, bg="white")
             }
-        } else if (plot.points) points(time, depth, pch=19, cex=cex.pts)
+        } else if (plot.points) {
+            points(time.now, depth.now, pch=19, cex=cex.pts)
+        }
         if (!is.null(concurVars)) {
             if (length(concurVarTitles) != nconcurVars) {
                 concurVarTitles <- rep(concurVarTitles, length.out=nconcurVars)
             }
             for (i in seq(nconcurVars)) {
-                vari <- concurVars[, i]
+                vari <- concurVars[now, i]
                 if (i == nconcurVars) par(mar=martop) else par(mar=marnontop)
                 ylim <- range(vari, na.rm=TRUE)
-                plot(vari ~ time, type="n", xaxt="n", ylim=ylim,
+                plot(vari ~ time.now, type="n", xaxt="n", ylim=ylim,
                      xlab="", xlim=xlim, bty="n", ylab=concurVarTitles[i])
                 usr <- par("usr")    # to watch out for change in y coords
                 rect(xleft, usr[3], xright, usr[4], col=night.col, border=NA)
-                lines(time, vari)
+                lines(time.now, vari)
                 if (!is.null(phase.factor)) { # we already have 'colors'
-                    points(time, vari, col=colors[phase.factor], pch=19,
+                    points(time.now, vari, col=colors[phase.factor], pch=19,
                            cex=cex.pts)
-                } else if (plot.points) points(time, vari, pch=19, cex=cex.pts)
+                } else if (plot.points) points(time.now, vari, pch=19, cex=cex.pts)
                 axis(side=2)
             }
         }

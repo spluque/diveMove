@@ -3,6 +3,11 @@
 
 See ChangeLog for more details.
 
+** Changes in version 1.2.9:
+
+   o plotTDR() now subsets data based on the zoom scale, so plotting is
+     much faster.
+
 ** Changes in version 1.2.8:
 
    o Ensure that 'locations' argument in readLocs() is a string, if not a

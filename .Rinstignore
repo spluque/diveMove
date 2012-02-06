@@ -1,0 +1,3 @@
+.*(GNU)?Makefile$
+inst/doc/.+\.bib$
+inst/doc/.+\.png$
