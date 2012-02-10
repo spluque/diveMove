@@ -3,6 +3,11 @@
 
 See ChangeLog for more details.
 
+** Changes in version 1.3.0:
+
+   o plotTDR() now plots a legend only if there is at least one level in
+     the phase factor.
+
 ** Changes in version 1.2.9:
 
    o plotTDR() now subsets data based on the zoom scale, so plotting is

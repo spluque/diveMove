@@ -88,7 +88,7 @@
             colors <- brewer.pal(n=ncolors, name="Set1")
             points(time.now, depth.now, col=colors[phase.factor],
                    pch=19, cex=cex.pts)
-            if (key && nlevs < 10) {
+            if (key && nlevs < 10 && nlevs > 0) {
                 legend("bottomright", legend=levels(phase.factor), col=colors,
                        pch=19, cex=0.7, ncol=nlevs, bg="white")
             }
