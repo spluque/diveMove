@@ -213,7 +213,7 @@
         tcltk::tkgrid(zoc.pts, row=2, column=1, sticky="ns")
         tcltk::tkgrid(q.but, row=2, column=2)
 
-        ## replot()
+        if (getRversion() >= "2.14.2") replot()
         tcltk::tkwait.window(base)
         invisible(coords)
     }
