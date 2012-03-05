@@ -30,17 +30,23 @@
     ## Value: list with index of per-row activities, the activity code, and
     ## start and end of each activity phase
     ## --------------------------------------------------------------------
-    ## Arguments: time=chron vector with date/time depth=numeric vector
-    ## with depth readings (m); interval=sampling interval in POSIXct units
-    ## (s), to pass to rleActivity; dry.thr=duration (in s) of on-land
-    ## readings that should be at-sea aquaerr=duration (in s) of at-sea
-    ## readings to be taken as leisure
+    ## Arguments: time=POSIXct vector; depth=numeric vector with depth
+    ## readings (m); dry.thr=duration (in s) of on-land readings that
+    ## should be considered at-sea; wet.thr=duration (in s) of at-sea
+    ## readings to be taken as leisure; interval=sampling interval in
+    ## POSIXct units (s), to pass to rleActivity
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
     ## Factor with default "land" values to code activity levels: L=land,
     ## W=wet (at-sea), U=underwater (0 - dive threshold), D=diving, Z=wet
     ## (leisure)
+    trange <- range(time)
+    trange.diff <- difftime(trange[2], trange[1], units="secs")
+    if (wet.thr >= trange.diff)
+        warning("wet.thr is larger than duration of time series")
+    if (dry.thr >= trange.diff)
+        warning("dry.thr is larger than duration of time series")
     act <- factor(rep("L", length(time)), levels=c("L", "W", "U", "D", "Z"))
     ## 10's when animal is wet; i.e. when depth is being recorded
     act[!is.na(depth)] <- "W"
