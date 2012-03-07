@@ -63,7 +63,7 @@ setClass("TDRcalibrate",
              if (length(dml) != ndives) {
                  return("All dives must have a corresponding dive model")
              }
-             if (! all(sapply(dm, is, "diveModel"))) {
+             if (! all(sapply(dml, is, "diveModel"))) {
                  return("All elements of dive.models must be class diveModel")
              }
              return(TRUE)
