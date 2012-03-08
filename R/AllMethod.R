@@ -447,8 +447,13 @@ setMethod("getDiveModel", signature(x="TDRcalibrate", diveNo="missing"),
 ## access only those from certain dives -- simplify if only one
 setMethod("getDiveModel", signature(x="TDRcalibrate", diveNo="numeric"),
           function(x, diveNo) {
-              dm <- x@dive.models[diveNo]
-              if (length(diveNo) == 1L) dm[[1]] else dm
+              dml <- x@dive.models
+              tryCatch({
+                  ok <- diveMove:::.diveMatches(names(dml), diveNo)
+                  diveNo.ok <- diveNo[ok]
+                  dm <- x@dive.models[diveNo.ok]
+                  if (length(diveNo.ok) == 1L) dm[[1]] else dm
+              })
           })
 
 ## Basic diveModel

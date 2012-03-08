@@ -5,6 +5,13 @@ See ChangeLog for more details.
 
 ** Changes in version 1.3.1:
 
+   o Dives occurring in "trivial wet" periods are now identified.
+
+   o Improved validity checking for 'TDRcalibrate' objects.
+
+   o 'TDRcalibrate' accessor methods now explicitly check and report
+     that requested dives exist.
+
    o plotTDR() now conditionally generates initial plot, after preparing
      Tcl/Tk widgets, to accomodate for changes in R 2.14.2.
 
