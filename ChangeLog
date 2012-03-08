@@ -1,3 +1,29 @@
+2012-03-08  Sebastian P. Luque <spluque@gmail.com>
+
+	Releasing version 1.3.0
+
+	* R/AllMethod.R:
+	  getDiveModel() method now uses .diveMatches() and handles the
+	  error/warning via tryCatch().
+
+	* R/detDive.R:
+	  Identify dives occurring in both W and Z activities.
+
+	  New function .diveMatches() that stops if none of requested
+	  dives exist, or generates a warning if some are ignored.
+
+	  .diveIndices() now uses .diveMatches() and handles the
+	  error/warning via tryCatch().
+
+2012-03-05  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/detPhase.R:
+	  Warn if wet.dry or dry.thr are larger than time series.
+
+	* R/AllClass.R:
+	  Check that all elements of dive.models are actual diveModel
+	  objects.
+
 2012-03-01  Sebastian P. Luque  <spluque@gmail.com>
 
 	* R/plotTDR.R (".plotTDR"):

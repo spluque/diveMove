@@ -3,7 +3,7 @@
 
 See ChangeLog for more details.
 
-** Changes in version 1.3.1:
+** Changes in version 1.3.0:
 
    o Dives occurring in "trivial wet" periods are now identified.
 
@@ -13,12 +13,8 @@ See ChangeLog for more details.
      that requested dives exist.
 
    o plotTDR() now conditionally generates initial plot, after preparing
-     Tcl/Tk widgets, to accomodate for changes in R 2.14.2.
-
-** Changes in version 1.3.0:
-
-   o plotTDR() now plots a legend only if there is at least one level in
-     the phase factor.
+     Tcl/Tk widgets, to accomodate for changes in R 2.14.2. Legend is
+     plotted only if there is at least one level in the phase factor.
 
 ** Changes in version 1.2.9:
 
