@@ -36,8 +36,10 @@
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
     ## Get the indices of below surface activity and label as "U"
-    underw <- which(act == "W" & zdepth > 0)
-    act[underw] <- "U"
+    underw <- which((act == "W" | act == "Z") & zdepth > 0)
+    if (length(underw) > 0) {
+        act[underw] <- "U"
+    } else warning("no subaquatic activity found")
 
     ## Label underwater excursions
     labuw <- diveMove:::.labDive(act, "U")
@@ -265,10 +267,32 @@
         ff[as.numeric(labdF[, 1])] <- labdF[, 2]
         list(phase.labels=ff, dive.models=perdivetd)
     } else {
-        warning("no dives were found in x")
+        warning("no dives were found in x, hence no dive models created")
         list(phase.labels=factor(rep("X", length(diveID))),
-             dive.models=NULL)
+             dive.models=list())
     }
+}
+
+".diveMatches" <- function(diveID, diveNo)
+{
+    ## Value: Logical vector with elements of diveNo having a match in
+    ## diveID.
+    ## --------------------------------------------------------------------
+    ## Arguments: diveID=numeric or character vector with purported dive
+    ## numbers; diveNo=Numeric vector with dive numbers that do exist in
+    ## diveID.
+    ## --------------------------------------------------------------------
+    ## Purpose: Check for the existence of dive numbers (diveNo) in a list
+    ## (l).
+    ## --------------------------------------------------------------------
+    ## Author: Sebastian P. Luque
+    ## --------------------------------------------------------------------
+    dinl <- diveNo %in% diveID
+    if (! any(dinl)) stop("none of the requested dives exist")
+    if (any(! dinl))
+        warning("dives ", diveNo[! dinl],
+                " do(es) not exist, so is(are) ignored")
+    dinl
 }
 
 ".diveIndices" <- function(diveID, diveNo)
@@ -281,10 +305,13 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
-    ok <- which(diveID %in% diveNo)
-    okl <- pmax(1, setdiff(ok - 1, ok))
-    okr <- pmin(length(diveID), setdiff(ok + 1, ok))
-    sort(c(okl, ok, okr))               # add the surface points
+    tryCatch({
+        didx <- diveMove:::.diveMatches(diveID, diveNo)
+        ok <- which(diveID %in% diveNo[didx])
+        okl <- pmax(1, setdiff(ok - 1, ok))
+        okr <- pmin(length(diveID), setdiff(ok + 1, ok))
+        sort(c(okl, ok, okr))               # add the surface points
+    })
 }
 
 
