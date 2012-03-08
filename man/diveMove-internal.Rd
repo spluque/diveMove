@@ -28,6 +28,7 @@
 .depthFilter(depth, k, probs, depth.bounds, na.rm)
 .derivStats(x)
 .diveIndices(diveID, diveNo)
+.diveMatches(diveID, diveNo)
 .getInterval(time)
 .speedStats(x, vdist)
 .night(time, sunrise.time, sunset.time)
@@ -53,7 +54,8 @@
   \item{na.rm}{Should \code{\link{NA}} values be removed prior to
     calculating running quantiles?}
 
-  \item{diveID}{Numeric vector of all dive and non dive IDs.}
+  \item{diveID}{Numeric (or character for \code{.diveMatches}) vector of
+    all dive and non dive IDs.}
 
   \item{diveNo}{Numeric vector of unique dive indices to extract from
     \code{diveID}.}
@@ -105,6 +107,11 @@
   \code{.diveIndices} takes a numeric vector with sequences of dive
   numbers, and selects the indices of dive numbers listed uniquely in
   the vector given as its second argument.
+
+  \code{.diveMatches} takes a numeric or character vector with sequences
+  of dive numbers, and selects the indices of dive numbers listed
+  uniquely in the vector given as its first argument.  Stops if no
+  matches are found, and warns if some were ignored.
 
   \code{.getInterval} takes a \code{\link{POSIXct}} object and
   calculates the the most frequent interval between successive elements.
