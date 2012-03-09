@@ -27,6 +27,10 @@ all : diveMove.pdf
 	$(LATEX) $*
 	$(LATEX) $*
 	rm -rf $(TEXTRASH) $*-*
+	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook \
+	-dCompatibilityLevel=1.5 -dAutoRotatePages=/None \
+	-sOutputFile='$*_compressed.pdf' '$*.pdf'
+	mv -f '$*_compressed.pdf' '$*.pdf'
 	$(RMOTHERTRASH)
 
 clean :
