@@ -1,3 +1,12 @@
+2012-03-12  Sebastian P. Luque <spluque@gmail.com>
+
+	Releasing version 1.3.1
+
+	* DESCRIPTION, inst/doc/Makefile, inst/doc/diveMove.Rnw:
+	  Use 'resolution' to reduce the resolution of png images, and
+	  declare chunks with figures accordingly. Since we use png=TRUE
+	  for vignette, we also need R >= 2.13.0.
+
 2012-03-09  Sebastian P. Luque <spluque@gmail.com>
 
 	Releasing version 1.3.0
