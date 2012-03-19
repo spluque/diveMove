@@ -217,9 +217,9 @@ Once the \texttt{TDR} data files are free of errors and in a portable
 format, they can be read into a data frame, using e.g.:
 
 <<dives-con>>=
-fp <- file.path("data", "dives.csv.gz")
+fp <- file.path("data", "dives.csv.bz2")
 sfp <- system.file(fp, package="diveMove")
-ff <- gzfile(sfp, open="r")
+ff <- bzfile(sfp, open="r")
 <<readin-csv>>=
 srcfn <- basename(summary(ff)$description)
 tdrXcsv <- read.csv(ff, sep=";")

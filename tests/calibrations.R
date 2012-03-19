@@ -1,6 +1,6 @@
 library(diveMove)
 
-zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
                          package="diveMove"), open="r")
 (sealX <- readTDR(zz, concurrentCols=4:6, speed=TRUE,
                   sep=";", na.strings="", as.is=TRUE))

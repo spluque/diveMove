@@ -31,7 +31,7 @@
 
 \examples{
 ## read in data and create a TDR object
-zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
                          package="diveMove"), open="r")
 (sealX <- readTDR(zz, speed=TRUE, sep=";", na.strings="", as.is=TRUE))
 

@@ -1,6 +1,6 @@
 library(diveMove)
 
-zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
                          package="diveMove"), open="r")
 (sealX <- readTDR(zz, concurrentCols=4:6, sep=";",
                   na.strings="", as.is=TRUE))
@@ -11,7 +11,7 @@ head(stamps <- stampDive(dcalib))
 (att <- timeBudget(dcalib, FALSE))
 (att <- timeBudget(dcalib, TRUE))
 
-zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
                          package="diveMove"), open="r")
 (sealX <- readTDR(zz, speed=TRUE, concurrentCols=4:6,
                   sep=";", na.strings="", as.is=TRUE))

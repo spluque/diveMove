@@ -76,7 +76,7 @@ readLocs(locations, loc.idCol, idCol, dateCol, timeCol=NULL,
 
 \examples{
 
-zz <- gzfile(system.file(file.path("data", "sealLocs.csv.gz"),
+zz <- bzfile(system.file(file.path("data", "sealLocs.csv.bz2"),
                          package="diveMove"), open="r")
 locs <- readLocs(zz, idCol=1, dateCol=2,
                  dtformat="\%Y-\%m-\%d \%H:\%M:\%S", classCol=3,

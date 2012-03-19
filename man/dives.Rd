@@ -63,7 +63,7 @@
 
 \examples{
 
-zz <- gzfile(system.file(file.path("data", "dives.csv.gz"),
+zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
                          package="diveMove"), open="r")
 dives <- read.csv(zz, sep=";", na.strings="")
 str(dives)

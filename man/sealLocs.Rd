@@ -40,7 +40,7 @@
 
 \examples{
 
-zz <- gzfile(system.file(file.path("data", "sealLocs.csv.gz"),
+zz <- bzfile(system.file(file.path("data", "sealLocs.csv.bz2"),
                          package="diveMove"), open="r")
 sealLocs <- read.csv(zz, sep=";")
 str(sealLocs)
