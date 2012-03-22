@@ -9,8 +9,8 @@
 \alias{getDiveModel}
 \alias{getDiveDeriv}
 \alias{getGAct}
-\alias{getTDR}
 \alias{getSpeedCoef}
+\alias{getTDR}
 
 \alias{getDAct,TDRcalibrate,missing-method}
 \alias{getDAct,TDRcalibrate,character-method}
@@ -24,8 +24,8 @@
 \alias{getGAct,TDRcalibrate,character-method}
 \alias{show,TDRcalibrate-method}
 \alias{show,diveModel-method}
-\alias{getTDR,TDRcalibrate-method}
 \alias{getSpeedCoef,TDRcalibrate-method}
+\alias{getTDR,TDRcalibrate-method}
 
 % -------------------------------------------------------------------------
 
@@ -47,6 +47,8 @@
 \S4method{getDiveDeriv}{TDRcalibrate}(x, diveNo, phase=c("all", "descent", "bottom", "ascent"))
 \S4method{getGAct}{TDRcalibrate,missing}(x)
 \S4method{getGAct}{TDRcalibrate,character}(x, y)
+\S4method{getSpeedCoef}{TDRcalibrate}(x)
+\S4method{getTDR}{TDRcalibrate}(x)
 }
 
 
