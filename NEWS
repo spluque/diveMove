@@ -5,8 +5,7 @@ See ChangeLog for more details.
 
 ** Changes in version 1.3.2:
 
-   o Datasets in data/ are now compressed with bzip2, to accomplish better
-     compression.
+   o Datasets in data/ are now compressed with bzip2.
 
    o Improved documentation.
 
