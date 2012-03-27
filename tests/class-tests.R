@@ -1,32 +1,32 @@
 library(diveMove)
 
 ###_ + Reading and as.data.frame ------------------------------------------
-zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
-                         package="diveMove"), open="r")
+zz <- system.file(file.path("data", "dives.csv"),
+                  package="diveMove")
 sealX <- readTDR(zz, speed=TRUE, sep=";", na.strings="", as.is=TRUE)
 is(sealX, "TDR")
 is(sealX, "TDRspeed")
-zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
-                         package="diveMove"), open="r")
+zz <- system.file(file.path("data", "dives.csv"),
+                  package="diveMove")
 sealX <- readTDR(zz, sep=";", na.strings="", as.is=TRUE)
 is(sealX, "TDR")
 is(sealX, "TDRspeed")
 
 sealDat <- as.data.frame(sealX)
-zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
-                         package="diveMove"), open="r")
+zz <- system.file(file.path("data", "dives.csv"),
+                  package="diveMove")
 sealX <- readTDR(zz, concurrentCols=NULL, sep=";",
                  na.strings="", as.is=TRUE)
 is(sealX, "TDR")
 is(sealX, "TDRspeed")
-zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
-                         package="diveMove"), open="r")
+zz <- system.file(file.path("data", "dives.csv"),
+                  package="diveMove")
 sealX <- readTDR(zz, subsamp=10, speed=TRUE, concurrentCols=6,
                  sep=";", na.strings="", as.is=TRUE)
 is(sealX, "TDR")
 is(sealX, "TDRspeed")
-zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
-                         package="diveMove"), open="r")
+zz <- system.file(file.path("data", "dives.csv"),
+                  package="diveMove")
 sealX <- readTDR(zz, subsamp=10, speed=TRUE, concurrentCols=5:6,
                  sep=";", na.strings="", as.is=TRUE)
 is(sealX, "TDR")

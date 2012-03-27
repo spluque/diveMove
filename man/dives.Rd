@@ -19,8 +19,8 @@
 
 \format{
 
-  A comma separated value (csv) file with 69560 \acronym{TDR} readings
-  with the following columns:
+  Bzip2-compressed file.  A comma separated value (csv) file with 69560
+  \acronym{TDR} readings with the following columns:
 
   \describe{
     \item{date}{Date}
@@ -63,8 +63,8 @@
 
 \examples{
 
-zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
-                         package="diveMove"), open="r")
+zz <- system.file(file.path("data", "dives.csv"),
+                  package="diveMove")
 dives <- read.csv(zz, sep=";", na.strings="")
 str(dives)
 

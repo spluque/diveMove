@@ -1,7 +1,7 @@
 library(diveMove)
 
-zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
-                         package="diveMove"), open="r")
+zz <- system.file(file.path("data", "dives.csv"),
+                  package="diveMove")
 (sealX <- readTDR(zz, concurrentCols=4:6, speed=TRUE,
                   sep=";", na.strings="", as.is=TRUE))
 (dcalib <- calibrateDepth(sealX, dry.thr=3610, zoc.method="offset", offset=3))

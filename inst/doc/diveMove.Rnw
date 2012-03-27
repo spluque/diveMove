@@ -217,12 +217,11 @@ Once the \texttt{TDR} data files are free of errors and in a portable
 format, they can be read into a data frame, using e.g.:
 
 <<dives-con>>=
-fp <- file.path("data", "dives.csv.bz2")
+fp <- file.path("data", "dives.csv")
 sfp <- system.file(fp, package="diveMove")
-ff <- bzfile(sfp, open="r")
 <<readin-csv>>=
-srcfn <- basename(summary(ff)$description)
-tdrXcsv <- read.csv(ff, sep=";")
+srcfn <- basename(sfp)
+tdrXcsv <- read.csv(sfp, sep=";")
 @
 
 and then put into one of the \Rclass{TDR} classes using the function
@@ -255,12 +254,12 @@ and immediately begin using the methods provided:
 
 <<readin-tdr, eval=FALSE, results=hide>>=
 <<dives-con>>
-tdrX <- readTDR(ff, speed=TRUE, sep=";", 
+tdrX <- readTDR(sfp, speed=TRUE, sep=";", 
                 na.strings="", as.is=TRUE)
 plotTDR(tdrX)
 <<plot-tdr, fig=TRUE, include=FALSE, eval=TRUE, echo=FALSE, results=hide>>=
 <<dives-con>>
-tdrX <- readTDR(ff, speed=TRUE, sep=";", 
+tdrX <- readTDR(sfp, speed=TRUE, sep=";", 
                 na.strings="", as.is=TRUE)
 plotTDR(tdrX, interact=FALSE, cex.lab=1.3)
 @

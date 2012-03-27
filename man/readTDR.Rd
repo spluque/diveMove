@@ -98,14 +98,12 @@ createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
 
 \examples{
 
-zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
-                         package="diveMove"), open="r")
-srcfn <- basename(summary(zz)$description)
+zz <- system.file(file.path("data", "dives.csv"),
+                  package="diveMove")
+srcfn <- basename(zz)
 readTDR(zz, speed=TRUE, sep=";", na.strings="", as.is=TRUE)
 
 ## Or more pedestrian
-zz <- bzfile(system.file(file.path("data", "dives.csv.bz2"),
-                         package="diveMove"), open="r")
 tdrX <- read.csv(zz, sep=";", na.strings="", as.is=TRUE)
 date.time <- paste(tdrX$date, tdrX$time)
 tdr.time <- as.POSIXct(strptime(date.time, format="\%d/\%m/\%Y \%H:\%M:\%S"),

@@ -13,6 +13,7 @@ Description: Utilities to represent, visualize, filter, analyse, and summarize
 LazyLoad: yes
 LazyData: no
 ZipData: no
+BuildResaveData: no
 Collate: AllClass.R AllGenerics.R AllMethod.R austFilter.R bouts.R calibrate.R
 	 detDive.R detPhase.R distSpeed.R diveStats.R oneDiveStats.R plotTDR.R
 	 plotZOC.R readLocs.R readTDR.R speedStats.R stampDive.R zoc.R zzz.R
