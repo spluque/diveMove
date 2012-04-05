@@ -1,5 +1,9 @@
+TODO                                                      -*- mode: org; -*-
+
 * Work on MLE (or better) method for modelling mixtures of 3 Poisson
-   processes for dive bout identification.
+  processes for dive bout identification.
+
 * Find a way to embed R graphics in tcltk widgets for plotTD().
+
 * For TDRs without salt-water switch, consider how to identify dry periods
-   based on concurrent data.
+  based on concurrent data.
