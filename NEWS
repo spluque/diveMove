@@ -3,6 +3,10 @@
 
 See ChangeLog for more details.
 
+** Changes in version 1.3.3:
+
+   o Duplicate time stamps are no longer allowed in 'TDR' objects.
+
 ** Changes in version 1.3.2:
 
    o Datasets in data/ are now compressed with bzip2.

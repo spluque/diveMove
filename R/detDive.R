@@ -310,7 +310,7 @@
         ok <- which(diveID %in% diveNo[didx])
         okl <- pmax(1, setdiff(ok - 1, ok))
         okr <- pmin(length(diveID), setdiff(ok + 1, ok))
-        sort(c(okl, ok, okr))               # add the surface points
+        unique(sort(c(okl, ok, okr)))   # add the surface points
     })
 }
 

@@ -12,9 +12,9 @@ setClass("TDR",
              if (any(time.diffs < 0)) {
                  return("time stamps must be in increasing order")
              }
-             ## if (any(time.diffs == 0)) {
-             ##     return("time stamps must not contain duplicate values")
-             ## }
+             if (any(time.diffs == 0)) {
+                 return("time stamps must not contain duplicate values")
+             }
              ccDataN <- nrow(object@concurrentData)
              if (ccDataN > 0 && ccDataN != length(object@time)) {
                  mes <- paste("concurrentData must have the same number of rows",
