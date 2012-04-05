@@ -601,7 +601,7 @@ setMethod("extractDive", signature(obj="TDR", diveNo="numeric",
               if (length(id) != length(getTime(obj))) {
                   stop ("id and obj must have equal number of rows")
               }
-              okpts <- diveMove:::.diveIndices(id, diveNo)
+              okpts <- diveMove:::.diveIndices(id, unique(diveNo))
               if (is(obj, "TDRspeed")) {
                   new("TDRspeed", time=getTime(obj)[okpts],
                       depth=getDepth(obj)[okpts],
@@ -619,7 +619,8 @@ setMethod("extractDive",                # for TDRcalibrate
           signature(obj="TDRcalibrate", diveNo="numeric", id="missing"),
           function(obj, diveNo) {
               ctdr <- getTDR(obj)
-              okpts <- diveMove:::.diveIndices(getDAct(obj, "dive.id"), diveNo)
+              okpts <- diveMove:::.diveIndices(getDAct(obj, "dive.id"),
+                                               unique(diveNo))
               if (is(ctdr, "TDRspeed")) {
                   new("TDRspeed", time=getTime(ctdr)[okpts],
                       depth=getDepth(ctdr)[okpts],
