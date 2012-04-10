@@ -38,7 +38,7 @@ stampDive(x, ignoreZ=TRUE)
 
   \item{speed}{logical: should speed statistics be calculated?}
 
-  \item{ignoreZ}{logical: whether trips should be numbered considering
+  \item{ignoreZ}{logical: whether phases should be numbered considering
     all aquatic activities (\dQuote{W} and \dQuote{Z}) or ignoring
     \dQuote{Z} activities.}
 
@@ -48,7 +48,7 @@ stampDive(x, ignoreZ=TRUE)
 \details{\code{diveStats} calculates various dive statistics based on
   time and depth for an entire \acronym{TDR} record.
   \code{oneDiveStats} obtains these statistics from a single dive, and
-  \code{stampDive} stamps each dive with associated trip information.}
+  \code{stampDive} stamps each dive with associated phase information.}
 
 
 \value{A \code{\link{data.frame}} with one row per dive detected
@@ -120,7 +120,7 @@ stampDive(x, ignoreZ=TRUE)
   deviation of the depth derivative for each phase of the dive.  The
   number of columns also depends on the value of speed.
 
-  \code{stampDive} returns a data.frame with trip number, trip type, and
+  \code{stampDive} returns a data.frame with phase number, activity, and
   start and end times for each dive.}
 
 

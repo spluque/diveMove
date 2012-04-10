@@ -100,7 +100,7 @@ plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
 utils::example("diveStats", package="diveMove",
                ask=FALSE, echo=FALSE)
 ## Postdive durations
-postdives <- tdrX.tab$postdive.dur[tdrX.tab$trip.no == 2]
+postdives <- tdrX.tab$postdive.dur[tdrX.tab$phase.no == 2]
 postdives.diff <- abs(diff(postdives))
 ## Remove isolated dives
 postdives.diff <- postdives.diff[postdives.diff < 2000]

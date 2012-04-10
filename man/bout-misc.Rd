@@ -145,7 +145,7 @@ unLogit(logit)
 ## Using the Example from '?diveStats':
 utils::example("diveStats", package="diveMove",
                ask=FALSE, echo=FALSE)
-postdives <- tdrX.tab$postdive.dur[tdrX.tab$trip.no == 2]
+postdives <- tdrX.tab$postdive.dur[tdrX.tab$phase.no == 2]
 ## Remove isolated dives
 postdives <- postdives[postdives < 2000]
 lnfreq <- boutfreqs(postdives, bw=0.1, method="seq.diff", plot=FALSE)

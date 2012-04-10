@@ -61,7 +61,7 @@ head(dives)
 ## Attendance table
 att <- timeBudget(vcalib, FALSE) # taking trivial aquatic activities into account
 att <- timeBudget(vcalib, TRUE)  # ignoring them
-## Add trip stamps to each dive
+## Identify which phase each dive belongs to
 stamps <- stampDive(vcalib)
 sumtab <- data.frame(stamps, dives)
 head(sumtab)

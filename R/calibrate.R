@@ -28,7 +28,7 @@
     mCall <- match.call()
     depth <- getDepth(x)
     time <- getTime(x)
-    ## Detect trips and dives
+    ## Detect phases and dives
     detp <- diveMove:::.detPhase(time, depth, dry.thr=dry.thr,
                                  wet.thr=wet.thr, interval=getDtime(x))
     ## ZOC procedure

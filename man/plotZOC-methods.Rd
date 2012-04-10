@@ -101,7 +101,7 @@ utils::example("diveStats", package="diveMove",
                ask=FALSE, echo=FALSE)
 
 ## Plot filters for ZOC
-## Work on first trip subset, to save processing time, since
+## Work on first phase (trip) subset, to save processing time, since
 ## there's no drift nor shifts between trips
 tdr <- divesTDR[1:15000]
 ## Try window widths (K), quantiles (P) and bound the search (db)
