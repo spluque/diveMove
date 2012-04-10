@@ -2,8 +2,8 @@
 
 "stampDive" <- function(x, ignoreZ=TRUE)
 {
-    ## Value: A data frame; stamping each dive with trip number, trip
-    ## type, and trip start and end time
+    ## Value: A data frame; stamping each dive with phase number it belongs
+    ## to, activity during that phase, and trip start and end time
     ## --------------------------------------------------------------------
     ## Arguments: x=TDRcalibrate object, ignoreZ=ignore Z phases?
     ## --------------------------------------------------------------------
@@ -26,14 +26,14 @@
 
     beg <- rep(attlist[[3]], table(phaseid))
     end <- rep(attlist[[4]], table(phaseid))
-    trip.no <- numeric(length(act))      # vector of 0s
+    phase.no <- numeric(length(act))      # vector of 0s
     phaseid[act == "L"] <- 0             # phase.id on land should be 0
     ## make a sequence for phase.id > 0 from 1:number of such phases
-    trip.no[act != "L"] <- rep(seq(along=table(phaseid[phaseid > 0])),
+    phase.no[act != "L"] <- rep(seq(along=table(phaseid[phaseid > 0])),
                 table(phaseid[phaseid > 0]))
     ok <- match(unique(diveid[diveid > 0]), diveid) # required subscripts
-    trip.no <-  trip.no[ok]
-    trip.type <- act[ok]
+    phase.no <-  phase.no[ok]
+    activity <- act[ok]
 
-    data.frame(trip.no, trip.type, beg=beg[ok], end=end[ok])
+    data.frame(phase.no, activity, beg=beg[ok], end=end[ok])
 }
