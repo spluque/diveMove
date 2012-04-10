@@ -644,13 +644,13 @@ setMethod("timeBudget",            # a table of general attendance pattern
                   act[act == "Z"] <- "L"
                   attlist <- diveMove:::.rleActivity(tt, act, interval)
                   actlabel <- rle(as.vector(act))$values
-                  tripno <- seq(along=actlabel)
+                  phase.no <- seq(along=actlabel)
               } else {                  # count the short baths
                   attlist <- getGAct(obj)
                   actlabel <- rle(as.vector(act))$values
-                  tripno <- seq(along=actlabel)
+                  phase.no <- seq(along=actlabel)
               }
-              data.frame(phaseno=tripno, activity=actlabel,
+              data.frame(phase.no=phase.no, activity=actlabel,
                          beg=attlist[[3]], end=attlist[[4]],
                          row.names=NULL)
           })
