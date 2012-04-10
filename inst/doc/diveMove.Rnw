@@ -551,7 +551,7 @@ Other useful extractors include: \Rmethod{getGAct()} and
 \Robject{gross.activity} and \Robject{dive.activity}, respectively, if
 given only the \Robject{TDRcalibrate} object, or a particular component of
 these slots, if supplied a string with the name of the component.  For
-example: \texttt{getGAct(dcalib, "trip.act")} would retrieve the factor
+example: \texttt{getGAct(dcalib, "activity")} would retrieve the factor
 identifying each reading with a wet/dry activity and
 \texttt{getDAct(dcalib, "dive.activity")} would retrieve a more detailed
 factor with information on whether the reading belongs to a dive or a brief
