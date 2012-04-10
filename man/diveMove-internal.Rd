@@ -84,8 +84,8 @@
     \dQuote{filter} (see \sQuote{Details}).}
 
   \item{control}{Named list of control parameters to be used for ZOC
-    method \code{filter} (\code{k}, \code{probs}, \code{na.rm}) and
-    \code{offset} (\code{offset}).}
+    method \code{filter} (\code{k}, \code{probs}, \code{na.rm},
+    \code{depth.bounds}) and \code{offset} (\code{offset}).}
 
 }
 
