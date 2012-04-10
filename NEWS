@@ -3,6 +3,17 @@
 
 See ChangeLog for more details.
 
+** Changes in version 1.3.4:
+
+   o Better resolution when zooming in plotTDR().
+
+   o Elements 'trip.no' and 'trip.type' in value returned by stampDive()
+     are now named 'phase.no' and 'activity', respectively, for
+     consistency.  Similarly, element 'phaseno' in timeBudget() is now
+     named 'phase.no'.
+
+   o Improved documentation.
+
 ** Changes in version 1.3.3:
 
    o Duplicate time stamps are no longer allowed in 'TDR' objects.

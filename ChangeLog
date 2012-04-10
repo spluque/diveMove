@@ -1,3 +1,28 @@
+2012-04-10  Sebastian P. Luque <spluque@gmail.com>
+
+	Releasing version 1.3.4
+
+	* R/calibrate.R, man/diveMove-package.Rd, man/diveStats.Rd,
+	  man/plotZOC-methods.Rd, man/bout-misc.Rd, man/bouts2MLE.Rd,
+	  man/bouts2NLS.Rd, inst/doc/diveMove.Rnw:
+	  Update to reflect trip to phase replacement for consistency.
+
+	* R/stampDive.R:
+	  Changed trip.no and trip.type to phase.no and activity for
+	  consistency.
+
+	* R/plotTDR.R:
+	  Make resolution=100.
+
+	* R/AllMethod.R:
+	  Changed phaseno to phase.no for consistency.
+
+	* man/calibrateDepth.Rd:
+	  Corrected description for 'knot.factor'.
+
+	* man/diveMove-internal.Rd:
+	  Corrected elements for 'filter' method.
+
 2012-04-05  Sebastian P. Luque <spluque@gmail.com>
 
 	Releasing version 1.3.3
