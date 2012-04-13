@@ -24,7 +24,7 @@
 {Sinput}{Verbatim}{fontsize=\relsize{-1}}
 \RecustomVerbatimEnvironment
 {Soutput}{Verbatim}{fontsize=\relsize{-1}}
-\SweaveOpts{eps=FALSE, strip.white=all, pdf=FALSE, png=TRUE, resolution=100}
+\SweaveOpts{eps=FALSE, strip.white=all, pdf=FALSE, png=TRUE, resolution=180}
 
 \newcommand{\Robject}[1]{{\texttt{#1}}}
 \newcommand{\Rfunction}[1]{{\texttt{#1}}}
