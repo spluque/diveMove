@@ -5,7 +5,7 @@
     ## Value: A matrix with time/depth stats for each dive segment
     ## --------------------------------------------------------------------
     ## Arguments: x=a matrix with data for a single dive; interval=sampling
-    ## interval speed=logical; should we calculate speed stats?
+    ## interval; speed=logical, should we calculate speed stats?
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
