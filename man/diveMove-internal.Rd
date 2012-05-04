@@ -26,7 +26,7 @@
 
 \usage{
 .depthFilter(depth, k, probs, depth.bounds, na.rm)
-.derivStats(x)
+.derivStats(x, diveNo)
 .diveIndices(diveID, diveNo)
 .diveMatches(diveID, diveNo)
 .getInterval(time)
@@ -58,7 +58,8 @@
     all dive and non dive IDs.}
 
   \item{diveNo}{Numeric vector of unique dive indices to extract from
-    \code{diveID}.}
+    \code{diveID}, or \code{x} in the case of \code{.derivStats}.  For
+    \code{.derivStats} any duplicates are ignored.}
 
   \item{time}{\code{POSIXct} object representing time.}
 
