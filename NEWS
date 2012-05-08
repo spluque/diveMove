@@ -5,6 +5,9 @@ See ChangeLog for more details.
 
 ** Changes in version 1.3.4:
 
+   o New argument 'diveNo' for .derivStats() to extract derivative
+     statistics only for requested dives.  Duplicates are ignored.
+
    o Better resolution when zooming in plotTDR().
 
    o Elements 'trip.no' and 'trip.type' in value returned by stampDive()

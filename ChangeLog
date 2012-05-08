@@ -1,6 +1,18 @@
-2012-04-10  Sebastian P. Luque <spluque@gmail.com>
+2012-05-04  Sebastian P. Luque <spluque@gmail.com>
 
 	Releasing version 1.3.4
+
+	* R/diveStats.R, man/diveMove-internal.Rd:
+	  New argument for .derivStats() so that it extracts only requested
+	  dives.  Thanks to Fabrizio Manco.
+
+2012-04-13  Sebastian P. Luque <spluque@gmail.com>
+
+	* inst/doc/diveMove.Rnw:
+	  Increase resolution of vignette, but make sure we build package
+	  with --compact-vignettes=gs+pdf.
+
+2012-04-10  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/calibrate.R, man/diveMove-package.Rd, man/diveStats.Rd,
 	  man/plotZOC-methods.Rd, man/bout-misc.Rd, man/bouts2MLE.Rd,
