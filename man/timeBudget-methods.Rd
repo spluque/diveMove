@@ -31,7 +31,7 @@
 
 
 \value{
-  A data frame with components:
+  A \code{\link{data.frame}} with components:
 
   \item{phaseno}{A numeric vector numbering each period of activity.}
 

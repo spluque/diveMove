@@ -45,8 +45,8 @@ unLogit(logit)
     \code{boutinit}, arguments passed to \code{\link{plot}} (must
     exclude \code{type}).}
 
-  \item{lnfreq}{data.frame with components \var{lnfreq} (log
-    frequencies) and corresponding \var{x} (mid points of histogram
+  \item{lnfreq}{\code{\link{data.frame}} with components \var{lnfreq}
+    (log frequencies) and corresponding \var{x} (mid points of histogram
     bins).}
 
   \item{x.break}{vector of length 1 or 2 with \code{x} value(s) defining

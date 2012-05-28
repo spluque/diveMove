@@ -52,18 +52,19 @@
       ending time; both represented as \code{\link{POSIXct}} objects.
       See \code{\link{.detPhase}}.}
 
-    \item{\code{dive.activity}:}{Object of class \sQuote{data.frame}.
+    \item{\code{dive.activity}:}{Object of class
+    \code{\link{data.frame}}.
 
-      This slot contains a data.frame of the form returned by
-      \code{\link{.detDive}}, with as many rows as those in \code{tdr},
-      consisting of three vectors named: \code{dive.id}, which is an
-      integer vector, sequentially numbering each dive (rows that are
-      not part of a dive are labelled 0), dive.activity is a factor
-      which completes that in \code{activity} above, further identifying
-      rows in the record belonging to a dive.  The third vector in
-      \code{dive.activity} is an integer vector sequentially numbering
-      each postdive interval (all rows that belong to a dive are
-      labelled 0).  See \code{\link{.detDive}}, and
+      This slot contains a \code{\link{data.frame}} of the form returned
+      by \code{\link{.detDive}}, with as many rows as those in
+      \code{tdr}, consisting of three vectors named: \code{dive.id},
+      which is an integer vector, sequentially numbering each dive (rows
+      that are not part of a dive are labelled 0), dive.activity is a
+      factor which completes that in \code{activity} above, further
+      identifying rows in the record belonging to a dive.  The third
+      vector in \code{dive.activity} is an integer vector sequentially
+      numbering each postdive interval (all rows that belong to a dive
+      are labelled 0).  See \code{\link{.detDive}}, and
       \code{\link{getDAct}} to access all or any one of these vectors.}
 
     \item{\code{dive.phases}:}{Object of class \sQuote{factor}.  This

@@ -21,10 +21,10 @@ distSpeed(pt1, pt2)
 
 \arguments{
 
-  \item{pt1}{A matrix or data frame with three columns; the first a
-    \code{POSIXct} object with dates and times for all points, the
-    second and third numeric vectors of longitude and latitude for all
-    points, respectively, in decimal degrees.}
+  \item{pt1}{A matrix or \code{\link{data.frame}} with three columns;
+    the first a \code{POSIXct} object with dates and times for all
+    points, the second and third numeric vectors of longitude and
+    latitude for all points, respectively, in decimal degrees.}
 
   \item{pt2}{A matrix with the same size and structure as \code{pt1}.}
 

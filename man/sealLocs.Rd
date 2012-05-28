@@ -13,8 +13,8 @@
 (Ringy) seal caught and released in New York.}
 
 
-\format{Bzip2-compressed file.  A data frame with the following
-  information:
+\format{Bzip2-compressed file.  A \code{\link{data.frame}} with the
+  following information:
 
   \describe{
     \item{id}{String naming the seal the data come from.}

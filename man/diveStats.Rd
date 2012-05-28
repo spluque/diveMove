@@ -25,10 +25,11 @@ stampDive(x, ignoreZ=TRUE)
 \arguments{
 
   \item{x}{A \code{\link{TDRcalibrate-class}} object for
-    \code{diveStats} and \code{stampDive}, and a data frame containing a
-    single dive's data (a factor identifying the dive phases, a POSIXct
-    object with the time for each reading, a numeric depth vector, and a
-    numeric speed vector) for \code{oneDiveStats}.}
+    \code{diveStats} and \code{stampDive}, and a
+    \code{\link{data.frame}} containing a single dive's data (a factor
+    identifying the dive phases, a POSIXct object with the time for each
+    reading, a numeric depth vector, and a numeric speed vector) for
+    \code{oneDiveStats}.}
 
   \item{depth.deriv}{logical: should depth derivative statistics be
     calculated?}
@@ -118,10 +119,10 @@ stampDive(x, ignoreZ=TRUE)
   If \code{depth.deriv=TRUE}, 21 additional columns with the minimum,
   first quartile, median, mean, third quartile, maximum, and standard
   deviation of the depth derivative for each phase of the dive.  The
-  number of columns also depends on the value of speed.
+  number of columns also depends on argument \code{speed}.
 
-  \code{stampDive} returns a data.frame with phase number, activity, and
-  start and end times for each dive.}
+  \code{stampDive} returns a \code{\link{data.frame}} with phase number,
+  activity, and start and end times for each dive.}
 
 
 \seealso{\code{\link{calibrateDepth}}, \code{\link{.detPhase}},

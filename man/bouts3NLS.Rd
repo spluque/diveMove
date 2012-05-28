@@ -33,9 +33,9 @@ plotBouts3.nls(fit, lnfreq, bec.lty, \ldots)
   \item{a1, lambda1, a2, lambda2, a3, lambda3}{numeric: parameters from
     the mixture of Poisson processes.}
 
-  \item{lnfreq}{data.frame with named components \var{lnfreq} (log
-    frequencies) and corresponding \var{x} (mid points of histogram
-    bins).}
+  \item{lnfreq}{\code{\link{data.frame}} with named components
+    \var{lnfreq} (log frequencies) and corresponding \var{x} (mid points
+    of histogram bins).}
 
   \item{start, maxiter}{Arguments passed to \code{\link{nls}}.}
 

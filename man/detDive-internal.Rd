@@ -31,7 +31,8 @@
 }
 
 
-\value{A data frame with the following elements for \code{.detDive}
+\value{A \code{\link{data.frame}} with the following elements for
+  \code{.detDive}
 
   \item{dive.id}{Numeric vector numbering each dive in the record.}
 

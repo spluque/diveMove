@@ -60,8 +60,8 @@ createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
 
   \item{depth}{numeric vector with depth readings.}
 
-  \item{concurrentData}{data.frame with additional, concurrent data
-    collected.}
+  \item{concurrentData}{\code{\link{data.frame}} with additional,
+    concurrent data collected.}
 
   \item{dtime}{numeric scalar: sampling interval used in seconds.  If
     missing, it is calculated from the \code{time} argument.}
