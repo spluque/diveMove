@@ -112,8 +112,8 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   This procedure generates a factor with levels \dQuote{D}, \dQuote{DB},
   \dQuote{B}, \dQuote{BA}, \dQuote{DA}, \dQuote{A}, and \dQuote{X},
   breaking the input into descent, descent/bottom, bottom,
-  bottom/ascent, ascent, descent/ascent (occurs when no bottom phase can
-  be detected) and non-dive (surface), respectively.
+  bottom/ascent, ascent, descent/ascent (ocurring when no bottom phase
+  can be detected) and non-dive (surface), respectively.
 
 }
 
