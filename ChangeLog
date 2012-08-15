@@ -1,5 +1,7 @@
 2012-08-15  Sebastian P. Luque <spluque@gmail.com>
 
+	Releasing version 1.3.5
+
 	* NEWS, R/calibrate.R, R/detPhase.R, man/calibrateDepth.Rd,
 	  man/detPhase-internal.Rd:
 	  New argument (logical) 'wet.cond' for .detPhase() and
