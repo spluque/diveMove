@@ -25,7 +25,8 @@
          end.time=endtim)
 }
 
-".detPhase" <- function(time, depth, dry.thr, wet.thr, interval)
+".detPhase" <- function(time, depth, dry.thr, wet.cond, wet.thr,
+                        interval)
 {
     ## Value: list with index of per-row activities, the activity code, and
     ## start and end of each activity phase
@@ -33,13 +34,16 @@
     ## Arguments: time=POSIXct vector; depth=numeric vector with depth
     ## readings (m); dry.thr=duration (in s) of on-land readings that
     ## should be considered at-sea; wet.thr=duration (in s) of at-sea
-    ## readings to be taken as leisure; interval=sampling interval in
+    ## readings to be taken as leisure; wet.cond=logical indicating which
+    ## observations should be considered wet (only needed when instrument
+    ## did not have a salt-water switch turning off recording of depth, or
+    ## when it was inappropriately used); interval=sampling interval in
     ## POSIXct units (s), to pass to rleActivity
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
     ## Factor with default "land" values to code activity levels: L=land,
-    ## W=wet (at-sea), U=underwater (0 - dive threshold), D=diving, Z=wet
+    ## W=wet (at-sea), U=underwater (below dive threshold), D=diving, Z=wet
     ## (leisure)
     trange <- range(time)
     trange.diff <- difftime(trange[2], trange[1], units="secs")
@@ -48,8 +52,14 @@
     if (dry.thr >= trange.diff)
         warning("dry.thr is larger than duration of time series")
     act <- factor(rep("L", length(time)), levels=c("L", "W", "U", "D", "Z"))
-    ## 10's when animal is wet; i.e. when depth is being recorded
-    act[!is.na(depth)] <- "W"
+    ## W when animal is wet; i.e. when depth is being recorded
+    if (missing(wet.cond)) {
+        act[!is.na(depth)] <- "W"
+    } else {                            # or when wet.cond=TRUE
+        if ((!is.logical(wet.cond)) || (length(wet.cond) != length(depth)))
+            stop("'wet.cond' must be a logical vector as long as 'depth'")
+        act[wet.cond] <- "W"
+    }
     ## First run calculates times in each activity phase from the raw data
     rawacts <- diveMove:::.rleActivity(time, act, interval)
     ## On-land activity < 'dry.thr' should be considered still at-sea

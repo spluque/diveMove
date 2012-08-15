@@ -14,7 +14,7 @@
 
 
 \usage{
-calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
+calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
                zoc.method=c("visual", "offset", "filter"), \ldots,
                interp.wet=FALSE, smooth.par=0.1, knot.factor=3,
                descent.crit.q=0, ascent.crit.q=0)
@@ -29,6 +29,11 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
 
   \item{dry.thr}{numeric: dry error threshold in seconds.  Dry phases
     shorter than this threshold will be considered as wet.}
+
+  \item{wet.cond}{logical: indicates which observations should be
+    considered wet.  If it is not provided, records with non-missing
+    depth are assumed to correspond to wet conditions (see
+    \sQuote{Details}).}
 
   \item{wet.thr}{numeric: wet threshold in seconds. At-sea phases
     shorter than this threshold will be considered as trivial wet.}
@@ -45,11 +50,11 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
     \code{na.rm} (defaults to TRUE)) and \code{offset} (\code{offset}).}
 
   \item{interp.wet}{logical: if TRUE (default is FALSE), then an
-  interpolating spline function is used to impute NA depths in wet
-  periods (\emph{after ZOC}).  \emph{Use with caution}: it may only be
-  useful in cases where the missing data pattern in wet periods is
-  restricted to shallow depths near the beginning and end of dives.
-  This pattern is common in some satellite-linked \acronym{TDR}s.}
+    interpolating spline function is used to impute NA depths in wet
+    periods (\emph{after ZOC}).  \emph{Use with caution}: it may only be
+    useful in cases where the missing data pattern in wet periods is
+    restricted to shallow depths near the beginning and end of dives.
+    This pattern is common in some satellite-linked \acronym{TDR}s.}
 
   \item{smooth.par}{numeric scalar representing amount of smoothing
     (argument \code{spar} in \code{\link[stats]{smooth.spline}}.  If it
@@ -75,19 +80,26 @@ calibrateDepth(x, dry.thr=70, wet.thr=3610, dive.thr=4,
   of depth, and detection of dives, as well as proper labelling of the
   latter.
 
-  The procedure starts by first creating a factor with value \dQuote{L}
-  (dry) for rows with NAs for \code{depth} and value \dQuote{W} (wet)
-  otherwise. It subsequently calculates the duration of each of these
-  phases of activity.  If the duration of a dry phase (\dQuote{L}) is
-  less than \code{dry.thr}, then the values in the factor for that phase
-  are changed to \dQuote{W} (wet).  The duration of phases is then
-  recalculated, and if the duration of a phase of wet activity is less
-  than \code{wet.thr}, then the corresponding value for the factor is
-  changed to \dQuote{Z} (trivial wet).  The durations of all phases are
-  recalculated a third time to provide final phase durations.
-
-  Zero-offset correction of depth is performed at this stage (see
-  \sQuote{ZOC} below).
+  The procedure starts by zero-offset correcting depth (see \sQuote{ZOC}
+  below), and then a factor is created with value \dQuote{L} (dry) for
+  rows with NAs for \code{depth} and value \dQuote{W} (wet) otherwise.
+  This assumes that \acronym{TDR}s were programmed to turn off recording
+  of depth when instrument is dry (typically by means of a salt-water
+  switch).  If this assumption cannot be made for any reason, then a
+  logical vector as long as the time series should be supplied as
+  argument \code{wet.cond} to indicate which observations should be
+  considered wet.  This argument is directly analogous to the
+  \code{subset} argument in \code{\link{subset.data.frame}}, so it can
+  refer to any variable in the \code{\link{TDR}} object (note that this
+  is done after the ZOC procedure).  The duration of each of these
+  phases of activity is subsequently calculated.  If the duration of a
+  dry phase (\dQuote{L}) is less than \code{dry.thr}, then the values in
+  the factor for that phase are changed to \dQuote{W} (wet).  The
+  duration of phases is then recalculated, and if the duration of a
+  phase of wet activity is less than \code{wet.thr}, then the
+  corresponding value for the factor is changed to \dQuote{Z} (trivial
+  wet).  The durations of all phases are recalculated a third time to
+  provide final phase durations.
 
   Some instruments produce a peculiar pattern of missing data near the
   surface, at the beginning and/or end of dives.  The argument

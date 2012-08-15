@@ -16,7 +16,7 @@
 
 
 \usage{
-.detPhase(time, depth, dry.thr, wet.thr, interval)
+.detPhase(time, depth, dry.thr, wet.cond, wet.thr, interval)
 }
 %- maybe also 'usage' for other objects documented here.
 
@@ -27,24 +27,16 @@
 
   \item{depth}{numeric vector with depth readings.}
 
-  \item{dry.thr, wet.thr}{Passed from \code{\link{calibrateDepth}}.}
+  \item{dry.thr, wet.cond, wet.thr}{As passed from
+    \code{\link{calibrateDepth}}.}
 
-  \item{interval}{Passed from \code{\link{calibrateDepth}}; sampling
+  \item{interval}{As passed from \code{\link{calibrateDepth}}; sampling
     interval in seconds.}
 
 }
 
 
-\details{\code{.detPhase} first creates a factor with value \dQuote{L}
-  (dry) for rows with NAs for \code{depth} and value \dQuote{W} (wet)
-  otherwise. It subsequently calculates the duration of each of these
-  phases of activity.  If the duration of an dry phase (\dQuote{L}) is
-  less than \code{dry.thr}, then the values in the factor for that phase
-  are changed to \dQuote{W} (wet).  The duration of phases is then
-  recalculated, and if the duration of a phase of wet activity is less
-  than \code{wet.thr}, then the corresponding value for the factor is
-  changed to \dQuote{Z} (trivial wet).  The durations of all phases are
-  recalculated a third time to provide final phase durations.}
+\details{See \code{\link{calibrateDepth}}.}
 
 
 \value{A list with components:

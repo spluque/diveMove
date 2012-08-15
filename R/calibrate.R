@@ -1,6 +1,7 @@
 ## $Id$
 
-"calibrateDepth" <-  function(x, dry.thr=70, wet.thr=3610, dive.thr=4,
+"calibrateDepth" <-  function(x, dry.thr=70, wet.cond, wet.thr=3610,
+                              dive.thr=4,
                               zoc.method=c("visual", "offset", "filter"),
                               ..., interp.wet=FALSE,
                               smooth.par=0.1, knot.factor=3,
@@ -10,10 +11,10 @@
     ## object, zoc data, detect dives and their phases, and label them.
     ## Return a TDRcalibrate object.
     ## --------------------------------------------------------------------
-    ## Arguments: x=a TDR object; dry.thr, wet.thr and dive.thr see
-    ## .detPhase and .detDive; descent.crit, ascent.crit, and wiggle.tol
-    ## see .labDivePhase documentation; zoc.method=method to use for
-    ## zero-offset correction; ...=arguments required for ZOC methods
+    ## Arguments: x=a TDR object; dry.thr, wet.cond, wet.thr, and dive.thr
+    ## see .detPhase and .detDive; descent.crit, ascent.crit, and
+    ## wiggle.tol see .labDivePhase documentation; zoc.method=method to use
+    ## for zero-offset correction; ...=arguments required for ZOC methods
     ## zoc.filter (k, probs, depth.bounds, na.rm (defaults to TRUE)) and
     ## offset (offset); interp.wet=logical (proposal) to control whether we
     ## interpolate NA depths in wet periods (*after ZOC*).  Be careful with
@@ -28,9 +29,6 @@
     mCall <- match.call()
     depth <- getDepth(x)
     time <- getTime(x)
-    ## Detect phases and dives
-    detp <- diveMove:::.detPhase(time, depth, dry.thr=dry.thr,
-                                 wet.thr=wet.thr, interval=getDtime(x))
     ## ZOC procedure
     zoc.method <- match.arg(zoc.method)
     ell <- list(...)
@@ -46,9 +44,23 @@
     }
     zd <- diveMove:::.zoc(time, depth, method=zoc.method, control=ell)
     if (!is.null(zd)) x@depth <- zd
+    ## Detect phases and dives
+    if (missing(wet.cond)) 
+        detp <- diveMove:::.detPhase(time, zd, dry.thr=dry.thr,
+                                     wet.thr=wet.thr, interval=getDtime(x))
+    else {
+        e <- substitute(wet.cond)
+        r <- eval(e, as.data.frame(x), parent.frame())
+        if (!is.logical(r)) 
+            stop("'subset' must evaluate to logical")
+        r <- r & !is.na(r)
+        detp <- diveMove:::.detPhase(time, zd, dry.thr=dry.thr,
+                                     wet.cond=r, wet.thr=wet.thr,
+                                     interval=getDtime(x))
+    }
 
     if (interp.wet) {
-        zdepth <- getDepth(x)
+        zdepth <- zd
         wet <- detp[[2]] == "W"
         wet.na <- wet & is.na(zdepth)
         if (any(wet.na)) {
