@@ -46,18 +46,17 @@
     if (!is.null(zd)) x@depth <- zd
     ## Detect phases and dives
     if (missing(wet.cond)) 
-        detp <- diveMove:::.detPhase(time, zd, dry.thr=dry.thr,
-                                     wet.thr=wet.thr, interval=getDtime(x))
+        r <- !is.na(zd)
     else {
         e <- substitute(wet.cond)
         r <- eval(e, as.data.frame(x), parent.frame())
         if (!is.logical(r)) 
             stop("'subset' must evaluate to logical")
         r <- r & !is.na(r)
-        detp <- diveMove:::.detPhase(time, zd, dry.thr=dry.thr,
-                                     wet.cond=r, wet.thr=wet.thr,
-                                     interval=getDtime(x))
     }
+    detp <- diveMove:::.detPhase(time, zd, dry.thr=dry.thr,
+                                 wet.cond=r, wet.thr=wet.thr,
+                                 interval=getDtime(x))
 
     if (interp.wet) {
         zdepth <- zd
