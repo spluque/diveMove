@@ -33,7 +33,7 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
   \item{wet.cond}{logical: indicates which observations should be
     considered wet.  If it is not provided, records with non-missing
     depth are assumed to correspond to wet conditions (see
-    \sQuote{Details}).}
+    \sQuote{Details} and \sQuote{Note} below).}
 
   \item{wet.thr}{numeric: wet threshold in seconds. At-sea phases
     shorter than this threshold will be considered as trivial wet.}
@@ -90,16 +90,16 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
   argument \code{wet.cond} to indicate which observations should be
   considered wet.  This argument is directly analogous to the
   \code{subset} argument in \code{\link{subset.data.frame}}, so it can
-  refer to any variable in the \code{\link{TDR}} object (note that this
-  is done after the ZOC procedure).  The duration of each of these
-  phases of activity is subsequently calculated.  If the duration of a
-  dry phase (\dQuote{L}) is less than \code{dry.thr}, then the values in
-  the factor for that phase are changed to \dQuote{W} (wet).  The
-  duration of phases is then recalculated, and if the duration of a
-  phase of wet activity is less than \code{wet.thr}, then the
-  corresponding value for the factor is changed to \dQuote{Z} (trivial
-  wet).  The durations of all phases are recalculated a third time to
-  provide final phase durations.
+  refer to any variable in the \code{\link{TDR}} object (see
+  \sQuote{Note} section below).  The duration of each of these phases of
+  activity is subsequently calculated.  If the duration of a dry phase
+  (\dQuote{L}) is less than \code{dry.thr}, then the values in the
+  factor for that phase are changed to \dQuote{W} (wet).  The duration
+  of phases is then recalculated, and if the duration of a phase of wet
+  activity is less than \code{wet.thr}, then the corresponding value for
+  the factor is changed to \dQuote{Z} (trivial wet).  The durations of
+  all phases are recalculated a third time to provide final phase
+  durations.
 
   Some instruments produce a peculiar pattern of missing data near the
   surface, at the beginning and/or end of dives.  The argument
@@ -226,6 +226,14 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
 
 }
 
+\note{Note that the condition implied with argument \code{wet.cond} is
+  evaluated after the ZOC procedure, so it can refer to corrected depth.
+  In many cases, not all variables in the \code{\link{TDR}} object are
+  sampled with the same frequency, so they may need to be interpolated
+  before using them for this purpose.  Note also that any of these
+  variables may contain similar problems as those dealth with during
+  ZOC, so programming instruments to record depth only when wet is
+  likely the best way to ensure proper detection of wet/dry conditions.}
 
 \references{
 

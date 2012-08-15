@@ -1,3 +1,31 @@
+2012-08-15  Sebastian P. Luque <spluque@gmail.com>
+
+	* NEWS, R/calibrate.R, R/detPhase.R, man/calibrateDepth.Rd,
+	  man/detPhase-internal.Rd:
+	  New argument (logical) 'wet.cond' for .detPhase() and
+	  calibrateDepth() to designate a condition for identifying wet/dry
+	  conditions. Previously, this was done assuming that depth was
+	  recorded only when wet (i.e. when a salt-water switch is
+	  available and used accordingly). This assumption holds if new
+	  argument 'wet.cond' is not supplied.
+
+2012-07-30  Sebastian P. Luque <spluque@gmail.com>
+
+	* man/calibrateDepth.Rd:
+	  Minor wording change.
+
+	* man/calibrateDepth.Rd:
+	  Fixed factor level descriptions for dive phases (thanks to
+	  Elizabeth Masden).
+
+2012-05-28  Sebastian P. Luque <spluque@gmail.com>
+
+	* DESCRIPTION, man/TDRcalibrate-class.Rd, man/bout-misc.Rd,
+	  man/bouts2NLS.Rd, man/bouts3NLS.Rd, man/detDive-internal.Rd,
+	  man/distSpeed.Rd, man/diveMove-internal.Rd, man/diveStats.Rd,
+	  man/readTDR.Rd, man/sealLocs.Rd, man/timeBudget-methods.Rd:
+	  Start new version and using links in help pages.
+
 2012-05-04  Sebastian P. Luque <spluque@gmail.com>
 
 	Releasing version 1.3.4
