@@ -4,6 +4,3 @@ TODO                                                      -*- mode: org; -*-
   processes for dive bout identification.
 
 * Find a way to embed R graphics in tcltk widgets for plotTD().
-
-* For TDRs without salt-water switch, consider how to identify dry periods
-  based on concurrent data.
