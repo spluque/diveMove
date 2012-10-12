@@ -266,7 +266,7 @@ setMethod("plotDiveModel",
               par(mar=c(3, 4, 0, 1) + 0.1, las=1)
               plot(times, depths, type="o", axes=FALSE, pch=19, cex=0.5,
                    frame.plot=TRUE, ylab="Depth",
-                   ylim=range(depths, depths.s))
+                   ylim=range(depths, depths.s, na.rm=TRUE))
               axis(side=1)
               axis(side=2, at=pretty(c(depths, depths.s)),
                    labels=rev(pretty(-c(depths, depths.s))), las=1)
