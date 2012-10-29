@@ -40,7 +40,7 @@
   \item{y}{numeric vector with depth observations at each time step.}
 
   \item{times.s}{numeric vector with time steps used to generate the
-    smoothing spline (i.e. the knots, see \code{\link{diveModel}}.}
+    smoothing spline (i.e. the knots, see \code{\link{diveModel}}).}
 
   \item{depths.s}{numeric vector with smoothed depth (see
   \code{\link{diveModel}}).}
@@ -52,18 +52,18 @@
     observed time series (see \code{\link{diveModel}}).}
 
   \item{times.deriv}{numeric vector representing the time steps where
-    the derivative of the smoothing spline was evaluated
-    \code{\link{diveModel}}.}
+    the derivative of the smoothing spline was evaluated (see
+    \code{\link{diveModel}}).}
 
   \item{depths.deriv}{numeric vector representing the derivative of the
-    smoothing spline evaluated at \code{times.deriv}
-    \code{\link{diveModel}}.}
+    smoothing spline evaluated at \code{times.deriv} (see
+    \code{\link{diveModel}}).}
 
   \item{d.crit.rate}{numeric scalar: vertical rate of descent
-    corresponding to the quantile used (see \code{\link{diveModel}}.}
+    corresponding to the quantile used (see \code{\link{diveModel}}).}
 
   \item{a.crit.rate}{numeric scalar: vertical rate of ascent
-    corresponding to the quantile used (see \code{\link{diveModel}}.}
+    corresponding to the quantile used (see \code{\link{diveModel}}).}
 
 }
 

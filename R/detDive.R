@@ -30,8 +30,8 @@
     ## Value: A data frame; detecting dives, using a depth threshold
     ## --------------------------------------------------------------------
     ## Arguments: zdepth=depth vector of zoc'ed data, act=factor with
-    ## land/sea activity IDs (2nd element returned by detPhase), with
-    ## values "W" for at-sea, dive.thr=dive threshold in m
+    ## dry/wet activity IDs (2nd element returned by detPhase), with values
+    ## "W" for at-sea, dive.thr=dive threshold in m
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------

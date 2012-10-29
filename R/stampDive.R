@@ -27,7 +27,7 @@
     beg <- rep(attlist[[3]], table(phaseid))
     end <- rep(attlist[[4]], table(phaseid))
     phase.no <- numeric(length(act))      # vector of 0s
-    phaseid[act == "L"] <- 0             # phase.id on land should be 0
+    phaseid[act == "L"] <- 0             # dry phase.id should be 0
     ## make a sequence for phase.id > 0 from 1:number of such phases
     phase.no[act != "L"] <- rep(seq(along=table(phaseid[phaseid > 0])),
                 table(phaseid[phaseid > 0]))
