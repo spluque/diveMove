@@ -78,20 +78,20 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
               wetz <- object@gross.activity$activity == "Z"
               ww <- length(unique(object@gross.activity$ phase.id[wet | wetz]))
               cat("Depth calibration -- Class", class(object), "object\n")
-              cat("  Call                          : ", mCall, "\n", sep="")
-              cat("  Source file                   : ", object@tdr@file, "\n",
+              cat("  Call                              : ", mCall, "\n", sep="")
+              cat("  Source file                       : ", object@tdr@file, "\n",
                   sep="")
-              cat("  Containing TDR of class       : ", class(object@tdr),
+              cat("  Containing TDR of class           : ", class(object@tdr),
                   "\n", sep="")
-              cat("  Number of dry phases          : ", dd, "\n", sep="")
-              cat("  Number of aquatic phases      : ", ww, "\n", sep="")
-              cat("  Number of dives detected      : ",
+              cat("  Number of dry phases              : ", dd, "\n", sep="")
+              cat("  Number of aquatic phases          : ", ww, "\n", sep="")
+              cat("  Number of dives detected          : ",
                   max(object@dive.activity$dive.id, na.rm=TRUE), "\n", sep="")
-              cat("  Dry threshold used (s)        : ", object@dry.thr, "\n",
+              cat("  Dry threshold used (s)            : ", object@dry.thr, "\n",
                   sep="")
-              cat("  Aquatic theshold used (s)     : ", object@wet.thr, "\n",
+              cat("  Aquatic theshold used (s)         : ", object@wet.thr, "\n",
                   sep="")
-              cat("  Dive threshold used (s)       : ", object@dive.thr,
+              cat("  Dive threshold used (depth units) : ", object@dive.thr,
                   sep="")
               if (is(object@tdr, "TDRspeed")) {
                   cat("\n  Speed calibration coefficients: a=",
