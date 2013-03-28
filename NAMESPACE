@@ -1,10 +1,10 @@
 ## $Id$
+
 importFrom(stats4, mle)
 importFrom(graphics, plot, image)
 import(methods)                         # Paranoid measure
 
 exportPattern("^[^\\.]")
-
 exportClassPattern("^$")               # to over-ride classes implied above
 
 exportClasses("TDR",

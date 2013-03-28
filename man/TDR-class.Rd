@@ -1,8 +1,8 @@
 % $Id$
 \name{TDR-class}
 \docType{class}
-
 \alias{TDR-class}
+
 \alias{TDRspeed-class}
 \alias{TDR}
 \alias{TDRspeed}
