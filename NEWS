@@ -186,8 +186,8 @@ Changes in version 1.0:
 
 Changes in version 0.9.9:
 
-   o readLocs() now accepts a string for a path or an existing
-     `data.frame' to read data from.
+   o readLocs() now accepts a string for a path or an existing 'data.frame'
+     to read data from.
 
 Changes in version 0.9.8:
 
