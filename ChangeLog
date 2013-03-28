@@ -1,3 +1,44 @@
+2013-03-28  Sebastian P. Luque <spluque@gmail.com>
+
+	Releasing version 1.3.6
+
+	* NAMESPACE, NEWS, man/TDR-class.Rd:
+	  Minor formatting of NEWS file to make it useable by news().
+
+2013-01-31  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/AllMethod.R:
+	  Formatting in show method.
+
+	* R/AllMethod.R:
+	  Previous commit wrongly changed "Dry threshold" rather than "Dive
+	  threshold" in show method for TDRcalibrate. This fixes that and
+	  specifies that the units are given by the instrument.
+
+	* R/AllMethod.R:
+	  Dive threshold is in m, not s. Thanks to Paolo Piedrahita.
+
+2012-10-29  Sebastian P. Luque <spluque@gmail.com>
+
+	* DESCRIPTION, R/detDive.R, R/stampDive.R,
+	  man/plotDiveModel-methods.Rd:
+	  New version.
+
+	  Minor comment and documentation improvements.
+
+2012-10-12  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/AllMethod.R:
+	  Remove missing data from plotDiveModel() method for calculating
+	  range of data, since there may be some depending on the values
+	  used for 'wet.thr' and 'dry.thr' when 'interp.wet=TRUE' during
+	  calibration.
+
+2012-09-04  Sebastian P. Luque <spluque@gmail.com>
+
+	* TODO:
+	  Remove TODO item.
+
 2012-08-15  Sebastian P. Luque <spluque@gmail.com>
 
 	Releasing version 1.3.5

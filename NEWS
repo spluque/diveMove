@@ -5,13 +5,10 @@ See ChangeLog for more details.
 
 Changes in version 1.3.6:
 
-   o New argument (logical) 'wet.cond' for .detPhase() and calibrateDepth()
-     to designate a condition for identifying wet/dry conditions.
-     Previously, this was done assuming that depth was recorded only when
-     wet (i.e. when a salt-water switch is available and used accordingly).
-     This assumption holds if new argument 'wet.cond' is not supplied.
+   o Fixed show method for 'TDRcalibrate', which should display that the
+     units are determined by the instrument.
 
-   o Improved documentation.
+   o More accurate calculation of data range in plotDiveModel().
 
 Changes in version 1.3.5:
 
