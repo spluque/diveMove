@@ -19,7 +19,6 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
-    require(caTools) || stop("caTools package is required for this method")
     if (length(k) != length(probs))
         stop("k and probs should have the same length")
     if (length(depth.bounds) != 2 && !is.numeric(depth.bounds))

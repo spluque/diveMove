@@ -85,7 +85,7 @@
             phase.factor <- phase.factor[now, drop=TRUE]
             nlevs <- nlevels(phase.factor)
             ncolors <- max(3, min(nlevs, 9))
-            colors <- brewer.pal(n=ncolors, name="Set1")
+            colors <- hsv(seq(0, 0.9, length=ncolors), 0.8, 0.95)
             points(time.now, depth.now, col=colors[phase.factor],
                    pch=19, cex=cex.pts)
             if (key && nlevs < 10 && nlevs > 0) {

@@ -4,6 +4,9 @@ importFrom(stats4, mle)
 importFrom(graphics, plot, image)
 import(methods)                         # Paranoid measure
 
+## runquantile for ZOC
+importFrom(caTools, runquantile)
+
 exportPattern("^[^\\.]")
 exportClassPattern("^$")               # to over-ride classes implied above
 
