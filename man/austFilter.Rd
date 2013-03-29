@@ -16,9 +16,9 @@
 
 \usage{
 austFilter(time, lon, lat, id=gl(1, 1, length(time)),
-           speed.thr, dist.thr, window=5)
-grpSpeedFilter(x, speed.thr, window=5)
-rmsDistFilter(x, speed.thr, window=5, dist.thr)
+           speed.thr, dist.thr, window=5, \ldots)
+grpSpeedFilter(x, speed.thr, window=5, \ldots)
+rmsDistFilter(x, speed.thr, window=5, dist.thr, \ldots)
 }
 %- maybe also 'usage' for other objects documented here.
 
@@ -46,6 +46,8 @@ rmsDistFilter(x, speed.thr, window=5, dist.thr)
 
   \item{x}{3-column matrix with column 1: \code{POSIXct} vector; column
     2: numeric longitude vector; column 3: numeric latitude vector.}
+
+  \item{\ldots}{Arguments ultimately passed to \code{\link{distSpeed}}.}
 
 }
 

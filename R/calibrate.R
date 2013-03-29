@@ -121,9 +121,6 @@
     } else if (!is(x@tdr, "TDRspeed")) {
         stop("tdr slot in x must be a TDRspeed object")
     }
-    require(KernSmooth) || stop(paste("KernSmooth package is required",
-                                      "for calibrations"))
-    require(quantreg) || stop("quantreg package is required for calibrations")
     tt <- getTDR(x)
     if (!missing(coefs)) {
         newspeed <- (getSpeed(tt) - coefs[1]) / coefs[2]

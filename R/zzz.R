@@ -1,6 +1,7 @@
 ## $Id$
 
 ## ".onLoad" <- function(lib, pkg) {
-##     require(methods)
-##     require(stats4)
+##     packageStartupMessage("diveMove ",
+##                           utils::packageVersion("diveMove"),
+##                           " loaded")
 ## }

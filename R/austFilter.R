@@ -1,12 +1,13 @@
 ## $Id$
 
-"grpSpeedFilter" <- function(x, speed.thr, window=5)
+"grpSpeedFilter" <- function(x, speed.thr, window=5, ...)
 {
     ## Value: Do stage one on matrix x (assuming it's a single unit),
     ## return a logical; whether each observation in x passed the test
     ## --------------------------------------------------------------------
     ## Arguments: x=matrix with cols: POSIXct, lon, lat; speed.thr=speed
-    ## threshold (m/s), window=size of window to test
+    ## threshold (m/s), window=size of window to test; ...=arguments passed
+    ## to distSpeed(), namely only 'method' for now.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
@@ -17,7 +18,7 @@
         mid <- tpos + 1                 # subscript of pt to test
         ref <- c(-seq(tpos), seq(tpos)) # subscripts of pts to test against
         mid.rep <- rep(mid, length(ref))
-        speeds <- distSpeed(k[mid.rep, ], k[mid + ref, ])[, 3]
+        speeds <- distSpeed(k[mid.rep, ], k[mid + ref, ], ...)[, 3]
         all(speeds > speed.thr, na.rm=TRUE) # TRUE if all speeds > thr
     }
     pass <- !logical(nrow(x))         # all pass at start up
@@ -35,15 +36,16 @@
 }
 
 
-"rmsDistFilter" <- function(x, speed.thr, window=5, dist.thr)
+"rmsDistFilter" <- function(x, speed.thr, window=5, dist.thr, ...)
 {
-    ## Value: Run McConnell et al's filter and Austin et al's last
-    ## stage, return 2-col matrix of logicals; whether each observation
-    ## passed each test.
+    ## Value: Run McConnell et al's filter and Austin et al's last stage,
+    ## return 2-col matrix of logicals; whether each observation passed
+    ## each test.
     ## --------------------------------------------------------------------
     ## Arguments: x=matrix with cols: POSIXct, lon, lat; speed.thr=speed
     ## threshold (m/s), window=size of window to test; dist.thr=distance
-    ## threshold (km)
+    ## threshold (km); ...=arguments passed to distSpeed(), namely only
+    ## 'method' for now.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
@@ -56,7 +58,7 @@
         xmid <- k[1]                      # 1st is the middle
         xmid.rep <- rep(xmid, length(k) - 1)
         others <- k[-1]                 # 1st against all other positions
-        tr <- distSpeed(x[xmid.rep, ], x[others, ])
+        tr <- distSpeed(x[xmid.rep, ], x[others, ], ...)
         tr[, c(1, 3)]
     }
     testrows <- seq(tpos + 1, nrow(x) - tpos) # subscripts of locs to test
@@ -121,33 +123,33 @@
 
 
 "austFilter" <- function(time, lon, lat, id=gl(1, 1, length(time)),
-                         speed.thr, dist.thr, window=5)
+                         speed.thr, dist.thr, window=5, ...)
 {
-    ## Value: A matrix with logicals indicating whether each reading
-    ## failed each filter.  This runs the filters in Austin et al. (2003).
+    ## Value: A matrix with logicals indicating whether each reading failed
+    ## each filter.  This runs the filters in Austin et al. (2003).
     ## Results are presented from each filter, independently of the others
     ## for flexibility.
     ## --------------------------------------------------------------------
     ## Arguments: lat and lon=latitude and longitude vectors in degrees;
-    ## time=POSIXct object with times for each point; id=factor
-    ## identifying sections of the data to be treated separately;
-    ## speed.thr=speed threshold (m/s); dist.thr=distance threshold (km);
-    ## window=size of window to test
+    ## time=POSIXct object with times for each point; id=factor identifying
+    ## sections of the data to be treated separately; speed.thr=speed
+    ## threshold (m/s); dist.thr=distance threshold (km); window=size of
+    ## window to test; ...=arguments passed to grpSpeedFilter() and
+    ## rmsDistFilter(), namely only 'method' for now.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    ## FIRST STAGE
-    ## ********************************************************
+    ## FIRST STAGE ********************************************************
     locs <- data.frame(time, lon, lat)
 
     ## Do first stage over each seal's data, returns vector as long as locs
-    first <- unlist(by(locs, id, grpSpeedFilter, speed.thr, window),
+    first <- unlist(by(locs, id, grpSpeedFilter, speed.thr, window, ...),
                     use.names=FALSE)
 
     ## SECOND AND THIRD STAGES ********************************************
     good <- which(first)               # native subscripts that passed
     last <- do.call(rbind, by(locs[good, ], id[good], rmsDistFilter,
-                              speed.thr, window, dist.thr))
+                              speed.thr, window, dist.thr, ...))
     filter123 <- cbind(firstPass=first,
                        secondPass=first, # 2nd and 3rd start the same as 1st
                        thirdPass=first)
