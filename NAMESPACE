@@ -6,6 +6,11 @@ import(methods)                         # Paranoid measure
 
 ## runquantile for ZOC
 importFrom(caTools, runquantile)
+## bkde2d and rq for speed calibration
+importFrom(KernSmooth, bkde2D)
+importFrom(quantreg, rq)
+## distance algorithms
+importFrom(geosphere, distMeeus, distVincentyEllipsoid)
 
 exportPattern("^[^\\.]")
 exportClassPattern("^$")               # to over-ride classes implied above
