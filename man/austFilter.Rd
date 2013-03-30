@@ -135,6 +135,8 @@ utils::example("readLocs", package="diveMove",
                ask=FALSE, echo=FALSE)
 ringy <- subset(locs, id == "ringy" & !is.na(lon) & !is.na(lat))
 
+## Examples below use default Meeus algorithm for computing distances.
+## See ?distSpeed for specifying other methods.
 ## Austin et al.'s group filter alone
 grp <- grpSpeedFilter(ringy[, 3:5], speed.thr=1.1)
 

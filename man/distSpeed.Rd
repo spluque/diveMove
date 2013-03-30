@@ -31,7 +31,7 @@ distSpeed(pt1, pt2, method=c("Meeus", "VincentyEllipsoid"))
   \item{method}{character indicating which of the distance algorithms
     from \code{\link[geosphere]{geosphere-package}} to use (only default
     parameters used).  Only \code{Meeus} and \code{VincentyEllipsoid}
-    for now.}
+    are supported for now.}
 
 }
 
@@ -51,6 +51,7 @@ utils::example("readLocs", package="diveMove",
 locs.std <- subset(locs, subset=class == "0" | class == "1" |
                    class == "2" | class == "3" &
                    !is.na(lon) & !is.na(lat))
+## Default Meeus method
 locs.std.tr <- by(locs.std, locs.std$id, function(x) {
     distSpeed(x[-nrow(x), 3:5], x[-1, 3:5])
 })
@@ -65,7 +66,12 @@ lapply(locs.std.tr, function(x) {
 })
 
 ## Travel summary between two arbitrary sets of points
-distSpeed(locs[c(1, 5, 10), 3:5], locs[c(25, 30, 35), 3:5])
+pts <- seq(10)
+(meeus <- distSpeed(locs[pts, 3:5], locs[pts + 1, 3:5]))
+(vincenty <- distSpeed(locs[pts, 3:5],
+                       locs[pts + 1, 3:5],
+                       method="VincentyEllipsoid"))
+meeus[, 1] - vincenty[, 1]
 
 }
 

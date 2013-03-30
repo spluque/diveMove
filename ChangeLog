@@ -1,4 +1,25 @@
+2013-03-30  Sebastian P. Luque <spluque@gmail.com>
+
+	* man/austFilter.Rd, man/distSpeed.Rd:
+	  Better examples for distSpeed().
+
+2013-03-29  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/austFilter.R, R/calibrate.R, R/distSpeed.R, R/zzz.R,
+	  man/austFilter.Rd, man/distSpeed.Rd:
+	  Implemented distance algorithms from geosphere package.
+
+	* DESCRIPTION, NAMESPACE:
+	  More efficient namespace set up.
+
 2013-03-28  Sebastian P. Luque <spluque@gmail.com>
+
+	* DESCRIPTION, NAMESPACE, R/plotTDR.R, R/zoc.R:
+	  Use hsv() instead of depending on RColorBrewer package. Clean up
+	  dependencies.
+
+	* NEWS:
+	  Do not use backtick to avoid fontification problems in ESS.
 
 	Releasing version 1.3.6
 
@@ -236,7 +257,7 @@
 	  bib file has to be built now, as per request from CRAN
 	  maintainers who see error when building package.
 
-	* ChangeLog, man/bouts2MLE.Rd:
+	* man/bouts2MLE.Rd:
 	  Note about ndeps.
 
 2011-05-25  Sebastian P. Luque  <spluque@gmail.com>
@@ -312,7 +333,7 @@
 	  Updated bibliography and vignette references.
 
 	* inst/doc/Makefile: Use $(R_HOME)/bin/R to ensure proper
-	building, as per Brian Ripley's message to developers today.
+	  building, as per Brian Ripley's message to developers today.
 
 2011-01-30  Sebastian P. Luque <spluque@gmail.com>
 
@@ -668,9 +689,9 @@
 2010-06-11  Sebastian P. Luque  <spluque@gmail.com>
 
 	* R/AllMethod.R:
-	Fixed bug in "[" method for TDR objects whereby empty data.frame
-	concurrentData slot was triggering an error from getCCData(),
-	which was unable to extract the slot.
+	  Fixed bug in "[" method for TDR objects whereby empty data.frame
+	  concurrentData slot was triggering an error from getCCData(),
+	  which was unable to extract the slot.
 
 2010-06-04  Sebastian P. Luque  <spluque@gmail.com>
 
@@ -712,7 +733,7 @@
 
 	  Version 0.9.7 released.
 
-	* ChangeLog, README, inst/doc/biblioSPL.bib:
+	* README, inst/doc/biblioSPL.bib:
 	Updated bibliography.
 
 2010-02-03  Sebastian P. Luque <spluque@gmail.com>
@@ -758,9 +779,9 @@
 	Version 0.9.6 released.
 
 	* DESCRIPTION, R/detDive.R, man/calibrateDepth.Rd:
-	Fixed .cutDive() to behave as intended; wiggles above wiggle.tol
-	should not be allowed to terminate descent phase.  Better
-	documentation explaining the basics of dive phase detection.
+	  Fixed .cutDive() to behave as intended; wiggles above wiggle.tol
+	  should not be allowed to terminate descent phase.  Better
+	  documentation explaining the basics of dive phase detection.
 
 2009-02-13  Sebastian P. Luque <spluque@gmail.com>
 
@@ -867,16 +888,16 @@
 	Version 0.8.7 released.
 
 	* README, man/bout-methods.Rd, man/bout-misc.Rd, man/bouts2MLE.Rd:
-	Fixed citations.
+	  Fixed citations.
 
 2008-01-05  Sebastian P. Luque  <spluque@gmail.com>
 
 	Version 0.8.6 released.
 
 	* R/austFilter.R: Fixed bug in grpSpeedFilter() which caused the
-	test to fail if any speed > threshold, rather than if ALL speeds >
-	threshold.  Thanks to Bryan Wright (<bryan.e.wright@state.or.us>).
-
+	  test to fail if any speed > threshold, rather than if ALL speeds >
+	  threshold.  Thanks to Bryan Wright (<bryan.e.wright@state.or.us>).
+1
 2007-11-09  Sebastian P. Luque  <spluque@gmail.com>
 
 	Version 0.8.5 released.
@@ -888,7 +909,7 @@
 	Version 0.8.4 released.
 
 	* R/austFilter.R: Added checks for cases where the number of rows
-	equals exactly the test window size.
+	  equals exactly the test window size.
 
 2007-10-18  Sebastian P. Luque  <spluque@gmail.com>
 
@@ -900,9 +921,10 @@
 
 	Version 0.8.2 released.
 
-	* DESCRIPTION, man/*: Removed "Encoding:" field from Description
-	and "\encoding{latin1}" from *.Rd files, since it is more trouble
-	than any benefit.
+	* DESCRIPTION, man/*:
+	  Removed "Encoding:" field from Description and
+	  "\encoding{latin1}" from *.Rd files, since it is more trouble than
+	  any benefit.
 
 2007-07-09  Sebastian P. Luque  <spluque@gmail.com>
 
@@ -916,13 +938,15 @@
 
 	Version 0.8.0 released.
 
-	* DESCRIPTION: Changed 'SaveImage' field to 'LazyLoad' as per
-	deprecated 'SaveImage' in R-devel.
+	* DESCRIPTION:
+	  Changed 'SaveImage' field to 'LazyLoad' as per
+	  deprecated 'SaveImage' in R-devel.
 
 2007-07-02  Sebastian P. Luque  <spluque@gmail.com>
 
 	* calibrate.R, plotTD.R:
-	Use the '::' operator to be explicit when referring to external packages.
+	  Use the '::' operator to be explicit when referring to external
+	  packages.
 
 2007-07-01  Sebastian P. Luque  <spluque@gmail.com>
 
