@@ -1,7 +1,7 @@
 library(diveMove)
 
 zz <- system.file(file.path("data", "dives.csv"),
-                  package="diveMove")
+                  package="diveMove", mustWork=TRUE)
 (sealX <- readTDR(zz, concurrentCols=4:6, sep=";",
                   na.strings="", as.is=TRUE))
 (dcalib <- calibrateDepth(sealX, zoc.method="offset", offset=3))
@@ -11,8 +11,6 @@ head(stamps <- stampDive(dcalib))
 (att <- timeBudget(dcalib, FALSE))
 (att <- timeBudget(dcalib, TRUE))
 
-zz <- system.file(file.path("data", "dives.csv"),
-                  package="diveMove")
 (sealX <- readTDR(zz, speed=TRUE, concurrentCols=4:6,
                   sep=";", na.strings="", as.is=TRUE))
 (dcalib <- calibrateDepth(sealX, zoc.method="offset", offset=3))
