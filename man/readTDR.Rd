@@ -98,8 +98,9 @@ createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
 
 \examples{
 
-zz <- system.file(file.path("data", "dives.csv"),
-                  package="diveMove")
+## Do example to define object zz with location of dataset
+utils::example("dives", package="diveMove",
+               ask=FALSE, echo=FALSE)
 srcfn <- basename(zz)
 readTDR(zz, speed=TRUE, sep=";", na.strings="", as.is=TRUE)
 

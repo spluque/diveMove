@@ -65,9 +65,8 @@
 \examples{
 
 zz <- system.file(file.path("data", "dives.csv"),
-                  package="diveMove")
-dives <- read.csv(zz, sep=";", na.strings="")
-str(dives)
+                  package="diveMove", mustWork=TRUE)
+str(read.csv(zz, sep=";", na.strings=""))
 
 }
 

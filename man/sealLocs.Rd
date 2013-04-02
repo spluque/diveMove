@@ -42,9 +42,8 @@
 \examples{
 
 zz <- system.file(file.path("data", "sealLocs.csv"),
-                  package="diveMove")
-sealLocs <- read.csv(zz, sep=";")
-str(sealLocs)
+                  package="diveMove", mustWork=TRUE)
+str(read.csv(zz, sep=";"))
 
 }
 

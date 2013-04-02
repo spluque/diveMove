@@ -1,7 +1,57 @@
-                                                         -*- mode: org; -*-
 
-* Work on MLE (or better) method for modelling mixtures of 3 Poisson
-  processes for dive bout identification
+* Bouts
+
+** TODO Work on MLE (or better) method for modelling mixtures of 3 Poisson
+  processes
 
 
-* Find a way to embed R graphics in tcltk widgets for plotTD()
+* Plotting
+
+** TODO Embed R graphics in a single widget for plotTDR()
+
+*** Using RGtk2
+
+From the Lawrence and Temple (2010) JSS paper:
+
+#+BEGIN_SRC R
+  library(RGtk2)
+  
+  n <- 5000; backbone <- rnorm(n)
+  ma_data <- cbind(backbone + c(rnorm(3 * (n / 4), sd=0.1),
+                                rt(n / 4, 80)),
+                   backbone + c(rnorm(3 * (n / 4), sd=0.1),
+                                rt(n / 4, 80)))
+  ma_data <- apply(ma_data, 2, function(col) col - min(col))
+  
+  win <- gtkWindow(show=FALSE)
+  graphics <- gtkDrawingArea()
+  slider <- gtkHScale(min=0.1, max=1.0, step=0.1)
+  scale_cb <- function(range) {
+      par(pty="s")
+      plot(ma_data[, 1], ma_data[, 2],
+           col=rgb(0, 0, 0, alpha=range$getValue()),
+           xlab="Replicate 1", ylab="Replicate 2",
+           main="Mock expression data", pch=19)
+  }
+  gSignalConnect(slider, "value-changed", scale_cb)
+  
+  vbox <- gtkVBox()
+  vbox$packStart(graphics, expand=TRUE, fill=TRUE, padding=0)
+  vbox$packStart(slider, expand=TRUE, fill=TRUE, padding=0)
+  win$add(vbox)
+  win$setDefaultSize(400, 400)
+  win$showAll()
+  require(cairoDevice)
+  asCairoDevice(graphics)
+  slider$setValue(0.7)
+#+END_SRC
+
+** TODO Include a control for zoom level in plotTDR()
+
+
+* Emacs local variables
+
+#+STARTUP: content
+# Local Variables:
+# mode: org
+# End:
