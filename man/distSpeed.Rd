@@ -71,7 +71,7 @@ pts <- seq(10)
 (vincenty <- distSpeed(locs[pts, 3:5],
                        locs[pts + 1, 3:5],
                        method="VincentyEllipsoid"))
-meeus[, 1] - vincenty[, 1]
+meeus - vincenty
 
 }
 
