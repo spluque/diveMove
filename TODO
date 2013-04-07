@@ -7,6 +7,13 @@
 
 * Plotting
 
+** Colors should be constant in plotTDR() 
+
+Each color should always represent one type of behaviour, regardless of the
+number of behaviours shown in each plot.  Whenever panning or zooming, the
+number of behaviours shown may be different, so the colors chosen for each
+behaviour also change.  This is wrong and confusing to users.
+
 ** TODO Embed R graphics in a single widget for plotTDR()
 
 *** Using RGtk2
@@ -46,12 +53,51 @@ From the Lawrence and Temple (2010) JSS paper:
   slider$setValue(0.7)
 #+END_SRC
 
+*** Using playwith
+
+Felix Andrews demonstrated a bit:
+
+#+BEGIN_SRC R
+  library(playwith)
+  library(diveMove)
+  
+  ## A tool to select a range and store it in a global var.
+  
+  ## This "callback" is run when the action is activated
+  ## (from toolbar, menu, or keyboard shortcut).
+  findRange_handler <- function(widget, playState) {
+      ## draw rect at drag locations
+      rgInfo <- playRectInput(playState)
+      if (is.null(rgInfo)) return()
+      if (isTRUE(rgInfo$is.click)) return()
+      ## store range
+      assign("RANGE", rgInfo$coords, globalenv())
+      ## annotation call to draw a rect
+      rectExpr <- with(rgInfo$coords,
+                       call("panel.rect",
+                            x[1], y[1], x[2], y[2]))
+      playAnnotate(playState, rectExpr, space=rgInfo$space)
+      gmessage("Selected range has been stored in object RANGE.")
+  }
+  
+  findRangeTool <- list("FindRange", "gtk-zoom-fit", "Find range",
+                         callback=findRange_handler)
+  
+  utils::example("calibrateDepth", package="diveMove",
+                 ask=FALSE, echo=FALSE)
+  
+  playwith(plotTDR(getTime(divesTDR), getDepth(divesTDR), interact=FALSE),
+           tools=list(findRangeTool))
+  
+#+END_SRC
+
 ** TODO Include a control for zoom level in plotTDR()
 
 
 * Emacs local variables
 
 #+STARTUP: content
+#+PROPERTY: results silent
 # Local Variables:
 # mode: org
 # End:
