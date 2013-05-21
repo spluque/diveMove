@@ -1,7 +1,8 @@
 Dive and movement analyses and plots			      -*-outline-*-
 ====================================
 
-Set of functions to analyse time-depth recorder and location data.
+Tools to represent, visualize, filter, analyse, and summarize time-depth
+recorder and location data.
 
 Read ?diveMove for a quick overview of the major functionality.  A
 vignette is also available by doing vignette("diveMove").
