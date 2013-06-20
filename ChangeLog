@@ -1,3 +1,10 @@
+2013-06-20  Sebastian P. Luque <spluque@gmail.com>
+
+	* R/AllMethod.R:
+	  Default concurrentData data.frame for createTDR() should have the
+	  same number of rows as time stamps provided (thanks to Elizabeth
+	  Masden for reporting).
+
 2013-04-02  Sebastian P. Luque <spluque@gmail.com>
 
 	* man/distSpeed.Rd:

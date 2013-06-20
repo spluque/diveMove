@@ -5,6 +5,10 @@ See ChangeLog for more details.
 
 Changes in version 1.3.7:
 
+   o Default value for argument concurrentData in createTDR() is a
+     data.frame with the same number of rows as time stamps provided, to
+     keep consistency with readTDR() and getCCData() functionality.
+
    o The package now requires caTools, KernSmooth, quantreg, and geosphere
      to be available.  However, they are not attached; only parts of their
      namespaces are imported, so diveMove now makes more efficient use of
