@@ -574,7 +574,9 @@ setMethod("[", signature("TDR"), function(x, i, j, ..., drop) {
 
 
 ###_ + Generators and Summaries
-"createTDR" <- function(time, depth, concurrentData=data.frame(),
+"createTDR" <- function(time, depth,
+                        concurrentData=data.frame(matrix(ncol=0,
+                          nrow=length(time))),
                         speed=FALSE, dtime, file)
 {
     ## Value: An object of TDR or TDRspeed class.  Useful to recreate
