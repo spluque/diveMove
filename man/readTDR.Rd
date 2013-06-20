@@ -20,7 +20,9 @@
 readTDR(file, dateCol=1, timeCol=2, depthCol=3, speed=FALSE,
         subsamp=5, concurrentCols=4:6,
         dtformat="\%d/\%m/\%Y \%H:\%M:\%S", tz="GMT", \ldots)
-createTDR(time, depth, concurrentData=data.frame(), speed=FALSE, dtime, file)
+createTDR(time, depth,
+          concurrentData=data.frame(matrix(ncol=0, nrow=length(time))),
+          speed=FALSE, dtime, file)
 }
 
 
