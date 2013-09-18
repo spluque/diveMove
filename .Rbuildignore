@@ -2,3 +2,4 @@
 ^\+\+psvn.*
 EXAMPLES.*
 ^TODO$
+^.AppleDouble$
