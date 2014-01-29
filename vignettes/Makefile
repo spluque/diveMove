@@ -20,7 +20,7 @@ all : diveMove.pdf
 
 %.pdf : %.tex
 	$(R_HOME)/bin/R CMD Rd2pdf --no-preview -o '$*-rd.pdf' \
-	--title='$*' ../../man/
+	--title='$*' ../man/
 	$(LATEX) $*
 	$(BIBTEX) $*
 	$(LATEX) $*

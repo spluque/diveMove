@@ -1,3 +1,8 @@
+2014-01-29  Sebastian P. Luque <spluque@gmail.com>
+
+	* inst/doc, vignettes, vignettes/Makefile:
+	  Moving vignettes to /vignettes directory.
+
 2013-06-20  Sebastian P. Luque <spluque@gmail.com>
 
 	* R/AllMethod.R:
