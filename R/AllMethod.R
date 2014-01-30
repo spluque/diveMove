@@ -38,17 +38,17 @@ setMethod("plotTDR", signature(x="POSIXt", y="numeric"),
                    phase.factor=NULL, plot.points=FALSE, interact=TRUE,
                    key=TRUE, cex.pts=0.4, ...) {
               stopifnot(identical(length(x), length(y)), is.vector(y))
-              diveMove:::.plotTDR(time=x, depth=y, concurVars=concurVars,
-                                  xlim=xlim, depth.lim=depth.lim, xlab=xlab,
-                                  ylab.depth=ylab.depth,
-                                  concurVarTitles=concurVarTitles,
-                                  xlab.format=xlab.format,
-                                  sunrise.time=sunrise.time,
-                                  sunset.time=sunset.time,
-                                  night.col=night.col, dry.time=dry.time,
-                                  phase.factor=phase.factor,
-                                  interact=interact, key=key,
-                                  cex.pts=cex.pts, ...)
+              .plotTDR(time=x, depth=y, concurVars=concurVars,
+                       xlim=xlim, depth.lim=depth.lim, xlab=xlab,
+                       ylab.depth=ylab.depth,
+                       concurVarTitles=concurVarTitles,
+                       xlab.format=xlab.format,
+                       sunrise.time=sunrise.time,
+                       sunset.time=sunset.time,
+                       night.col=night.col, dry.time=dry.time,
+                       phase.factor=phase.factor,
+                       interact=interact, key=key,
+                       cex.pts=cex.pts, ...)
           })
 
 setMethod("plotTDR", signature(x="TDR", y="missing"),
@@ -63,9 +63,9 @@ setMethod("plotTDR", signature(x="TDR", y="missing"),
               } else if (missing(concurVars) && missing(concurVarTitles)) {
                   ccd <- concurVarTitles <- NULL
               }
-              diveMove:::.plotTDR(time=getTime(x), depth=getDepth(x),
-                                  concurVars=ccd,
-                                  concurVarTitles=concurVarTitles, ...)
+              .plotTDR(time=getTime(x), depth=getDepth(x),
+                       concurVars=ccd,
+                       concurVarTitles=concurVarTitles, ...)
           })
 
 ###_  . TDRcalibrate
@@ -116,7 +116,7 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
         postdiveids <- getDAct(x, "postdive.id")
         postdives <- postdiveids %in% diveNo
         ok <- which(dives | postdives)
-    } else ok <- diveMove:::.diveIndices(diveids, diveNo)
+    } else ok <- .diveIndices(diveids, diveNo)
     newtdr <- tdr[ok]
     alltimes <- getTime(tdr)
     newtimes <- getTime(newtdr)
@@ -142,9 +142,7 @@ setMethod("plotTDR", signature(x="TDRcalibrate", y="missing"),
               what <- match.arg(what)
               switch(what,
                      phases = {
-                         diveMove:::.plotTDRcalibratePhases(x,
-                                                            diveNo=diveNo,
-                                                            ...)
+                         .plotTDRcalibratePhases(x, diveNo=diveNo, ...)
                      },
                      dive.model = { plotDiveModel(x, diveNo=diveNo) })
           })
@@ -334,15 +332,13 @@ setMethod("plotBouts", signature(fit="mle"),
 ###_  . plotZOC
 setMethod("plotZOC", signature(x="TDR", y="matrix"),
           function(x, y, xlim, ylim, ylab="Depth (m)", ...) {
-              diveMove:::.plotZOCfilters(x=x, zoc.filter=y,
-                                         xlim=xlim, ylim=ylim,
-                                         ylab=ylab, ...)
+              .plotZOCfilters(x=x, zoc.filter=y, xlim=xlim, ylim=ylim,
+                              ylab=ylab, ...)
           })
 
 setMethod("plotZOC", signature(x="TDR", y="TDRcalibrate"),
           function(x, y, xlim, ylim, ylab="Depth (m)", ...) {
-              diveMove:::.plotZOCtdrs(x=x, y=y, xlim=xlim, ylim=ylim,
-                                      ylab=ylab, ...)
+              .plotZOCtdrs(x=x, y=y, xlim=xlim, ylim=ylim, ylab=ylab, ...)
           })
 
 
@@ -375,14 +371,14 @@ setMethod("getDepth", signature(x="TDR"), function(x) x@depth)
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
     dataNames <- names(x)
-    colN <- dataNames %in% diveMove:::.speedNames
+    colN <- dataNames %in% .speedNames
     if (length(which(colN)) != 1)
         stop("the column number for speed could not be determined")
     which(colN)
 }
 setMethod("getSpeed", signature(x="TDRspeed"), function(x) {
     ccData <- x@concurrentData
-    speedCol <- diveMove:::.speedCol(ccData)
+    speedCol <- .speedCol(ccData)
     ccData[, speedCol]
 })
 
@@ -437,7 +433,7 @@ setMethod("getDPhaseLab", signature(x="TDRcalibrate", diveNo="numeric"),
           function(x, diveNo) {
               ctdr <- getTDR(x)
               phases <- x@dive.phases
-              okpts <- diveMove:::.diveIndices(getDAct(x, "dive.id"), diveNo)
+              okpts <- .diveIndices(getDAct(x, "dive.id"), diveNo)
               phases[okpts]
           })
 
@@ -449,7 +445,7 @@ setMethod("getDiveModel", signature(x="TDRcalibrate", diveNo="numeric"),
           function(x, diveNo) {
               dml <- x@dive.models
               tryCatch({
-                  ok <- diveMove:::.diveMatches(names(dml), diveNo)
+                  ok <- .diveMatches(names(dml), diveNo)
                   diveNo.ok <- diveNo[ok]
                   dm <- x@dive.models[diveNo.ok]
                   if (length(diveNo.ok) == 1L) dm[[1]] else dm
@@ -542,7 +538,7 @@ setReplaceMethod("depth", signature(x="TDR", value="numeric"),
 setReplaceMethod("speed", signature(x="TDRspeed", value="numeric"),
                  function(x, value) {
                      ccData <- x@concurrentData
-                     speedCol <- diveMove:::.speedCol(ccData)
+                     speedCol <- .speedCol(ccData)
                      if (length(ccData[, speedCol]) != length(value))
                          stop(paste("replacement must have length:",
                                     length(ccData[, speedCol]),
@@ -587,7 +583,7 @@ setMethod("[", signature("TDR"), function(x, i, j, ..., drop) {
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    if (missing(dtime)) dtime <- diveMove:::.getInterval(time)
+    if (missing(dtime)) dtime <- .getInterval(time)
     if(speed) {
         new("TDRspeed", time=time, depth=depth, concurrentData=concurrentData,
             dtime=dtime, file=file)
@@ -603,7 +599,7 @@ setMethod("extractDive", signature(obj="TDR", diveNo="numeric",
               if (length(id) != length(getTime(obj))) {
                   stop ("id and obj must have equal number of rows")
               }
-              okpts <- diveMove:::.diveIndices(id, unique(diveNo))
+              okpts <- .diveIndices(id, unique(diveNo))
               if (is(obj, "TDRspeed")) {
                   new("TDRspeed", time=getTime(obj)[okpts],
                       depth=getDepth(obj)[okpts],
@@ -621,8 +617,8 @@ setMethod("extractDive",                # for TDRcalibrate
           signature(obj="TDRcalibrate", diveNo="numeric", id="missing"),
           function(obj, diveNo) {
               ctdr <- getTDR(obj)
-              okpts <- diveMove:::.diveIndices(getDAct(obj, "dive.id"),
-                                               unique(diveNo))
+              okpts <- .diveIndices(getDAct(obj, "dive.id"),
+                                    unique(diveNo))
               if (is(ctdr, "TDRspeed")) {
                   new("TDRspeed", time=getTime(ctdr)[okpts],
                       depth=getDepth(ctdr)[okpts],
@@ -644,7 +640,7 @@ setMethod("timeBudget",            # a table of general attendance pattern
               interval <- getDtime(getTDR(obj))
               if (ignoreZ) {            # ignore the short baths
                   act[act == "Z"] <- "L"
-                  attlist <- diveMove:::.rleActivity(tt, act, interval)
+                  attlist <- .rleActivity(tt, act, interval)
                   actlabel <- rle(as.vector(act))$values
                   phase.no <- seq(along=actlabel)
               } else {                  # count the short baths

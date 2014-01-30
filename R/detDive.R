@@ -42,7 +42,7 @@
     } else warning("no subaquatic activity found")
 
     ## Label underwater excursions
-    labuw <- diveMove:::.labDive(act, "U")
+    labuw <- .labDive(act, "U")
     ## Max depth of each "U" phase
     uwmax <- tapply(zdepth[underw], labuw[underw, 1], max, na.rm=TRUE)
     ## Change each "U" (underwater) phase to "D" (diving) if its max depth
@@ -54,10 +54,10 @@
     ## accordingly (this works great!)
     act[labuw[, 1] %in% as.numeric(names(uwmax[uwmax > dive.thr]))] <- "D"
 
-    dives.maybe <- diveMove:::.labDive(act, "D")
+    dives.maybe <- .labDive(act, "D")
     surface.idx <- which(dives.maybe[, 1] > 0 & zdepth <= dive.thr)
     act[surface.idx] <- "U"
-    inddive <- diveMove:::.labDive(act, "D")
+    inddive <- .labDive(act, "D")
     ndives <- length(unique(inddive[act == "D", 1]))
     message(ndives, " dives detected")
 
@@ -259,7 +259,7 @@
         ## We send a matrix of indices, and non-NA depths and times
         td <- matrix(data=c(ok, ddepths, as.numeric(dtimes)), ncol=3)
         ## Problems with by() always returning 'by', not list
-        perdivetd <- c(by(td, dids, diveMove:::.cutDive, ...,
+        perdivetd <- c(by(td, dids, .cutDive, ...,
                           simplify=FALSE))
         labdF <- do.call(rbind, lapply(perdivetd, slot, "label.matrix"))
         ff <- factor(rep("X", length(diveID)),
@@ -306,7 +306,7 @@
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
     tryCatch({
-        didx <- diveMove:::.diveMatches(diveID, diveNo)
+        didx <- .diveMatches(diveID, diveNo)
         ok <- which(diveID %in% diveNo[didx])
         okl <- pmax(1, setdiff(ok - 1, ok))
         okr <- pmin(length(diveID), setdiff(ok + 1, ok))
@@ -319,7 +319,7 @@
 
 ## utils::example("calibrateDepth", package="diveMove", ask=FALSE, echo=FALSE)
 ## X <- c(2, 7, 100, 120, 240)
-## ## diveMove:::.labDivePhase(getTDR(tdr.calib), getDAct(tdr.calib, "dive.id"),
+## ## .labDivePhase(getTDR(tdr.calib), getDAct(tdr.calib, "dive.id"),
 ## ##                          smooth.par=0.1, knot.factor=30, descent.crit=0.01,
 ## ##                          ascent.crit=0)
 ## ## diveX <- as.data.frame(extractDive(dcalib, diveNo=X[5]))
@@ -328,14 +328,14 @@
 ## diveX.m <- cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
 ##                  diveX$depth[-c(1, nrow(diveX))],
 ##                  diveX$time[-c(1, nrow(diveX))])
-## phases <- diveMove:::.cutDive(diveX.m, smooth.par=0.1, knot.factor=30,
-##                               descent.crit.q=0.01, ascent.crit.q=0)
+## phases <- .cutDive(diveX.m, smooth.par=0.1, knot.factor=30,
+##                    descent.crit.q=0.01, ascent.crit.q=0)
 
 ## for (dive in seq(max(dives[dives > 0]))) {
 ##     diveX <- as.data.frame(extractDive(tdr.calib, diveNo=dive))
 ##     diveX.m <- cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
 ##                      diveX$depth[-c(1, nrow(diveX))],
 ##                      diveX$time[-c(1, nrow(diveX))])
-##     phases <- diveMove:::.cutDive(diveX.m, smooth.par=0.1, knot.factor=50,
-##                                   descent.crit.q=0.01, ascent.crit.q=0)
+##     phases <- .cutDive(diveX.m, smooth.par=0.1, knot.factor=50,
+##                        descent.crit.q=0.01, ascent.crit.q=0)
 ## }

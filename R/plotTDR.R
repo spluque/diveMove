@@ -48,7 +48,7 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    nights <- diveMove:::.night(time, sunrise.time, sunset.time)
+    nights <- .night(time, sunrise.time, sunset.time)
     nconcurVars <- ifelse(is.null(concurVars), 0, ncol(concurVars))
     plotrows <- nconcurVars + 1
     ncheight <- 1.35 * (1/plotrows)

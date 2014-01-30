@@ -92,8 +92,8 @@
                      probs <- control$probs
                      depth.bounds <- control$depth.bounds
                      na.rm <- control$na.rm
-                     depthmtx <- diveMove:::.depthFilter(depth, k, probs,
-                                                         depth.bounds, na.rm)
+                     depthmtx <- .depthFilter(depth, k, probs,
+                                              depth.bounds, na.rm)
                      depth <- depthmtx[, ncol(depthmtx)]})
     ## Turn all negative and NA depths into zeroes (we don't care now about
     ## dry time, since we've already done that, and we need surface and dry

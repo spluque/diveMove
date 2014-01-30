@@ -17,7 +17,7 @@
         tt <- getTime(getTDR(x))
         interval <- getDtime(getTDR(x))
         act[act == "Z"] <- "L"
-        attlist <- diveMove:::.rleActivity(tt, act, interval) # recalculate
+        attlist <- .rleActivity(tt, act, interval) # recalculate
         phaseid <- as.numeric(attlist[[1]])  # what phase.id is now
     } else {
         attlist <- getGAct(x)

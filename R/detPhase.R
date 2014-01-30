@@ -61,19 +61,19 @@
         act[wet.cond] <- "W"
     }
     ## First run calculates times in each activity phase from the raw data
-    rawacts <- diveMove:::.rleActivity(time, act, interval)
+    rawacts <- .rleActivity(time, act, interval)
     ## On-land activity < 'dry.thr' should be considered still at-sea
     land <- levels(rawacts[[1]])[rawacts[[2]] < dry.thr]
     act[rawacts[[1]] %in% land & act == "L"] <- "W"
     ## Second run; at-sea phases < wet.thr should be leisure
-    leiacts <- diveMove:::.rleActivity(time, act, interval)
+    leiacts <- .rleActivity(time, act, interval)
     leisure <- levels(leiacts[[1]])[leiacts[[2]] < wet.thr]
     act[leiacts[[1]] %in% leisure & act == "W"] <- "Z"
     ## Last run of NAs should be forced back to "L"
     maxnoNA <- max(which(!is.na(depth)))
     if (maxnoNA < length(act)) act[(maxnoNA + 1):length(act)] <- "L"
     ## Final run to determine times with all corrected activities
-    finacts <- diveMove:::.rleActivity(time, act, interval)
+    finacts <- .rleActivity(time, act, interval)
     nphase <- length(levels(finacts[[1]]))
     if(act[1] == "L" & act[length(act)] == "L") {
         message("Record is complete\n", nphase, " phases detected")

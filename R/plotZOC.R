@@ -1,6 +1,6 @@
 # $Id: $
 
-###_ + TDR, matrix method (for diveMove:::.depthFilter)
+###_ + TDR, matrix method (for .depthFilter)
 
 ".plotZOCfilters" <- function(x, zoc.filter, xlim, ylim,
                               ylab="Depth (m)", ...)
@@ -8,12 +8,12 @@
     ## Value: Nothing; a plot
     ## --------------------------------------------------------------------
     ## Arguments: x=TDR object; zoc.filter=matrix of filters (as returned
-    ## by diveMove:::.depthFilter); xlim=numeric vector of length 2 with
-    ## axis limit (defaults to time range of input); ylim=numeric vector of
-    ## length 2 (upper, lower) with axis limits (defaults to range of
-    ## input); ...=passed to legend()
+    ## by .depthFilter); xlim=numeric vector of length 2 with axis limit
+    ## (defaults to time range of input); ylim=numeric vector of length 2
+    ## (upper, lower) with axis limits (defaults to range of input);
+    ## ...=passed to legend()
     ## --------------------------------------------------------------------
-    ## Purpose: Plot to help finding parameters for diveMove:::.depthFilter
+    ## Purpose: Plot to help finding parameters for .depthFilter
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------

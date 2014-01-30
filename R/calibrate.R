@@ -42,7 +42,7 @@
             ell$depth.bounds <- range(depth, na.rm=TRUE)
         if (!"na.rm" %in% ell.names) ell$na.rm <- TRUE
     }
-    zd <- diveMove:::.zoc(time, depth, method=zoc.method, control=ell)
+    zd <- .zoc(time, depth, method=zoc.method, control=ell)
     if (!is.null(zd)) x@depth <- zd
     ## Detect phases and dives
     if (missing(wet.cond)) 
@@ -54,9 +54,8 @@
             stop("'subset' must evaluate to logical")
         r <- r & !is.na(r)
     }
-    detp <- diveMove:::.detPhase(time, zd, dry.thr=dry.thr,
-                                 wet.cond=r, wet.thr=wet.thr,
-                                 interval=getDtime(x))
+    detp <- .detPhase(time, zd, dry.thr=dry.thr, wet.cond=r,
+                      wet.thr=wet.thr, interval=getDtime(x))
 
     if (interp.wet) {
         zdepth <- zd
@@ -71,14 +70,13 @@
         }
     }
 
-    detd <- diveMove:::.detDive(getDepth(x), detp[[2]], dive.thr)
+    detd <- .detDive(getDepth(x), detp[[2]], dive.thr)
 
     ## Identify dive phases
-    phaselabs <- diveMove:::.labDivePhase(x, detd[, 1],
-                                          smooth.par=smooth.par,
-                                          knot.factor=knot.factor,
-                                          descent.crit.q=descent.crit.q,
-                                          ascent.crit.q=ascent.crit.q)
+    phaselabs <- .labDivePhase(x, detd[, 1], smooth.par=smooth.par,
+                               knot.factor=knot.factor,
+                               descent.crit.q=descent.crit.q,
+                               ascent.crit.q=ascent.crit.q)
     phaselabsF <- phaselabs$phase.labels
     diveModels <- phaselabs$dive.models
 
