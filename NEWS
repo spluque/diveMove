@@ -3,6 +3,13 @@
 
 See ChangeLog for more details.
 
+Changes in version 1.3.8:
+
+   o Moved locations of vignettes in source to follow changes in R Core.
+
+   o Removed triple colon use for objects in diveMove, which was
+     unnecessary and discouraged.
+
 Changes in version 1.3.7:
 
    o Default value for argument concurrentData in createTDR() is a

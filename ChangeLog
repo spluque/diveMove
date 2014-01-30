@@ -1,3 +1,16 @@
+2014-01-30  Sebastian P. Luque <spluque@gmail.com>
+
+	Releasing version 1.3.8
+
+	* R/AllClass.R, R/AllMethod.R, R/calibrate.R, R/detDive.R,
+	  R/detPhase.R, R/diveStats.R, R/oneDiveStats.R, R/plotTDR.R,
+	  R/plotZOC.R, R/readTDR.R, R/stampDive.R, R/zoc.R:
+	  Removed self triple colon references. They are not needed, and
+	  are now raising NOTEs during checks with R-devel.
+
+	* ChangeLog, DESCRIPTION:
+	  New version.
+
 2014-01-29  Sebastian P. Luque <spluque@gmail.com>
 
 	* inst/doc, vignettes, vignettes/Makefile:
