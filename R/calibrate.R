@@ -201,5 +201,9 @@
                  .(round(coef(rqFit)[2], 3)) * x))
 }
 
+## Declare global variables, if needed
+if (getRversion() >= "2.15.1") utils::globalVariables("x")
+
+
 
 ## TEST ZONE --------------------------------------------------------------

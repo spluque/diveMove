@@ -471,6 +471,10 @@ setMethod("bec2", signature(fit="nls"), bouts2.nlsBEC)
 setMethod("bec2", signature(fit="mle"), bouts2.mleBEC)
 setMethod("bec3", signature(fit="nls"), bouts3.nlsBEC)
 
+## Declare global variables, if needed
+if (getRversion() >= "2.15.1") utils::globalVariables("x")
+
+
 
 ## TEST ZONE --------------------------------------------------------------
 
