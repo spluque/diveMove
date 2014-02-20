@@ -1,3 +1,11 @@
+2014-02-20  Sebastian P. Luque <spluque@gmail.com>
+
+	Releasing version 1.3.9
+
+	* R/bouts.R, R/calibrate.R:
+	  Declare global variables, as per post-submission message from
+	  CRAN. Minor administrative change to satisfy the check procedure.
+
 2014-01-30  Sebastian P. Luque <spluque@gmail.com>
 
 	Releasing version 1.3.8
