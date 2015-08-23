@@ -1,4 +1,5 @@
 .cvsignore$
+.gitignore$
 ^\+\+psvn.*
 EXAMPLES.*
 ^TODO$

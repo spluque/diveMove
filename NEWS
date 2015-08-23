@@ -3,6 +3,12 @@
 
 See ChangeLog for more details.
 
+Changes in version 1.4.0:
+
+   o Packages lattice and tcltk are no longer attached, but their
+     namespaces are required, thus resolving check warnings.  Package
+     namespace is now fully specified.  No visible changes for the user.
+
 Changes in version 1.3.9:
 
    o Declared global variable 'x' for satisfying package checking
