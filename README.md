@@ -1,3 +1,6 @@
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/diveMove)](http://www.r-pkg.org/pkg/diveMove)
+[![CRAN_Downloads](http://cranlogs.r-pkg.org/badges/diveMove)](http://www.r-pkg.org/pkg/diveMove)
+
 # diveMove
 
 diveMove is a GNU R package with tools to represent, visualize, filter,
