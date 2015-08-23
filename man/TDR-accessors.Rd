@@ -15,7 +15,7 @@
 \alias{getTime}
 \alias{getSpeed}
 
-\alias{[,TDR-method}
+\alias{[,TDR,numeric,missing,missing-method}
 \alias{as.data.frame,TDR-method}
 \alias{coerce,TDR,data.frame-method}
 \alias{as.TDRspeed,TDR-method}
@@ -75,9 +75,10 @@
 \section{Extractor Methods}{
   \describe{
 
-    \item{[}{\code{signature(x="TDR")}: Subset a TDR object; these
-      objects can be subsetted on a single index \var{i}.  Selects
-      given rows from object.}
+    \item{[}{\code{signature(x="TDR", i="numeric", j="missing",
+	drop="missing")}: Subset a TDR object; these objects can be
+	subsetted on a single index \var{i}.  Selects given rows from
+	object.}
 
     \item{getDepth}{\code{signature(x = "TDR")}: depth slot accessor.}
 

@@ -559,9 +559,8 @@ setReplaceMethod("ccData", signature(x="TDR", value="data.frame"),
                  })
 
 ###_ + Subsetting
-setMethod("[", signature("TDR"), function(x, i, j, ..., drop) {
-    if (!missing(j) || !missing(...) || !missing(drop))
-        stop("subsetting TDR objects can only be done on a single index")
+setMethod("[", signature(x="TDR", i="numeric", j="missing", drop="missing"),
+          function(x, i, j, ..., drop) {
     new(class(x), file=getFileName(x), dtime=getDtime(x), time=getTime(x)[i],
         depth=getDepth(x)[i],
         concurrentData=tryCatch(getCCData(x)[i, , drop=FALSE],
