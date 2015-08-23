@@ -18,4 +18,4 @@ Collate: AllClass.R AllGenerics.R AllMethod.R austFilter.R bouts.R calibrate.R
 	 detDive.R detPhase.R distSpeed.R diveStats.R oneDiveStats.R plotTDR.R
 	 plotZOC.R readLocs.R readTDR.R speedStats.R stampDive.R zoc.R zzz.R
 License: GPL-3
-URL: http://r-forge.r-project.org/projects/divemove
+URL: https://github.com/spluque/diveMove
