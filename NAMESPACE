@@ -1,8 +1,14 @@
-## $Id$
 
-importFrom(stats4, mle)
-importFrom(graphics, plot, image)
+## From standard packages
 import(methods)                         # Paranoid measure
+importFrom(stats4, mle, coef)
+importFrom(graphics, abline, arrows, axTicks, axis, axis.POSIXct, box,
+           contour, curve, hist, image, layout, legend, lines, locator,
+           mtext, par, plot, points, rect, rug, segments, text)
+importFrom(grDevices, colorRampPalette, contourLines, dev.off, hsv, rgb)
+importFrom(stats, approx, approxfun, bw.nrd, ecdf, lm, median, nls,
+           nls.control, predict, quantile, sd, splinefun)
+importFrom(utils, read.csv)
 
 ## runquantile for ZOC
 importFrom(caTools, runquantile)
