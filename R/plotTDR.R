@@ -124,7 +124,8 @@
         } else rev(depth.lim)
         plot.fun(xlim=xlim, ylim=ylim)
     } else {
-        require(tcltk) || stop("tcltk support is absent")
+        requireNamespace("tcltk", quietly=TRUE) ||
+            stop("tcltk support is absent")
         rx <- range(as.numeric(time))   # max and min of dates
         diffrx <- diff(rx)
         xlim <- x10 <- if(is.null(xlim)) { # define xlim if not there already

@@ -62,11 +62,12 @@
         c(a=a, lambda=lambda)
     })
     if (plot) {
-        require(lattice) || stop("lattice package is not available")
+        requireNamespace("lattice", quietly=TRUE) ||
+            stop("lattice package is not available")
         pp <- lattice::xyplot(lnfreq ~ x, lnfreq, groups=procf,
                               pars=pars, panel=function(x, y, ...,
                                 pars=pars, ab=coefs) {
-                                  panel.xyplot(x, y, ...)
+                                  lattice::panel.xyplot(x, y, ...)
                                   a1 <- pars[[1]][1]
                                   lambda1 <- pars[[1]][2]
                                   a2 <- pars[[2]][1]
@@ -76,10 +77,11 @@
                                           log(a1 * lambda1 * exp(-lambda1 * x) +
                                               a2 * lambda2 * exp(-lambda2 * x))
                                       }
-                                      panel.curve(procFun2,
-                                                  min(x), max(x), add=TRUE)
-                                      panel.abline(ab[[1]], lty=2)
-                                      panel.abline(ab[[2]], lty=3)
+                                      lattice::panel.curve(procFun2,
+                                                           min(x), max(x),
+                                                           add=TRUE)
+                                      lattice::panel.abline(ab[[1]], lty=2)
+                                      lattice::panel.abline(ab[[2]], lty=3)
                                   } else {
                                       a3 <- pars[[3]][1]
                                       lambda3 <- pars[[3]][2]
@@ -88,11 +90,12 @@
                                               a2 * lambda2 * exp(-lambda2 * x) +
                                               a3 * lambda3 * exp(-lambda3 * x))
                                       }
-                                      panel.curve(procFun3,
-                                                  min(x), max(x), add=TRUE)
-                                      panel.abline(ab[[1]], lty=2)
-                                      panel.abline(ab[[2]], lty=3)
-                                      panel.abline(ab[[3]], lty=4)
+                                      lattice::panel.curve(procFun3,
+                                                           min(x), max(x),
+                                                           add=TRUE)
+                                      lattice::panel.abline(ab[[1]], lty=2)
+                                      lattice::panel.abline(ab[[2]], lty=3)
+                                      lattice::panel.abline(ab[[3]], lty=4)
                                   }
                               }, ...)
         print(pp)
