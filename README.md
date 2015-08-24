@@ -1,7 +1,8 @@
+# diveMove
+
+[![Build Status](https://travis-ci.org/spluque/diveMove.svg?branch=master)](https://travis-ci.org/spluque/diveMove)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/diveMove)](http://www.r-pkg.org/pkg/diveMove)
 [![CRAN_Downloads](http://cranlogs.r-pkg.org/badges/diveMove)](http://www.r-pkg.org/pkg/diveMove)
-
-# diveMove
 
 diveMove is a GNU R package with tools to represent, visualize, filter,
 analyse, and summarize time-depth recorder (TDR) data. It also provides
