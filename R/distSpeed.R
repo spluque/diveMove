@@ -1,4 +1,3 @@
-## $Id$
 
 "distSpeed" <- function(pt1, pt2, method=c("Meeus", "VincentyEllipsoid"))
 {

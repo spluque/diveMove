@@ -1,4 +1,3 @@
-## $Id$
 
 "readLocs" <- function(locations, loc.idCol, idCol, dateCol, timeCol=NULL,
                        dtformat="%m/%d/%Y %H:%M:%S", tz="GMT", classCol,

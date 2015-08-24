@@ -1,4 +1,3 @@
-## $Id$
 
 "stampDive" <- function(x, ignoreZ=TRUE)
 {

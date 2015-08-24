@@ -1,4 +1,3 @@
-% $Id$
 \name{TDR-class}
 \docType{class}
 \alias{TDR-class}

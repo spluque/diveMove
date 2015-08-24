@@ -1,4 +1,3 @@
-## $Id$
 
 ".derivStats" <- function(x, diveNo)
 {

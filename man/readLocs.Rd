@@ -1,4 +1,3 @@
-% $Id$
 \name{readLocs}
 \alias{readLocs}
 

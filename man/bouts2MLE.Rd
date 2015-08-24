@@ -1,4 +1,3 @@
-% $Id$
 \name{bouts2MLE}
 
 \alias{bouts2.mleFUN}

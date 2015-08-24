@@ -1,4 +1,3 @@
-% $Id$
 \name{bouts2NLS}
 
 \alias{bouts2.nlsFUN}

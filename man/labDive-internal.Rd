@@ -1,4 +1,3 @@
-% $Id$
 \name{labDive-internal}
 \alias{labDive-internal}
 

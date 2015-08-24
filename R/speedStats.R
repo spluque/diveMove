@@ -1,4 +1,3 @@
-## $Id$
 
 ".speedStats" <- function(x, vdist)
 {

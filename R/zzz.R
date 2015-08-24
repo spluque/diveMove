@@ -1,4 +1,3 @@
-## $Id$
 
 ## ".onLoad" <- function(lib, pkg) {
 ##     packageStartupMessage("diveMove ",

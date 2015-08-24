@@ -1,4 +1,3 @@
-% $Id$
 \name{TDRcalibrate-accessors}
 \docType{methods}
 \alias{TDRcalibrate-methods}

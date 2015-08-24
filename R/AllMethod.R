@@ -1,4 +1,3 @@
-## $Id$
 
 ###_ + Show and plot
 

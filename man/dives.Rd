@@ -1,4 +1,3 @@
-% $Id$
 \name{dives}
 \docType{data}
 

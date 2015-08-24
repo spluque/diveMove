@@ -1,4 +1,3 @@
-## $Id$
 
 "oneDiveStats" <- function(x, interval, speed=FALSE)
 {

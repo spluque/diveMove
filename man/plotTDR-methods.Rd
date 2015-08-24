@@ -1,4 +1,3 @@
-% $Id$
 \name{plotTDR-methods}
 \docType{methods}
 \alias{plotTDR-methods}

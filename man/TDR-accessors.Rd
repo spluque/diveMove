@@ -1,4 +1,3 @@
-% $Id$
 \name{TDR-accessors}
 \docType{methods}
 \alias{TDR-methods}

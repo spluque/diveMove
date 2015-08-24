@@ -1,4 +1,3 @@
-## $Id$
 
 ".getInterval" <- function(time)
 {

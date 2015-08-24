@@ -1,4 +1,3 @@
-## $Id$
 
 "grpSpeedFilter" <- function(x, speed.thr, window=5, ...)
 {

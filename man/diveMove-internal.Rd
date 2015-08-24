@@ -1,4 +1,3 @@
-% $Id$
 \name{diveMove-internal}
 
 \alias{.depthFilter}

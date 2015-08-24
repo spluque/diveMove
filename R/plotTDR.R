@@ -1,4 +1,3 @@
-## $Id$
 
 ###_ + Internal Function
 ".night" <- function(time, sunrise.time, sunset.time)

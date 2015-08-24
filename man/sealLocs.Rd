@@ -1,4 +1,3 @@
-% $Id$
 \name{sealLocs}
 \docType{data}
 

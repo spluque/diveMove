@@ -1,4 +1,3 @@
-% $Id$
 \name{timeBudget-methods}
 \docType{methods}
 

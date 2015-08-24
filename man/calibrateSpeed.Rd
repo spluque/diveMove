@@ -1,4 +1,3 @@
-% $Id$
 \name{calibrateSpeed}
 \alias{calibrateSpeed}
 

@@ -1,4 +1,3 @@
-## $Id$
 
 setClass("TDR",
          representation=representation(file="character", dtime="numeric",

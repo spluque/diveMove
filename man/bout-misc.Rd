@@ -1,4 +1,3 @@
-% $Id$
 \name{bout-misc}
 
 \alias{boutfreqs}

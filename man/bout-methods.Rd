@@ -1,4 +1,3 @@
-% $Id$
 \name{bout-methods}
 \docType{methods}
 \alias{bout-methods}

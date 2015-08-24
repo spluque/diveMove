@@ -1,4 +1,3 @@
-% $Id$
 \name{extractDive-methods}
 \docType{methods}
 \alias{extractDive-methods}

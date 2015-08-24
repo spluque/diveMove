@@ -1,4 +1,3 @@
-% $Id$
 \name{detDive-internal}
 \alias{detDive-internal}
 

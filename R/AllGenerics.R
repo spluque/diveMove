@@ -1,4 +1,3 @@
-## $Id$
 
 ###_ + Plotting
 if (!isGeneric("plotTDR")) {

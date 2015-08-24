@@ -1,4 +1,3 @@
-% $Id$
 \name{detPhase-internal}
 \alias{detPhase-internal}
 

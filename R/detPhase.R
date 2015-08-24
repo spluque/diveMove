@@ -1,4 +1,3 @@
-## $Id$
 
 ".rleActivity" <- function(time, act, interval)
 {

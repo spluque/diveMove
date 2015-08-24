@@ -1,4 +1,3 @@
-% $Id$
 \name{readTDR}
 
 \alias{readTDR}

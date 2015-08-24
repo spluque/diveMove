@@ -1,4 +1,3 @@
-## $Id$
 
 ".labDive" <- function(act, string)
 {

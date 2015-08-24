@@ -1,4 +1,3 @@
-## $Id$
 
 "calibrateDepth" <-  function(x, dry.thr=70, wet.cond, wet.thr=3610,
                               dive.thr=4,

@@ -1,4 +1,3 @@
-% $Id$
 \name{diveMove-package}
 \docType{package}
 

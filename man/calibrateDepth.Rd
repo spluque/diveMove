@@ -1,4 +1,3 @@
-% $Id$
 \name{calibrateDepth}
 \alias{calibrateDepth}
 

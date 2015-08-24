@@ -1,4 +1,3 @@
-## $Id$
 
 ".depthFilter" <- function(depth, k, probs, depth.bounds, na.rm)
 {
