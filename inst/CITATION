@@ -4,7 +4,7 @@ citHeader("To cite the R package 'diveMove' in publications use:")
 citEntry(entry="Article",
          title="Diving Behaviour Analysis in {R}",
          author=personList(
-             person(first="Sebastian", middle="P.", last="Luque",
+             person(given=c("Sebastian", "P"), family="Luque",
                     email="spluque@gmail.com")),
          journal="{R News}", year=2007, month="June",
          volume=7, number=3, pages="8--14",
