@@ -1,3 +1,7 @@
+Changes in version 1.4.1:
+
+   o Updated CITATION to reflect new person() arguments.
+
 Changes in version 1.4.0:
 
    o Packages lattice and tcltk are no longer attached, but their
