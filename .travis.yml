@@ -1,4 +1,17 @@
-language: r
+language: R
 sudo: required
 
+apt_packages:
+  - texinfo
+  - texlive-latex-recommended
+  - texlive-latex-extra
+  - texlive-fonts-recommended
+  - texlive-fonts-extra
+  - chktex
+
+before_install:
+  - tlmgr install boxedminipage inconsolata
+
 r_build_args: --compact-vignettes='gs+qpdf'
+
+r_check_args: --as-cran --no-examples
