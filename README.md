@@ -24,7 +24,7 @@ provides.
 
 ## Installation
 
-Get the released version of from CRAN:
+Get the released version from CRAN:
 
 ```R
 install.packages("diveMove")
