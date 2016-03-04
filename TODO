@@ -7,7 +7,8 @@
 
 * Plotting
 
-** Colors should be constant in plotTDR() 
+** DONE Colors should be constant in plotTDR()
+   CLOSED: [2016-03-03 Thu 22:17]
 
 Each color should always represent one type of behaviour, regardless of the
 number of behaviours shown in each plot.  Whenever panning or zooming, the
@@ -91,7 +92,8 @@ Felix Andrews demonstrated a bit:
   
 #+END_SRC
 
-** TODO Include a control for zoom level in plotTDR()
+** DONE Include a control for zoom level in plotTDR()
+   CLOSED: [2016-03-03 Thu 22:18]
 
 
 * Emacs local variables
