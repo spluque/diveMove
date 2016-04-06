@@ -1,3 +1,4 @@
+%\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Dive Analysis}
 %\VignetteDepends{diveMove}
 %\VignettePackage{diveMove}
@@ -18,12 +19,8 @@
 \usepackage{natbib}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage{pdfpages}
-\usepackage{Sweave}
-\RecustomVerbatimEnvironment
-{Sinput}{Verbatim}{fontsize=\relsize{-1}}
-\RecustomVerbatimEnvironment
-{Soutput}{Verbatim}{fontsize=\relsize{-1}}
-\SweaveOpts{eps=FALSE, strip.white=all, pdf=FALSE, png=TRUE, resolution=180}
+
+\graphicspath{{./figure/}}
 
 \newcommand{\Robject}[1]{{\texttt{#1}}}
 \newcommand{\Rfunction}[1]{{\texttt{#1}}}
@@ -34,9 +31,15 @@
 \newcommand{\R}{{\normalfont\textsf{R }}{}}
 \setcitestyle{aysep={},notesep={; }}
 
-
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0.5em}
+
+<<include=FALSE>>=
+library(knitr)
+opts_chunk$set(strip.white=TRUE, size="relsize{-1}",
+               dev="png", resolution=180)
+@
+
 % -------------------------------------------------------------------------
 
 \begin{document}
@@ -54,7 +57,7 @@
 
 \maketitle
 
-<<R-opts, echo=FALSE, results=hide>>=
+<<R-opts, echo=FALSE, results="hide">>=
 options(width=34, digits=4)
 @
 
@@ -154,7 +157,7 @@ analyses.
 
 As with other packages in R, to use the package we load it with the funtion
 \Rfunction{library}:
-<<startup, results=hide>>=
+<<startup, results="hide">>=
 library(diveMove)
 @
 
@@ -230,19 +233,19 @@ slot are valid:
 
 <<create-tdr>>=
 ddtt.str <- paste(tdrXcsv$date, tdrXcsv$time)
-ddtt <- strptime(ddtt.str, 
+ddtt <- strptime(ddtt.str,
                  format="%d/%m/%Y %H:%M:%S")
 time.posixct <- as.POSIXct(ddtt, tz="GMT")
-tdrX <- createTDR(time=time.posixct, 
+tdrX <- createTDR(time=time.posixct,
                   depth=tdrXcsv$depth,
-                  concurrentData=tdrXcsv[, -c(1:3)], 
+                  concurrentData=tdrXcsv[, -c(1:3)],
                   dtime=5, file=srcfn)
 ## Or a TDRspeed object, since we know we have
 ## speed measurements:
-tdrX <- createTDR(time=time.posixct, 
+tdrX <- createTDR(time=time.posixct,
                   depth=tdrXcsv$depth,
-                  concurrentData=tdrXcsv[, -c(1:3)], 
-                  dtime=5, file=srcfn, 
+                  concurrentData=tdrXcsv[, -c(1:3)],
+                  dtime=5, file=srcfn,
                   speed=TRUE)
 @
 
@@ -251,20 +254,20 @@ If the files are in *.csv format, these steps can be automated using the
 classes representing \texttt{TDR} data (\Rclass{TDRspeed} in this case),
 and immediately begin using the methods provided:
 
-<<readin-tdr, eval=FALSE, results=hide>>=
+<<readin-tdr, eval=FALSE, results="hide">>=
 <<dives-con>>
-tdrX <- readTDR(sfp, speed=TRUE, sep=";", 
+tdrX <- readTDR(sfp, speed=TRUE, sep=";",
                 na.strings="", as.is=TRUE)
 plotTDR(tdrX)
-<<plot-tdr, fig=TRUE, include=FALSE, eval=TRUE, echo=FALSE, results=hide>>=
+<<plot-tdr, include=FALSE, eval=TRUE, echo=FALSE, results="hide">>=
 <<dives-con>>
-tdrX <- readTDR(sfp, speed=TRUE, sep=";", 
+tdrX <- readTDR(sfp, speed=TRUE, sep=";",
                 na.strings="", as.is=TRUE)
 plotTDR(tdrX, interact=FALSE, cex.lab=1.3)
 @
 \begin{figure}%[tbhp]
   \centering
-  \includegraphics[width=\linewidth]{diveMove-plot-tdr}
+  \includegraphics[width=\linewidth]{plot-tdr-1}
   \includegraphics[width=0.5\linewidth]{tcltk}
   \caption{The \Rmethod{plotTDR()} method for \Rclass{TDR} objects produces
     an interactive plot of the data, allowing for zooming and panning.}
@@ -354,7 +357,7 @@ For example, preliminary inspection of object \Robject{tdrX} would have
 revealed a 3 m offset, and we could have simply called (without plotting):
 
 <<eval=FALSE>>=
-dcalib <- calibrateDepth(tdrX, 
+dcalib <- calibrateDepth(tdrX,
                          zoc.method="offset",
                          offset=3)
 @
@@ -379,10 +382,10 @@ using depth bounds helps to stabilize the surface signal.  Further details
 on this method are provided by \citet{8642}.
 
 <<eval=FALSE>>=
-dcalib <- calibrateDepth(tdrX, 
+dcalib <- calibrateDepth(tdrX,
                          zoc.method="filter",
-                         k=c(3, 5760), 
-                         probs=c(0.5, 0.02), 
+                         k=c(3, 5760),
+                         probs=c(0.5, 0.02),
                          na.rm=TRUE)
 @
 
@@ -420,9 +423,10 @@ A more refined call to \Rfunction{calibrateDepth()} for object
 \Robject{tdrX} may be:
 
 <<zoc>>=
-dcalib <- calibrateDepth(tdrX, dive.thr=3, 
+dcalib <- calibrateDepth(tdrX, dive.thr=3,
                          zoc.method="offset",
-                         offset=3, descent.crit.q=0.01, 
+                         offset=3,
+                         descent.crit.q=0.01,
                          ascent.crit.q=0,
                          knot.factor=20)
 @
@@ -487,13 +491,13 @@ allows visualizing the major wet/dry activities throughout the record
 <<plot-gross-activity, eval=FALSE>>=
 plotTDR(dcalib, concurVars=c("speed", "light"),
         surface=TRUE)
-<<plot-tdrcalibrate, fig=TRUE, include=FALSE, eval=TRUE, echo=FALSE, results=hide>>=
+<<plot-tdrcalibrate, include=FALSE, eval=TRUE, echo=FALSE, results="hide">>=
 plotTDR(dcalib, concurVars=c("speed", "light"),
         surface=TRUE, interact=FALSE, cex.lab=1.3)
 @
 \begin{figure}[tb]
   \centering
-  \includegraphics[width=\linewidth]{diveMove-plot-tdrcalibrate}
+  \includegraphics[width=\linewidth]{plot-tdrcalibrate-1}
   \caption{The \Rfunction{plotTDR()} method for \Rclass{TDRcalibrate}
     objects displays information on the major activities identified
     throughout the record (wet/dry periods here).}
@@ -521,14 +525,14 @@ of dives 2 through 8 (Figure~\ref{fig:3}):
 
 <<plot-dive-activity, eval=FALSE>>=
 plotTDR(dcalib, diveNo=2:8, what="phases")
-<<plot-tdr-dives, fig=TRUE, include=FALSE, eval=TRUE, echo=FALSE, results=hide>>=
-plotTDR(dcalib, diveNo=2:8, what="phases", 
-        interact=FALSE, cex.lab=1.3, 
+<<plot-tdr-dives, include=FALSE, eval=TRUE, echo=FALSE, results="hide">>=
+plotTDR(dcalib, diveNo=2:8, what="phases",
+        interact=FALSE, cex.lab=1.3,
         depth.lim=c(0, 80))
 @
 \begin{figure}%[tb]
   \centering
-  \includegraphics[width=\linewidth]{diveMove-plot-tdr-dives}
+  \includegraphics[width=\linewidth]{plot-tdr-dives-1}
   \caption{The \Rmethod{plotTDR()} method for \Rclass{TDRcalibrate} objects
     can also display information on the different activities during each
     dive record (descent=D, descent/bottom=DB, bottom=B, bottom/ascent=BA,
@@ -621,12 +625,12 @@ identification procedure can be gleaned by using the
 
 <<diveModel, eval=FALSE>>=
 plotDiveModel(dcalib, diveNo=260)
-<<plot-dive-model, fig=TRUE, include=FALSE, eval=TRUE, echo=FALSE, results=hide>>=
+<<plot-dive-model, include=FALSE, eval=TRUE, echo=FALSE, results="hide">>=
 plotDiveModel(dcalib, diveNo=260)
 @
 \begin{figure}%
   \centering
-  \includegraphics[trim=10 0 10 0,width=\linewidth]{diveMove-plot-dive-model}
+  \includegraphics[trim=10 0 10 0,width=\linewidth]{plot-dive-model-1}
   \caption{Details of the process of identification of dive phases shown by
     \Rmethod{plotDiveModel}, which has methods for objects of class
     \Rclass{TDRcalibrate} and \Rclass{diveModel}.}
@@ -667,9 +671,9 @@ function \Rfunction{diveStats()} (Figure~\ref{fig:summaries}).
 \begin{figure*}
   \centering \small{}
   \begin{boxedminipage}{\textwidth}
-<<echo=FALSE, results=hide>>=
+<<echo=FALSE, results="hide">>=
 options(width=105)
-<<dive-summaries, echo=TRUE, results=verbatim>>=
+<<dive-summaries, echo=TRUE, results="markup">>=
 tdrXSumm1 <- diveStats(dcalib)
 names(tdrXSumm1)
 tbudget <- timeBudget(dcalib, ignoreZ=TRUE)
@@ -677,7 +681,7 @@ head(tbudget, 4)
 trip.labs <- stampDive(dcalib, ignoreZ=TRUE)
 tdrXSumm2 <- data.frame(trip.labs, tdrXSumm1)
 names(tdrXSumm2)
-<<echo=FALSE, results=hide>>=
+<<echo=FALSE, results="hide">>=
 <<R-opts>>
 @
 \end{boxedminipage}
@@ -786,19 +790,19 @@ bivariate kernel densities, and including only changes in depth~$>$~1,
 measured speeds and rates of depth change~$>$~0:
 
 <<calibrate-speed, eval=FALSE>>=
-vcalib <- calibrateSpeed(dcalib, tau=0.1, 
+vcalib <- calibrateSpeed(dcalib, tau=0.1,
                          contour.level=0.1,
-                         z=1, bad=c(0, 0), 
+                         z=1, bad=c(0, 0),
                          cex.pts=0.2)
-<<plot-speed-calibration, fig=TRUE, include=FALSE, eval=TRUE, echo=FALSE, results=hide>>=
-calibrateSpeed(dcalib, tau=0.1, 
+<<plot-speed-calibration, include=FALSE, eval=TRUE, echo=FALSE, results="hide">>=
+calibrateSpeed(dcalib, tau=0.1,
                contour.level=0.1,
-               z=1, bad=c(0, 0), 
+               z=1, bad=c(0, 0),
                cex.pts=0.2)
 @
 \begin{figure}%
   \centering
-  \includegraphics[trim=10 0 10 0,width=\linewidth]{diveMove-plot-speed-calibration}
+  \includegraphics[trim=10 0 10 0,width=\linewidth]{plot-speed-calibration-1}
   \caption{The relationship between measured speed and rate of depth change
     can be used to calibrate speed readings.  The line defining the
     calibration for speed measurements passes through the bottom edge of a

@@ -5,3 +5,4 @@
 EXAMPLES.*
 ^TODO$
 ^.AppleDouble$
+^vignettes/figure$
