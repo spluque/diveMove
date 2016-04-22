@@ -1,7 +1,7 @@
 
 setClass("TDR",
-         representation=representation(file="character", dtime="numeric",
-             time="POSIXct", depth="numeric", concurrentData="data.frame"),
+         slots=c(file="character", dtime="numeric", time="POSIXct",
+                 depth="numeric", concurrentData="data.frame"),
          prototype=prototype(concurrentData=data.frame()),
          validity=function(object) {
              if (length(object@time) != length(object@depth)) {
@@ -39,10 +39,10 @@ setClass("TDRspeed", contains="TDR",
          })
 
 setClass("TDRcalibrate",
-         representation=representation(call="call", tdr="TDR",
-           gross.activity="list", dive.activity="data.frame",
-           dive.phases="factor", dive.models="list", dry.thr="numeric",
-           wet.thr="numeric", dive.thr="numeric", speed.calib.coefs="numeric"),
+         slots=c(call="call", tdr="TDR", gross.activity="list",
+                 dive.activity="data.frame", dive.phases="factor",
+                 dive.models="list", dry.thr="numeric", wet.thr="numeric",
+                 dive.thr="numeric", speed.calib.coefs="numeric"),
          prototype=prototype(speed.calib.coefs=c(0, 1)),
          validity=function(object) {
              ndives <- max(object@dive.activity$dive.id, na.rm=TRUE)
@@ -70,10 +70,10 @@ setClass("TDRcalibrate",
 
 setOldClass("smooth.spline")
 setClass("diveModel",
-         representation=representation(label.matrix="matrix",
-           dive.spline="smooth.spline", spline.deriv="list",
-           descent.crit="numeric", ascent.crit="numeric",
-           descent.crit.rate="numeric", ascent.crit.rate="numeric"),
+         slots=c(label.matrix="matrix", dive.spline="smooth.spline",
+                 spline.deriv="list", descent.crit="numeric",
+                 ascent.crit="numeric", descent.crit.rate="numeric",
+                 ascent.crit.rate="numeric"),
          validity=function(object) {
              if (length(slot(object, "descent.crit")) > 1) {
                  return("descent.crit must be a single number")
