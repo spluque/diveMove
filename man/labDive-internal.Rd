@@ -16,8 +16,8 @@
 
 
 \usage{
-.cutDive(x, dive.model,smooth.par, knot.factor,
-         descent.crit.q, ascent.crit.q)
+.cutDive(x, dive.model, smooth.par=NULL, knot.factor,
+         sigma=2, g=25, descent.crit.q, ascent.crit.q)
 .labDive(act, string)
 .labDivePhase(x, diveID, \ldots)
 }
@@ -30,7 +30,7 @@
     object, non NA depths, and numeric vector representing
     \code{\link{POSIXct}} times.}
 
-  \item{dive.model, smooth.par, knot.factor, descent.crit.q,
+  \item{dive.model, smooth.par, knot.factor, sigma, g, descent.crit.q,
     ascent.crit.q}{Passed from \code{calibrateDepth}.}
 
   \item{act}{factor with values to label.}

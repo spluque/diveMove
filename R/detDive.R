@@ -68,7 +68,7 @@
 
 ##_+ Dive Detection with smoothing spline and derivative
 ".cutDive" <- function(x, dive.model, smooth.par=NULL, knot.factor,
-                       descent.crit.q, ascent.crit.q)
+                       sigma=2, g=25, descent.crit.q, ascent.crit.q)
 {
     ## Value: 'diveModel' object with details of dive phase model.
     ## --------------------------------------------------------------------
@@ -79,7 +79,8 @@
     ## smooth.par=spar parameter for smooth.spline() (for method
     ## "smooth.spline", ignored otherwise); knot.factor=numeric scalar that
     ## multiplies the duration of the dive (used to construct the time
-    ## predictor for the derivative); descent.crit.q=ascent.crit.q
+    ## predictor for the derivative); sigma=g=parameters passed to unireg
+    ## for unimodal regression model; descent.crit.q=ascent.crit.q
     ## quantiles defining the critical vertical rates of descent and ascent
     ## where descent should and ascent begin.
     ## --------------------------------------------------------------------

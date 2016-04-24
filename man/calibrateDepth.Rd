@@ -57,7 +57,7 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
     restricted to shallow depths near the beginning and end of dives.
     This pattern is common in some satellite-linked \acronym{TDR}s.}
 
-  \item{dive.model}{character: string specifying what model to use for
+  \item{dive.model}{character string specifying what model to use for
     each dive for the purpose of dive phase identification.  One of
     \dQuote{smooth.spline} or \dQuote{unimodal}, to choose among
     smoothing spline of unimodal regression (see \sQuote{Details}.}
@@ -206,7 +206,7 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
 
   \subsection{\sQuote{smooth.spline}}{
 
-    In this method, specified via \code{dive.model="smooth.spline"}, a
+    In this model, specified via \code{dive.model="smooth.spline"}, a
     smoothing spline is used to model the dive and its derivative to
     investigate its changes in vertical rate.  This method requires at
     least 4 observations (see \code{\link[stats]{smooth.spline}}), so
@@ -290,7 +290,8 @@ divesTDR
 \dontrun{## Too long for checks
 ## Consider a 3 m offset, a dive threshold of 3 m, the 1\% quantile for
 ## critical vertical rates, and a set of knots 20 times as long as the
-## observed time steps.
+## observed time steps. Default smoothing spline model for dive phase
+## detection, using default smoothing parameter.
 (dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="offset",
                           offset=3, descent.crit.q=0.01, ascent.crit.q=0,
                           knot.factor=20))
@@ -301,6 +302,15 @@ divesTDR
                           descent.crit.q=0.01, ascent.crit.q=0,
                           knot.factor=20))
 }
+
+## Compare dive models for dive phase detection
+(dcalib.uni <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="offset",
+                              offset=3, dive.model="unimodal",
+                              descent.crit.q=0.01, ascent.crit.q=0,
+                              knot.factor=20))
+plotTDR(dcalib, what="dive.model", diveNo=20)
+plotTDR(dcalib.uni, what="dive.model", diveNo=20)
+
 
 }
 
