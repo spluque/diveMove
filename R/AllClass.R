@@ -69,12 +69,18 @@ setClass("TDRcalibrate",
          })
 
 setOldClass("smooth.spline")
+setOldClass("bSpline")
+setClassUnion("dive.spline", c("smooth.spline", "bSpline"))
+setOldClass("xyVector")
 setClass("diveModel",
-         slots=c(label.matrix="matrix", dive.spline="smooth.spline",
-                 spline.deriv="list", descent.crit="numeric",
-                 ascent.crit="numeric", descent.crit.rate="numeric",
-                 ascent.crit.rate="numeric"),
+         slots=c(label.matrix="matrix", model="character",
+                 dive.spline="dive.spline", spline.deriv="xyVector",
+                 descent.crit="numeric", ascent.crit="numeric",
+                 descent.crit.rate="numeric", ascent.crit.rate="numeric"),
          validity=function(object) {
+             if (! object@model %in% c("smooth.spline", "unimodal")) {
+                 return("Model must be 'smooth.spline' or 'unimodal'")
+             }
              if (length(slot(object, "descent.crit")) > 1) {
                  return("descent.crit must be a single number")
              }

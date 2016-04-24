@@ -153,28 +153,47 @@ setMethod("show", signature=signature(object="diveModel"),
               digits <- getOption("digits")
               cat("Dive model -- Class",
                   class(object), "object\n")
-              if(!is.null(cl <- object@dive.spline$call)) {
+              if (!is.null(cl <- object@dive.spline$call)) {
                   cat("Call:\n")
                   dput(cl, control=NULL)
               }
-              ip <- object@dive.spline$iparms
-              cv <- cl$cv
-              if(is.null(cv)) cv <- FALSE else if(is.name(cv)) cv <- eval(cv)
-              cat("\nSmoothing Parameter  spar=",
-                  format(object@dive.spline$spar, digits=digits),
-                  " lambda=", format(object@dive.spline$lambda, digits=digits),
-                  if (ip["ispar"] != 1L) {
-                      paste("(", ip["iter"], " iterations)", sep="")
+              if (object@model == "smooth.spline") {
+                  ip <- object@dive.spline$iparms
+                  cv <- cl$cv
+                  if(is.null(cv)) cv <- FALSE else if(is.name(cv)) cv <- eval(cv)
+                  cat("\nSmoothing Parameter  spar=",
+                      format(object@dive.spline$spar, digits=digits),
+                      " lambda=", format(object@dive.spline$lambda, digits=digits),
+                      if (ip["ispar"] != 1L) {
+                          paste("(", ip["iter"], " iterations)", sep="")
                       }, "\n", sep="")
-              cat("Equivalent Degrees of Freedom :",
-                  format(object@dive.spline$df, digits=digits), "\n")
-              cat("Penalized Criterion           :",
-                  format(object@dive.spline$pen.crit, digits=digits), "\n")
-              cat(ifelse(cv,
-                         "PRESS                         : ",
-                         "GCV                           : "),
-                  format(object@dive.spline$cv.crit, digits=digits),
-                  "\n", sep="")
+                  cat("Equivalent Degrees of Freedom :",
+                      format(object@dive.spline$df, digits=digits), "\n")
+                  cat("Penalized Criterion           :",
+                      format(object@dive.spline$pen.crit, digits=digits), "\n")
+                  cat(ifelse(cv,
+                             "PRESS                         : ",
+                             "GCV                           : "),
+                      format(object@dive.spline$cv.crit, digits=digits),
+                      "\n", sep="")
+              } else {                  # it's unimodal
+                  cat("Optimal tuning parameter      : ",
+                      format(object@dive.spline$lambda.opt, digits=digits),
+                      "\n", sep="")
+                  cat("Estimated residual variance   : ",
+                      format(object@dive.spline$sigma, digits=digits),
+                      "\n", sep="")
+                  cat("Degree of spline              : ",
+                      object@dive.spline$degree, "\n", sep="")
+                  cat("Number of inner knots         : ",
+                      object@dive.spline$g, "\n", sep="")
+                  cat("Left boundary of domain       : ",
+                      object@dive.spline$a, "\n", sep="")
+                  cat("Right boundary of domain      : ",
+                      object@dive.spline$b, "\n", sep="")
+                  cat("Number of iterations          : ",
+                      object@dive.spline$variter, "\n", sep="")
+              }
               cat("Observed N                    : ",
                   nrow(object@label.matrix), "\n", sep="")
               cat("Modelled N                    : ",

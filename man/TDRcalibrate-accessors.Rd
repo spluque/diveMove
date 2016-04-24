@@ -106,8 +106,9 @@
 
     \item{getDPhaseLab}{\code{signature(x="TDRcalibrate",
 	diveNo="missing")}: extracts a factor identifying all readings
-	to a particular dive phase.  This accesses the dive.phases slot
-	of \code{\link{TDRcalibrate}} objects, which is a factor.}
+	to a particular dive phase.  This accesses the
+	\code{dive.phases} slot of \code{\link{TDRcalibrate}} objects,
+	which is a factor.}
 
     \item{getDPhaseLab}{\code{signature(x="TDRcalibrate",
 	diveNo="numeric")}: as the method for missing \code{y}, but

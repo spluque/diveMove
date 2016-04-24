@@ -24,19 +24,24 @@
   generated during depth calibration, using
   \code{\link{calibrateDepth}}, more specifically
   \code{\link{.cutDive}}.
-  
+
 }
 
 
 \section{Slots}{
 
   \describe{
-    
+
     \item{\code{label.matrix}:}{Object of class \code{"matrix"}.  A
       2-column character matrix with row numbers matching each
       observation to the full \code{\link{TDR}} object, and a vector
       labelling the phases of each dive.}
-    
+
+    \item{\code{model}:}{Object of class \code{"character"}.  A string
+      identifying the specific model fit to dives for the purpose of
+      dive phase identification.  It should be one of
+      \sQuote{smooth.spline} or \sQuote{unimodal}.}
+
     \item{\code{dive.spline}:}{Object of class \code{"smooth.spline"}.
       Details of cubic smoothing spline fit (see
       \code{\link[stats]{smooth.spline}}).}
@@ -60,9 +65,9 @@
     \item{\code{ascent.crit.rate}:}{Object of class \code{"numeric"}.
       The rate of ascent corresponding to the critical quantile
       used.}
-   
+
   }
-  
+
 }
 
 

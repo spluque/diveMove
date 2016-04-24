@@ -67,19 +67,21 @@
 }
 
 ##_+ Dive Detection with smoothing spline and derivative
-".cutDive" <- function(x, smooth.par=NULL, knot.factor, descent.crit.q,
-                       ascent.crit.q)
+".cutDive" <- function(x, dive.model, smooth.par=NULL, knot.factor,
+                       descent.crit.q, ascent.crit.q)
 {
     ## Value: 'diveModel' object with details of dive phase model.
     ## --------------------------------------------------------------------
     ## Arguments: x=a 3-col numeric matrix with index in original TDR
     ## object, non-NA depths and numeric time.  A single dive's data
-    ## (*below* 'dive.threshold'); smooth.par=spar parameter for
-    ## smooth.spline(); knot.factor=numeric scalar that multiplies the
-    ## duration of the dive (used to construct the time predictor for the
-    ## derivative); descent.crit.q=ascent.crit.q quantiles defining the
-    ## critical vertical rates of descent and ascent where descent should
-    ## and ascent begin.
+    ## (*below* 'dive.threshold'); dive.model=string identifying method for
+    ## identifying dive phases ("smooth.spline" or "unimodal");
+    ## smooth.par=spar parameter for smooth.spline() (for method
+    ## "smooth.spline", ignored otherwise); knot.factor=numeric scalar that
+    ## multiplies the duration of the dive (used to construct the time
+    ## predictor for the derivative); descent.crit.q=ascent.crit.q
+    ## quantiles defining the critical vertical rates of descent and ascent
+    ## where descent should and ascent begin.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
@@ -154,6 +156,8 @@
                }})
 
     depths.deriv <- predict(depths.smooth, times.pred, deriv=1)
+    ## The derivative is efficiently handled as a 'xyVector' or 'list'
+    class(depths.deriv) <- c("xyVector", "list")
     depths.d <- depths.deriv$y
 
     ## Descent ------------------------------------------------------------
@@ -206,7 +210,7 @@
     ## the end of the predicted smooth depths (from end)
     Ad1neg.max <- Ad1neg.sum - Ad1neg.max.nat + 1
     ## Absolute differences between time predictor corresponding to the
-    ## position above and scaled time (it's important it's in reverse, so
+    ## position above and scaled time (it's important it's reversed, so
     ## that we can find the first minimum below)
     Ad1neg.diff <- rev(times.pred)[Ad1neg.max] - rev(times.scaled)
     left <- max(which(Ad1neg.diff <= 0))
@@ -258,6 +262,8 @@
     ## Any remaining rowids are nonexistent labels
     label.mat <- cbind(rowids[!is.na(rowids)], labs[!is.na(rowids)])
     new("diveModel",
+        model=ifelse("smooth.spline" %in% class(depths.smooth),
+                     "smooth.spline", "unimodal"),
         label.matrix=label.mat,
         dive.spline=depths.smooth,
         spline.deriv=depths.deriv,
@@ -276,7 +282,8 @@
     ## dive (non-dives should be 0). As it is called by calibrateDepth,
     ## these indices include underwater phases, not necessarily below dive
     ## threshold. ...=arguments passed to .cutDive(), usually from
-    ## calibrateDepth() and include 'smooth.par' and 'knot.factor'.
+    ## calibrateDepth() and include 'dive.model', 'smooth.par' and
+    ## 'knot.factor'.
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------

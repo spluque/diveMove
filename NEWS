@@ -1,6 +1,9 @@
 Changes in version 1.4.2:
 
-   o Updated README.
+   o New method for dive phase detection in calibrateDepth().  By default,
+     a smoothing spline is used to model dives, but a unimodal regression
+     is now available to remove the burden of selecting the amount of
+     smoothing.
 
 Changes in version 1.4.1:
 
@@ -164,7 +167,7 @@ Changes in version 1.2.1:
      for all classes.
 
    o diveStats() provides more dive summary statistics, including
-     derivative summaries.  
+     derivative summaries.
 
    o When interp.wet=TRUE and there are no missing depth observations,
      calibrateDepth() no longer performs interpolation.

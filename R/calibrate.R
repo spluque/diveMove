@@ -3,6 +3,7 @@
                               dive.thr=4,
                               zoc.method=c("visual", "offset", "filter"),
                               ..., interp.wet=FALSE,
+                              dive.model=c("smooth.spline", "unimodal"),
                               smooth.par=0.1, knot.factor=3,
                               descent.crit.q=0, ascent.crit.q=0)
 {
@@ -18,8 +19,8 @@
     ## offset (offset); interp.wet=logical (proposal) to control whether we
     ## interpolate NA depths in wet periods (*after ZOC*).  Be careful with
     ## latter, which uses an interpolating spline to impute the missing
-    ## data.  'smooth.par', 'knot.factor', 'descent.crit.q', and
-    ## 'ascent.crit.q' are arguments passed to .cutDive() via
+    ## data.  'dive.model', 'smooth.par', 'knot.factor', 'descent.crit.q',
+    ## and 'ascent.crit.q' are arguments passed to .cutDive() via
     ## .labDivePhase().
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
@@ -72,7 +73,9 @@
     detd <- .detDive(getDepth(x), detp[[2]], dive.thr)
 
     ## Identify dive phases
-    phaselabs <- .labDivePhase(x, detd[, 1], smooth.par=smooth.par,
+    dive.model <- match.arg(dive.model)
+    phaselabs <- .labDivePhase(x, detd[, 1], dive.model=dive.model,
+                               smooth.par=smooth.par,
                                knot.factor=knot.factor,
                                descent.crit.q=descent.crit.q,
                                ascent.crit.q=ascent.crit.q)

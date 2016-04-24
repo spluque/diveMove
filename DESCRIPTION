@@ -4,7 +4,7 @@ Title: Dive Analysis and Calibration
 Version: 1.4.2
 Depends: R (>= 2.13.0), methods, stats4
 Suggests: knitr, lattice, tcltk
-Imports: caTools, KernSmooth, quantreg, geosphere
+Imports: caTools, KernSmooth, quantreg, uniReg, geosphere
 Author: Sebastian P. Luque <spluque@gmail.com>
 Maintainer: Sebastian P. Luque <spluque@gmail.com>
 Description: Utilities to represent, visualize, filter, analyse, and summarize
