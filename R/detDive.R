@@ -68,7 +68,8 @@
 
 ##_+ Dive Detection with smoothing spline and derivative
 ".cutDive" <- function(x, dive.model, smooth.par=NULL, knot.factor,
-                       sigma=2, g=25, descent.crit.q, ascent.crit.q)
+                       sigma=2, g=max(10, nrow(x)),
+                       descent.crit.q, ascent.crit.q)
 {
     ## Value: 'diveModel' object with details of dive phase model.
     ## --------------------------------------------------------------------

@@ -314,14 +314,6 @@ divesTDR
                           k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE,
                           descent.crit.q=0.01, ascent.crit.q=0,
                           knot.factor=20))
-
-## Compare dive models for dive phase detection
-(dcalib.uni <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="offset",
-                              offset=3, dive.model="unimodal",
-                              descent.crit.q=0.01, ascent.crit.q=0,
-                              knot.factor=20))
-plotTDR(dcalib, what="dive.model", diveNo=20)
-plotTDR(dcalib.uni, what="dive.model", diveNo=20)
 }
 
 }
