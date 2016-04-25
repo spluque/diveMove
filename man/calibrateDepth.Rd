@@ -230,13 +230,20 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
 
   \subsection{\sQuote{unimodal}}{
 
-    Dive phases identified from the previous model are highly sensitive
-    to the amount of smoothing used (\code{smooth.par}), thus making it
-    difficult to determine what amount of smoothing is adequate.
-    Unimodal regression provides a different model that removes this
-    burden.
+    Dive phases identified via the previous model are highly sensitive
+    to the degree of smoothing used (\code{smooth.par}), thus making it
+    difficult to determine what amount of smoothing is adequate.  A
+    different approach is to constrain the shape of the spline to be
+    unimodal (Koellmann et al. 2014), which is consistent with the
+    definition of a dive in air-breathers, so is certainly appropriate
+    for this group of divers.  A major advantage of this approach is
+    that the degree of smoothing is estimated via restricted maximum
+    likelihood, and has no influence on identifying the transition
+    between descent and ascent.  Therefore, unimodal regression splines
+    make the latter transition clearer compared to using smoothing
+    splines.
 
-    TODO: document this model further.
+    TODO: document our implementation of this model further.
 
   }
 
@@ -265,6 +272,12 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
   likely the best way to ensure proper detection of wet/dry conditions.}
 
 \references{
+
+  Koellmann, C., Ickstadt, K. and Fried, R. (2014) Beyond unimodal
+  regression: modelling multimodality with piecewise unimodal, mixture
+  or additive regression. Technical Report
+  8. \url{http://sfb876.tu-dortmund.de/FORSCHUNG/techreports.html}, SFB
+  876, TU Dortmund
 
   Luque, S.P. and Fried, R. (2011) Recursive filtering for zero offset
   correction of diving depth time series. PLoS ONE 6:e15850
@@ -301,7 +314,6 @@ divesTDR
                           k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE,
                           descent.crit.q=0.01, ascent.crit.q=0,
                           knot.factor=20))
-}
 
 ## Compare dive models for dive phase detection
 (dcalib.uni <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="offset",
@@ -310,7 +322,7 @@ divesTDR
                               knot.factor=20))
 plotTDR(dcalib, what="dive.model", diveNo=20)
 plotTDR(dcalib.uni, what="dive.model", diveNo=20)
-
+}
 
 }
 
