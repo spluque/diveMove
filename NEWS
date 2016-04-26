@@ -1,9 +1,11 @@
 Changes in version 1.4.2:
 
    o New method for dive phase detection in calibrateDepth().  By default,
-     a smoothing spline is used to model dives, but a unimodal regression
-     is now available to remove the burden of selecting the amount of
-     smoothing.
+     a new unimodal cubic spline is now available to model dives, which
+     removes the burden of selecting the amount of smoothing in the
+     previous smoothing spline model, although the latter is still
+     available.  The new model is fitted via unireg() from the uniReg
+     package.
 
 Changes in version 1.4.1:
 

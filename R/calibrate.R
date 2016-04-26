@@ -3,7 +3,7 @@
                               dive.thr=4,
                               zoc.method=c("visual", "offset", "filter"),
                               ..., interp.wet=FALSE,
-                              dive.model=c("smooth.spline", "unimodal"),
+                              dive.model=c("unimodal", "smooth.spline"),
                               smooth.par=0.1, knot.factor=3,
                               descent.crit.q=0, ascent.crit.q=0)
 {

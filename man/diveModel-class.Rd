@@ -95,14 +95,14 @@ diveX.m <- cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
 
 ## calibrateDepth() default smoothing spline model for dive phase
 ## detection, using default smoothing parameter.
-phases.spl <- diveMove:::.cutDive(diveX.m, smooth.par=0.2, knot.factor=20,
-                                  dive.model="smooth.spline",
-                                  descent.crit.q=0.01, ascent.crit.q=0)
+(phases.spl <- diveMove:::.cutDive(diveX.m, smooth.par=0.2, knot.factor=20,
+                                   dive.model="smooth.spline",
+                                   descent.crit.q=0.01, ascent.crit.q=0))
 ## Unimodal regression. Number of inner knots is either 10 or the number of
 ## samples in the dive, whichever is larger.
-phases.uni <- diveMove:::.cutDive(diveX.m, smooth.par=0.2, knot.factor=20,
-                                  dive.model="unimodal",
-                                  descent.crit.q=0.01, ascent.crit.q=0)
+(phases.uni <- diveMove:::.cutDive(diveX.m, smooth.par=0.2, knot.factor=20,
+                                   dive.model="unimodal",
+                                   descent.crit.q=0.01, ascent.crit.q=0))
 plotDiveModel(phases.spl,
               diveNo=paste(diveNo, ", smooth.par=", 0.2, sep=""))
 plotDiveModel(phases.uni, diveNo=paste(diveNo))
