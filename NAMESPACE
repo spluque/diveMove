@@ -12,11 +12,11 @@ importFrom(utils, read.csv)
 
 ## runquantile for ZOC
 importFrom(caTools, runquantile)
-## unireg for dive phase identification
-importFrom(uniReg, unireg)
 ## bkde2d and rq for speed calibration
 importFrom(KernSmooth, bkde2D)
 importFrom(quantreg, rq)
+## unireg for dive phase identification
+importFrom(uniReg, unireg)
 ## distance algorithms
 importFrom(geosphere, distMeeus, distVincentyEllipsoid)
 
