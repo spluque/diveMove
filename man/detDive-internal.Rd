@@ -51,6 +51,7 @@
 
 \examples{
 
+\dontrun{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
                ask=FALSE, echo=FALSE)
@@ -61,6 +62,8 @@ tdr <- getTDR(dcalib)
 ## Extract the gross activity from an already calibrated TDR object
 gross.act <- getGAct(dcalib)
 detd <- diveMove:::.detDive(getDepth(tdr), gross.act[[2]], 3)
+
+}
 
 }
 

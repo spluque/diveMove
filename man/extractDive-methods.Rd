@@ -42,6 +42,7 @@
 
 \examples{
 
+\dontrun{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
                ask=FALSE, echo=FALSE)
@@ -52,6 +53,8 @@ plotTDR(diveX, interact=FALSE)
 
 diveX <- extractDive(dcalib, 5:10)
 plotTDR(diveX, interact=FALSE)
+
+}
 
 }
 

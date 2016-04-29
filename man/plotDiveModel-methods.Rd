@@ -91,7 +91,7 @@
       from it, this method plots the observed data and the model.  The
       intended use of this method is through \code{\link{plotTDR}} when
       \code{what="dive.model"}. }
-    
+
 }}
 
 
@@ -101,6 +101,7 @@
 
 \examples{
 
+\dontrun{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
                ask=FALSE, echo=FALSE)
@@ -111,6 +112,8 @@ plotDiveModel(dm, diveNo=100)
 
 ## 'TDRcalibrate' method
 plotDiveModel(dcalib, diveNo=100)
+
+}
 
 }
 

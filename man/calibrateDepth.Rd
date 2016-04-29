@@ -110,7 +110,7 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
   their duration was briefer than \code{dry.thr}.  Therefore,
   \code{dry.thr} must be chosen carefully to avoid interpolation through
   legitimate dry periods.
-  
+
   The next step is to detect dives whenever the zero-offset corrected
   depth in an underwater phase is below the specified dive threshold.  A
   new factor with finer levels of activity is thus generated, including
@@ -257,6 +257,7 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
 data(divesTDR)
 divesTDR
 
+\dontrun{## Too long for checks
 ## Consider a 3 m offset, a dive threshold of 3 m, the 1\% quantile for
 ## critical vertical rates, and a set of knots 20 times as long as the
 ## observed time steps.
@@ -264,7 +265,6 @@ divesTDR
                           offset=3, descent.crit.q=0.01, ascent.crit.q=0,
                           knot.factor=20))
 ## Or ZOC algorithmically with method="filter":
-\dontrun{## This can take a while due to large window needed for 2nd
 ## filter in this dataset
 (dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="filter",
                           k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE,

@@ -97,6 +97,7 @@
 
 ## Using the Example from '?diveStats':
 
+\dontrun{## Too long for checks
 utils::example("diveStats", package="diveMove",
                ask=FALSE, echo=FALSE)
 
@@ -124,6 +125,8 @@ plotZOC(divesTDR, dcalib, xlim=xlim1, ylim=c(0, 6))
 plotZOC(divesTDR, dcalib, xlim=xlim2, ylim=c(0, 70))
 plotZOC(divesTDR, dcalib, xlim=xlim3, ylim=c(0, 70))
 par(old.par)
+
+}
 
 }
 

@@ -166,6 +166,7 @@
 
 \examples{
 
+\dontrun{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
                ask=FALSE, echo=FALSE)
@@ -195,6 +196,8 @@ if (require(lattice)) {
            outer=TRUE, allow.multiple=TRUE, layout=c(1, 3),
            xlab=expression(paste("Vertical rate (", m \%.\% s^-1, ")")),
            strip=strip.custom(factor.levels=fl))
+}
+
 }
 
 }

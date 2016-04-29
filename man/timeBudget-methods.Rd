@@ -53,12 +53,15 @@
 
 \examples{
 
+\dontrun{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
                ask=FALSE, echo=FALSE)
 dcalib		# the 'TDRcalibrate' that was created
 
 timeBudget(dcalib, TRUE)
+
+}
 
 }
 

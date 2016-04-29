@@ -99,6 +99,7 @@ plotBouts3.nls(fit, lnfreq, bec.lty, \ldots)
 
 \examples{
 
+\dontrun{## Too long for checks
 ## Using the Example from '?diveStats':
 utils::example("diveStats", package="diveMove",
                ask=FALSE, echo=FALSE)
@@ -127,6 +128,8 @@ plotBouts(bout.fit)
 
 ## Estimated BEC
 bec3(bout.fit)
+
+}
 
 }
 

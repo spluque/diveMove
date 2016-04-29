@@ -163,6 +163,7 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
 \examples{
 
+\dontrun{## Too long for checks
 ## Using the Example from '?diveStats':
 utils::example("diveStats", package="diveMove",
                ask=FALSE, echo=FALSE)
@@ -201,6 +202,8 @@ bec <- bec2(bout.fit2)
 ## Label bouts
 labelBouts(postdives, rep(bec, length(postdives)),
            bec.method="seq.diff")
+
+}
 
 }
 

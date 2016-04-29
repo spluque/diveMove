@@ -128,7 +128,7 @@
       two aspects have plotting methods:
 
       \itemize{
-	
+
 	\item{ \code{phases} (Optional arguments: \code{concurVars},
 	  \code{surface}) Plots all dives, labelled by the activity
 	  phase they belong to.  It produces a plot consisting of one or
@@ -147,7 +147,7 @@
     }
 
   }
-  
+
 }
 
 
@@ -164,6 +164,7 @@
 
 \examples{
 
+\dontrun{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
                ask=FALSE, echo=FALSE)
@@ -181,6 +182,8 @@ if (dev.interactive(orNone=TRUE)) {
     plotTDR(dcalib, surface=TRUE)
     ## Plot one dive
     plotTDR(dcalib, diveNo=200)
+}
+
 }
 
 }

@@ -141,6 +141,7 @@ unLogit(logit)
 
 \examples{
 
+\dontrun{## Too long for checks
 ## Using the Example from '?diveStats':
 utils::example("diveStats", package="diveMove",
                ask=FALSE, echo=FALSE)
@@ -151,6 +152,8 @@ lnfreq <- boutfreqs(postdives, bw=0.1, method="seq.diff", plot=FALSE)
 boutinit(lnfreq, 50)
 
 ## See ?bouts.mle for labelBouts() example
+
+}
 
 }
 
