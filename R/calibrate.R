@@ -44,12 +44,12 @@
     zd <- .zoc(time, depth, method=zoc.method, control=ell)
     if (!is.null(zd)) x@depth <- zd
     ## Detect phases and dives
-    if (missing(wet.cond)) 
+    if (missing(wet.cond))
         r <- !is.na(zd)
     else {
         e <- substitute(wet.cond)
         r <- eval(e, as.data.frame(x), parent.frame())
-        if (!is.logical(r)) 
+        if (!is.logical(r))
             stop("'subset' must evaluate to logical")
         r <- r & !is.na(r)
     }
@@ -133,11 +133,11 @@
         rddepth <- rddepth[ok]
         curspeed <- curspeed[ok]
         bandw <- c(bw.nrd(rddepth), bw.nrd(curspeed))
-        z <- KernSmooth::bkde2D(cbind(rddepth, curspeed), bandwidth=bandw)
+        z <- bkde2D(cbind(rddepth, curspeed), bandwidth=bandw)
         bins <- contourLines(z$x1, z$x2, z$fhat, levels=contour.level)
         ctr.x <- unlist(sapply(bins, "[", "x"), use.names=FALSE)
         ctr.y <- unlist(sapply(bins, "[", "y"), use.names=FALSE)
-        rqFit <- quantreg::rq(ctr.y ~ ctr.x, tau=tau)
+        rqFit <- rq(ctr.y ~ ctr.x, tau=tau)
         coefs <- coef(rqFit)
         newspeed <- (getSpeed(tt) - coefs[1]) / coefs[2]
         speed(x@tdr) <- newspeed

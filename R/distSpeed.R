@@ -22,11 +22,10 @@
     method <- match.arg(method)
     switch(method,
            Meeus = {
-               distance <- geosphere::distMeeus(pt1[, 2:3], pt2[, 2:3])
+               distance <- distMeeus(pt1[, 2:3], pt2[, 2:3])
            },
            VincentyEllipsoid = {
-               distance <- geosphere::distVincentyEllipsoid(pt1[, 2:3],
-                                                            pt2[, 2:3])
+               distance <- distVincentyEllipsoid(pt1[, 2:3], pt2[, 2:3])
            })
     pt1[, 1] <- as.numeric(pt1[, 1])
     pt2[, 1] <- as.numeric(pt2[, 1])

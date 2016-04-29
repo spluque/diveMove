@@ -7,7 +7,7 @@ importFrom(graphics, abline, arrows, axTicks, axis, axis.POSIXct, box,
            mtext, par, plot, points, rect, rug, segments, text)
 importFrom(grDevices, colorRampPalette, contourLines, dev.off, hsv, rgb)
 importFrom(stats, approx, approxfun, bw.nrd, ecdf, lm, median, nls,
-           nls.control, predict, quantile, sd, splinefun)
+           nls.control, predict, quantile, sd, smooth.spline, splinefun)
 importFrom(utils, read.csv)
 
 ## runquantile for ZOC

@@ -113,14 +113,46 @@
     }
     times.pred <- seq(times.scaled[1], times.scaled[length(times.scaled)],
                       length.out=length(times.scaled) * knot.factor)
-    if (is.null(smooth.par)) {
-        spl <- stats::smooth.spline(times.scaled, depths, all.knots=TRUE)
-        depths.smooth <- stats::smooth.spline(times.scaled, depths,
-                                              spar=spl$spar, all.knots=TRUE)
-    } else {
-        depths.smooth <- stats::smooth.spline(times.scaled, depths,
-                                              spar=smooth.par, all.knots=TRUE)
-    }
+
+    switch(dive.model,
+           unimodal = {
+               ## Need to learn more about the number of knots 'g' in
+               ## unireg and its effect on the process.  For now, g=25
+               ## works well in most cases
+               unispline <- unireg(times.scaled, depths, g=g, k=3,
+                                   sigma=sigma, tuning=FALSE,
+                                   penalty="diff", constr="unimodal",
+                                   abstol=0.01)
+               ## This is a temporary object, as uniReg might develop a
+               ## class for its unireg output.  For now, we're placing into
+               ## a bSpline class for handling as diveModel.  Order: 4,
+               ## since we're using cubic spline (k=3);
+               ## unispline$x=time.scaled in unireg below.
+               depths.smooth <- list(knots=unispline$knotsequence,
+                                     coefficients=unispline$coef, order=4,
+                                     data=list(x=times.scaled, y=depths),
+                                     x=unispline$x, y=unispline$fitted.values,
+                                     unimod.func=unispline$unimod.func,
+                                     lambda.opt=unispline$lambdaopt,
+                                     sigma=unispline$sigma,
+                                     degree=unispline$degree,
+                                     g=unispline$g, a=unispline$a,
+                                     b=unispline$b, variter=unispline$variter)
+               class(depths.smooth) <- c("bSpline", "spline")
+           },
+           smooth.spline = {
+               if (is.null(smooth.par)) {
+                   spl <- smooth.spline(times.scaled, depths,
+                                        all.knots=TRUE)
+                   depths.smooth <- smooth.spline(times.scaled, depths,
+                                                  spar=spl$spar,
+                                                  all.knots=TRUE)
+               } else {
+                   depths.smooth <- smooth.spline(times.scaled, depths,
+                                                  spar=smooth.par,
+                                                  all.knots=TRUE)
+               }})
+
     depths.deriv <- predict(depths.smooth, times.pred, deriv=1)
     depths.d <- depths.deriv$y
 

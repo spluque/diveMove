@@ -31,13 +31,12 @@
     for (i in seq(length(k))) {
         filters <- cbind(filters, depth)
         dd <- filters[d.ok, i]
-        filters[d.ok, i + 1] <- caTools::runquantile(dd, k=k[i],
-                                                     probs=probs[i])
+        filters[d.ok, i + 1] <- runquantile(dd, k=k[i], probs=probs[i])
         ## Linear interpolation for depths out of bounds
         offbounds <- which(!d.in.bounds)
         offbounds.fun <- approxfun(seq(length(depth))[d.in.bounds],
                                    filters[d.in.bounds, i + 1], rule=2)
-        filters[offbounds, i + 1] <- offbounds.fun(offbounds)                                   
+        filters[offbounds, i + 1] <- offbounds.fun(offbounds)
         ## NA input should be NA output regardless of na.rm
         filters[d.na, i + 1] <- NA
     }

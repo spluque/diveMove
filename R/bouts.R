@@ -366,7 +366,7 @@
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
     loglik.fun <- ll.fun(x)
-    fit.mle <- stats4::mle(loglik.fun, start=start, ...)
+    fit.mle <- mle(loglik.fun, start=start, ...)
     fit.mle
 }
 
