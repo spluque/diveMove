@@ -402,22 +402,28 @@ below \Rfunarg{dive.thr} and the subsequent return to the surface.  Each
 dive may subsequently be referred to by an integer number indicating its
 position in the time series.
 
-Dive phases are also identified at this last stage, and is done using a
-smoothing spline model of the dive and its first derivative.  Detection of
-dive phases is controlled by four arguments: a critical quantile for rates
-of vertical descent (\Rfunarg{descent.crit.q}), a critical quantile for
-rates of ascent (\Rfunarg{ascent.crit.q}), a smoothing parameter
-(\Rfunarg{smooth.par}), and a factor (\Rfunarg{knot.factor}) that
-multiplies the duration of the dive to obtain the number of knots at which
-to evaluate the derivative of the smoothing spline.  The first two
-arguments are used to define the rate of descent below which the descent
-phase is deemed to have ended, and the rate of ascent above which the
-ascent phase is deemed to have started, respectively.  The rates are
-obtained by evaluating the derivative of the smoothing at a number of knots
-placed regularly throughout the dive.  Descent is deemed to have ended at
-the \emph{first} minimum derivative, and the nearest input time observation
-is considered to indicate the end of descent.  The sign of the comparisons
-is reversed for detecting the ascent.
+Dive phases are also identified at this last stage, and is done by fitting
+one of two cubic spline models to each dive:
+\begin{inparaenum}[i)]
+\item unimodal regression (default)
+\item smoothing spline
+\end{inparaenum}
+and then using evaluating the first derivative to determine where phases
+begin/end.  Detection of dive phases is thus controlled by four arguments:
+a critical quantile for rates of vertical descent
+(\Rfunarg{descent.crit.q}), a critical quantile for rates of ascent
+(\Rfunarg{ascent.crit.q}), a smoothing parameter (\Rfunarg{smooth.par},
+relevant only for smoothing spline model (i)), and a factor
+(\Rfunarg{knot.factor}) that multiplies the duration of the dive to obtain
+the number of knots at which to evaluate the derivative of the smoothing
+spline.  The first two arguments are used to define the rate of descent
+below which the descent phase is deemed to have ended, and the rate of
+ascent above which the ascent phase is deemed to have started,
+respectively.  The rates are obtained by evaluating the derivative of the
+spline at a number of knots placed regularly throughout the dive.  Descent
+is deemed to have ended at the \emph{first} minimum derivative, and the
+nearest input time observation is considered to indicate the end of
+descent.  The sign of the comparisons is reversed for detecting the ascent.
 
 A more refined call to \Rfunction{calibrateDepth()} for object
 \Robject{tdrX} may be:

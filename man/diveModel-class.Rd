@@ -81,6 +81,7 @@
 
 showClass("diveModel")
 
+\dontrun{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
                ask=FALSE, echo=FALSE)
@@ -105,6 +106,8 @@ diveX.m <- cbind(as.numeric(row.names(diveX[-c(1, nrow(diveX)), ])),
 plotDiveModel(phases.spl,
               diveNo=paste(diveNo, ", smooth.par=", 0.2, sep=""))
 plotDiveModel(phases.uni, diveNo=paste(diveNo))
+
+}
 
 }
 
