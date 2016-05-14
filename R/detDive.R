@@ -68,7 +68,7 @@
 
 ##_+ Dive Detection with smoothing spline and derivative
 ".cutDive" <- function(x, dive.model, smooth.par=NULL, knot.factor,
-                       sigma=2, g=max(10, nrow(x)),
+                       sigma=2, g=max(10, nrow(x) - 4), ordpen=2,
                        descent.crit.q, ascent.crit.q)
 {
     ## Value: 'diveModel' object with details of dive phase model.
@@ -126,7 +126,7 @@
                unispline <- unireg(times.scaled, depths, g=g, k=3,
                                    sigma=sigma, tuning=FALSE,
                                    penalty="diff", constr="unimodal",
-                                   abstol=0.01)
+                                   ordpen=ordpen, abstol=0.01)
                ## This is a temporary object, as uniReg might develop a
                ## class for its unireg output.  For now, we're placing into
                ## a bSpline class for handling as diveModel.  Order: 4,
