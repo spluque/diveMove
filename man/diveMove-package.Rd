@@ -30,7 +30,7 @@
 
 \examples{
 
-\dontrun{## Too long for checks
+\donttest{## Too long for checks
 ## read in data and create a TDR object
 zz <- system.file(file.path("data", "dives.csv"),
                   package="diveMove", mustWork=TRUE)

@@ -163,7 +163,7 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 
 \examples{
 
-\dontrun{## Too long for checks
+\donttest{## Too long for checks
 ## Using the Example from '?diveStats':
 utils::example("diveStats", package="diveMove",
                ask=FALSE, echo=FALSE)

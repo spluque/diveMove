@@ -307,7 +307,7 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
 data(divesTDR)
 divesTDR
 
-\dontrun{## Too long for checks
+\donttest{## Too long for checks
 ## Consider a 3 m offset, a dive threshold of 3 m, the 1\% quantile for
 ## critical vertical rates, and a set of knots 20 times as long as the
 ## observed time steps. Default smoothing spline model for dive phase

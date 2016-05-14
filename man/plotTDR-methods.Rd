@@ -164,7 +164,7 @@
 
 \examples{
 
-\dontrun{## Too long for checks
+\donttest{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
                ask=FALSE, echo=FALSE)

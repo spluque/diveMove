@@ -97,7 +97,7 @@
 
 ## Using the Example from '?diveStats':
 
-\dontrun{## Too long for checks
+\donttest{## Too long for checks
 utils::example("diveStats", package="diveMove",
                ask=FALSE, echo=FALSE)
 

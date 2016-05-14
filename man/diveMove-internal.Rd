@@ -205,7 +205,7 @@ data(divesTDR)
 times <- getTime(divesTDR)
 depths <- getDepth(divesTDR)
 
-\dontrun{## This can take too long
+\donttest{## This can take too long
 ## .depthFilter
 
 d.filter <- diveMove:::.depthFilter(depth=depths, k=c(3, 5760),
