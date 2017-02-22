@@ -68,8 +68,8 @@
 
 ##_+ Dive Detection with smoothing spline and derivative
 ".cutDive" <- function(x, dive.model, smooth.par=NULL, knot.factor,
-                       sigma=2, g=max(10, nrow(x) - 4), ordpen=2,
-                       descent.crit.q, ascent.crit.q)
+                       sigmasq=2, g=max(10, nrow(x) - 4),
+                       ordpen=2, descent.crit.q, ascent.crit.q)
 {
     ## Value: 'diveModel' object with details of dive phase model.
     ## --------------------------------------------------------------------
@@ -80,7 +80,7 @@
     ## smooth.par=spar parameter for smooth.spline() (for method
     ## "smooth.spline", ignored otherwise); knot.factor=numeric scalar that
     ## multiplies the duration of the dive (used to construct the time
-    ## predictor for the derivative); sigma=g=parameters passed to unireg
+    ## predictor for the derivative); sigmasq=g=parameters passed to unireg
     ## for unimodal regression model; descent.crit.q=ascent.crit.q
     ## quantiles defining the critical vertical rates of descent and ascent
     ## where descent should and ascent begin.
@@ -124,7 +124,7 @@
                ## unireg and its effect on the process.  For now, g=25
                ## works well in most cases
                unispline <- unireg(times.scaled, depths, g=g, k=3,
-                                   sigma=sigma, tuning=FALSE,
+                                   sigmasq=sigmasq, tuning=FALSE,
                                    penalty="diff", constr="unimodal",
                                    ordpen=ordpen, abstol=0.01)
                ## This is a temporary object, as uniReg might develop a
@@ -138,7 +138,7 @@
                                      x=unispline$x, y=unispline$fitted.values,
                                      unimod.func=unispline$unimod.func,
                                      lambda.opt=unispline$lambdaopt,
-                                     sigma=unispline$sigma,
+                                     sigmasq=unispline$sigmasq,
                                      degree=unispline$degree,
                                      g=unispline$g, a=unispline$a,
                                      b=unispline$b, variter=unispline$variter)
