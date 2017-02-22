@@ -7,6 +7,8 @@ Changes in version 1.4.2:
      available.  The new model is fitted via unireg() from the uniReg
      package.
 
+   o Use na.rm=TRUE to remove missing values from defining quantiles.
+
 Changes in version 1.4.1:
 
    o Updated CITATION to reflect new person() arguments.

@@ -12,7 +12,7 @@ citEntry(entry="Article",
          note=paste(
              "Contributions from:",
              "John P.Y. Arnould, Laurent Dubroca, and Andy Liaw"),
-         url="http://cran.r-project.org/doc/Rnews/",
+         url="https://cran.r-project.org/doc/Rnews/",
          textVersion=paste(
              "Luque, S.P.  Diving Behaviour Analysis in R. ",
              "R News 7(3):8-14.  December, 2007."))
