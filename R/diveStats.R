@@ -18,9 +18,10 @@
     }
     summarize.phase <- function(diveNo, phase, label) {
         der <- getDiveDeriv(x, diveNo=diveNo, phase=phase)
-        der.summ <- summary(der$y)
+        y.nona <- der$y[!is.na(der$y)]
+        der.summ <- summary(y.nona)
         names(der.summ) <- gsub("[ \\.]", "", tolower(names(der.summ)))
-        der.sd <- sd(der$y)
+        der.sd <- sd(y.nona)
         der.m <- c(der.summ, sd=der.sd)
         names(der.m) <- paste(label, names(der.m), sep=".")
         der.m

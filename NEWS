@@ -1,3 +1,9 @@
+Changes in version 1.4.3:
+
+   o Fixed bug in diveStats() causing inclusion of summaries for NA values
+     when there were any, and consequently differing number of elements in
+     summary() output.
+
 Changes in version 1.4.2:
 
    o New method for dive phase detection in calibrateDepth().  By default,
