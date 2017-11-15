@@ -1,3 +1,10 @@
+Changes in version 1.4.4:
+
+   o Fixed bug in internal .cutDive() whereby descent and ascent critical
+     rates were not being computed for certain dives in corner cases using
+     very slow sampling frequencies.  Descent and/or ascent phases of
+     certain dives may be entirely missed by such sampling protocols.
+
 Changes in version 1.4.3:
 
    o Fixed bug in diveStats() causing inclusion of summaries for NA values

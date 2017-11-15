@@ -169,11 +169,11 @@
     ## How long is this sequence from beginning?
     Dd1pos.sum <- sum(Dd1pos.rle$lengths[seq(Dd1pos.idx)])
     Dd1.maybe <- depths.d[seq(Dd1pos.sum)]
+    d.crit.rate <- quantile(Dd1.maybe, probs=descent.crit.q, na.rm=TRUE)
     ## Index with first minimum from beginning (only positives)
     if (all(Dd1.maybe <= 0)) {     # but first maximum if all non-positives
         Dd1pos.min <- which.max(Dd1.maybe)
     } else {
-        d.crit.rate <- quantile(Dd1.maybe, probs=descent.crit.q, na.rm=TRUE)
         beyond <- Dd1.maybe > d.crit.rate
         Dd1pos.min <- ifelse(any(beyond),
                              which.min(Dd1.maybe[beyond]),
@@ -195,12 +195,12 @@
     Ad1.maybe <- Ad1[seq(Ad1neg.sum)]
     ## Potential ascent derivatives in natural order
     Ad1.maybe.nat <- rev(Ad1[seq(Ad1neg.sum)])
+    a.crit.rate <- quantile(Ad1.maybe.nat, probs=(1 - ascent.crit.q),
+                            na.rm=TRUE)
     ## Index with first maximum in natural ascent order (only negatives)
     if (all(Ad1.maybe >= 0)) {      # but first minimum if all non-negative
         Ad1neg.max.nat <- which.min(Ad1.maybe.nat)
     } else {
-        a.crit.rate <- quantile(Ad1.maybe.nat, probs=(1 - ascent.crit.q),
-                                na.rm=TRUE)
         beyond <- Ad1.maybe.nat < a.crit.rate
         beyond.w <- which(beyond)    # indices below critical in candidates
         beyond0 <- Ad1.maybe.nat < 0
