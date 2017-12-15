@@ -17,7 +17,8 @@
 
 \usage{
 .cutDive(x, dive.model, smooth.par=NULL, knot.factor, sigmasq=2,
-         g=max(10, nrow(x) - 4), ordpen=2, descent.crit.q, ascent.crit.q)
+         g=min(max(10, nrow(x) - 4), 25), ordpen=2,
+         descent.crit.q, ascent.crit.q)
 .labDive(act, string)
 .labDivePhase(x, diveID, \ldots)
 }

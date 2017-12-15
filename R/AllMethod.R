@@ -153,6 +153,8 @@ setMethod("show", signature=signature(object="diveModel"),
               digits <- getOption("digits")
               cat("Dive model -- Class",
                   class(object), "object\n")
+              cat("Model --",
+                  object@model, "\n")
               if (!is.null(cl <- object@dive.spline$call)) {
                   cat("Call:\n")
                   dput(cl, control=NULL)

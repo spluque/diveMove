@@ -2,8 +2,13 @@ Changes in version 1.4.4:
 
    o Fixed bug in internal .cutDive() whereby descent and ascent critical
      rates were not being computed for certain dives in corner cases using
-     very slow sampling frequencies.  Descent and/or ascent phases of
-     certain dives may be entirely missed by such sampling protocols.
+     very slow sampling frequencies.
+
+   o Unimodal regression on dives with less than five samples is replaced
+     with smoothing spline, which provides the same fit much more
+     efficiently.  Otherwise, an upper bound is also introduced on the 'g'
+     parameter for unimodal regression when this model is requested.  This
+     reduces processing time by at least 50%.
 
 Changes in version 1.4.3:
 

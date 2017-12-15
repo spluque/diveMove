@@ -60,7 +60,9 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
   \item{dive.model}{character string specifying what model to use for
     each dive for the purpose of dive phase identification.  One of
     \dQuote{smooth.spline} or \dQuote{unimodal}, to choose among
-    smoothing spline of unimodal regression (see \sQuote{Details}.}
+    smoothing spline or unimodal regression (see \sQuote{Details}).  For
+    dives with less than five observations, smoothing spline regression
+    is used regardless (see \sQuote{Details}).}
 
   \item{smooth.par}{numeric scalar representing amount of smoothing
     (argument \code{spar} in \code{\link[stats]{smooth.spline}}) when
@@ -226,6 +228,12 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
     influence on identifying the transition between descent and ascent.
     Therefore, unimodal regression splines make the latter transition
     clearer compared to using smoothing splines.
+
+    However, note that dives with less than five samples are fit using
+    smoothing splines (see section below) regardless, as they produce
+    the same fit as unimodal regression but much faster.  Therefore,
+    ensure that the parameters for that model are appropriate for the
+    data, although defaults are reasonable.
 
   }
 
