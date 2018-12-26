@@ -1,3 +1,8 @@
+Changes in version 1.4.5:
+
+   o Incorporated runquantile() locally, removing dependency on caTools, as
+     the latter has been orphaned.
+
 Changes in version 1.4.4:
 
    o Fixed bug in internal .cutDive() whereby descent and ascent critical

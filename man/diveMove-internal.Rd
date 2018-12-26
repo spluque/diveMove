@@ -42,7 +42,7 @@
   \item{depth}{Numeric vector with depth in m.}
 
   \item{k}{Vector of moving window width integers (coerced to integer by
-    \code{\link[caTools]{runquantile}}) to be applied sequentially.}
+    \code{\link{.runquantile}}) to be applied sequentially.}
 
   \item{probs}{Vector of quantiles to extract at each step indicated by
     \code{k} (so it must be as long as \code{k}).}

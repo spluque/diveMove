@@ -1,3 +1,4 @@
+useDynLib(diveMove, run_quantile)
 
 ## From standard packages
 import(methods)                         # Paranoid measure
@@ -10,8 +11,6 @@ importFrom(stats, approx, approxfun, bw.nrd, ecdf, lm, median, nls,
            nls.control, predict, quantile, sd, smooth.spline, splinefun)
 importFrom(utils, read.csv)
 
-## runquantile for ZOC
-importFrom(caTools, runquantile)
 ## bkde2d and rq for speed calibration
 importFrom(KernSmooth, bkde2D)
 importFrom(quantreg, rq)
@@ -20,8 +19,32 @@ importFrom(uniReg, unireg)
 ## distance algorithms
 importFrom(geosphere, distMeeus, distVincentyEllipsoid)
 
-exportPattern("^[^\\.]")
-exportClassPattern("^$")               # to over-ride classes implied above
+export("grpSpeedFilter",
+       "rmsDistFilter",
+       "austFilter",
+       "logit",
+       "unLogit",
+       "boutfreqs",
+       "boutinit",
+       "bouts2.nlsFUN",
+       "bouts2.nls",
+       "bouts3.nlsFUN",
+       "bouts3.nls",
+       "labelBouts",
+       "bouts2.mleFUN",
+       "bouts2.ll",
+       "bouts2.LL",
+       "bouts.mle",
+       "calibrateDepth",
+       "calibrateSpeed",
+       "rqPlot",
+       "distSpeed",
+       "diveStats",
+       "oneDiveStats",
+       "readLocs",
+       "readTDR",
+       "createTDR",
+       "stampDive")
 
 exportClasses("TDR",
               "TDRspeed",

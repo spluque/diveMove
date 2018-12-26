@@ -34,7 +34,7 @@
 
 
 \source{WhaleNet Satellite Tracking Program
-  \url{http://whale.wheelock.edu/Welcome.html}.}
+  \url{http://whale.wheelock.edu}.}
 
 % -------------------------------------------------------------------------
 

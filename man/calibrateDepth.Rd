@@ -161,9 +161,7 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
 
   Method \dQuote{filter} implements a smoothing/filtering mechanism
   where running quantiles can be applied to depth measurements in a
-  recursive manner (Luque and Fried 2011), using
-  \code{.depth.filter}. It relies on function
-  \code{\link[caTools]{runquantile}} from the \code{caTools} package.
+  recursive manner (Luque and Fried 2011), using \code{.depth.filter}.
   The method calculates the first running quantile defined by
   \code{probs[1]} on a moving window of size \code{k[1]}.  The next
   running quantile, defined by \code{probs[2]} and \code{k[2]}, is

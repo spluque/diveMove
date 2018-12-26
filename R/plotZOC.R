@@ -1,5 +1,3 @@
-# $Id: $
-
 ###_ + TDR, matrix method (for .depthFilter)
 
 ".plotZOCfilters" <- function(x, zoc.filter, xlim, ylim,

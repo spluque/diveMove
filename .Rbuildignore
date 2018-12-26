@@ -6,3 +6,4 @@ EXAMPLES.*
 ^TODO$
 ^.AppleDouble$
 ^vignettes/figure$
+^src/\.clang-format$

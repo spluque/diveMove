@@ -364,22 +364,21 @@ dcalib <- calibrateDepth(tdrX,
 
 A third method (``filter'') implements a smoothing/filtering mechanism
 where running quantiles can be applied to depth measurements sequentially,
-using \Rfunction{.depth.filter}.  It relies on the \Rpackage{caTools}
-package.  This method is still under development, but reasonable results
-can already be achieved by applying two filters, the first one using a
-running median with a narrow window to denoise the time series, followed by
-a running low quantile using a wide time window.  The integer vector given
-as argument \Rfunarg{k} specifies the width of the moving window(s), where
-$k_{i}$ is the width for the $i^{th}$ filter in units of the sampling
-interval of the \Rclass{TDR} object.  Similarly, the integer vector given
-as argument \Rfunarg{probs} specifies the quantile for each filter, where
-$probs_{i}$ is the quantile for the $i^{th}$ filter.  Smoothing/filtering
-can be performed within specified minimum and maximum depth bounds using
-argument \Rfunarg{depth.bounds}\footnote{Defaults to the depth range}, in
-cases where surface durations are relatively brief separated by long
-periods of deep diving.  These cases usually require large windows, and
-using depth bounds helps to stabilize the surface signal.  Further details
-on this method are provided by \citet{8642}.
+using \Rfunction{.depth.filter}.  This method is still under development,
+but reasonable results can already be achieved by applying two filters, the
+first one using a running median with a narrow window to denoise the time
+series, followed by a running low quantile using a wide time window.  The
+integer vector given as argument \Rfunarg{k} specifies the width of the
+moving window(s), where $k_{i}$ is the width for the $i^{th}$ filter in
+units of the sampling interval of the \Rclass{TDR} object.  Similarly, the
+integer vector given as argument \Rfunarg{probs} specifies the quantile for
+each filter, where $probs_{i}$ is the quantile for the $i^{th}$ filter.
+Smoothing/filtering can be performed within specified minimum and maximum
+depth bounds using argument \Rfunarg{depth.bounds}\footnote{Defaults to the
+depth range}, in cases where surface durations are relatively brief
+separated by long periods of deep diving.  These cases usually require
+large windows, and using depth bounds helps to stabilize the surface
+signal.  Further details on this method are provided by \citet{8642}.
 
 <<eval=FALSE>>=
 dcalib <- calibrateDepth(tdrX,

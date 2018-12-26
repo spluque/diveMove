@@ -31,7 +31,7 @@
     for (i in seq(length(k))) {
         filters <- cbind(filters, depth)
         dd <- filters[d.ok, i]
-        filters[d.ok, i + 1] <- runquantile(dd, k=k[i], probs=probs[i])
+        filters[d.ok, i + 1] <- .runquantile(dd, k=k[i], probs=probs[i])
         ## Linear interpolation for depths out of bounds
         offbounds <- which(!d.in.bounds)
         offbounds.fun <- approxfun(seq(length(depth))[d.in.bounds],
