@@ -74,7 +74,7 @@
         perdive <- do.call(rbind, by(td, dids, oneDiveStats, interval=interval,
                                      speed=TRUE))
         ## for postdive total distance and mean speed
-        ptd <- matrix(c(pdtimes, getSpeed(zvtdr)[okpd]), ncol=2)
+        ptd <- data.frame(pdtimes, getSpeed(zvtdr)[okpd])
         pdv <- do.call(rbind, by(ptd, pdids, .speedStats))
         res <- data.frame(perdive, postdive.dur, postdive.tdist=pdv[, 1],
                           postdive.mean.speed=pdv[, 2], row.names=NULL)
