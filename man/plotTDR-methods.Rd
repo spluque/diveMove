@@ -167,7 +167,7 @@
 \donttest{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
-               ask=FALSE, echo=FALSE)
+               ask=FALSE, echo=FALSE, run.donttest=TRUE)
 ## Use interact=TRUE (default) to set an offset interactively
 ## Plot the 'TDR' object
 plotTDR(getTime(divesTDR), getDepth(divesTDR), interact=FALSE)

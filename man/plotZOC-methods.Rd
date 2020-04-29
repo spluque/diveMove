@@ -99,7 +99,7 @@
 
 \donttest{## Too long for checks
 utils::example("diveStats", package="diveMove",
-               ask=FALSE, echo=FALSE)
+               ask=FALSE, echo=FALSE, run.donttest=TRUE)
 
 ## Plot filters for ZOC
 ## Work on first phase (trip) subset, to save processing time, since

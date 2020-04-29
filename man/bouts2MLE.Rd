@@ -166,7 +166,7 @@ plotBouts2.cdf(fit, x, draw.bec=FALSE, bec.lty=2, \ldots)
 \donttest{## Too long for checks
 ## Using the Example from '?diveStats':
 utils::example("diveStats", package="diveMove",
-               ask=FALSE, echo=FALSE)
+               ask=FALSE, echo=FALSE, run.donttest=TRUE)
 postdives <- tdrX.tab$postdive.dur[tdrX.tab$phase.no == 2]
 postdives.diff <- abs(diff(postdives))
 

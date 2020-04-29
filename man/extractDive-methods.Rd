@@ -45,7 +45,7 @@
 \donttest{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
-               ask=FALSE, echo=FALSE)
+               ask=FALSE, echo=FALSE, run.donttest=TRUE)
 dcalib		# the 'TDRcalibrate' that was created
 
 diveX <- extractDive(divesTDR, 9, getDAct(dcalib, "dive.id"))

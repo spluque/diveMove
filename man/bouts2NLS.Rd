@@ -98,7 +98,7 @@ plotBouts2.nls(fit, lnfreq, bec.lty, \ldots)
 \donttest{## Too long for checks
 ## Using the Example from '?diveStats':
 utils::example("diveStats", package="diveMove",
-               ask=FALSE, echo=FALSE)
+               ask=FALSE, echo=FALSE, run.donttest=TRUE)
 ## Postdive durations
 postdives <- tdrX.tab$postdive.dur[tdrX.tab$phase.no == 2]
 postdives.diff <- abs(diff(postdives))

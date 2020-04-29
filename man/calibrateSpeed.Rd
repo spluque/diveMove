@@ -77,7 +77,7 @@ calibrateSpeed(x, tau=0.1, contour.level=0.1, z=0, bad=c(0, 0),
 \donttest{## Too long for checks
 ## Continuing the Example from '?calibrateDepth':
 utils::example("calibrateDepth", package="diveMove",
-               ask=FALSE, echo=FALSE)
+               ask=FALSE, echo=FALSE, run.donttest=TRUE)
 dcalib		# the 'TDRcalibrate' that was created
 
 ## Calibrate speed using only changes in depth > 2 m

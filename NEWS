@@ -1,3 +1,8 @@
+Changes in version 1.4.6:
+
+   o Update diveStats() to reflect changes in c.POSIXct() now coercing all
+     arguments.
+
 Changes in version 1.4.5:
 
    o Incorporated runquantile() locally, removing dependency on caTools, as
