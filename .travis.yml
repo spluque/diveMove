@@ -1,5 +1,8 @@
 language: R
 sudo: required
+r:
+  - release
+  - devel
 
 apt_packages:
   - texinfo
