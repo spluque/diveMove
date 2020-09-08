@@ -23,12 +23,9 @@
 \usage{
 
 \S4method{plotTDR}{POSIXt,numeric}(x, y, concurVars=NULL, xlim=NULL, depth.lim=NULL,
-        xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
-        concurVarTitles=deparse(substitute(concurVars)),
-        xlab.format="\%d-\%b \%H:\%M", sunrise.time="06:00:00",
-        sunset.time="18:00:00", night.col="gray60",
-        dry.time=NULL, phase.factor=NULL, plot.points=FALSE,
-        interact=TRUE, key=TRUE, cex.pts=0.4, \ldots)
+        ylab.depth="depth (m)", concurVarTitles=deparse(substitute(concurVars)),
+        sunrise.time="06:00:00", sunset.time="18:00:00", night.col="gray60",
+        dry.time=NULL, phase.factor=NULL)
 \S4method{plotTDR}{TDR,missing}(x, y, concurVars, concurVarTitles, \ldots)
 \S4method{plotTDR}{TDRcalibrate,missing}(x, y, what=c("phases", "dive.model"),
         diveNo=seq(max(getDAct(x, "dive.id"))), \ldots)
@@ -55,14 +52,11 @@
   \item{depth.lim}{numeric vector of length 2, with the lower and upper
     limits of depth to be plotted.}
 
-  \item{xlab, ylab.depth}{character strings to label the corresponding
+  \item{ylab.depth}{character string to label the corresponding
     y-axes.}
 
   \item{concurVarTitles}{character vector of titles to label each new
     variable given in \var{concurVars}.}
-
-  \item{xlab.format}{character: format string for formatting the x axis;
-    see \code{\link{strptime}}.}
 
   \item{sunrise.time, sunset.time}{character string with time of sunrise
     and sunset, respectively, in 24 hr format.  This is used for shading
@@ -75,25 +69,9 @@
 
   \item{phase.factor}{factor dividing rows into sections.}
 
-  \item{plot.points}{logical: whether to plot points.}
-
-  \item{interact}{logical: whether to provide interactive tcltk controls
-    and access to the associated ZOC functionality.}
-
-  \item{key}{logical: whether to draw a key.}
-
-  \item{cex.pts}{Passed to \code{\link{points}} to set the relative size
-    of points to plot (if any).}
-
-  \item{\ldots}{For the \code{(POSIXt,numeric)} method, arguments passed
-    to \code{\link{par}} for all methods; useful defaults \code{las=1},
-    \code{bty="n"}, and \code{mar} (the latter depending on whether
-    additional concurrent data will be plotted) are provided, but they
-    can be overridden.  For other methods, except
-    \code{(TDRcalibrate,missing)}, these can be any of the arguments for
-    the \code{(POSIXt,numeric)} method.  For
-    \code{(TDRcalibrate,missing)}, these are arguments for the
-    appropriate methods.}
+  \item{\ldots}{Arguments for the \code{(POSIXt,numeric)} method.  For
+    \code{(TDRcalibrate,missing)}, these are arguments for the appropriate
+    methods.}
 
   \item{diveNo}{numeric vector or scalar with dive numbers to plot.}
 
@@ -170,12 +148,12 @@ utils::example("calibrateDepth", package="diveMove",
                ask=FALSE, echo=FALSE, run.donttest=TRUE)
 ## Use interact=TRUE (default) to set an offset interactively
 ## Plot the 'TDR' object
-plotTDR(getTime(divesTDR), getDepth(divesTDR), interact=FALSE)
-plotTDR(divesTDR, interact=FALSE)
+plotTDR(getTime(divesTDR), getDepth(divesTDR))
+plotTDR(divesTDR)
 
 ## Plot different aspects of the 'TDRcalibrate' object
-plotTDR(dcalib, interact=FALSE)
-plotTDR(dcalib, diveNo=19:25, interact=FALSE)
+plotTDR(dcalib)
+plotTDR(dcalib, diveNo=19:25)
 plotTDR(dcalib, what="dive.model", diveNo=25)
 if (dev.interactive(orNone=TRUE)) {
     ## Add surface observations and interact

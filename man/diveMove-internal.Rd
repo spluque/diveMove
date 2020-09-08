@@ -5,6 +5,7 @@
 \alias{.diveIndices}
 \alias{.getInterval}
 \alias{.plotTDR}
+\alias{.plotlyTDR}
 \alias{.plotZOCfilters}
 \alias{.plotZOCtdrs}
 \alias{.speedStats}

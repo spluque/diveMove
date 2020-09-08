@@ -287,7 +287,7 @@ calibrateDepth(x, dry.thr=70, wet.cond, wet.thr=3610, dive.thr=4,
   Koellmann, C., Ickstadt, K. and Fried, R. (2014) Beyond unimodal
   regression: modelling multimodality with piecewise unimodal, mixture
   or additive regression. Technical Report
-  8. \url{http://sfb876.tu-dortmund.de/FORSCHUNG/techreports.html}, SFB
+  8. \url{https://sfb876.tu-dortmund.de/FORSCHUNG/techreports.html}, SFB
   876, TU Dortmund
 
   Luque, S.P. and Fried, R. (2011) Recursive filtering for zero offset

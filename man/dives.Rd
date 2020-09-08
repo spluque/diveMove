@@ -18,7 +18,7 @@
 
 \format{
 
-  Bzip2-compressed file.  A comma separated value (csv) file with 69560
+  Bzip2-compressed file.  A comma separated value (csv) file with 34199
   \acronym{TDR} readings, measured at 5 s intervals, with the following
   columns:
 

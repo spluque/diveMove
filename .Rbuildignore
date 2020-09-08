@@ -1,5 +1,6 @@
 ^\.cvsignore$
 ^\.gitignore$
+^\.github$
 ^\.travis\.yml$
 ^\+\+psvn.*
 EXAMPLES.*

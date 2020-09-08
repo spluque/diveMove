@@ -40,7 +40,7 @@
     old.par <- par(no.readonly=TRUE)
     on.exit(par(old.par))
     par(mar=c(3, 4, 0, 1) + 0.1, cex=1.1, las=1)
-    layout(seq(npanels))
+    graphics::layout(seq(npanels))
     plot(time, -depth, type="l", col="gray", ylim=ylim, ylab=ylab,
          axes=FALSE)
     axis(1, at=xat, labels=xlabels); axis(2); box()

@@ -1,10 +1,10 @@
 Package: diveMove
 Type: Package
 Title: Dive Analysis and Calibration
-Version: 1.4.6
+Version: 1.5.0
 Depends: R (>= 2.13.0), methods, stats4
-Suggests: knitr, lattice, tcltk
-Imports: KernSmooth, quantreg, uniReg, geosphere
+Suggests: knitr, lattice, pander, rmarkdown, tcltk
+Imports: KernSmooth, plotly, quantreg, uniReg, geosphere
 Author: Sebastian P. Luque <spluque@gmail.com>
 Maintainer: Sebastian P. Luque <spluque@gmail.com>
 Description: Utilities to represent, visualize, filter, analyse, and summarize
@@ -22,3 +22,4 @@ Collate: AllClass.R AllGenerics.R AllMethod.R austFilter.R bouts.R calibrate.R
 NeedsCompilation: yes
 License: GPL-3
 URL: https://github.com/spluque/diveMove
+BugReports: https://github.com/spluque/diveMove/issues

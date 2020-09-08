@@ -30,24 +30,20 @@ setMethod("show", signature=signature(object="TDR"),
 
 setMethod("plotTDR", signature(x="POSIXt", y="numeric"),
           function(x, y, concurVars=NULL, xlim=NULL, depth.lim=NULL,
-                   xlab="time (dd-mmm hh:mm)", ylab.depth="depth (m)",
+                   ylab.depth="depth (m)",
                    concurVarTitles=deparse(substitute(concurVars)),
-                   xlab.format="%d-%b %H:%M", sunrise.time="06:00:00",
-                   sunset.time="18:00:00", night.col="gray60", dry.time=NULL,
-                   phase.factor=NULL, plot.points=FALSE, interact=TRUE,
-                   key=TRUE, cex.pts=0.4, ...) {
+                   sunrise.time="06:00:00", sunset.time="18:00:00",
+                   night.col="gray60", dry.time=NULL,
+                   phase.factor=NULL) {
               stopifnot(identical(length(x), length(y)), is.vector(y))
-              .plotTDR(time=x, depth=y, concurVars=concurVars,
-                       xlim=xlim, depth.lim=depth.lim, xlab=xlab,
-                       ylab.depth=ylab.depth,
-                       concurVarTitles=concurVarTitles,
-                       xlab.format=xlab.format,
-                       sunrise.time=sunrise.time,
-                       sunset.time=sunset.time,
-                       night.col=night.col, dry.time=dry.time,
-                       phase.factor=phase.factor,
-                       interact=interact, key=key,
-                       cex.pts=cex.pts, ...)
+              .plotlyTDR(time=x, depth=y, concurVars=concurVars,
+                         xlim=xlim, depth.lim=depth.lim,
+                         ylab.depth=ylab.depth,
+                         concurVarTitles=concurVarTitles,
+                         sunrise.time=sunrise.time,
+                         sunset.time=sunset.time,
+                         night.col=night.col, dry.time=dry.time,
+                         phase.factor=phase.factor)
           })
 
 setMethod("plotTDR", signature(x="TDR", y="missing"),
@@ -62,9 +58,9 @@ setMethod("plotTDR", signature(x="TDR", y="missing"),
               } else if (missing(concurVars) && missing(concurVarTitles)) {
                   ccd <- concurVarTitles <- NULL
               }
-              .plotTDR(time=getTime(x), depth=getDepth(x),
-                       concurVars=ccd,
-                       concurVarTitles=concurVarTitles, ...)
+              .plotlyTDR(time=getTime(x), depth=getDepth(x),
+                         concurVars=ccd,
+                         concurVarTitles=concurVarTitles, ...)
           })
 
 ###_  . TDRcalibrate
@@ -122,9 +118,8 @@ setMethod("show", signature=signature(object="TDRcalibrate"),
     times.ok <- alltimes >= newtimes[1] & alltimes <= newtimes[length(newtimes)]
     fulltimes <- alltimes[times.ok]
     labs <- getDPhaseLab(x)[ok]
-    drys <- getGAct(x, "activity")[times.ok]
-    drys[drys == "Z"] <- "L"; drys <- drys[, drop=TRUE]
-    dry.time <- fulltimes[drys == "L"]
+    drys <- timeBudget(x, ignoreZ=TRUE)
+    dry.time <- drys[drys[, 2] == "L", c(-1, -2)]
     ell$x <- newtdr
     ell$phase.factor <- labs
     if (length(dry.time) > 0L) ell$dry.time <- dry.time
@@ -278,7 +273,7 @@ setMethod("plotDiveModel",
               ascent.c1 <- times.deriv > times[a.crit]
               ascent.c2 <- depths.deriv < a.crit.rate
               ascent <- ascent.c1 & ascent.c2
-              layout(matrix(1:2, ncol=1))
+              graphics::layout(matrix(1:2, ncol=1))
               old.par <- par(no.readonly=TRUE)
               on.exit(par(old.par))
               par(mar=c(3, 4, 0, 1) + 0.1, las=1)

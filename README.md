@@ -1,8 +1,8 @@
 # diveMove
 
 [![Build Status](https://travis-ci.org/spluque/diveMove.svg?branch=master)](https://travis-ci.org/spluque/diveMove)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/diveMove)](http://www.r-pkg.org/pkg/diveMove)
-[![CRAN_Downloads](http://cranlogs.r-pkg.org/badges/diveMove)](http://www.r-pkg.org/pkg/diveMove)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/diveMove)](https://www.r-pkg.org/pkg/diveMove)
+[![CRAN_Downloads](http://cranlogs.r-pkg.org/badges/diveMove)](https://www.r-pkg.org/pkg/diveMove)
 
 diveMove is a GNU R package with tools to represent, visualize, filter,
 analyse, and summarize time-depth recorder (TDR) data. It also provides
@@ -36,3 +36,6 @@ Or the development version from GitHub:
 # install.packages("devtools")
 devtools::install_github("spluque/diveMove")
 ```
+
+Python users can access the package's functionality via
+[scikit-diveMove](https://github.com/spluque/scikit-diveMove).

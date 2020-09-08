@@ -62,37 +62,42 @@
     ## something like method="filter")
     ## --------------------------------------------------------------------
     switch(method,
-           visual = {zoclims <- plotTDR(time, depth)
-                     dev.off()
-                     if (length(zoclims) == 0) {
-                         message("No ZOC performed.")
-                     } else {
-                         ## Subtract the ZOC from depths in each window
-                         ## If there's any overlap, the latest window prevails
-                         zocdives <- lapply(zoclims, function(x) {
-                             newdep <- depth[time >= x[[1]][1] &
-                                             time < x[[1]][2]] - x[[2]][1]
-                             indsnewdep <- which(time >= x[[1]][1] &
-                                                 time < x[[1]][2])
-                             cbind(indsnewdep, newdep)
-                         })
-                         message(paste("ZOC procedure completed\n",
-                                       length(zocdives),
-                                       " time windows have been corrected",
-                                       sep=""))
-                         zocdives <- do.call("rbind", zocdives)
-                         ## Correct depths within chosen time windows
-                         depth[zocdives[, 1]] <- zocdives[, 2]
-                     }},
+           visual = {
+               msg <- paste("'visual' method is deprecated, and will be",
+                            "removed in the next release.")
+               warning(msg)
+               zoclims <- .plotTDR(time, depth)
+               dev.off()
+               if (length(zoclims) == 0) {
+                   message("No ZOC performed.")
+               } else {
+                   ## Subtract the ZOC from depths in each window
+                   ## If there's any overlap, the latest window prevails
+                   wfun <- function(x) {
+                       newdep <- depth[time >= x[[1]][1] &
+                                       time < x[[1]][2]] - x[[2]][1]
+                       indsnewdep <- which(time >= x[[1]][1] &
+                                           time < x[[1]][2])
+                       cbind(indsnewdep, newdep)
+                   }
+                   zocdives <- lapply(zoclims, wfun)
+                   message(paste("ZOC procedure completed\n",
+                                 length(zocdives),
+                                 " time windows have been corrected",
+                                 sep=""))
+                   zocdives <- do.call("rbind", zocdives)
+                   ## Correct depths within chosen time windows
+                   depth[zocdives[, 1]] <- zocdives[, 2]
+               }},
            offset = {offset <- control$offset
-                     depth <- depth - offset},
+               depth <- depth - offset},
            filter = {k <- control$k
-                     probs <- control$probs
-                     depth.bounds <- control$depth.bounds
-                     na.rm <- control$na.rm
-                     depthmtx <- .depthFilter(depth, k, probs,
-                                              depth.bounds, na.rm)
-                     depth <- depthmtx[, ncol(depthmtx)]})
+               probs <- control$probs
+               depth.bounds <- control$depth.bounds
+               na.rm <- control$na.rm
+               depthmtx <- .depthFilter(depth, k, probs,
+                                        depth.bounds, na.rm)
+               depth <- depthmtx[, ncol(depthmtx)]})
     ## Turn all negative and NA depths into zeroes (we don't care now about
     ## dry time, since we've already done that, and we need surface and dry
     ## time to be zero from this point on).

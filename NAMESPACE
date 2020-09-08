@@ -4,9 +4,11 @@ useDynLib(diveMove, run_quantile)
 import(methods)                         # Paranoid measure
 importFrom(stats4, mle, coef)
 importFrom(graphics, abline, arrows, axTicks, axis, axis.POSIXct, box,
-           contour, curve, hist, image, layout, legend, lines, locator,
+           contour, curve, hist, image, legend, lines, locator,
            mtext, par, plot, points, rect, rug, segments, text)
 importFrom(grDevices, colorRampPalette, contourLines, dev.off, hsv, rgb)
+importFrom(plotly,
+           plot_ly, add_lines, add_markers, subplot, "%>%")
 importFrom(stats, approx, approxfun, bw.nrd, ecdf, lm, median, nls,
            nls.control, predict, quantile, sd, smooth.spline, splinefun)
 importFrom(utils, read.csv)

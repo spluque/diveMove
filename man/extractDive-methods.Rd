@@ -49,10 +49,10 @@ utils::example("calibrateDepth", package="diveMove",
 dcalib		# the 'TDRcalibrate' that was created
 
 diveX <- extractDive(divesTDR, 9, getDAct(dcalib, "dive.id"))
-plotTDR(diveX, interact=FALSE)
+plotTDR(diveX)
 
 diveX <- extractDive(dcalib, 5:10)
-plotTDR(diveX, interact=FALSE)
+plotTDR(diveX)
 
 }
 

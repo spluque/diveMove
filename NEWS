@@ -1,3 +1,9 @@
+Changes in version 1.4.7:
+
+   o plotTDR method now uses plotly for improved interactive graphics.
+
+   o The "visual" method for zero offset correction is deprecated.
+
 Changes in version 1.4.6:
 
    o Update diveStats() to reflect changes in c.POSIXct() now coercing all

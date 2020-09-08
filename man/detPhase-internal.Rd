@@ -73,7 +73,7 @@ times <- getTime(divesTDR)
 detp <- diveMove:::.detPhase(times, depths, dry.thr=70, wet.thr=3610,
                              interval=getDtime(divesTDR))
 ## Plot detected phases
-plotTDR(times, depths, interact=FALSE)
+plotTDR(times, depths)
 rect(xleft=detp$begin, xright=detp$end, ybottom=0, ytop=-4,
      col=seq_along(detp$begin))
 

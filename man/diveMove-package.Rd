@@ -36,7 +36,7 @@ zz <- system.file(file.path("data", "dives.csv"),
                   package="diveMove", mustWork=TRUE)
 (sealX <- readTDR(zz, speed=TRUE, sep=";", na.strings="", as.is=TRUE))
 
-if (dev.interactive(orNone=TRUE)) plotTDR(sealX)  # interactively pan and zoom
+if (dev.interactive(orNone=TRUE)) plotTDR(sealX)  # html plotly
 
 ## detect periods of activity, and calibrate depth, creating
 ## a "TDRcalibrate" object

@@ -63,8 +63,9 @@
             par(las=1, bty="n", mar=mardepthonly, ...)
         } else {
             par(las=1, bty="n", mar=mardepthmore, ...)
-            layout(matrix(seq(plotrows, 1), nrow=plotrows, ncol=1),
-                   heights=lheights)
+            graphics::layout(matrix(seq(plotrows, 1),
+                                    nrow=plotrows, ncol=1),
+                             heights=lheights)
         }
         now <- (time >= xlim[1]) & (time <= xlim[2])
         depth.now <- depth[now]
@@ -220,6 +221,112 @@
 }
 
 
+".plotlyTDR" <- function(time, depth, concurVars=NULL, xlim=NULL, depth.lim=NULL,
+                         ylab.depth="depth (m)",
+                         concurVarTitles=deparse(substitute(concurVars)),
+                         sunrise.time="06:00:00", sunset.time="18:00:00",
+                         night.col="gray60", dry.time=NULL, phase.factor=NULL)
+{
+    ## Value: Returns (invisibly) a list with coordinates for each zoc'ed
+    ## time window.  Also Plot time, depth, and other concurrent data.
+    ## --------------------------------------------------------------------
+    ## Arguments: time=POSIXct; depth=numeric vector with depth readings,
+    ## concurVars=matrix of numeric data with concurrent data to plot,
+    ## xlim=POSIXct vector with lower and upper time limits to plot,
+    ## depth.lim=vector with lower and upper depth limits, dry.time=2-col
+    ## dataframe with starting and ending time stamp corresponding to
+    ## observations considered to be dry; phase.factor=factor classifying
+    ## each reading, xlab=title for the x axis, ylab.depth=title for the
+    ## depth axis, concurVarTitles=string vector with titles for the
+    ## additional variables, xlab.format=format string for formatting time
+    ## in x axis, sunrise.time=string specifying the time of sunrise,
+    ## sunset.time=string specifying sunset time, night.col=color for
+    ## masking night times.
+    ## --------------------------------------------------------------------
+    ## Author: Sebastian Luque
+    ## --------------------------------------------------------------------
+    nona <- !is.na(depth)
+    nights <- .night(time, sunrise.time, sunset.time)
+    nconcurVars <- ifelse(is.null(concurVars), 0, ncol(concurVars))
+    depth.fig <- (plot_ly(x=~time, y=~depth) %>%
+                  add_lines(name=~"depth", showlegend=FALSE))
+    shades <- list()
+    for (i in seq_along(nights[[1]])) {
+        shades[[i]] <- list(type="rect",
+                            fillcolor=night.col, opacity=0.3,
+                            line=list(width=0),
+                            x0=nights[[2]][i], x1=nights[[1]][i],
+                            xref="x", y0=0, y1=1, yref="paper")
+    }
+    if (!is.null(dry.time)) {
+        nexti <- length(shades) + 1
+        for (i in 1:dim(dry.time)[1]) {
+            shades[[nexti]] <- list(type="rect",
+                                    fillcolor="tan", opacity=0.75,
+                                    line=list(width=0), x0=dry.time[i, 1],
+                                    x1=dry.time[i, 2], xref="x",
+                                    y0=0.99, y1=1, yref="paper")
+            nexti <- nexti + 1
+        }
+    }
+    if (is.null(xlim)) {
+        xlim <- range(time)
+    }
+    xax <- list(title=FALSE, showgrid=FALSE, range=xlim)
+    depth.fig <- (depth.fig %>%
+                  plotly::layout(shapes=shades,
+                                 yaxis=list(title=ylab.depth,
+                                            autorange="reversed",
+                                            showgrid=FALSE),
+                                 xaxis=xax))
+    if (!is.null(phase.factor)) {
+        depth.fig <- (depth.fig %>%
+                      add_markers(x=~time[nona], y=~depth[nona],
+                                  color=~phase.factor[nona]) %>%
+                      plotly::layout(legend=list(orientation="h",
+                                                 xanchor="center",
+                                                 x=0.5)))
+    }
+    ofigs <- list(depth.fig)
+    if (!is.null(concurVars)) {
+        if (length(concurVarTitles) != nconcurVars) {
+            concurVarTitles <- rep(concurVarTitles, length.out=nconcurVars)
+        }
+        for (i in seq(nconcurVars)) {
+            ccVarTitle <- concurVarTitles[i]
+            yax <- list(title=ccVarTitle, showgrid=FALSE)
+            ofigs[[i + 1]] <- (plot_ly(x=~time, y=concurVars[, i]) %>%
+                               add_lines(name=ccVarTitle,
+                                         showlegend=FALSE) %>%
+                               plotly::layout(xaxis=xax, yaxis=yax,
+                                              shapes=shades))
+        }
+        ofigs <- subplot(ofigs, nrows=1 + nconcurVars, shareX=TRUE,
+                         titleY=TRUE)
+        return(ofigs)
+    } else {
+        return(subplot(ofigs))
+    }
+}
+
+
+
+## ## Testing
+## library(diveMove)
+## library(plotly)
+
+## data(divesTDR)
+## (dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="offset",
+##                           offset=3, descent.crit.q=0.01, ascent.crit.q=0,
+##                           knot.factor=20))
+## labs <- getDPhaseLab(dcalib)
+## drys <- timeBudget(dcalib, ignoreZ=TRUE)
+## drys <- drys[drys[, 2] == "L", c(-1, -2)]
+## pp <- .plotlyTDR(getTime(getTDR(dcalib)), getDepth(getTDR(dcalib)),
+##                  phase.factor=labs, dry.time=drys)
+## ccVars <- getCCData(getTDR(dcalib))
+## .plotlyTDR(getTime(getTDR(dcalib)), getDepth(getTDR(dcalib)),
+##            concurVars=ccVars, concurVarTitles=dimnames(ccVars)[[2]])
 
 ###_ + Emacs local variables
 ## Local variables:
