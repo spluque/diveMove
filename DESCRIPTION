@@ -1,9 +1,9 @@
 Package: diveMove
 Type: Package
 Title: Dive Analysis and Calibration
-Version: 1.5.0
-Depends: R (>= 2.13.0), methods, stats4
-Suggests: knitr, lattice, pander, rmarkdown, tcltk
+Version: 1.5.1
+Depends: R (>= 3.5.0), methods, stats4
+Suggests: knitr, lattice, pander, rmarkdown, tcltk, tinytest
 Imports: KernSmooth, plotly, quantreg, uniReg, geosphere
 Author: Sebastian P. Luque <spluque@gmail.com>
 Maintainer: Sebastian P. Luque <spluque@gmail.com>

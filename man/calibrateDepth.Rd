@@ -321,12 +321,19 @@ divesTDR
 (dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="offset",
                           offset=3, descent.crit.q=0.01, ascent.crit.q=0,
                           knot.factor=20))
+
 ## Or ZOC algorithmically with method="filter":
-## filter in this dataset
-(dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="filter",
-                          k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE,
-                          descent.crit.q=0.01, ascent.crit.q=0,
+## dcalib <- calibrateDepth(divesTDR, dive.thr=3, zoc.method="filter",
+##                          k=c(3, 5760), probs=c(0.5, 0.02), na.rm=TRUE,
+##                          descent.crit.q=0.01, ascent.crit.q=0,
+##                          knot.factor=20))
+
+## If no ZOC required:
+data(divesTDRzoc)
+(dcalib <- calibrateDepth(divesTDRzoc, dive.thr=3, zoc.method="offset",
+                          offset=0, descent.crit.q=0.01, ascent.crit.q=0,
                           knot.factor=20))
+
 }
 
 }
