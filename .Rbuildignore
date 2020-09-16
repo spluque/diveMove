@@ -6,5 +6,5 @@
 EXAMPLES.*
 ^TODO$
 ^.AppleDouble$
-^vignettes/figure$
+^vignettes/auto$
 ^src/\.clang-format$

@@ -1,3 +1,7 @@
+
+Rver <- getRversion()
+isWindows <- Sys.info()[["sysname"]] == "Windows"
+
 ###_+ Check calibrateDepth() overall
 
 ## Load data to compare against
@@ -54,22 +58,28 @@ expect_identical(detd.dact.summ[order(factor(names(detd.dact.summ)))],
                  dive.act[order(factor(names(dive.act)))])
 
 ###_ : Check labelling of dive phases
-phaselabs <- diveMove:::.labDivePhase(sealX, detd[, 1], smooth.par=0.1,
-                                      dive.model="smooth.spline",
-                                      knot.factor=3, descent.crit.q=0,
-                                      ascent.crit.q=0.1)
-nDA <- 308
-nD <- 722
-nDB <- 506
-nB <- 1063
-nBA <- 508
-nA <- 461
-nX <- 30631
-nphase.labs <- as.integer(c(nDA, nD, nDB, nB, nBA, nA, nX))
-names(nphase.labs) <- c("DA", "D", "DB", "B", "BA", "A", "X")
-phaselabs.summ <- summary(phaselabs$phase.labels)
-expect_identical(phaselabs.summ[order(factor(names(phaselabs.summ)))],
-                 nphase.labs[order(factor(names(nphase.labs)))])
+
+## Turning off table of phase labels, as the result not only depends on the
+## platform, but also on whether R is using ATLAS or BLAS...
+
+## phaselabs <- diveMove:::.labDivePhase(sealX, detd[, 1], smooth.par=0.1,
+##                                       dive.model="smooth.spline",
+##                                       knot.factor=3, descent.crit.q=0,
+##                                       ascent.crit.q=0.1)
+## nDA <- 308
+## nD <- 722
+## nDB <- 506
+## nB <- 1063
+## nBA <- 508
+## nA <- 461
+## nX <- 30631
+## nphase.labs <- as.integer(c(nDA, nD, nDB, nB, nBA, nA, nX))
+## names(nphase.labs) <- c("DA", "D", "DB", "B", "BA", "A", "X")
+## phaselabs.summ <- summary(phaselabs$phase.labels)
+## if (Rver >= "4.0" && !isWindows) {
+##     expect_identical(phaselabs.summ[order(factor(names(phaselabs.summ)))],
+##                      nphase.labs[order(factor(names(nphase.labs)))])
+## }
 
 ## phaselabs <- diveMove:::.labDivePhase(sealX, detd[, 1], smooth.par=0.1,
 ##                                       dive.model="unimodal",

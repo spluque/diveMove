@@ -1,8 +1,12 @@
-Changes in version 1.4.7:
+Changes in version 1.5.2:
 
    o plotTDR method now uses plotly for improved interactive graphics.
 
    o The "visual" method for zero offset correction is deprecated.
+
+   o New tinytest testing suite.
+
+   o New html vignette.
 
 Changes in version 1.4.6:
 

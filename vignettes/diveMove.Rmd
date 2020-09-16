@@ -211,12 +211,14 @@ tdrX <- readTDR(sfp, speed=TRUE, sep=";",
 plotTDR(tdrX)
 ```
 
-```{r plot-tdr, echo=FALSE, warning=FALSE, fig.cap="The `plotTDR()` method for `TDR` objects produces an interactive plot of the data, allowing for zooming and panning.", fig.asp=1.3}
+```{r plot-tdr, echo=FALSE, eval.after="fig.cap", fig.cap=capt, fig.asp=1.3}
 <<dives-con>>
 tdrX <- readTDR(sfp, speed=TRUE, sep=";",
                 na.strings="", as.is=TRUE)
-ptdr <- plotTDR(tdrX)
-ptdr
+capt <- paste("The `plotTDR()` method for *TDR* objects produces an",
+              "interactive (disabled here to minimize vignette size)",
+              "plot of the data, allowing for zooming and panning.")
+knitr::include_graphics("figs/plot_tdr.png")
 ```
 
 Several arguments for `readTDR()` allow mapping of data from the source
@@ -226,8 +228,8 @@ the input and the time zone attribute to use for the time readings.
 Various methods are available for displaying `TDR` objects, including
 `show()`, which provides an informative summary of the data in the object,
 extractors and replacement methods for all the slots.  There is a
-`plotTDR()` method (Figure~\ref{fig:1}) for both `TDR` and `TDRspeed`
-objects.  Information on these methods is available via `methods?TDR`.
+`plotTDR()` method for both `TDR` and `TDRspeed` objects.  Information on
+these methods is available via `methods?TDR`.
 
 `TDR` objects can easily be coerced to data frame (`as.data.frame()`
 method), without losing information from any of the slots.  `TDR` objects
@@ -425,9 +427,17 @@ wet periods identified, and the number of dives detected.
 The `TDRcalibrate` `plotTDR()` method for these objects allows visualizing
 the major wet/dry activities throughout the record:
 
-```{r plot-tdrcalibrate, echo=FALSE, warning=FALSE, fig.cap="The `plotTDR()` method for *TDRcalibrate* objects displays information on the major activities identified throughout the record (wet/dry periods here).", fig.asp=1.9}
-ptdrcal <- plotTDR(dcalib, concurVars=c("speed", "light"), surface=TRUE)
-ptdrcal
+```{r plot-tdrcalibrate, eval=FALSE}
+plotTDR(dcalib, concurVars=c("speed", "light"), surface=TRUE)
+```
+
+```{r, echo=FALSE, eval.after="fig.cap", fig.cap=capt, out.height="180%"}
+capt <- paste("The `plotTDR()` method for *TDRcalibrate* objects produces",
+              "an interactive (disabled here to minimize vignette size)",
+              "plot displaying information on the major activities",
+              "identified throughout the record",
+              "(wet/dry periods in this case).")
+knitr::include_graphics("figs/plot_tdrcalib_01.png", dpi=NA)
 ```
 
 The `dcalib` object contains a *TDRspeed* object in its `tdr` slot, and
@@ -447,8 +457,16 @@ of the `diveNo` and the `labels` arguments to this `plotTDR()` method.
 This is useful if, for instance, closer inspection of certain dives is
 needed.  The following call displays a plot of dives 2 through 8:
 
-```{r plot-dive-activity, echo=FALSE, fig.cap="The `plotTDR()` method for *TDRcalibrate* objects can also display information on the different activities during each dive record (descent=D, descent/bottom=DB, bottom=B, bottom/ascent=BA, ascent=A, X=surface)."}
+```{r plot-dive-activity, eval=FALSE}
 plotTDR(dcalib, diveNo=2:8, what="phases", depth.lim=c(0, 80))
+```
+
+```{r, echo=FALSE, eval.after="fig.cap", fig.cap=capt}
+capt <- paste("The `plotTDR()` method for *TDRcalibrate* objects can also",
+              "display information on the different activities identified",
+              "during each dive (descent=D, descent/bottom=DB,",
+              "bottom/ascent=BA, ascent=A, X=surface).")
+knitr::include_graphics("figs/plot_tdrcalib_02.png")
 ```
 
 The `labels` argument allows the visualization of the identified dive
@@ -532,9 +550,15 @@ dphases <- getDPhaseLab(dcalib, c(100:300))
 The latter method is useful for visually inspecting the assignment of
 points to particular dive phases.  More information about the dive phase
 identification procedure can be gleaned by using the
-`plotDiveModel` (Figure~\ref{fig:4}):
+`plotDiveModel`:
 
-```{r diveModel, echo=FALSE, fig.cap="Details of the process of identification of dive phases shown by `plotDiveModel`, which has methods for objects of class *TDRcalibrate* and *diveModel*.", fig.width=5, fig.height=5, out.width=NULL, dev.args=list(type="cairo-png")}
+```{r, echo=FALSE}
+capt <- paste("Details of the process of identification of dive phases",
+              "shown by `plotDiveModel`, which has methods for objects",
+              "of class *TDRcalibrate* and *diveModel*.")
+```
+
+```{r diveModel, eval.after="fig.cap", fig.cap=capt, fig.width=5, fig.height=5, out.width=NULL, dev.args=list(type="cairo-png")}
 plotDiveModel(dcalib, diveNo=260)
 ```
 
@@ -565,24 +589,22 @@ possible to calculate dive statistics for each dive in the record.
 # Dive Summaries
 
 A table providing summary statistics for each dive can be obtained with the
-function `diveStats()` (Figure~\ref{fig:summaries}).
+function `diveStats()`.
 
-```{r dive-summaries}
+```{r dive-summaries, results="asis"}
 tdrXSumm1 <- head(diveStats(dcalib), 2)
 cap <- "Per-dive summaries can be obtained with function `diveStats()`."
-otbl <- pander(tdrXSumm1, digits=2, caption=cap)
-otbl
+pander(tdrXSumm1, digits=2, caption=cap)
 ```
 
-```{r time-budget}
+```{r time-budget, results="asis"}
 tbudget <- head(timeBudget(dcalib, ignoreZ=TRUE), 5)
 cap <- "Time budget summary can be calculated with function `timeBudget()`."
-otbl <- pander(tbudget, digits=2, caption=cap)
-otbl
+pander(tbudget, digits=2, caption=cap)
 ```
 
-`diveStats()` returns a data frame with the final summaries for each dive
-(Figure~\ref{fig:summaries}), providing the following information:
+`diveStats()` returns a data frame with the final summaries for each dive,
+providing the following information:
 
 * The time of start of the dive, the end of descent, and the time when
   ascent began.
@@ -596,12 +618,11 @@ otbl
 
 A summary of time budgets of wet vs. dry periods can be obtained with
 `timeBudget()`, which returns a data frame with the beginning and ending
-times for each consecutive period (Figure~\ref{fig:summaries}).  It takes a
-*TDRcalibrate* object and another argument (`ignoreZ`) controlling whether
-aquatic periods that were briefer than the user-specified threshold^[This
-corresponds to the value given as the `wet.thr` argument to
-`calibrateDepth()`.] should be collapsed within the enclosing period of dry
-activity.
+times for each consecutive period.  It takes a *TDRcalibrate* object and
+another argument (`ignoreZ`) controlling whether aquatic periods that were
+briefer than the user-specified threshold^[This corresponds to the value
+given as the `wet.thr` argument to `calibrateDepth()`.] should be collapsed
+within the enclosing period of dry activity.
 
 These summaries are the primary goal of **diveMove**, but they form the
 basis from which more elaborate and customized analyses are possible,
@@ -668,7 +689,15 @@ of measured speed vs. rate of depth change, based on the 0.1 contour of the
 bivariate kernel densities, and including only changes in depth~$>$~1,
 measured speeds and rates of depth change~$>$~0:
 
-```{r calibrate-speed, fig.cap="The relationship between measured speed and rate of depth change can be used to calibrate speed readings.  The line defining the calibration for speed measurements passes through the bottom edge of a chosen contour, extracted from a bivariate kernel density grid.", fig.width=5, fig.height=5, out.width=NULL, dev.args=list(type="cairo-png")}
+```{r, echo=FALSE}
+capt <- paste("The relationship between measured speed and rate of depth",
+              "change can be used to calibrate speed readings.",
+              "The line defining the calibration for speed measurements",
+              "passes through the bottom edge of a chosen contour,",
+              "extracted from a bivariate kernel density grid.")
+```
+
+```{r calibrate-speed, fig.cap=capt, fig.width=5, fig.height=5, out.width=NULL, dev.args=list(type="cairo-png")}
 vcalib <- calibrateSpeed(dcalib, tau=0.1,
                          contour.level=0.1,
                          z=1, bad=c(0, 0),
