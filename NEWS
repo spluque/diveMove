@@ -1,3 +1,8 @@
+Changes in version 1.5.4:
+
+   o Internal function .speedStats() now guarantees numeric matrix output,
+     even with missing values.
+
 Changes in version 1.5.3:
 
    o Updated vignette to address CRAN check issues.

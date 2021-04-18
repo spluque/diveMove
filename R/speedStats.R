@@ -23,6 +23,6 @@
             cbind(tdist=tdist, mean.speed=mspeed, angle=NA)
         }
     } else {
-        matrix(ncol=3)
+        matrix(as.numeric(rep(NA, 3)), ncol=3)
     }
 }
