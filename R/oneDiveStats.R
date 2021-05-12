@@ -1,4 +1,8 @@
 
+##' @describeIn diveStats Calculate dive statistics for a single dive
+##' @param interval numeric scalar: sampling interval for interpreting
+##'     \code{x}.
+##' @param speed logical: should speed statistics be calculated?
 "oneDiveStats" <- function(x, interval, speed=FALSE)
 {
     ## Value: A matrix with time/depth stats for each dive segment

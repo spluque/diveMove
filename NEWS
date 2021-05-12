@@ -1,3 +1,16 @@
+Changes in version 1.6.0:
+
+   o Analyses for 2- and 3-process Poisson mixtures are now fully
+     implemented.  The bout analysis module has a new API, which includes a
+     new S4 class `Bouts' for representing Poisson process mixtures, and S4
+     methods and functions for performing related analyses.  As a result,
+     most functions for bout analyses in previous diveMove versions have
+     been deprecated or are defunct.  Please see
+     help("diveMove-deprecated") and help("diveMove-defunct") for details.
+
+   o New function rmixexp() for sampling from mixtures of exponential
+     distributions, as parameterized in Langton et al. (1990).
+
 Changes in version 1.5.4:
 
    o Internal function .speedStats() now guarantees numeric matrix output,

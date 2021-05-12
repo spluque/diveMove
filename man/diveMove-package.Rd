@@ -10,12 +10,12 @@
 \title{Dive Analysis and Calibration}
 
 
-\description{This package is a collection of functions for visualizing,
-  and analyzing depth and speed data from time-depth recorders
-  \acronym{TDR}s.  These can be used to zero-offset correct depth,
-  calibrate speed, and divide the record into different phases, or time
-  budget.  Functions are provided for calculating summary dive
-  statistics for the whole record, or at smaller scales within dives.}
+\description{This package is a collection of functions for visualizing and
+  analyzing depth and speed data from time-depth recorders \acronym{TDR}s.
+  These can be used to zero-offset correct depth, calibrate speed, and
+  divide the record into different phases, or time budget.  Functions are
+  provided for calculating summary dive statistics for the whole record, or
+  at smaller scales within dives.}
 
 
 \seealso{A vignette with a guide to this package is available by doing

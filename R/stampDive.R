@@ -1,4 +1,11 @@
 
+##' @describeIn diveStats Stamp dives
+##' @param ignoreZ logical: whether phases should be numbered considering
+##'     all aquatic activities (\dQuote{W} and \dQuote{Z}) or ignoring
+##'     \dQuote{Z} activities.
+##' @return
+##' \code{stampDive} returns a \code{\link{data.frame}} with phase number,
+##' activity, and start and end times for each dive.
 "stampDive" <- function(x, ignoreZ=TRUE)
 {
     ## Value: A data frame; stamping each dive with phase number it belongs

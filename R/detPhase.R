@@ -24,23 +24,56 @@
          end.time=endtim)
 }
 
+##' Detect phases of activity from depth readings
+##'
+##' Functions to identify sections of a \acronym{TDR} record displaying one
+##' of three possible activities: dry, wet, and trivial wet.
+##'
+##' See \code{\link{calibrateDepth}}.
+##'
+##' @aliases .detPhase
+##' @param time \code{POSIXct} object with date and time for all depths.
+##' @param depth numeric vector with depth readings.
+##' @param dry.thr,wet.cond,wet.thr As passed from
+##'     \code{\link{calibrateDepth}}.
+##' @param interval As passed from \code{\link{calibrateDepth}}; sampling
+##'     interval in seconds.
+##' @return A list with components:
+##'
+##' \item{phase.id}{Numeric vector identifying each activity phase,
+##' starting from 1 for every input record.}
+##'
+##' \item{activity}{Factor with levels \dQuote{L} indicating dry,
+##' \dQuote{W} indicating wet, \dQuote{U} for underwater (above dive
+##' criterion), \dQuote{D} for diving, \dQuote{Z} for trivial wet animal
+##' activities.  Only \dQuote{L}, \dQuote{W}, and \dQuote{Z} are actually
+##' represented.}
+##'
+##' \item{begin}{A \code{\link{POSIXct}} object as long as the number of
+##' unique activity phases identified, indicating the start times for each
+##' activity phase.}
+##'
+##' \item{end}{A \code{\link{POSIXct}} object as long as the number of
+##' unique activity phases identified, indicating the end times for each
+##' activity phase.}
+##' @author Sebastian P. Luque \email{spluque@@gmail.com} and Andy Liaw.
+##' @seealso \code{\link{.detDive}}, \code{\link{calibrateDepth}}
+##' @keywords internal
+##' @rdname detPhase-internal
+##' @examples
+##' data(divesTDR)
+##' depths <- getDepth(divesTDR)
+##' times <- getTime(divesTDR)
+##'
+##' detp <- diveMove:::.detPhase(times, depths, dry.thr=70, wet.thr=3610,
+##'                              interval=getDtime(divesTDR))
+##' ## Plot detected phases
+##' plotTDR(times, depths)
+##' rect(xleft=detp$begin, xright=detp$end, ybottom=0, ytop=-4,
+##'      col=seq_along(detp$begin))
 ".detPhase" <- function(time, depth, dry.thr, wet.cond, wet.thr,
                         interval)
 {
-    ## Value: list with index of per-row activities, the activity code, and
-    ## start and end of each activity phase
-    ## --------------------------------------------------------------------
-    ## Arguments: time=POSIXct vector; depth=numeric vector with depth
-    ## readings (m); dry.thr=duration (in s) of on-land readings that
-    ## should be considered at-sea; wet.thr=duration (in s) of at-sea
-    ## readings to be taken as leisure; wet.cond=logical indicating which
-    ## observations should be considered wet (only needed when instrument
-    ## did not have a salt-water switch turning off recording of depth, or
-    ## when it was inappropriately used); interval=sampling interval in
-    ## POSIXct units (s), to pass to rleActivity
-    ## --------------------------------------------------------------------
-    ## Author: Sebastian Luque
-    ## --------------------------------------------------------------------
     ## Factor with default "land" values to code activity levels: L=land,
     ## W=wet (at-sea), U=underwater (below dive threshold), D=diving, Z=wet
     ## (leisure)

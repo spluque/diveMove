@@ -1,7 +1,7 @@
 Package: diveMove
 Type: Package
 Title: Dive Analysis and Calibration
-Version: 1.5.4
+Version: 1.6.0
 Depends: R (>= 3.5.0), methods, stats4
 Suggests: knitr, lattice, pander, rmarkdown, tinytest
 Imports: geosphere, KernSmooth, plotly, quantreg, uniReg
@@ -12,14 +12,17 @@ Description: Utilities to represent, visualize, filter, analyse, and summarize
 	     handling location data are also provided.
 LazyLoad: yes
 LazyData: no
+Encoding: UTF-8
 ZipData: no
 BuildResaveData: no
 VignetteBuilder: knitr
-Collate: AllClass.R AllGenerics.R AllMethod.R austFilter.R bouts.R calibrate.R
-	 detDive.R detPhase.R distSpeed.R diveStats.R oneDiveStats.R plotTDR.R
-	 plotZOC.R readLocs.R readTDR.R runquantile.R speedStats.R stampDive.R
-	 zoc.R zzz.R
+Collate: AllClass.R AllGenerics.R AllMethod.R austFilter.R bouts_helpers.R
+         bouts.R calibrate.R detDive.R detPhase.R distSpeed.R diveStats.R
+	 oneDiveStats.R plotTDR.R plotZOC.R readLocs.R readTDR.R runquantile.R
+	 speedStats.R stampDive.R zoc.R diveMove-deprecated.R
+	 diveMove-defunct.R zzz.R
 NeedsCompilation: yes
 License: GPL-3
 URL: https://github.com/spluque/diveMove
 BugReports: https://github.com/spluque/diveMove/issues
+RoxygenNote: 7.1.1

@@ -1,5 +1,6 @@
 
 ###_ + Plotting
+
 if (!isGeneric("plotTDR")) {
     setGeneric("plotTDR",
                function(x, y, ...) standardGeneric("plotTDR"))
@@ -16,7 +17,8 @@ if (!isGeneric("plotDiveModel")) {
 }
 
 if (!isGeneric("plotBouts")) {
-    setGeneric("plotBouts", function(fit, ...) standardGeneric("plotBouts"))
+    setGeneric("plotBouts",
+               function(fit, obj, ...) standardGeneric("plotBouts"))
 }
 
 ###_ + Accessors
@@ -103,13 +105,44 @@ if (!isGeneric("timeBudget")) {
                function(obj, ignoreZ) standardGeneric("timeBudget"))
 }
 
-###_ + bec2, and bec3
-if (!isGeneric("bec2")) {
-    setGeneric("bec2", function(fit) standardGeneric("bec2"))
+###_  . Bouts
+
+if (!isGeneric("boutsNLSll")) {
+    setGeneric("boutsNLSll",
+               function(obj, coefs)
+                   standardGeneric("boutsNLSll"))
 }
 
-if (!isGeneric("bec3")) {
-    setGeneric("bec3", function(fit) standardGeneric("bec3"))
+if (!isGeneric("boutinit")) {
+    setGeneric("boutinit",
+               function(obj, x.break, plot=TRUE, ...)
+                   standardGeneric("boutinit"))
+}
+
+if (!isGeneric("fitNLSbouts")) {
+    setGeneric("fitNLSbouts",
+               function(obj, start, maxiter, ...)
+                   standardGeneric("fitNLSbouts"))
+}
+
+if (!isGeneric("fitMLEbouts")) {
+    setGeneric("fitMLEbouts",
+               function(obj, start, ...)
+                   standardGeneric("fitMLEbouts"))
+}
+
+if (!isGeneric("bec")) {
+    setGeneric("bec", function(fit) standardGeneric("bec"))
+}
+
+if (!isGeneric("labelBouts")) {
+    setGeneric("labelBouts",
+               function(obj, becs, ...) standardGeneric("labelBouts"))
+}
+
+if (!isGeneric("plotBoutsCDF")) {
+    setGeneric("plotBoutsCDF",
+               function(fit, obj, ...) standardGeneric("plotBoutsCDF"))
 }
 
 

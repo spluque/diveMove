@@ -24,17 +24,47 @@
 }
 
 
+##' Detect dives from depth readings
+##'
+##' Identify dives in \acronym{TDR} records based on a dive threshold.
+##'
+##' @name detDive-internal
+##' @aliases .detDive
+##' @param zdepth numeric vector of zero-offset corrected depths.
+##' @param act factor as long as \code{depth} coding activity, with levels
+##'     specified as in \code{\link{.detPhase}}.
+##' @param dive.thr numeric scalar: threshold depth below which an
+##'     underwater phase should be considered a dive.
+##' @return A \code{\link{data.frame}} with the following elements for
+##'     \code{.detDive}
+##'
+##' \item{dive.id}{Numeric vector numbering each dive in the record.}
+##'
+##' \item{dive.activity}{Factor with levels \dQuote{L}, \dQuote{W},
+##' \dQuote{U}, \dQuote{D}, and \dQuote{Z}, see \code{\link{.detPhase}}.
+##' All levels may be represented.}
+##'
+##' \item{postdive.id}{Numeric vector numbering each postdive interval with
+##' the same value as the preceding dive.}
+##' @author Sebastian P. Luque \email{spluque@@gmail.com}
+##' @seealso \code{\link{.detPhase}}, \code{\link{.zoc}}
+##' @keywords internal
+##' @examples
+##' \donttest{## Too long for checks
+##' ## Continuing the Example from '?calibrateDepth':
+##' utils::example("calibrateDepth", package="diveMove",
+##'                ask=FALSE, echo=FALSE, run.donttest=TRUE)
+##' dcalib		# the 'TDRcalibrate' that was created
+##'
+##' tdr <- getTDR(dcalib)
+##'
+##' ## Extract the gross activity from an already calibrated TDR object
+##' gross.act <- getGAct(dcalib)
+##' detd <- diveMove:::.detDive(getDepth(tdr), gross.act[[2]], 3)
+##'
+##' }
 ".detDive" <- function(zdepth, act, dive.thr)
 {
-    ## Value: A data frame; detecting dives, using a depth threshold
-    ## --------------------------------------------------------------------
-    ## Arguments: zdepth=depth vector of zoc'ed data, act=factor with
-    ## dry/wet activity IDs (2nd element returned by detPhase), with values
-    ## "W" for at-sea, dive.thr=dive threshold in m
-    ## --------------------------------------------------------------------
-    ## Author: Sebastian Luque
-    ## --------------------------------------------------------------------
-    ## Get the indices of below surface activity and label as "U"
     underw <- which((act == "W" | act == "Z") & zdepth > 0)
     if (length(underw) > 0) {
         act[underw] <- "U"

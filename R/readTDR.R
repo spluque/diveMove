@@ -18,6 +18,7 @@
     interval
 }
 
+##' @describeIn createTDR Create TDR object from file
 "readTDR" <- function(file, dateCol=1, timeCol=2, depthCol=3, speed=FALSE,
                       subsamp=5, concurrentCols=4:6,
                       dtformat="%d/%m/%Y %H:%M:%S", tz="GMT", ...)
