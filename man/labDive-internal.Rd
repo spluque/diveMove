@@ -31,11 +31,11 @@
     object, non NA depths, and numeric vector representing
     \code{\link{POSIXct}} times.}
 
-  \item{dive.model, smooth.par, knot.factor, sigmasq, g, ordpen,
-        descent.crit.q, ascent.crit.q}{Passed from \code{calibrateDepth}.}
+  \item{dive.model, smooth.par, knot.factor, descent.crit.q,
+        ascent.crit.q}{Passed from \code{calibrateDepth}.}
 
-  \item{g, ordpen}{default arguments for \code{\link{unireg}}, so only
-    relevant for \code{divemodel="unimodal"}.}
+  \item{sigmasq, g, ordpen}{default arguments for \code{\link{unireg}}, so
+    only relevant for \code{divemodel="unimodal"}.}
 
   \item{act}{factor with values to label.}
 
