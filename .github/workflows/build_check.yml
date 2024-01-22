@@ -38,7 +38,7 @@ jobs:
           use-public-rspm: true
 
       - name: Install required R packages
-        uses: r-lib/actions/setup-r-dependencies@v1
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
             knitr

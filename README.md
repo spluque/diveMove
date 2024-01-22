@@ -1,6 +1,6 @@
 # diveMove
 
-[![Build Status](https://travis-ci.org/spluque/diveMove.svg?branch=master)](https://travis-ci.org/spluque/diveMove)
+[![R build and check](https://github.com/spluque/diveMove/actions/workflows/build_check.yml/badge.svg)](https://github.com/spluque/diveMove/actions/workflows/build_check.yml)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/diveMove)](https://www.r-pkg.org/pkg/diveMove)
 [![CRAN_Downloads](http://cranlogs.r-pkg.org/badges/diveMove)](https://www.r-pkg.org/pkg/diveMove)
 

@@ -1,11 +1,11 @@
 ## -*- R -*-
-citHeader("To cite the R package 'diveMove' in publications use:")
+citation(auto=meta)
 
-citEntry(entry="Article",
+## R News article
+bibentry(bibtype="Article",
          title="Diving Behaviour Analysis in {R}",
-         author=personList(
-             person(given=c("Sebastian", "P"), family="Luque",
-                    email="spluque@gmail.com")),
+         author=c(person(given=c("Sebastian", "P"), family="Luque",
+                         email="spluque@gmail.com")),
          journal="{R News}", year=2007, month="June",
          volume=7, number=3, pages="8--14",
          issn=1609-3631,

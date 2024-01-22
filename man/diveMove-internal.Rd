@@ -3,6 +3,7 @@
 \alias{.depthFilter}
 \alias{.derivStats}
 \alias{.diveIndices}
+\alias{.diveMatches}
 \alias{.getInterval}
 \alias{.plotTDR}
 \alias{.plotlyTDR}
@@ -177,13 +178,13 @@
 
   \itemize{
 
-    \item{time.br:} {A factor dividing \code{act} into different periods
-      of activity.}
+    \item \code{time.br} A factor dividing \code{act} into different periods
+      of activity.
 
-    \item{time.peract:} {The duration of each period of activity.}
+    \item \code{time.peract} The duration of each period of activity.
 
-    \item{beg.time, end.time:} {POSIXct objects indicating the beginning
-      and ending times of each period of activity.}
+    \item \code{beg.time, end.time} POSIXct objects indicating the beginning
+      and ending times of each period of activity.
 
   }
 
