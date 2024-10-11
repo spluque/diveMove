@@ -1,11 +1,16 @@
 Package: diveMove
 Type: Package
 Title: Dive Analysis and Calibration
-Version: 1.6.2
-Depends: R (>= 3.5.0), methods, stats4
+Version: 1.6.4
+Depends: R (>= 4.4.0), methods, stats4
 Suggests: knitr, lattice, pander, rmarkdown, tinytest
 Imports: geosphere, KernSmooth, plotly, quantreg, uniReg
-Author: Sebastian P. Luque <spluque@gmail.com>
+Authors@R: person(given = c("Sebastian", "P."),
+                  family = "Luque",
+		  role = c("aut", "cre"),
+		  email = "spluque@gmail.com",
+		  comment = c(ORCID = "0000-0002-9647-3691"))
+Author: Sebastian P. Luque [aut, cre] (<https://orcid.org/0000-0002-9647-3691>)
 Maintainer: Sebastian P. Luque <spluque@gmail.com>
 Description: Utilities to represent, visualize, filter, analyse, and summarize
 	     time-depth recorder (TDR) data.  Miscellaneous functions for

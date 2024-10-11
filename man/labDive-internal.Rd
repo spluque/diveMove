@@ -34,8 +34,9 @@
   \item{dive.model, smooth.par, knot.factor, descent.crit.q,
         ascent.crit.q}{Passed from \code{calibrateDepth}.}
 
-  \item{sigmasq, g, ordpen}{default arguments for \code{\link{unireg}}, so
-    only relevant for \code{divemodel="unimodal"}.}
+  \item{sigmasq, g, ordpen}{default arguments for
+    \code{\link[uniReg]{unireg}}, so only relevant for
+    \code{divemodel="unimodal"}.}
 
   \item{act}{factor with values to label.}
 

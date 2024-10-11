@@ -29,8 +29,6 @@
 int R_finite(double x) {
     return ((x) == (x));
 }
-#define Calloc(b, t) (t *) calloc(b, sizeof(t))
-#define Free free
 #define PRINT(x)                  \
     {                             \
         if ((x) == (x))           \
@@ -384,10 +382,10 @@ void run_quantile_lite(double *In, double *Out, const int *nIn,
         }
     } else {                  /* non-trivial case */
 	/* index will hold partially sorted index numbers of Save array */
-        idx = Calloc(m, int);
+        idx = R_Calloc(m, int);
 	/* stores all points of the current running window */
-        Win = Calloc(m, double);
-        prob = Calloc(nPrb, double);
+        Win = R_Calloc(m, double);
+        prob = R_Calloc(nPrb, double);
         for (i = 0; i < m; i++) {
             Win[i] = *(in++);	/* initialize running window */
             idx[i] = i;		/* and its index */
@@ -417,9 +415,9 @@ void run_quantile_lite(double *In, double *Out, const int *nIn,
             j = (j + 1) %
                 m; /* index goes from 0 to m-1, and back to 0 again  */
         }
-        Free(Win);
-        Free(idx);
-        Free(prob);
+        R_Free(Win);
+        R_Free(idx);
+        R_Free(prob);
     }
 }
 
@@ -447,10 +445,10 @@ void run_quantile(double *In, double *Out, const int *nIn, const int *nWin,
         run_max(In, Out, nIn, nWin);
     } else {                  /* non-trivial case */
 	/* index will hold partially sorted index numbers of Save array */
-        idx = Calloc(m, int);
+        idx = R_Calloc(m, int);
 	/* store all points of the current running window */
-        Win = Calloc(m, double);
-        prob = Calloc(nPrb, double);
+        Win = R_Calloc(m, double);
+        prob = R_Calloc(nPrb, double);
         for (i = 0; i < m; i++) idx[i] = i; /* and its index */
         for (i = 0; i < k2; i++) {
             Win[i] = *(in++);	/* initialize running window */
@@ -558,9 +556,9 @@ void run_quantile(double *In, double *Out, const int *nIn, const int *nWin,
 	    /* index goes from 0 to m-1, and back to 0 again */
             j = (j + 1) % m;
         }
-        Free(Win);
-        Free(idx);
-        Free(prob);
+        R_Free(Win);
+        R_Free(idx);
+        R_Free(prob);
     }
 }
 

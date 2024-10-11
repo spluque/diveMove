@@ -1,3 +1,7 @@
+Changes in version 1.6.4:
+
+   o The package now depends on R >= 4.4.0.
+
 Changes in version 1.6.0:
 
    o Analyses for 2- and 3-process Poisson mixtures are now fully

@@ -303,11 +303,10 @@ data(divesTDRzoc)
 }
 }
 \references{
-Koellmann, C., Ickstadt, K. and Fried, R. (2014) Beyond unimodal
-regression: modelling multimodality with piecewise unimodal, mixture or
-additive regression. Technical Report 8.
-\url{https://sfb876.tu-dortmund.de/FORSCHUNG/techreports.html}, SFB 876, TU
-Dortmund
+Koellmann, C., Ickstadt, K. and Fried, R. (2016) Beyond unimodal
+regression: modelling multimodality with piecewise unimodal or
+deconvolution models. Technical Report
+\url{https://arxiv.org/abs/1606.01666}, Technische Universität Dortmund
 
 Luque, S.P. and Fried, R. (2011) Recursive filtering for zero offset
 correction of diving depth time series. PLoS ONE 6:e15850
@@ -318,7 +317,7 @@ correction of diving depth time series. PLoS ONE 6:e15850
     \code{\link{.detDive}}, \code{\link{plotTDR}}, and
     \code{\link{plotZOC}} to visually assess ZOC procedure. See
     \code{\link{diveModel}}, \code{\link{smooth.spline}},
-    \code{\link{unireg}} for dive models.
+    \code{\link[uniReg]{unireg}} for dive models.
 }
 \author{
 Sebastian P. Luque \email{spluque@gmail.com}

@@ -6,6 +6,7 @@
 EXAMPLES.*
 ^TODO$
 ^.AppleDouble$
+^.lintr$
 ^vignettes/auto$
 ^src/\.clang-format$
 man-roxygen
