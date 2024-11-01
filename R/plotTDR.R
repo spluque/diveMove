@@ -50,8 +50,8 @@
     nights <- .night(time, sunrise.time, sunset.time)
     nconcurVars <- ifelse(is.null(concurVars), 0, ncol(concurVars))
     plotrows <- nconcurVars + 1
-    ncheight <- 1.35 * (1/plotrows)
-    lheights <- c(rep((1 - ncheight)/nconcurVars, nconcurVars), ncheight)
+    ncheight <- 1.35 * (1 / plotrows)
+    lheights <- c(rep((1 - ncheight) / nconcurVars, nconcurVars), ncheight)
     mardepthonly <- c(4, 4, 1, 1) + 0.1    # for depth plot only
     mardepthmore <- c(4, 4, -0.1, 1) + 0.1 # for depth plot and more vars
     martop <- c(-0.1, 4, 1, 1) + 0.1       # for top plot
@@ -59,7 +59,7 @@
     orig <- structure(0, class=class(time), tzone=attr(time, "tzone"))
     "plot.fun" <- function(xlim, ylim) {
         xticks <- orig + seq(from=xlim[1], to=xlim[2], length=20)
-        if(is.null(concurVars)) {
+        if (is.null(concurVars)) {
             par(las=1, bty="n", mar=mardepthonly, ...)
         } else {
             par(las=1, bty="n", mar=mardepthmore, ...)
@@ -118,7 +118,7 @@
     }
     if (!interact) {
         rx <- range(as.numeric(time))   # max and min of dates
-        xlim <- if(is.null(xlim)) rx else as.numeric(xlim)
+        xlim <- if (is.null(xlim)) rx else as.numeric(xlim)
         ylim <- if (is.null(depth.lim)) {
             rev(range(depth, na.rm=TRUE))
         } else rev(depth.lim)
@@ -128,7 +128,7 @@
             stop("tcltk support is absent")
         rx <- range(as.numeric(time))   # max and min of dates
         diffrx <- diff(rx)
-        xlim <- x10 <- if(is.null(xlim)) { # define xlim if not there already
+        xlim <- x10 <- if (is.null(xlim)) { # define xlim if not there already
             rx + (diffrx * 0.01)           # add 1% to each side
         } else as.numeric(xlim)
         xlmid <- xm0 <- mean(xlim)     # two vars with date range midpoint
@@ -145,16 +145,16 @@
         replot <- function(...) {
             xZ <<- as.numeric(tcltk::tclvalue(xZoom))
             xM <<- as.numeric(tcltk::tclvalue(xlmid))
-            xr.half <- (xr0/2) * 100/xZ
+            xr.half <- (xr0 / 2) * 100 / xZ
             xlim <- xM + c(-xr.half, xr.half)
             yTop <<- as.numeric(tcltk::tclvalue(yMax))
             ylim <- c(yTop, ylim[2])
             plot.fun(xlim=xlim, ylim=ylim)
         }
         replot.maybe <- function(...) {
-            if(as.numeric(tcltk::tclvalue(xZoom)) != xZ ||
-               as.numeric(tcltk::tclvalue(xlmid)) != xM ||
-               as.numeric(tcltk::tclvalue(yMax)) != yTop) replot()
+            if (as.numeric(tcltk::tclvalue(xZoom)) != xZ ||
+                as.numeric(tcltk::tclvalue(xlmid)) != xM ||
+                as.numeric(tcltk::tclvalue(yMax)) != yTop) replot()
         }
         coords <- list()
         zocrange <- function() {
@@ -193,7 +193,7 @@
         tpan.s <- tcltk::tkscale(xmid.frame, command=replot.maybe,
                                  from=xm0 - xr0, to=xm0 + xr0,
                                  showvalue=FALSE, variable=xlmid,
-                                 resolution=xr0/2000, length=200,
+                                 resolution=xr0 / 2000, length=200,
                                  orient="horiz")
         ## Maximum depth selection
         maxdep.l <- tcltk::tklabel(dep.frame, text="Max. Depth (m)")

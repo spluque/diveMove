@@ -15,11 +15,11 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
-    if (!is(x, "TDR")) stop ("x is not a TDR object")
+    if (!is(x, "TDR")) stop("x is not a TDR object")
     time <- getTime(x)
     depth <- getDepth(x)
     if (length(time) != nrow(zoc.filter)) {
-        stop ("x and zoc.filter must have the same number of records")
+        stop("x and zoc.filter must have the same number of records")
     }
     nfilters <- ncol(zoc.filter)
     if (missing(xlim)) xlim <- range(time)
@@ -85,8 +85,8 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian P. Luque
     ## --------------------------------------------------------------------
-    if (!is(x, "TDR")) stop ("x is not a TDR object")
-    if (!is(y, "TDRcalibrate")) stop ("y is not a TDRcalibrate object")
+    if (!is(x, "TDR")) stop("x is not a TDR object")
+    if (!is(y, "TDRcalibrate")) stop("y is not a TDRcalibrate object")
     time.in <- getTime(x)
     depth.in <- getDepth(x)
     time.out <- getTime(getTDR(y))

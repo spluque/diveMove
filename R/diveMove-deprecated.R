@@ -25,33 +25,33 @@ NULL
 ##' @section \code{bouts2.nls}:
 ##' For \code{bouts2.nls}, use \code{\link{fitNLSbouts}}.
 "bouts2.nls" <- function(lnfreq, start, maxiter) {
-   .Deprecated("fitNLSbouts", package="diveMove",
+    .Deprecated("fitNLSbouts", package="diveMove",
                 msg=paste("'bouts2.nls' is now deprecated in favor of",
                           "the new method 'fitNLSbouts'.",
                           "Please see help(fitNLSbouts)"))
-   fitNLSbouts(lnfreq, start=start, maxiter=maxiter)
+    fitNLSbouts(lnfreq, start=start, maxiter=maxiter)
 }
 
 ##' @rdname diveMove-deprecated
 ##' @section \code{bec2}:
 ##' For \code{bec2}, use \code{\link{bec}}.
 "bec2" <- function(fit) {
-   .Deprecated("bec", package="diveMove",
+    .Deprecated("bec", package="diveMove",
                 msg=paste("'bec2' is now deprecated in favor of",
                           "the new generalized method 'bec'.",
                           "Please see help(bec)"))
-   bec(fit)
+    bec(fit)
 }
 
 ##' @rdname diveMove-deprecated
 ##' @section \code{bec3}:
 ##' For \code{bec3}, use \code{\link{bec}}.
 "bec3" <- function(fit) {
-   .Deprecated("bec", package="diveMove",
+    .Deprecated("bec", package="diveMove",
                 msg=paste("'bec3' is now deprecated in favor of",
                           "the new generalized method 'bec'.",
                           "Please see help(bec)"))
-   bec(fit)
+    bec(fit)
 }
 
 ##' @rdname diveMove-deprecated
@@ -69,11 +69,11 @@ NULL
 ##' @section \code{bouts3.nls}:
 ##' For \code{bouts3.nls}, use \code{\link{fitNLSbouts}}.
 "bouts3.nls" <- function(lnfreq, start, maxiter) {
-   .Deprecated("fitNLSbouts", package="diveMove",
+    .Deprecated("fitNLSbouts", package="diveMove",
                 msg=paste("'bouts3.nls' is now deprecated in favor of",
                           "the new method 'fitNLSbouts'.",
                           "Please see help(fitNLSbouts)"))
-   fitNLSbouts(lnfreq, start=start, maxiter=maxiter)
+    fitNLSbouts(lnfreq, start=start, maxiter=maxiter)
 }
 
 ##' @rdname diveMove-deprecated

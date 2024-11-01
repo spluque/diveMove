@@ -166,8 +166,8 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    if (!window %% 2) stop ("window size must be an odd number")
-    if (nrow(x) < window) stop ("there are fewer rows than window size")
+    if (!window %% 2) stop("window size must be an odd number")
+    if (nrow(x) < window) stop("there are fewer rows than window size")
     tpos <- window %/% 2                # test subscript - 1
     testfun <- function(k) {            # k=matrix with group to test
         mid <- tpos + 1                 # subscript of pt to test
@@ -205,9 +205,9 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    if (!window %% 2) stop ("window size must be an odd number")
+    if (!window %% 2) stop("window size must be an odd number")
     wdw.errmess <- "there are fewer rows than window size"
-    if (nrow(x) < window) stop (wdw.errmess)
+    if (nrow(x) < window) stop(wdw.errmess)
     tpos <- window %/% 2                      # test subscript - 1
     ref <- c(-seq(tpos), seq(tpos))           # reference points for test
     travel.fun <- function(k) {           # k=subscripts
@@ -222,7 +222,7 @@
 
     while (any(rmsSwitch)) {           # stop when switch is all FALSE
         switchidx <- which(rmsSwitch)
-        if ((length(switchidx) + (tpos * 2)) < window) stop (wdw.errmess)
+        if ((length(switchidx) + (tpos * 2)) < window) stop(wdw.errmess)
         testrows.new <- testrows[rmsSwitch]
         idx <- seq_along(testrows.new)  # index the above
         testidx.mtx <- testidx <- c(idx, sapply(ref, "+", idx))

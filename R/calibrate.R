@@ -287,7 +287,7 @@
                               smooth.par=0.1, knot.factor=3,
                               descent.crit.q=0, ascent.crit.q=0)
 {
-    if (!is(x, "TDR")) stop ("x is not a TDR object")
+    if (!is(x, "TDR")) stop("x is not a TDR object")
     mCall <- match.call()
     depth <- getDepth(x)
     time <- getTime(x)

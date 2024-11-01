@@ -107,14 +107,14 @@
     ## Final run to determine times with all corrected activities
     finacts <- .rleActivity(time, act, interval)
     nphase <- length(levels(finacts[[1]]))
-    if(act[1] == "L" & act[length(act)] == "L") {
+    if (act[1] == "L" & act[length(act)] == "L") {
         message("Record is complete\n", nphase, " phases detected")
     } else {
-        if(act[1] != "L" & act[length(act)] != "L") {
+        if (act[1] != "L" & act[length(act)] != "L") {
             message("Record is truncated at the beginning and at the end\n",
                     nphase, " phases detected")
         } else {
-            if(act[1] != "L") {
+            if (act[1] != "L") {
                 message("Record is truncated at the beginning\n", nphase,
                         " phases detected")
             } else {

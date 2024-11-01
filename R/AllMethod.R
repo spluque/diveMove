@@ -437,9 +437,9 @@ setMethod("plotDiveModel",
                     depths[a.crit:length(x)], col="lightblue")
               legend("top", ncol=2, title=paste("Dive:", diveNo),
                      legend=c("original", "smoothed",
-                       "descent", "ascent"), lty=c(1, 2, 1, 1),
+                              "descent", "ascent"), lty=c(1, 2, 1, 1),
                      col=c("black", "green",
-                       "blue", "lightblue"), cex=0.7)
+                           "blue", "lightblue"), cex=0.7)
               plot(times.deriv, depths.deriv, xlab="Time index",
                    ylab="First derivative", type="l", cex=0.3)
               points(times.deriv[descent], depths.deriv[descent],
@@ -450,7 +450,7 @@ setMethod("plotDiveModel",
                      v=c(times[d.crit], times[a.crit]), lty=2)
               text(2, c(d.crit.rate, a.crit.rate),
                    labels=c(expression(paste("descent ", hat(q))),
-                     expression(paste("ascent ", hat(q)))),
+                            expression(paste("ascent ", hat(q)))),
                    pos=c(3, 1), cex=0.7)
               text(c(times[d.crit], times[a.crit]), 0,
                    labels=c("descent", "ascent"), pos=1, cex=0.7)
@@ -527,7 +527,7 @@ setMethod("boutsNLSll", signature(obj="numeric"),
 setMethod("boutinit", signature(obj="data.frame"),
           function(obj, x.break, plot=TRUE, ...) {
               nproc <- length(x.break)
-              if (nproc > 2) stop ("x.break must be of length 1 or 2")
+              if (nproc > 2) stop("x.break must be of length 1 or 2")
               procf <- cut(obj$x, breaks=c(min(obj$x), x.break,
                                            max(obj$x)),
                            include.lowest=TRUE, right=TRUE)
@@ -838,7 +838,7 @@ setMethod("plotBouts", signature(fit="mle", obj="Bouts"),
         for (bec.i in seq_len(length(becx))) {
             text(becx[bec.i], becy[bec.i], pos=4, offset=1,
                  paste(paste("bec_", bec.i - 1, "=", sep=""),
-                   round(becx[bec.i], 2), sep=""),
+                       round(becx[bec.i], 2), sep=""),
                  bty="n", cex=0.8)
         }
     }
@@ -1435,11 +1435,11 @@ setReplaceMethod("ccData", signature(x="TDR", value="data.frame"),
 ###_ + Subsetting
 setMethod("[", signature(x="TDR", i="numeric", j="missing", drop="missing"),
           function(x, i, j, ..., drop) {
-    new(class(x), file=getFileName(x), dtime=getDtime(x), time=getTime(x)[i],
-        depth=getDepth(x)[i],
-        concurrentData=tryCatch(getCCData(x)[i, , drop=FALSE],
-          error=function(k) data.frame()))
-})
+              new(class(x), file=getFileName(x), dtime=getDtime(x),
+                  time=getTime(x)[i], depth=getDepth(x)[i],
+                  concurrentData=tryCatch(getCCData(x)[i, , drop=FALSE],
+                                          error=function(k) data.frame()))
+          })
 
 
 ###_ + Generators and Summaries
@@ -1516,11 +1516,11 @@ setMethod("[", signature(x="TDR", i="numeric", j="missing", drop="missing"),
 ##'           file=srcfn, speed=TRUE)
 "createTDR" <- function(time, depth,
                         concurrentData=data.frame(matrix(ncol=0,
-                          nrow=length(time))),
+                                                         nrow=length(time))),
                         speed=FALSE, dtime, file)
 {
     if (missing(dtime)) dtime <- .getInterval(time)
-    if(speed) {
+    if (speed) {
         new("TDRspeed", time=time, depth=depth, concurrentData=concurrentData,
             dtime=dtime, file=file)
     } else {
@@ -1562,7 +1562,7 @@ setMethod("extractDive", signature(obj="TDR", diveNo="numeric",
                                    id="numeric"), # for TDR object
           function(obj, diveNo, id) {
               if (length(id) != length(getTime(obj))) {
-                  stop ("id and obj must have equal number of rows")
+                  stop("id and obj must have equal number of rows")
               }
               okpts <- .diveIndices(id, unique(diveNo))
               if (is(obj, "TDRspeed")) {

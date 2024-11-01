@@ -17,7 +17,7 @@
         mspeed <- mean(speed, na.rm=TRUE)
         tdist <- sum(difft * speed, na.rm=TRUE)
         if (!missing(vdist)) {
-            angle <- asin(ifelse(vdist < tdist, vdist/tdist, NA)) * (180 / pi)
+            angle <- asin(ifelse(vdist < tdist, vdist / tdist, NA)) * (180 / pi)
             cbind(tdist=tdist, mean.speed=mspeed, angle=angle)
         } else {
             cbind(tdist=tdist, mean.speed=mspeed, angle=NA)

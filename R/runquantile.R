@@ -198,7 +198,7 @@
     np <- length(probs)
     k <- as.integer(k)
     type <- as.integer(type)
-    if (k <= 1) return (rep(x, n, np))
+    if (k <= 1) return(rep(x, n, np))
     if (k > n) k <- n
     if (is.na(type) || (type < 1 | type > 9))
         warning("'type' outside allowed range [1,9]; changing 'type' to ",

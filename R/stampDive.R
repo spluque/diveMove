@@ -15,7 +15,7 @@
     ## --------------------------------------------------------------------
     ## Author: Sebastian Luque
     ## --------------------------------------------------------------------
-    if (!is(x, "TDRcalibrate")) stop ("x needs to be a TDRcalibrate object")
+    if (!is(x, "TDRcalibrate")) stop("x needs to be a TDRcalibrate object")
     act <- getGAct(x, "activity")
     diveid <- getDAct(x, "dive.id")
 
@@ -36,7 +36,7 @@
     phaseid[act == "L"] <- 0             # dry phase.id should be 0
     ## make a sequence for phase.id > 0 from 1:number of such phases
     phase.no[act != "L"] <- rep(seq(along=table(phaseid[phaseid > 0])),
-                table(phaseid[phaseid > 0]))
+                                table(phaseid[phaseid > 0]))
     ok <- match(unique(diveid[diveid > 0]), diveid) # required subscripts
     phase.no <-  phase.no[ok]
     activity <- act[ok]

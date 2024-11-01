@@ -60,7 +60,7 @@
         inLocs <- read.csv(locations, ...)
     } else {
         if (! is.data.frame(locations)) {
-            stop ("'locations' must be a data.frame, path to a file, or a connection")
+            stop("'locations' must be a data.frame, path to a file, or a connection")
         } else {inLocs <- locations}
     }
     if (missing(loc.idCol)) {

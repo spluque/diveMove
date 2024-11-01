@@ -39,7 +39,7 @@
                           basename(summary(file)$description),
                           basename(file))
     } else {
-        stop ("'file' must be a path to a file, or a connection")
+        stop("'file' must be a path to a file, or a connection")
     }
     rawdat <- read.csv(file, ...)
     names(rawdat) <- tolower(names(rawdat))
@@ -47,7 +47,7 @@
     dtpasted <- paste(rawdat[, dateCol], rawdat[, timeCol])
     datetime <- as.POSIXct(strptime(dtpasted, format=dtformat), tz=tz)
     origint <- .getInterval(datetime)
-    if(!identical(all.equal(origint, subsamp), TRUE)) {
+    if (!identical(all.equal(origint, subsamp), TRUE)) {
         steptim <- as.numeric((subsamp) / origint)
         stepind <- seq(from=1, to=length(datetime), by=round(steptim))
         datetime <- datetime[stepind]
